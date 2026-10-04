@@ -13,6 +13,15 @@ set -euo pipefail
 ROOT="${DAILY_FEED_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 TZN="${DAILY_FEED_TZ:-Asia/Ho_Chi_Minh}"
 TARGET_TIME="${DAILY_FEED_TIME:-07:00}"
+# Model and effort per Claude step (spec 2026-10-04-more-sources-and-hot-topics).
+# Curation judges ~200 items: Sonnet at medium effort. Details mostly
+# summarise fetched text and are checked by parseDetail: Sonnet at low.
+# Haiku takes over only when the main model is overloaded.
+CURATE_MODEL="${DAILY_FEED_CURATE_MODEL:-claude-sonnet-5-5}"
+CURATE_EFFORT="${DAILY_FEED_CURATE_EFFORT:-medium}"
+DETAIL_MODEL="${DAILY_FEED_DETAIL_MODEL:-claude-sonnet-5-5}"
+DETAIL_EFFORT="${DAILY_FEED_DETAIL_EFFORT:-low}"
+FALLBACK_MODEL="${DAILY_FEED_FALLBACK_MODEL:-claude-haiku-4-5-20251001}"
 STATE="$HOME/Library/Application Support/daily-feed.lastday"
 LOG="$HOME/Library/Logs/daily-feed.log"
 MODE=scheduled
@@ -48,7 +57,7 @@ if [ "$MODE" = scheduled ]; then
 fi
 
 cd "$ROOT"
-echo "=== $(date) daily-feed run (mode=$MODE stub=$STUB today=$TODAY tz=$TZN) ==="
+echo "=== $(date) daily-feed run (mode=$MODE stub=$STUB today=$TODAY tz=$TZN curate=$CURATE_MODEL/$CURATE_EFFORT detail=$DETAIL_MODEL/$DETAIL_EFFORT) ==="
 
 if [ "$MODE" = scheduled ]; then
   # The published site is built from main. An interactive session may have
@@ -83,6 +92,7 @@ if [ "$DETAIL_ONLY" = 0 ]; then
         --disallowedTools "Bash" "WebFetch" "WebSearch" "Agent" "NotebookEdit" \
           "Read(./data/items.json)" "Read(./data/dropped.json)" "Read(./data/status.json)" \
         --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
+        --model "$CURATE_MODEL" --effort "$CURATE_EFFORT" --fallback-model "$FALLBACK_MODEL" \
         --output-format text --max-turns 20; then
       echo "[run] curate step failed; continuing with previous items"
     fi
@@ -106,6 +116,7 @@ for _ in $(seq 1 20); do
       --disallowedTools "Bash" "WebFetch" "WebSearch" "Agent" "NotebookEdit" \
         "Read(./data/items.json)" "Read(./data/dropped.json)" "Read(./data/status.json)" \
       --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
+      --model "$DETAIL_MODEL" --effort "$DETAIL_EFFORT" --fallback-model "$FALLBACK_MODEL" \
       --output-format text --max-turns 40; then
     echo "[run] detail step failed; keeping what was written"
     node scripts/detail-merge.mjs

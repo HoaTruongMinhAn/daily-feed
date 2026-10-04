@@ -13,6 +13,7 @@ description: >-
 
 **Invoke:** `/daily-feed-detail` — no arguments.
 **Reads:** `data/detail-queue/index.json` and the `.md` files it lists. **Writes:** one `data/details/<id>.txt` per queued item.
+**Runs on:** `claude-sonnet-5-5` at effort `low`, set by `scripts/daily-feed-run.sh` (`DAILY_FEED_DETAIL_MODEL` / `DAILY_FEED_DETAIL_EFFORT` override). Summarise what the source says; do not deliberate beyond it.
 
 ## Agent contract
 
