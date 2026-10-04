@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { selectForDetail, queueFile, parseDetail, ungroundedTokens, sourceTextFor } from '../lib/detail.mjs';
 import { stubDetail } from '../scripts/stub-detail.mjs';
 
-const cfg = { feedDays: 2, detailBatchSize: 2, detailMaxPerDay: 3 };
+const cfg = { detailDays: 2, detailBatchSize: 2, detailMaxPerDay: 3 };
 const it = (id, extra = {}) => ({ id, title: `T${id}`, url: `https://a.com/${id}`, sourceName: 'HN', category: 'ai-tip', summary: 'Tóm tắt.', rank: 1, addedAt: '2026-10-04', ...extra });
 
 test('selectForDetail picks recent items without detail, best rank first, within batch and daily budget', () => {

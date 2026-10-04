@@ -74,6 +74,18 @@ skipped, never fatal.
 resolver (System Settings → Network → DNS, e.g. `1.1.1.1`), remove the
 `disabled` field to get r/ProgrammerHumor memes and the AI subreddits.
 
+## Saved and read state
+
+Each card has a ☆ button; saved items are under the **Saved** pill. Home
+hides items you have read: opened (detail expanded or a link clicked) at
+once, merely scrolled past after a day. "Hiện" at the bottom shows them
+again for that visit, and archive pages always show everything.
+
+This state lives only in the current browser, with no account and no
+sync. To move it between phone and laptop, use **Xuất** (export a JSON
+file) and **Nhập** (import; it merges, never overwrites) in the footer.
+Clearing site data in the browser erases it.
+
 ## Rules
 
 See `CLAUDE.md`. Short version: scripts do the deterministic work, Claude

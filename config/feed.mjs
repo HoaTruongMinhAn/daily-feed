@@ -13,7 +13,10 @@ export const feedConfig = {
   buzzPerSource: 0.25,     // rank boost per extra independent source
   buzzMaxExtra: 3,         // at most this many extra sources count (max x1.75)
   hotNowCount: 3,
-  feedDays: 2,             // index shows items added within this many days
+  hotNowDays: 2,           // "Hot now" picks from items added within this many days
+  homeDays: 7,             // index feed renders items added within this many days; the browser hides read ones
+  homePageSize: 40,        // unread cards shown before "Xem thêm"
+  detailDays: 2,           // Vietnamese details are written for items added within this many days
   articleMaxChars: 5000,   // article text kept per item as detail source
   detailBatchSize: 12,     // items per `claude -p "/daily-feed-detail"` call
   detailMaxPerDay: 120,    // items that get a Vietnamese detail per day, best rank first (= maxCandidates, so every kept item fits)

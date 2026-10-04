@@ -4,8 +4,9 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { feedConfig as cfg } from '../config/feed.mjs';
 import { sources } from '../config/sources.mjs';
-import { dataFile, readJson, updateStatus, siteDir, todayIn, daysAgo } from '../lib/store.mjs';
+import { dataFile, readJson, updateStatus, siteDir, todayIn } from '../lib/store.mjs';
 import { renderPage } from '../lib/render.mjs';
+import { selectHome } from '../lib/home.mjs';
 
 export function main() {
   const items = readJson(dataFile('items.json'), []);
@@ -21,11 +22,7 @@ export function main() {
   const sourceNames = [...new Set(sources.filter((s) => !s.disabled).map((s) => s.name))];
   const byRank = (a, b) => b.rank - a.rank;
 
-  const feedSince = daysAgo(today, cfg.feedDays - 1);
-  const recent = items.filter((i) => i.addedAt >= feedSince).sort(byRank);
-  const hotNow = recent.slice(0, cfg.hotNowCount);
-  const hotIds = new Set(hotNow.map((i) => i.id));
-  const feed = recent.filter((i) => !hotIds.has(i.id));
+  const { hotNow, feed } = selectHome(items, today, cfg);
   const archiveDates = [...new Set(items.map((i) => i.addedAt))].sort().reverse();
 
   const archiveDir = join(siteDir, 'archive');
@@ -33,7 +30,7 @@ export function main() {
   for (const f of readdirSync(archiveDir)) rmSync(join(archiveDir, f));
 
   writeFileSync(join(siteDir, 'index.html'), renderPage({
-    title: cfg.siteTitle, heading: cfg.siteTitle, items: feed, hotNow, archiveDates, status, sourceNames, generatedAt, basePath: '', isArchive: false,
+    title: cfg.siteTitle, heading: cfg.siteTitle, items: feed, hotNow, archiveDates, status, sourceNames, generatedAt, basePath: '', isArchive: false, pageSize: cfg.homePageSize,
   }));
   for (const date of archiveDates) {
     writeFileSync(join(archiveDir, `${date}.html`), renderPage({
