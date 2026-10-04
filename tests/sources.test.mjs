@@ -154,3 +154,30 @@ test('lobsters adapter: score + 2*comments, text posts use the comments page', a
   assert.equal(out[1].url, 'https://lobste.rs/s/ab12cd/ask_how_do_you_test');
   assert.equal(out[1].excerpt, 'We run them twice.');
 });
+
+test('dailydev adapter: POSTs the GraphQL query, shares use the shared article, link-less posts use the daily.dev page', async () => {
+  let asked;
+  const fetchJson = async (u, opts) => { asked = { u, ...opts, body: JSON.parse(opts.body) }; return fixture('dailydev.json'); };
+  const out = await adapters.dailydev({ id: 'd', name: 'daily.dev', family: 'dailydev', feed: 'mostDiscussedFeed', period: 3, categoryHint: 'it', p90: 100 }, { fetchJson, now });
+  assert.equal(asked.u, 'https://api.daily.dev/graphql');
+  assert.equal(asked.method, 'POST');
+  assert.equal(asked.headers['content-type'], 'application/json');
+  assert.match(asked.body.query, /feed: mostDiscussedFeed\(/);
+  assert.deepEqual(asked.body.variables, { first: 50, period: 3 });
+  assert.equal(out.length, 3);
+  assert.equal(out[0].url, 'https://leaddev.com/ai/meet-the-developers-rejecting-ai');
+  assert.equal(out[0].discussionUrl, 'https://daily.dev/posts/meet-the-developers-rejecting-ai-mgfmaufls');
+  assert.equal(out[0].engagement, 271 + 2 * 75);
+  assert.equal(out[0].excerpt, 'A growing number of developers are publicly rejecting AI coding tools.');
+  assert.equal(out[0].source, 'dailydev');
+  assert.equal(out[1].title, 'The birth of the Software Verification Engineer');
+  assert.equal(out[1].url, 'https://blog.reqproof.com/p/the-birth-of-the-software-verification');
+  assert.equal(out[1].engagement, 78, 'missing numComments counts as 0');
+  assert.equal(out[2].url, 'https://daily.dev/posts/a-post-with-no-link-nourl1234');
+});
+
+test('dailydev adapter: only the two known feeds are queried, and GraphQL errors throw', async () => {
+  const src = { id: 'd', name: 'daily.dev', family: 'dailydev', feed: 'mostUpvotedFeed', categoryHint: 'it', p90: 80 };
+  await assert.rejects(adapters.dailydev({ ...src, feed: 'post(id: "x") { title } x: mostUpvotedFeed' }, { fetchJson: async () => fixture('dailydev.json'), now }), /unknown daily\.dev feed/);
+  await assert.rejects(adapters.dailydev(src, { fetchJson: async () => ({ errors: [{ message: 'Unknown argument' }] }), now }), /daily\.dev: Unknown argument/);
+});

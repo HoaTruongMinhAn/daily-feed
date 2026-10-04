@@ -1,0 +1,54 @@
+{
+  "data": {
+    "feed": {
+      "edges": [
+        {
+          "node": {
+            "id": "mGfmauFls",
+            "type": "article",
+            "title": "Meet the developers rejecting AI",
+            "url": "https://leaddev.com/ai/meet-the-developers-rejecting-ai",
+            "summary": "A growing number of developers are publicly rejecting AI coding tools.",
+            "createdAt": "2026-10-02T10:17:06.681Z",
+            "numUpvotes": 271,
+            "numComments": 75,
+            "commentsPermalink": "https://daily.dev/posts/meet-the-developers-rejecting-ai-mgfmaufls",
+            "sharedPost": null
+          }
+        },
+        {
+          "node": {
+            "id": "KLErkv7uI",
+            "type": "share",
+            "title": null,
+            "url": null,
+            "summary": null,
+            "createdAt": "2026-10-03T14:29:14.396Z",
+            "numUpvotes": 78,
+            "numComments": null,
+            "commentsPermalink": "https://daily.dev/posts/klerkv7ui",
+            "sharedPost": {
+              "title": "The birth of the Software Verification Engineer",
+              "url": "https://blog.reqproof.com/p/the-birth-of-the-software-verification",
+              "summary": "An emerging engineering role, the Software Verification Engineer."
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "noUrl1234",
+            "type": "freeform",
+            "title": "A post with no link",
+            "url": null,
+            "summary": null,
+            "createdAt": "2026-10-03T08:00:00.000Z",
+            "numUpvotes": 12,
+            "numComments": 1,
+            "commentsPermalink": "https://daily.dev/posts/a-post-with-no-link-nourl1234",
+            "sharedPost": null
+          }
+        }
+      ]
+    }
+  }
+}

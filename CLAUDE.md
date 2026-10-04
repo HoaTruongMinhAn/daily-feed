@@ -31,7 +31,7 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
 
 1. **fetch** (`scripts/fetch.mjs` → `lib/collect.mjs`): for each entry in
    `config/sources.mjs`, call the adapter for its `family`
-   (`lib/sources/{hn,reddit,github,devto,rss,mastodon,bluesky,lobsters}.mjs`, registered in
+   (`lib/sources/{hn,reddit,github,devto,rss,mastodon,bluesky,lobsters,dailydev}.mjs`, registered in
    `lib/sources/index.mjs`), which returns objects built by
    `makeCandidate` (`lib/candidate.mjs`; `id` = hash of the canonical URL
    from `lib/dedup.mjs`). Then age filter + hotness (`lib/score.mjs`,

@@ -10,7 +10,7 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
 ## How it works
 
 1. `scripts/fetch.mjs` pulls candidates from Hacker News, Reddit, GitHub,
-   dev.to, Lobsters, Mastodon, Bluesky, and RSS feeds
+   dev.to, Lobsters, Mastodon, Bluesky, daily.dev, and RSS feeds
    (`config/sources.mjs`), scores hotness, dedups,
    skips anything already seen, and writes `data/candidates.json`. A story
    already kept that shows up from another source is recorded as an extra
@@ -85,7 +85,7 @@ rm ~/Library/LaunchAgents/com.dailyfeed.run.plist
 
 Edit `config/sources.mjs`. Each source needs a unique `id`, a `family`
 (`hn`, `reddit`, `github`, `devto`, `rss`, `mastodon`, `bluesky`,
-`lobsters`), a `categoryHint` (`ai`, `testing`, `it`, `humor`, `hot`),
+`lobsters`, `dailydev`), a `categoryHint` (`ai`, `testing`, `it`, `humor`, `hot`),
 and `p90` (what "very hot" looks like there). Low-volume sources can set
 `maxAgeHours` above the default 72, and busy ones `perSourceCap` below
 the default 25. `editorialHot: true` marks an editor-ranked source

@@ -122,3 +122,16 @@ test('publicLookup gives the resolver a short timeout and one try', () => {
   publicLookup(['1.1.1.1'], { Resolver: R });
   assert.deepEqual(R.opts, { timeout: 2000, tries: 1 });
 });
+
+test('fetchJson can POST a body with extra headers', async () => {
+  let seen;
+  const { server, url } = await serve((req, res) => {
+    let body = '';
+    req.on('data', (c) => { body += c; });
+    req.on('end', () => { seen = { method: req.method, type: req.headers['content-type'], body }; res.end('{"ok":true}'); });
+  });
+  try {
+    assert.deepEqual(await fetchJson(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{"q":1}' }), { ok: true });
+    assert.deepEqual(seen, { method: 'POST', type: 'application/json', body: '{"q":1}' });
+  } finally { server.close(); }
+});

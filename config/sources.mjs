@@ -50,6 +50,11 @@ export const sources = [
   { id: 'lobsters-devops', name: 'Lobsters', family: 'lobsters', tag: 'devops', categoryHint: 'it', p90: 50, maxAgeHours: 168 },
   { id: 'lobsters-practices', name: 'Lobsters', family: 'lobsters', tag: 'practices', categoryHint: 'it', p90: 60, maxAgeHours: 168 },
 
+  // daily.dev (undocumented GraphQL, no login; lib/sources/dailydev.mjs).
+  // Mostly dev blogs no other source here covers. Tag feeds are too sparse.
+  { id: 'dailydev-upvoted', name: 'daily.dev', family: 'dailydev', feed: 'mostUpvotedFeed', period: 3, categoryHint: 'it', p90: 80, perSourceCap: 15 },
+  { id: 'dailydev-discussed', name: 'daily.dev', family: 'dailydev', feed: 'mostDiscussedFeed', period: 3, categoryHint: 'it', p90: 100, perSourceCap: 15 },
+
   // Mastodon (public API, no login). sourceName 'Mastodon' for all, so one
   // link boosted on two instances is one source, not buzz.
   { id: 'mstdn-softwaretesting', name: 'Mastodon', family: 'mastodon', instance: 'hachyderm.io', tag: 'softwaretesting', categoryHint: 'testing', p90: 2, perSourceCap: 15, maxAgeHours: 168 },
