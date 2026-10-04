@@ -97,3 +97,39 @@ test('renderCard lists several sources escaped, single source unchanged (review 
   assert.ok(single.includes('<span class="card__src">Hacker News</span>'));
   assert.ok(!single.includes('card__buzz'));
 });
+
+const page = (extra = {}) => renderPage({
+  title: 'Daily Feed', heading: 'Daily Feed', items: [item], hotNow: [meme], archiveDates: ['2026-10-04'], status: {},
+  sourceNames: ['Hacker News'], generatedAt: '2026-10-04T00:15:00Z', basePath: '', isArchive: false, pageSize: 40, ...extra,
+});
+
+test('renderCard carries escaped data attributes and a bookmark button (review focus 3)', () => {
+  const html = renderCard({ ...item, id: 'a"<b', category: 'ai-tip' });
+  assert.ok(html.includes('data-id="a&quot;&lt;b"'));
+  assert.ok(html.includes('data-url="https://a.com/x"'));
+  assert.ok(html.includes('data-category="ai-tip"') && html.includes('data-added="2026-10-04"'));
+  assert.ok(html.includes('<button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">☆</button>'));
+  assert.ok(renderCard({ ...item, url: 'javascript:alert(1)' }).includes('data-url=""'));
+});
+
+test('renderPage home has the Saved pill, paging placeholders, footer tools and the module script', () => {
+  const html = page();
+  assert.ok(html.includes('<body data-page="home">'));
+  assert.ok(html.includes('data-view="saved"') && html.includes('data-saved-count'));
+  assert.ok(html.includes('<section id="feed" data-page-size="40">'));
+  for (const id of ['feed-more', 'read-hidden', 'show-read', 'all-read', 'saved-empty', 'export', 'import', 'import-file', 'state-msg']) assert.ok(html.includes(`id="${id}"`), id);
+  assert.ok(html.includes('<section id="saved" hidden>'));
+  assert.ok(html.includes('<p class="state-tools" hidden>'));
+  assert.ok(html.includes('<script type="module" src="assets/app.js"></script>'));
+  assert.ok(!html.includes('replaceState'), 'inline filter script is gone');
+  assert.ok(html.includes('Xem thêm') && html.includes('bài đã đọc đang ẩn') && html.includes('Bạn đã đọc hết. Xem lưu trữ bên dưới.'));
+});
+
+test('renderPage archive loads ../assets/app.js and has no Home paging', () => {
+  const html = page({ basePath: '../', isArchive: true, hotNow: [] });
+  assert.ok(html.includes('<body data-page="archive">'));
+  assert.ok(html.includes('<script type="module" src="../assets/app.js"></script>'));
+  assert.ok(html.includes('<section id="feed">'), 'no data-page-size on archive');
+  assert.ok(!html.includes('id="feed-more"') && !html.includes('id="read-hidden"'));
+  assert.ok(html.includes('id="saved"') && html.includes('id="export"'));
+});
