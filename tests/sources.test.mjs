@@ -1,0 +1,73 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { adapters } from '../lib/sources/index.mjs';
+import { sources } from '../config/sources.mjs';
+
+const fixture = (name) => JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8'));
+const text = (name) => readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8');
+const now = Date.parse('2026-10-04T00:00:00Z');
+
+test('hn adapter maps hits, uses the thread as url when none, skips untitled', async () => {
+  const out = await adapters.hn({ id: 'hn-front', name: 'Hacker News', family: 'hn', url: 'u', categoryHint: 'it', p90: 300 }, { fetchJson: async () => fixture('hn.json'), now });
+  assert.equal(out.length, 2);
+  assert.equal(out[0].url, 'https://anthropic.com/news/agent-sdk-2');
+  assert.equal(out[0].discussionUrl, 'https://news.ycombinator.com/item?id=100');
+  assert.equal(out[0].engagement, 420);
+  assert.equal(out[0].source, 'hn');
+  assert.equal(out[1].url, 'https://news.ycombinator.com/item?id=101');
+});
+
+test('reddit adapter: image memes get imageUrl, video/self posts do not, stickied skipped (review focus 2)', async () => {
+  const src = { id: 'r-humor', name: 'r/ProgrammerHumor', family: 'reddit', url: 'u', categoryHint: 'humor', p90: 5000, isMeme: true };
+  const out = await adapters.reddit(src, { fetchJson: async () => fixture('reddit.json'), now });
+  assert.equal(out.length, 3);
+  assert.equal(out[0].imageUrl, 'https://i.redd.it/meme1.png');
+  assert.equal(out[0].isMeme, true);
+  assert.equal(out[0].discussionUrl, 'https://www.reddit.com/r/ProgrammerHumor/comments/abc/when_the_test/');
+  assert.equal(out[1].imageUrl, null);
+  assert.equal(out[2].url, 'https://reddit.com/r/QualityAssurance/comments/jkl/flaky');
+  assert.equal(out[2].excerpt, 'We cut flaky tests by 80% by...');
+  assert.equal(out[2].source, 'reddit:r/QualityAssurance');
+  assert.equal(out[0].publishedAt, new Date(1791072000 * 1000).toISOString());
+});
+
+test('github adapter builds a dated query and titles repos', async () => {
+  let requested;
+  const src = { id: 'gh-testing', name: 'GitHub', family: 'github', query: 'topic:testing', createdWithinDays: 30, categoryHint: 'testing', p90: 1000 };
+  const out = await adapters.github(src, { fetchJson: async (url) => { requested = url; return fixture('github.json'); }, now });
+  assert.match(requested, /created%3A%3E2026-09-04/);
+  assert.equal(out[0].title, 'acme/llm-test-kit: Evaluate LLM apps in CI');
+  assert.equal(out[0].engagement, 1200);
+  assert.equal(out[0].publishedAt, '2026-10-03T08:00:00Z');
+  assert.equal(out[1].title, 'acme/nodesc');
+});
+
+test('devto adapter maps articles', async () => {
+  const out = await adapters.devto({ id: 'devto-ai', name: 'dev.to', family: 'devto', url: 'u', categoryHint: 'ai', p90: 100 }, { fetchJson: async () => fixture('devto.json'), now });
+  assert.equal(out[0].url, 'https://dev.to/x/playwright-fixtures');
+  assert.equal(out[0].engagement, 88);
+  assert.equal(out[0].excerpt, 'Fixtures done right.');
+});
+
+test('rss adapter maps feed entries; memes keep images; missing dates become now', async () => {
+  const src = { id: 'xkcd', name: 'xkcd', family: 'rss', url: 'u', categoryHint: 'humor', p90: 1, isMeme: true };
+  const out = await adapters.rss(src, { fetchText: async () => text('atom-sample.xml'), now });
+  assert.equal(out[0].imageUrl, 'https://imgs.xkcd.com/comics/unit_tests.png');
+  assert.equal(out[0].engagement, 1);
+  assert.equal(out[0].source, 'rss:xkcd');
+  const noDate = await adapters.rss({ ...src, isMeme: false }, { fetchText: async () => '<rss><channel><item><title>t</title><link>https://a.com/x</link><description><img src="https://a/i.png"></description></item></channel></rss>', now });
+  assert.equal(noDate[0].publishedAt, new Date(now).toISOString());
+  assert.equal(noDate[0].imageUrl, null);
+});
+
+test('config/sources.mjs entries are well formed', () => {
+  assert.ok(sources.length >= 12);
+  for (const s of sources) {
+    assert.ok(adapters[s.family], `${s.id} unknown family ${s.family}`);
+    assert.ok(['ai', 'testing', 'it', 'humor'].includes(s.categoryHint), `${s.id} bad hint`);
+    assert.ok(s.p90 > 0, `${s.id} needs p90`);
+    assert.ok(s.family === 'github' ? s.query : s.url, `${s.id} needs url/query`);
+  }
+  assert.equal(new Set(sources.map((s) => s.id)).size, sources.length, 'ids unique');
+});
