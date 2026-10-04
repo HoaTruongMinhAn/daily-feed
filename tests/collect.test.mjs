@@ -54,3 +54,13 @@ test('collect reports how many sources were consulted so callers can detect tota
   assert.equal(out.failed.length, 2);
   assert.equal(out.failed.length === out.consulted, true);
 });
+
+test('collect turns stories already in items into sightings; dropped ids are still discarded', async () => {
+  const kept = mk('https://a.com/kept', 'Kept story about Playwright traces');
+  const adapters = { f: async () => [mk('https://a.com/kept', 'Kept story about Playwright traces'), mk('https://a.com/dropped', 'dropped one'), mk('https://a.com/new', 'brand new')] };
+  const items = [{ ...kept, sourceName: 'HN' }];
+  const knownIds = new Set([kept.id, mk('https://a.com/dropped', 'x').id]);
+  const out = await collect({ sources: [{ id: 'f', family: 'f', p90: 100, categoryHint: 'it' }], adapters, http: {}, now, cfg: { ...cfg, perSourceCap: 10 }, knownIds, knownItems: items, log: () => {} });
+  assert.deepEqual(out.candidates.map((c) => c.title), ['brand new']);
+  assert.deepEqual(out.sightings, [{ itemId: kept.id, sourceName: 's', link: 'https://a.com/kept' }]);
+});

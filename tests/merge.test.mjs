@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateDecision, mergeRun, CATEGORIES } from '../lib/merge.mjs';
+import { validateDecision, mergeRun, applySightings, retainedItems, CATEGORIES } from '../lib/merge.mjs';
 import { makeCandidate } from '../lib/candidate.mjs';
 
 const cfg = { retentionDays: 14, droppedMemoryDays: 30 };
@@ -34,13 +34,15 @@ test('mergeRun keeps valid, drops invalid and keep:false, ranks, prunes', () => 
   const oldDrop = { id: 'x', droppedAt: '2026-09-03' };
   const recentDrop = { id: 'y', droppedAt: '2026-09-05' };
   const out = mergeRun({ candidates: [a, b, c, d], curated, items: [oldItem, recentItem], dropped: [oldDrop, recentDrop], today: '2026-10-04', cfg, log: () => {} });
-  assert.deepEqual(out.counts, { candidates: 4, kept: 1, dropped: 2, invalid: 1 });
+  assert.deepEqual(out.counts, { candidates: 4, kept: 1, dropped: 2, invalid: 1, sighted: 0 });
   assert.deepEqual(out.items.map((i) => i.id), [recentItem.id, a.id], 'old pruned, duplicate decision for a ignored');
   const kept = out.items[1];
   assert.equal(kept.rank, 0.8);
   assert.equal(kept.addedAt, '2026-10-04');
   assert.equal(kept.category, 'ai-tip');
   assert.equal(kept.titleVi, 'Tiêu đề sạch');
+  assert.equal(kept.sourceTitle, 'T1');
+  assert.deepEqual(kept.sources, ['s']);
   assert.deepEqual(out.dropped.map((x) => x.id).sort(), [b.id, c.id, 'y'].sort());
   assert.equal(out.items.some((i) => i.id === d.id), false, 'unmentioned candidate neither kept nor dropped');
 });
@@ -61,4 +63,52 @@ test('mergeRun treats an unparsable generatedAt as stale instead of throwing (re
   assert.deepEqual(out.items, []);
   const arr = mergeRun({ candidates: [a], curated: [], items: [], dropped: [], today: '2026-10-04', cfg, timezone: 'UTC', log: () => {} });
   assert.equal(arr.stale, true);
+});
+
+const old = (n, extra = {}) => ({ ...cand(n, 1), category: 'it-general', title: `T${n}`, summary: 's', tags: [], fit: 4, rank: 0.8, addedAt: '2026-10-02', sources: undefined, ...extra });
+const sightingsFile = (sightings, generatedAt = '2026-10-04T00:05:00Z') => ({ generatedAt, sightings });
+
+test('applySightings adds new sources and links once and recomputes rank (review focus 2, 4)', () => {
+  const a = old(1);
+  const file = sightingsFile([
+    { itemId: a.id, sourceName: 'Lobsters', link: 'https://lobste.rs/s/1' },
+    { itemId: a.id, sourceName: 'Lobsters', link: 'https://lobste.rs/s/1' },
+    { itemId: a.id, sourceName: 's', link: a.url },
+    { itemId: 'gone', sourceName: 'X', link: 'https://x.com' },
+    null, { itemId: a.id }, { itemId: a.id, sourceName: '  ' },
+  ]);
+  const out = applySightings([a], file, { today: '2026-10-04', timezone: 'UTC', cfg, log: () => {} });
+  assert.equal(out.applied, 1);
+  assert.deepEqual(out.items[0].sources, ['s', 'Lobsters']);
+  assert.deepEqual(out.items[0].extraLinks, ['https://lobste.rs/s/1']);
+  assert.equal(out.items[0].rank, 1, '1 * 1.25 * 4/5');
+  assert.equal(out.items[0].addedAt, '2026-10-02', 'never moved to today');
+});
+
+test('applySightings ignores a stale or malformed file', () => {
+  const a = old(1);
+  const sight = [{ itemId: a.id, sourceName: 'Lobsters', link: 'https://lobste.rs/s/1' }];
+  for (const f of [sightingsFile(sight, '2026-10-03T00:05:00Z'), sightingsFile(sight, 'nope'), { generatedAt: '2026-10-04T00:05:00Z' }, null]) {
+    const out = applySightings([a], f, { today: '2026-10-04', timezone: 'UTC', cfg, log: () => {} });
+    assert.equal(out.applied, 0);
+    assert.equal(out.items[0], a);
+  }
+});
+
+test('mergeRun applies sightings even when curation is missing or stale (review focus 3)', () => {
+  const a = old(1);
+  const sightings = sightingsFile([{ itemId: a.id, sourceName: 'Lobsters', link: 'https://lobste.rs/s/1' }]);
+  for (const curated of [null, { generatedAt: '2026-10-03T00:10:00Z', decisions: [] }]) {
+    const out = mergeRun({ candidates: [], curated, sightings, items: [a], dropped: [], today: '2026-10-04', cfg, timezone: 'UTC', log: () => {} });
+    assert.equal(out.stale, true);
+    assert.equal(out.counts.sighted, 1);
+    assert.deepEqual(out.items[0].sources, ['s', 'Lobsters']);
+  }
+});
+
+test('retainedItems keeps what mergeRun keeps, so fetch never matches against an item merge prunes', () => {
+  const items = [old(1, { addedAt: '2026-09-19' }), old(2, { addedAt: '2026-09-20' }), old(3, { addedAt: '2026-10-04' })];
+  assert.deepEqual(retainedItems(items, '2026-10-04', cfg).map((i) => i.addedAt), ['2026-09-20', '2026-10-04']);
+  const out = mergeRun({ candidates: [], curated: { generatedAt: '2026-10-04T00:10:00Z', decisions: [] }, items, dropped: [], today: '2026-10-04', cfg, timezone: 'UTC', log: () => {} });
+  assert.deepEqual(out.items.map((i) => i.id), retainedItems(items, '2026-10-04', cfg).map((i) => i.id));
 });

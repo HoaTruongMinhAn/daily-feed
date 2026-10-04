@@ -35,17 +35,24 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    `lib/sources/index.mjs`), which returns objects built by
    `makeCandidate` (`lib/candidate.mjs`; `id` = hash of the canonical URL
    from `lib/dedup.mjs`). Then age filter + hotness (`lib/score.mjs`,
-   normalised by the source's `p90`), per-source cap, drop ids already in
-   `items.json`/`dropped.json`, title-Jaccard dedup, cap at
-   `maxCandidates`. Writes `data/candidates.json`. A failing source is
+   normalised by the source's `p90`), per-source cap; stories already in
+   `items.json` (same id, or title Jaccard >= 0.8 with 3+ tokens) become
+   sightings (`splitSightings`), ids in `dropped.json` are dropped,
+   title-Jaccard dedup (which unions each story's `sources`), cap at
+   `maxCandidates`. Writes `data/candidates.json` and
+   `data/sightings.json`. A failing source is
    logged and skipped; only "all sources failed" exits non-zero.
 2. **curate**: the runner deletes `data/curated.json`, then either runs the
    `daily-feed-curate` skill under a locked-down `claude -p` (see the
    allow/deny lists in the runner) or `scripts/stub-curate.mjs`.
-3. **merge** (`scripts/merge.mjs` → `lib/merge.mjs`): ignores
-   `curated.json` unless its `generatedAt` is today in the feed timezone;
-   validates every decision (`validateDecision`), invalid ones count as
-   drops; kept items get `rank = hotness * fit/5`; prunes `items.json` to
+3. **merge** (`scripts/merge.mjs` → `lib/merge.mjs`): first applies
+   today's `sightings.json` (`applySightings`: new sources and links on
+   kept items, even when curation is stale; items keep their `addedAt`),
+   then deletes it; ignores `curated.json` unless its `generatedAt` is
+   today in the feed timezone; validates every decision
+   (`validateDecision`), invalid ones count as drops; kept items get
+   `rank = hotness * buzz(sources) * fit/5` (`rankOf` in `lib/score.mjs`)
+   and keep their raw `sourceTitle`; prunes `items.json` to
    `retentionDays` and `dropped.json` to `droppedMemoryDays`.
 4. **detail**, in a loop of batches (`detailBatchSize`, up to
    `detailMaxPerDay`): `scripts/detail-prep.mjs` picks recent items with no
@@ -55,7 +62,9 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    and writes `data/detail-queue/<id>.md` + `index.json`. The
    `daily-feed-detail` skill (or `scripts/stub-detail.mjs`) writes
    `data/details/<id>.txt` (line 1 Vietnamese title, then the detail).
-   `scripts/detail-merge.mjs` validates with `parseDetail` and sets
+   `scripts/detail-merge.mjs` validates with `parseDetail`, which also
+   rejects a detail with 2+ names/numbers absent from the source
+   (`ungroundedTokens`; names are skipped for mostly-CJK sources), and sets
    `titleVi`/`detail` on the item. These three folders are gitignored.
 5. **build** (`scripts/build.mjs` → `lib/render.mjs`): renders `site/`
    (index, `archive/<date>.html`, `feed.json`). All item text goes through

@@ -13,4 +13,6 @@ test('feedConfig carries the spec constants', () => {
   assert.equal(feedConfig.hotNowCount, 3);
   assert.equal(feedConfig.feedDays, 2);
   assert.equal(feedConfig.siteTitle, 'Daily Feed');
+  assert.equal(feedConfig.buzzPerSource, 0.25);
+  assert.equal(feedConfig.buzzMaxExtra, 3);
 });

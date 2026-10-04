@@ -60,6 +60,7 @@ h2.divider { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 .card[hidden] { display: none; }
 .card__meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
 .card__fit { margin-left: auto; letter-spacing: 1px; color: var(--muted); }
+.card__buzz { padding: 1px 6px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); font-size: 11px; }
 .card__title { font-size: 17px; font-weight: 500; line-height: 1.35; margin: 0 0 8px; overflow-wrap: anywhere; }
 .card--large .card__title { font-size: 20px; }
 .card__title a:hover { text-decoration: underline; text-decoration-color: var(--accent); }

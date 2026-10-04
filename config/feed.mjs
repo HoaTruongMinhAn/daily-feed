@@ -10,6 +10,8 @@ export const feedConfig = {
   perSourceCap: 25,        // per source, before dedup
   maxAgeHours: 72,         // older candidates are discarded (sources may override)
   recencyDecayHours: 36,   // hotness = normalised * exp(-age / this)
+  buzzPerSource: 0.25,     // rank boost per extra independent source
+  buzzMaxExtra: 3,         // at most this many extra sources count (max x1.75)
   hotNowCount: 3,
   feedDays: 2,             // index shows items added within this many days
   articleMaxChars: 5000,   // article text kept per item as detail source

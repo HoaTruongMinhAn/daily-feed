@@ -88,3 +88,12 @@ test('renderCard with detail expands in place and ends with the source link; det
   assert.equal(renderDetail(''), '');
   assert.ok(!renderCard({ ...item, detail: 'x', url: 'javascript:alert(1)' }).includes('javascript:'));
 });
+
+test('renderCard lists several sources escaped, single source unchanged (review focus 2)', () => {
+  const multi = renderCard({ ...item, sources: ['Hacker News', 'Lobsters', '<b>x</b>'] });
+  assert.ok(multi.includes('Hacker News · Lobsters · &lt;b&gt;x&lt;/b&gt;'));
+  assert.ok(multi.includes('<span class="card__buzz">3 nguồn</span>'));
+  const single = renderCard(item);
+  assert.ok(single.includes('<span class="card__src">Hacker News</span>'));
+  assert.ok(!single.includes('card__buzz'));
+});

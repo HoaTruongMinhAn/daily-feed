@@ -11,7 +11,10 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
 
 1. `scripts/fetch.mjs` pulls candidates from Hacker News, GitHub, dev.to,
    Lobsters, and RSS feeds (`config/sources.mjs`), scores hotness, dedups,
-   skips anything already seen, and writes `data/candidates.json`.
+   skips anything already seen, and writes `data/candidates.json`. A story
+   already kept that shows up from another source is recorded as an extra
+   source (`data/sightings.json`, applied by merge) instead of being
+   re-curated; each extra source raises its rank, up to x1.75.
 2. `claude -p "/daily-feed-curate"` (skill in `skills/daily-feed-curate/`,
    permissions scoped to one input and one output file) decides keep/drop, category, clean English title,
    Vietnamese title and summary, and fit score into `data/curated.json`.

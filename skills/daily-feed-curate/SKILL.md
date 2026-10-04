@@ -65,10 +65,18 @@ How much the owner gains from opening the link: 5 = actionable today or genuinel
 
 ## Title and summary
 
-- Title: English, cleaned. Keep the original meaning; remove site prefixes, ALL CAPS, emoji, trailing "| SiteName".
+- Title: English, cleaned. Keep the original meaning; remove site prefixes, ALL CAPS, emoji, trailing "| SiteName". If the original is only a version or a teaser ("v2.1.159", "Day 1", "Big news"), add the subject from `sourceName`, the URL, or the excerpt ("Playwright v1.48 released"); never invent a model, product, or version.
+- Keep the article type: a How / Why / Guide / Analysis / Review / Benchmark title stays that type in both languages. Only use "released / launches / ra mắt / phát hành / công bố" when the original says so.
 - Vietnamese title (`titleVi`): natural Vietnamese rendering of the cleaned title, one line. Keep product, tool, library and company names, and established English terms (LLM, API, prompt, test case, CI), in English. Not a word-for-word translation; no clickbait.
-- Summary: Vietnamese, natural tone, concrete. Say what it is and why it matters, not "Bài viết nói về...". No markdown, no quotes around the whole text.
 - Tags: lowercase, 1-3, prefer tool/topic names.
+
+## Writing rules (summary)
+
+- **Answer first.** The first sentence says who did what and what changed or resulted, e.g. "Playwright 1.48 thêm trace viewer mới, mở nhanh hơn với test lớn." Never open with "Bài viết nói về…", "Tác giả cho rằng…", "Theo bài viết…". The optional second sentence gives the one most useful fact or why it matters to the owner.
+- **Only what the input says.** Every product, company, feature, number, and version in `titleVi` and `summary` must appear in the candidate's title, excerpt, source name, or URL. Do not add what you know about similar products. If the input is thin, write a shorter summary.
+- Keep relative times as written; never add a year the input does not state.
+- Do not strengthen claims: "đang thử nghiệm" is not "đã áp dụng", "một số nghiên cứu" is not "nghiên cứu cho thấy". Keep "đầu tiên / duy nhất / hoàn toàn" only when the input says so. Do not expand an acronym the input does not expand.
+- Natural Vietnamese, concrete, no markdown, no quotes around the whole text.
 
 ## Done
 

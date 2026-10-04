@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { canonicalUrl, idFor, jaccard, titleTokens, dedupeCandidates, filterKnown } from '../lib/dedup.mjs';
-import { makeCandidate } from '../lib/candidate.mjs';
+import { canonicalUrl, idFor, jaccard, titleTokens, dedupeCandidates, filterKnown, splitSightings } from '../lib/dedup.mjs';
+import { makeCandidate, sourcesOf } from '../lib/candidate.mjs';
 
 test('canonicalUrl strips tracking params, www, fragment, trailing slash', () => {
   assert.equal(canonicalUrl('HTTPS://www.Example.com/a/?utm_source=x&id=2&ref=hn#top'), 'https://example.com/a?id=2');
@@ -29,6 +29,13 @@ test('makeCandidate fills defaults and canonicalises', () => {
   assert.equal(c.id, idFor('https://a.com/x'));
   assert.equal(c.title, 'T');
   assert.deepEqual([c.discussionUrl, c.excerpt, c.imageUrl, c.engagement, c.hotness, c.isMeme, c.extraLinks], [null, null, null, 0, 0, false, []]);
+  assert.deepEqual(c.sources, ['HN']);
+});
+
+test('sourcesOf falls back to [sourceName] for records without sources', () => {
+  assert.deepEqual(sourcesOf({ sourceName: 'HN' }), ['HN']);
+  assert.deepEqual(sourcesOf({ sourceName: 'HN', sources: [] }), ['HN']);
+  assert.deepEqual(sourcesOf({ sourceName: 'HN', sources: ['HN', 'dev.to'] }), ['HN', 'dev.to']);
 });
 
 test('dedupeCandidates merges same id and near-duplicate titles, keeping the hotter one', () => {
@@ -50,4 +57,30 @@ test('filterKnown drops ids present in memory', () => {
   const x = makeCandidate({ url: 'https://a.com/1', title: 'a', source: 's', sourceName: 's', publishedAt: '2026-10-03T00:00:00Z', categoryHint: 'it' });
   const y = makeCandidate({ url: 'https://a.com/2', title: 'b', source: 's', sourceName: 's', publishedAt: '2026-10-03T00:00:00Z', categoryHint: 'it' });
   assert.deepEqual(filterKnown([x, y], new Set([x.id])).map((c) => c.id), [y.id]);
+});
+
+test('dedupeCandidates unions distinct source names of merged candidates', () => {
+  const base = { publishedAt: '2026-10-03T00:00:00Z', categoryHint: 'ai' };
+  const a = { ...makeCandidate({ ...base, url: 'https://a.com/p', title: 'Claude ships agent SDK v2', source: 'hn', sourceName: 'Hacker News' }), hotness: 0.9 };
+  const b = { ...makeCandidate({ ...base, url: 'https://a.com/p', title: 'Claude ships agent SDK v2', source: 'hn', sourceName: 'Hacker News' }), hotness: 0.5 };
+  const c = { ...makeCandidate({ ...base, url: 'https://b.com/p', title: 'Claude ships agent SDK v2 (blog)', source: 'rss', sourceName: 'Lobsters' }), hotness: 0.1 };
+  const [out] = dedupeCandidates([a, b, c]);
+  assert.deepEqual(out.sources, ['Hacker News', 'Lobsters']);
+});
+
+test('splitSightings turns known ids and title matches into sightings (review focus 1)', () => {
+  const base = { publishedAt: '2026-10-03T00:00:00Z', categoryHint: 'ai', source: 'rss' };
+  const item = { id: idFor('https://a.com/p'), url: 'https://a.com/p', title: 'Clean: Claude ships agent SDK v2', sourceTitle: 'Claude ships the agent SDK v2', sourceName: 'Hacker News' };
+  const comic = { id: idFor('https://xkcd.com/1'), url: 'https://xkcd.com/1', title: 'Compiling', sourceName: 'xkcd' };
+  const sameId = makeCandidate({ ...base, url: 'https://www.a.com/p/', title: 'whatever', sourceName: 'Lobsters', discussionUrl: 'https://lobste.rs/s/1' });
+  const sameTitle = makeCandidate({ ...base, url: 'https://news.site/x', title: 'Claude ships the agent SDK v2', sourceName: 'dev.to' });
+  const shortTitle = makeCandidate({ ...base, url: 'https://other.com/c', title: 'Compiling', sourceName: 'Other' });
+  const fresh = makeCandidate({ ...base, url: 'https://c.com/new', title: 'Totally new story about databases', sourceName: 'dev.to' });
+  const out = splitSightings([sameId, sameTitle, shortTitle, fresh], [item, comic]);
+  assert.deepEqual(out.candidates.map((c) => c.url), ['https://other.com/c', 'https://c.com/new'], 'short titles never title-match');
+  assert.deepEqual(out.sightings, [
+    { itemId: item.id, sourceName: 'Lobsters', link: 'https://lobste.rs/s/1' },
+    { itemId: item.id, sourceName: 'dev.to', link: 'https://news.site/x' },
+  ]);
+  assert.deepEqual(splitSightings([fresh], []).candidates, [fresh]);
 });

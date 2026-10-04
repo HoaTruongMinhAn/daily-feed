@@ -42,9 +42,17 @@ Natural Vietnamese rendering of the item's `title`. Keep product, tool, library 
 
 - Vietnamese, roughly 10-20 lines on screen (about 700-2000 characters; hard limits 200-4000). Shorter is fine when the source is short; never pad.
 - Cover, as applicable: what it is / what happened; the key points, numbers, steps or arguments; how it works; who it matters to and why, especially for testing/QA or building AI products; caveats, limits or open questions.
-- Concrete and faithful to the source. Do not invent facts, numbers or quotes that are not in the text. If the article text is unavailable, write only what the title, summary and excerpt support and say briefly that the details are in the original.
+- Open with one answer sentence: who did what and what changed or resulted. No "Bài viết nói về…", "Tác giả cho rằng…" openers, no background first.
 - Plain sentences; use a "- " list for steps, features or takeaways. Keep code identifiers, commands and names as written.
 - Humor items: describe the joke in one or two lines.
+
+## Writing rules (detail and title)
+
+- **Only what the queued text says.** Every product, company, feature, number, version, and quote must appear in the queue file's title, excerpt, or article text. The `summary` line was written by an earlier model step: use it for orientation, but it is not a source. Do not fill gaps from what you know about similar tools. If a point is unclear in the source, keep its key words as written instead of interpreting.
+- **Thin source, short detail.** If the article text is unavailable or short, write only what the title, summary, and excerpt support and say briefly that the details are in the original. Never pad with general knowledge.
+- **No upgrades.** Keep relative times as written and never add a year the source does not state. "đang thử nghiệm" is not "đã áp dụng"; keep "đầu tiên / duy nhất / hoàn toàn / độc lập" only when the source says so. Do not expand acronyms the source does not expand.
+- **Title keeps the article type.** A How / Why / Guide / Review / Benchmark title is never turned into "ra mắt / phát hành / công bố". If the item title is only a version or teaser, name the subject from the source name or text.
+- **Checked by script.** After you finish, a script compares names (words with inner capitals or digits, long capitalised English words) and numbers (decimals, 3+ digits) in your title and detail against the title, excerpt, and article text. A versioned name such as `GPT-5.5` counts once. A detail with two or more that are not in the source is discarded. Names translated from a Chinese/Japanese/Korean source are fine; numbers are always checked.
 
 ## Done
 

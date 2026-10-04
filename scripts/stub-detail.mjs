@@ -9,7 +9,7 @@ import { queueDir } from './detail-prep.mjs';
 
 export function stubDetail(queueText) {
   const title = (queueText.match(/^title: (.*)$/m)?.[1] ?? 'untitled').slice(0, 120);
-  const body = queueText.split('----- ARTICLE TEXT')[1]?.split('\n').slice(1).join('\n') ?? '';
+  const body = queueText.split('----- ARTICLE TEXT')[1]?.split('----- END ARTICLE TEXT')[0].split('\n').slice(1).join('\n') ?? '';
   const detail = `[stub] ${body.slice(0, 1200).trim()}`.padEnd(220, '.');
   return `[stub] ${title}\n\n${detail}\n`;
 }
