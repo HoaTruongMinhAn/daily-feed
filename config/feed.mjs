@@ -10,7 +10,10 @@ export const feedConfig = {
   redditResolvers: ['1.1.1.1', '8.8.8.8'],
   retentionDays: 14,       // items.json keeps this many days
   droppedMemoryDays: 30,   // dropped.json remembers ids this long
-  maxCandidates: 120,      // sent to Claude per run
+  maxCandidates: 200,      // sent to Claude per run (filled by candidateQuota)
+  // Candidates per source categoryHint, hottest first; unused slots go to
+  // the hottest leftovers. Must sum to maxCandidates (tests check).
+  candidateQuota: { ai: 50, testing: 50, it: 35, humor: 30, hot: 35 },
   perSourceCap: 25,        // per source, before dedup
   maxAgeHours: 72,         // older candidates are discarded (sources may override)
   recencyDecayHours: 36,   // hotness = normalised * exp(-age / this)
@@ -23,5 +26,5 @@ export const feedConfig = {
   detailDays: 2,           // Vietnamese details are written for items added within this many days
   articleMaxChars: 5000,   // article text kept per item as detail source
   detailBatchSize: 12,     // items per `claude -p "/daily-feed-detail"` call
-  detailMaxPerDay: 120,    // items that get a Vietnamese detail per day, best rank first (= maxCandidates, so every kept item fits)
+  detailMaxPerDay: 200,    // items that get a Vietnamese detail per day, best rank first (= maxCandidates, so every kept item fits)
 };

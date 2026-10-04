@@ -72,7 +72,7 @@ test('config/sources.mjs entries are well formed', () => {
   assert.ok(sources.length >= 12);
   for (const s of sources) {
     assert.ok(adapters[s.family], `${s.id} unknown family ${s.family}`);
-    assert.ok(['ai', 'testing', 'it', 'humor'].includes(s.categoryHint), `${s.id} bad hint`);
+    assert.ok(['ai', 'testing', 'it', 'humor', 'hot'].includes(s.categoryHint), `${s.id} bad hint`);
     assert.ok(s.p90 > 0, `${s.id} needs p90`);
     assert.ok(s.url || s.query || s.sub || s.tag || s.feed || s.mode, `${s.id} needs url, query, sub, tag, feed or mode`);
   }

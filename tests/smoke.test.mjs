@@ -6,7 +6,7 @@ test('feedConfig carries the spec constants', () => {
   assert.equal(feedConfig.timezone, 'Asia/Ho_Chi_Minh');
   assert.equal(feedConfig.retentionDays, 14);
   assert.equal(feedConfig.droppedMemoryDays, 30);
-  assert.equal(feedConfig.maxCandidates, 120);
+  assert.equal(feedConfig.maxCandidates, 200);
   assert.equal(feedConfig.perSourceCap, 25);
   assert.equal(feedConfig.maxAgeHours, 72);
   assert.equal(feedConfig.recencyDecayHours, 36);

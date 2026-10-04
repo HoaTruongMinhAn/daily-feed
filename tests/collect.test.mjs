@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { collect } from '../lib/collect.mjs';
+import { collect, selectByQuota } from '../lib/collect.mjs';
+import { feedConfig } from '../config/feed.mjs';
 import { makeCandidate } from '../lib/candidate.mjs';
 
 const now = Date.parse('2026-10-04T00:00:00Z');
@@ -63,4 +64,43 @@ test('collect turns stories already in items into sightings; dropped ids are sti
   const out = await collect({ sources: [{ id: 'f', family: 'f', p90: 100, categoryHint: 'it' }], adapters, http: {}, now, cfg: { ...cfg, perSourceCap: 10 }, knownIds, knownItems: items, log: () => {} });
   assert.deepEqual(out.candidates.map((c) => c.title), ['brand new']);
   assert.deepEqual(out.sightings, [{ itemId: kept.id, sourceName: 's', link: 'https://a.com/kept' }]);
+});
+
+const h = (title, categoryHint, hotness) => ({ id: title, title, categoryHint, hotness });
+
+test('selectByQuota fills each topic hottest-first, refills spare slots, never exceeds max', () => {
+  const cands = [
+    h('ai1', 'ai', 0.9), h('ai2', 'ai', 0.8), h('ai3', 'ai', 0.7), h('ai4', 'ai', 0.6),
+    h('t1', 'testing', 0.2),
+    h('hu1', 'humor', 0.1),
+  ];
+  const out = selectByQuota(cands, { ai: 2, testing: 2, humor: 1 }, 5);
+  assert.deepEqual(out.map((c) => c.title), ['ai1', 'ai2', 'ai3', 't1', 'hu1'], 'testing used 1 of 2 slots; the spare went to ai3');
+  assert.equal(selectByQuota(cands, { ai: 2, testing: 2, humor: 1 }, 3).length, 3);
+});
+
+test('selectByQuota counts a hint with no quota as it (review focus 3)', () => {
+  const cands = [h('x', 'typo', 0.9), h('i', 'it', 0.5), h('a', 'ai', 0.4)];
+  const out = selectByQuota(cands, { it: 1, ai: 1 }, 2);
+  assert.deepEqual(out.map((c) => c.title), ['x', 'a'], '"typo" took the it slot, so "i" waits for a spare that never comes');
+});
+
+test('collect applies candidateQuota and a source-level perSourceCap', async () => {
+  // Titles must differ in word tokens (digits are dropped by titleTokens), or dedup merges them.
+  const many = (prefix, n, hint) => Array.from({ length: n }, (_, i) => makeCandidate({ url: `https://a.com/${prefix}${i}`, title: `${prefix} ${'w'.repeat(i + 2)} story`, source: 's', sourceName: prefix, publishedAt: '2026-10-03T20:00:00Z', engagement: 100 - i, categoryHint: hint }));
+  const adapters = { f: async (s) => many(s.id, 10, s.categoryHint) };
+  const sources = [
+    { id: 'aa', family: 'f', p90: 100, categoryHint: 'ai', perSourceCap: 3 },
+    { id: 'tt', family: 'f', p90: 100, categoryHint: 'testing' },
+  ];
+  const out = await collect({ sources, adapters, http: {}, now, cfg: { ...cfg, perSourceCap: 10, maxCandidates: 6, candidateQuota: { ai: 3, testing: 3 } }, knownIds: new Set(), log: () => {} });
+  assert.equal(out.candidates.length, 6);
+  assert.equal(out.candidates.filter((c) => c.categoryHint === 'ai').length, 3);
+});
+
+test('feed config quotas sum to maxCandidates and cover every hint', () => {
+  const q = feedConfig.candidateQuota;
+  assert.equal(Object.values(q).reduce((a, b) => a + b, 0), feedConfig.maxCandidates);
+  assert.deepEqual(Object.keys(q).sort(), ['ai', 'hot', 'humor', 'it', 'testing']);
+  assert.equal(feedConfig.detailMaxPerDay, feedConfig.maxCandidates);
 });
