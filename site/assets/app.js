@@ -12,6 +12,7 @@ const SEEN_MS = 2000;
 const SEEN_RATIO = 0.6;
 const GROUPS = ['ai', 'testing', 'it', 'humor'];
 const NO_STORAGE = 'Không lưu được trên trình duyệt này';
+const CANNOT_SAVE = 'Không lưu được bài này';
 const IMPORT_ERROR = {
   size: 'Tệp quá lớn (tối đa 5 MB)',
   json: 'Tệp không phải JSON',
@@ -34,16 +35,18 @@ if (parsed.corrupt) {
 const loadedAt = Date.now();
 let state = prune(parsed.state, loadedAt);
 
+// Every write is tried, so a full quota that frees up later recovers.
+// `storageOk` says whether the last write landed; while it did not, this
+// tab's in-memory state is ahead of storage and must not be rebased away.
 function persist() {
-  if (storageOk) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      return;
-    } catch {
-      storageOk = false;
-    }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    storageOk = true;
+    if ($('#state-msg')?.textContent === NO_STORAGE) say('');
+  } catch {
+    storageOk = false;
+    say(NO_STORAGE);
   }
-  say(NO_STORAGE);
 }
 
 function stored() {
@@ -120,13 +123,15 @@ function applyFeed(matches) {
   });
   if (!isHome) return;
   setHidden('#feed-more', !more);
+  // Counted within the active category, so "read everything" means this one.
+  const hiddenHere = homeCards.filter((c) => matches(c) && isHiddenRead(c)).length;
   const rh = $('#read-hidden');
   if (rh) {
-    rh.hidden = showRead || hiddenAtLoad.size === 0;
+    rh.hidden = showRead || hiddenHere === 0;
     const count = rh.querySelector('[data-count]');
-    if (count) count.textContent = String(hiddenAtLoad.size);
+    if (count) count.textContent = String(hiddenHere);
   }
-  setHidden('#all-read', shown + hot > 0 || hiddenAtLoad.size === 0);
+  setHidden('#all-read', shown + hot > 0 || hiddenHere === 0);
 }
 
 // ---- cards built from saved snapshots (DOM API + textContent only)
@@ -237,7 +242,8 @@ function snapshotFromCard(card) {
   const heading = textOf(card, '.card__title');
   return {
     id: card.dataset.id,
-    url: card.dataset.url || '',
+    // A link too long to store is dropped rather than refusing the save.
+    url: (card.dataset.url || '').length > 2000 ? '' : card.dataset.url || '',
     title: clip('title', orig || heading),
     titleVi: orig ? clip('titleVi', heading) : '',
     summary: clip('summary', textOf(card, '.card__summary')),
@@ -290,7 +296,12 @@ function onCardClick(e) {
   if (!card) return;
   if (e.type === 'click' && e.target.closest('.card__save')) {
     const id = card.dataset.id;
-    update((s) => (isSaved(s, id) ? unsave(s, id) : save(s, snapshotFromCard(card), Date.now())));
+    let saving = false;
+    update((s) => {
+      saving = !isSaved(s, id);
+      return saving ? save(s, snapshotFromCard(card), Date.now()) : unsave(s, id);
+    });
+    if (saving && !isSaved(state, id)) say(CANNOT_SAVE);
     syncSaveButtons();
     return;
   }
@@ -350,7 +361,8 @@ async function importState(input) {
   persist();
   syncSaveButtons();
   if (view === 'saved') { renderSaved(); apply(); }
-  if (storageOk) say(`Đã nhập: ${res.saved} lưu, ${res.read} đã đọc${res.skipped ? `, bỏ qua ${res.skipped} mục lỗi` : ''}`);
+  const done = `Đã nhập: ${res.saved} lưu, ${res.read} đã đọc${res.skipped ? `, bỏ qua ${res.skipped} mục lỗi` : ''}`;
+  say(storageOk ? done : `${done} · ${NO_STORAGE}`);
 }
 
 // ---- init
