@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+  <title>Test Guild</title>
+  <item>
+    <title>Playwright &amp; AI: 5 tips</title>
+    <link>https://testguild.com/playwright-ai-tips/?utm_source=rss</link>
+    <pubDate>Fri, 03 Oct 2026 09:00:00 +0000</pubDate>
+    <description><![CDATA[<p>Five <b>practical</b> tips.</p><img src="https://testguild.com/img/pw.png" alt="">]]></description>
+  </item>
+  <item>
+    <title>Entity encoded body</title>
+    <link>https://example.com/post-2</link>
+    <pubDate>Thu, 02 Oct 2026 09:00:00 +0000</pubDate>
+    <description>&lt;p&gt;Hello &amp;amp; welcome&lt;/p&gt;</description>
+  </item>
+  <item>
+    <title>No link, must be skipped</title>
+    <pubDate>Thu, 02 Oct 2026 09:00:00 +0000</pubDate>
+  </item>
+</channel>
+</rss>

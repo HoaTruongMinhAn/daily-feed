@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>xkcd.com</title>
+  <link href="https://xkcd.com/" rel="alternate"/>
+  <entry>
+    <title type="text">Unit Tests</title>
+    <link href="https://xkcd.com/3100/" rel="alternate"/>
+    <updated>2026-10-03T00:00:00Z</updated>
+    <summary type="html">&lt;img src="https://imgs.xkcd.com/comics/unit_tests.png" title="alt text" alt="Unit Tests" /&gt;</summary>
+  </entry>
+</feed>
