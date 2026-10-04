@@ -70,6 +70,14 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    (index, `archive/<date>.html`, `feed.json`). All item text goes through
    `escapeHtml` and URLs through `safeUrl`.
 
+Saved items and read state live only in the reader's browser
+(`localStorage` key `dailyfeed:v1`). `site/assets/state.js` (pure rules,
+tested from `tests/state.test.mjs`) and `site/assets/app.js` (DOM wiring)
+are hand-written source, not build output. The index renders `homeDays`
+of items and `app.js` hides read ones, so `lib/render.mjs` card markup and
+`app.js` (`snapshotFromCard`, `buildCard`) must stay in step. Spec:
+`docs/superpowers/specs/2026-10-04-saved-and-read-state-design.md`.
+
 Every step records its outcome in `data/status.json` via `updateStatus`,
 which the rendered page shows. Tunables live in `config/feed.mjs`.
 `DAILY_FEED_ROOT` overrides the repo root for both the runner and
