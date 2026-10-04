@@ -1,5 +1,5 @@
 { "hits": [
-  { "objectID": "100", "title": "Claude Agent SDK 2.0 released", "url": "https://www.anthropic.com/news/agent-sdk-2?utm_source=hn", "points": 420, "created_at": "2026-10-03T14:00:00.000Z" },
+  { "objectID": "100", "title": "Claude Agent SDK 2.0 released", "url": "https://www.anthropic.com/news/agent-sdk-2?utm_source=hn", "points": 420, "num_comments": 50, "created_at": "2026-10-03T14:00:00.000Z" },
   { "objectID": "101", "title": "Ask HN: How do you test LLM apps?", "url": null, "points": 95, "created_at": "2026-10-03T10:00:00.000Z" },
   { "objectID": "102", "title": null, "url": "https://x.com/no-title", "points": 1, "created_at": "2026-10-03T10:00:00.000Z" }
 ] }

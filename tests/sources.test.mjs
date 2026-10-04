@@ -13,7 +13,8 @@ test('hn adapter maps hits, uses the thread as url when none, skips untitled', a
   assert.equal(out.length, 2);
   assert.equal(out[0].url, 'https://anthropic.com/news/agent-sdk-2');
   assert.equal(out[0].discussionUrl, 'https://news.ycombinator.com/item?id=100');
-  assert.equal(out[0].engagement, 420);
+  assert.equal(out[0].engagement, 420 + 2 * 50);
+  assert.equal(out[1].engagement, 95, 'missing num_comments counts as 0');
   assert.equal(out[0].source, 'hn');
   assert.equal(out[1].url, 'https://news.ycombinator.com/item?id=101');
 });
@@ -51,7 +52,7 @@ test('github adapter builds a dated query and titles repos', async () => {
 test('devto adapter maps articles', async () => {
   const out = await adapters.devto({ id: 'devto-ai', name: 'dev.to', family: 'devto', url: 'u', categoryHint: 'ai', p90: 100 }, { fetchJson: async () => fixture('devto.json'), now });
   assert.equal(out[0].url, 'https://dev.to/x/playwright-fixtures');
-  assert.equal(out[0].engagement, 88);
+  assert.equal(out[0].engagement, 88 + 2 * 6);
   assert.equal(out[0].excerpt, 'Fixtures done right.');
 });
 

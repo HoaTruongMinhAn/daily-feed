@@ -4,12 +4,12 @@
 // in the list but skips it at runtime. Edit freely; ids must stay unique.
 export const sources = [
   // Hacker News: front page as-is, plus recency-bounded topical searches.
-  { id: 'hn-front', name: 'Hacker News', family: 'hn', url: 'https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=60', categoryHint: 'it', p90: 300 },
-  { id: 'hn-llm', name: 'Hacker News', family: 'hn', query: 'LLM', minPoints: 40, sinceHours: 72, categoryHint: 'ai', p90: 200 },
-  { id: 'hn-agents', name: 'Hacker News', family: 'hn', query: 'AI agents', minPoints: 40, sinceHours: 72, categoryHint: 'ai', p90: 200 },
-  { id: 'hn-claude', name: 'Hacker News', family: 'hn', query: 'Claude', minPoints: 30, sinceHours: 72, categoryHint: 'ai', p90: 200 },
-  { id: 'hn-testing', name: 'Hacker News', family: 'hn', query: 'testing', minPoints: 20, sinceHours: 96, categoryHint: 'testing', p90: 100 },
-  { id: 'hn-playwright', name: 'Hacker News', family: 'hn', query: 'Playwright', minPoints: 10, sinceHours: 168, categoryHint: 'testing', p90: 100, maxAgeHours: 168 },
+  { id: 'hn-front', name: 'Hacker News', family: 'hn', url: 'https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=60', categoryHint: 'it', p90: 450 },
+  { id: 'hn-llm', name: 'Hacker News', family: 'hn', query: 'LLM', minPoints: 40, sinceHours: 72, categoryHint: 'ai', p90: 300 },
+  { id: 'hn-agents', name: 'Hacker News', family: 'hn', query: 'AI agents', minPoints: 40, sinceHours: 72, categoryHint: 'ai', p90: 300 },
+  { id: 'hn-claude', name: 'Hacker News', family: 'hn', query: 'Claude', minPoints: 30, sinceHours: 72, categoryHint: 'ai', p90: 300 },
+  { id: 'hn-testing', name: 'Hacker News', family: 'hn', query: 'testing', minPoints: 20, sinceHours: 96, categoryHint: 'testing', p90: 150 },
+  { id: 'hn-playwright', name: 'Hacker News', family: 'hn', query: 'Playwright', minPoints: 10, sinceHours: 168, categoryHint: 'testing', p90: 150, maxAgeHours: 168 },
 
   // Reddit, via lib/reddit-client.mjs: app-only OAuth when
   // config/secrets.local.json has a key (see README), else the public .json
@@ -27,10 +27,10 @@ export const sources = [
   { id: 'gh-llm', name: 'GitHub', family: 'github', query: 'topic:llm', createdWithinDays: 14, categoryHint: 'ai', p90: 2000 },
 
   // dev.to
-  { id: 'devto-ai', name: 'dev.to', family: 'devto', url: 'https://dev.to/api/articles?tag=ai&top=1&per_page=30', categoryHint: 'ai', p90: 80 },
-  { id: 'devto-testing', name: 'dev.to', family: 'devto', url: 'https://dev.to/api/articles?tag=testing&top=1&per_page=30', categoryHint: 'testing', p90: 40 },
-  { id: 'devto-qa', name: 'dev.to', family: 'devto', url: 'https://dev.to/api/articles?tag=qa&top=1&per_page=30', categoryHint: 'testing', p90: 30 },
-  { id: 'devto-devops', name: 'dev.to', family: 'devto', url: 'https://dev.to/api/articles?tag=devops&top=1&per_page=30', categoryHint: 'it', p90: 60 },
+  { id: 'devto-ai', name: 'dev.to', family: 'devto', url: 'https://dev.to/api/articles?tag=ai&top=1&per_page=30', categoryHint: 'ai', p90: 120 },
+  { id: 'devto-testing', name: 'dev.to', family: 'devto', url: 'https://dev.to/api/articles?tag=testing&top=1&per_page=30', categoryHint: 'testing', p90: 60 },
+  { id: 'devto-qa', name: 'dev.to', family: 'devto', url: 'https://dev.to/api/articles?tag=qa&top=1&per_page=30', categoryHint: 'testing', p90: 45 },
+  { id: 'devto-devops', name: 'dev.to', family: 'devto', url: 'https://dev.to/api/articles?tag=devops&top=1&per_page=30', categoryHint: 'it', p90: 90 },
 
   // Lobste.rs tag feeds (curated community, low noise)
   { id: 'lobsters-ai', name: 'Lobsters', family: 'rss', url: 'https://lobste.rs/t/ai.rss', categoryHint: 'ai', p90: 1, maxAgeHours: 168 },
