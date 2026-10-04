@@ -1,42 +1,112 @@
 {
   "fetch": {
     "ok": true,
-    "message": "120 candidates from 24/24 sources",
-    "failedSources": [],
-    "candidates": 120,
-    "at": "2026-10-04T04:28:58.177Z"
+    "message": "200 candidates, 98 sightings from 42/59 sources",
+    "failedSources": [
+      {
+        "id": "r-artificial",
+        "error": "HTTP 403 for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-localllama",
+        "error": "HTTP 403 for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-claudeai",
+        "error": "HTTP 403 for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-qualityassurance",
+        "error": "HTTP 403 for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-softwaretesting",
+        "error": "HTTP 403 for https://www.reddit.com/r/softwaretesting/top.json?t=week&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-programming",
+        "error": "HTTP 403 for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-programmerhumor",
+        "error": "HTTP 403 for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-playwright",
+        "error": "HTTP 403 for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-selenium",
+        "error": "HTTP 403 for https://www.reddit.com/r/selenium/top.json?t=week&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-devops",
+        "error": "HTTP 403 for https://www.reddit.com/r/devops/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-experienceddevs",
+        "error": "HTTP 403 for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-sysadmin",
+        "error": "HTTP 403 for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-programmingmemes",
+        "error": "HTTP 403 for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-techhumor",
+        "error": "HTTP 403 for https://www.reddit.com/r/techhumor/top.json?t=week&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-technology",
+        "error": "HTTP 403 for https://www.reddit.com/r/technology/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-openai",
+        "error": "HTTP 403 for https://www.reddit.com/r/OpenAI/top.json?t=day&limit=40&raw_json=1"
+      },
+      {
+        "id": "r-singularity",
+        "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
+      }
+    ],
+    "candidates": 200,
+    "at": "2026-10-04T11:03:38.758Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 97, dropped 23, invalid 0",
-    "at": "2026-10-04T04:34:09.655Z"
+    "message": "kept 107, dropped 93, invalid 0",
+    "at": "2026-10-04T11:11:18.955Z"
   },
   "merge": {
     "ok": true,
-    "message": "97 items retained",
+    "message": "204 items retained, 5 re-sighted",
     "counts": {
-      "candidates": 120,
-      "kept": 97,
-      "dropped": 23,
-      "invalid": 0
+      "candidates": 200,
+      "kept": 107,
+      "dropped": 93,
+      "invalid": 0,
+      "sighted": 5
     },
-    "at": "2026-10-04T04:34:09.655Z"
+    "at": "2026-10-04T11:11:18.955Z"
   },
   "build": {
     "ok": true,
-    "message": "97 items on index, 1 archive pages",
-    "at": "2026-10-04T08:38:26.192Z"
+    "message": "204 items on index, 1 archive pages",
+    "at": "2026-10-04T11:25:30.976Z"
   },
   "detail": {
     "ok": true,
     "day": "2026-10-04",
-    "message": "91 details written today",
+    "message": "183 details written today",
     "counts": {
-      "written": 91,
-      "missing": 6,
-      "invalid": 0,
-      "ungrounded": 0
+      "written": 183,
+      "missing": 13,
+      "invalid": 4,
+      "ungrounded": 3
     },
-    "at": "2026-10-04T07:22:06.885Z"
+    "at": "2026-10-04T11:25:30.831Z"
   }
 }
