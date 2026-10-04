@@ -31,20 +31,28 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
 
 1. **fetch** (`scripts/fetch.mjs` → `lib/collect.mjs`): for each entry in
    `config/sources.mjs`, call the adapter for its `family`
-   (`lib/sources/{hn,reddit,github,devto,rss}.mjs`, registered in
+   (`lib/sources/{hn,reddit,github,devto,rss,mastodon,bluesky,lobsters}.mjs`, registered in
    `lib/sources/index.mjs`), which returns objects built by
    `makeCandidate` (`lib/candidate.mjs`; `id` = hash of the canonical URL
    from `lib/dedup.mjs`). Then age filter + hotness (`lib/score.mjs`,
    normalised by the source's `p90`), per-source cap; stories already in
    `items.json` (same id, or title Jaccard >= 0.8 with 3+ tokens) become
    sightings (`splitSightings`), ids in `dropped.json` are dropped,
-   title-Jaccard dedup (which unions each story's `sources`), cap at
-   `maxCandidates`. Writes `data/candidates.json` and
-   `data/sightings.json`. A failing source is
+   title-Jaccard dedup (which unions each story's `sources`), then
+   `markHot` (`lib/hot.mjs`: `hotEligible` = 2+ sources, an
+   `editorialHot` source, or top 25% hotness among non-RSS candidates) and
+   `selectByQuota` (`candidateQuota` per `categoryHint`, up to
+   `maxCandidates`). Reddit goes through `lib/reddit-client.mjs` (OAuth key
+   from gitignored `config/secrets.local.json`; public resolvers from
+   `redditResolvers`, for Reddit requests only). Writes
+   `data/candidates.json` (with `hotCategories`, the hot topics already on
+   the feed) and `data/sightings.json`. A failing source is
    logged and skipped; only "all sources failed" exits non-zero.
 2. **curate**: the runner deletes `data/curated.json`, then either runs the
    `daily-feed-curate` skill under a locked-down `claude -p` (see the
-   allow/deny lists in the runner) or `scripts/stub-curate.mjs`.
+   allow/deny lists in the runner) or `scripts/stub-curate.mjs`. The
+   runner passes `--model`/`--effort`/`--fallback-model` (defaults and env
+   overrides at the top of the runner).
 3. **merge** (`scripts/merge.mjs` → `lib/merge.mjs`): first applies
    today's `sightings.json` (`applySightings`: new sources and links on
    kept items, even when curation is stale; items keep their `addedAt`),
@@ -89,7 +97,10 @@ The decision schema is defined twice and must stay in sync:
 `validateDecision`). Likewise the detail file format and limits:
 `skills/daily-feed-detail/SKILL.md` and `lib/detail.mjs`. `lib/render.mjs` maps categories to site sections
 (`groupOf`, by prefix) and display names (`CATEGORY_LABEL`), and `scripts/stub-curate.mjs` maps `categoryHint` to categories,
-so a category change touches all four.
+so a category change touches all four. `hot-*` categories (`lib/hot.mjs`:
+slug format, label limit, `hotEligible` rule; `categoryLabelVi` in the
+decision, `categoryLabel` on the item) are part of that schema, and
+`site/assets/state.js` `groupOf` must match `lib/render.mjs`.
 
 `data/` and `site/` are committed: they are both the pipeline's memory and
 the published output. `.github/workflows/pages.yml` deploys `site/` on

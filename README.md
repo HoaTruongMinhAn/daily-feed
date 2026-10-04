@@ -63,16 +63,51 @@ rm ~/Library/LaunchAgents/com.dailyfeed.run.plist
 ## Editing sources
 
 Edit `config/sources.mjs`. Each source needs a unique `id`, a `family`
-(`hn`, `reddit`, `github`, `devto`, `rss`), a `categoryHint`
-(`ai`, `testing`, `it`, `humor`), and `p90` (what "very hot" looks like
-there). Low-volume sources can set `maxAgeHours` above the default 72.
-`disabled: '<reason>'` keeps an entry but skips it. A failing source is
-skipped, never fatal.
+(`hn`, `reddit`, `github`, `devto`, `rss`, `mastodon`, `bluesky`,
+`lobsters`), a `categoryHint` (`ai`, `testing`, `it`, `humor`, `hot`),
+and `p90` (what "very hot" looks like there). Low-volume sources can set
+`maxAgeHours` above the default 72, and busy ones `perSourceCap` below
+the default 25. `editorialHot: true` marks an editor-ranked source
+(Techmeme) whose items may go to "Hot trên mạng" without engagement
+numbers. `disabled: '<reason>'` keeps an entry but skips it. A failing
+source is skipped, never fatal.
 
-**Reddit** entries ship disabled: on this network the ISP DNS resolves
-`reddit.com` to `127.0.0.1`. If you switch the Mac's DNS to a public
-resolver (System Settings → Network → DNS, e.g. `1.1.1.1`), remove the
-`disabled` field to get r/ProgrammerHumor memes and the AI subreddits.
+`candidateQuota` in `config/feed.mjs` splits the 200 candidates per
+`categoryHint` (hottest first; unused slots go to the hottest leftovers),
+so busy AI/IT sources cannot crowd out testing and humor.
+
+## Reddit access
+
+Reddit answers anonymous requests with 403, and this network's ISP DNS
+sends reddit.com to 127.0.0.1. The pipeline handles the DNS part itself:
+Reddit requests, and only those, resolve through 1.1.1.1 / 8.8.8.8
+(`redditResolvers` in `config/feed.mjs`). Your Mac's DNS is never changed.
+
+For the 403, create a free app key:
+
+1. Sign in at https://www.reddit.com/prefs/apps → "create another app…".
+2. Type **script**, any name, redirect uri `http://localhost:8080` (unused).
+3. Create `config/secrets.local.json` (gitignored):
+
+   ```json
+   { "reddit": { "clientId": "<under the app name>", "clientSecret": "<secret>", "userAgent": "daily-feed/1.0 by <your reddit username>" } }
+   ```
+
+4. `npm run fetch` should log `[fetch] reddit: oauth` and the `r-*`
+   sources should no longer fail.
+
+## Model and effort
+
+`scripts/daily-feed-run.sh` pins the model and effort per Claude step.
+Override with environment variables:
+
+| Variable | Default |
+|---|---|
+| `DAILY_FEED_CURATE_MODEL` | `claude-sonnet-5-5` |
+| `DAILY_FEED_CURATE_EFFORT` | `medium` |
+| `DAILY_FEED_DETAIL_MODEL` | `claude-sonnet-5-5` |
+| `DAILY_FEED_DETAIL_EFFORT` | `low` |
+| `DAILY_FEED_FALLBACK_MODEL` | `claude-haiku-4-5-20251001` (used only when the main model is overloaded) |
 
 ## Saved and read state
 
