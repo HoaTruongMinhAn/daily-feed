@@ -169,7 +169,7 @@ function appendDetail(body, detail) {
 }
 
 function saveButton() {
-  const b = el('button', 'card__save', '☆');
+  const b = el('button', 'card__save', 'Save');
   b.type = 'button';
   return b;
 }
@@ -261,7 +261,7 @@ function syncSaveButtons() {
   document.querySelectorAll('.card__save').forEach((b) => {
     const on = isSaved(state, b.closest('.card')?.dataset.id);
     b.setAttribute('aria-pressed', String(on));
-    b.textContent = on ? '★' : '☆';
+    b.textContent = on ? 'Saved' : 'Save';
     b.title = on ? 'Bỏ lưu' : 'Lưu';
     b.setAttribute('aria-label', on ? 'Bỏ lưu bài' : 'Lưu bài');
   });
@@ -270,7 +270,7 @@ function syncSaveButtons() {
 }
 
 // Rebuilt only when entering the view: unsaving inside it leaves the card
-// in place (☆) so a mis-tap can be undone by tapping again.
+// in place (Save) so a mis-tap can be undone by tapping again.
 function renderSaved() {
   const list = $('#saved .list');
   if (!list) return;

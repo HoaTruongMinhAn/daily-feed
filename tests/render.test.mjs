@@ -108,7 +108,7 @@ test('renderCard carries escaped data attributes and a bookmark button (review f
   assert.ok(html.includes('data-id="a&quot;&lt;b"'));
   assert.ok(html.includes('data-url="https://a.com/x"'));
   assert.ok(html.includes('data-category="ai-tip"') && html.includes('data-added="2026-10-04"'));
-  assert.ok(html.includes('<button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">☆</button>'));
+  assert.ok(html.includes('<button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>'));
   assert.ok(renderCard({ ...item, url: 'javascript:alert(1)' }).includes('data-url=""'));
 });
 

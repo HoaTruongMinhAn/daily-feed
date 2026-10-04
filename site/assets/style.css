@@ -58,7 +58,9 @@ h2.divider { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 }
 .card:hover { border-color: #4a4e57; }
 .card[hidden] { display: none; }
-.card__meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.card__meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.card__meta > * { flex-shrink: 0; white-space: nowrap; }
+.card__meta > .card__src { flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .card__fit { margin-left: auto; letter-spacing: 1px; color: var(--muted); }
 .card__buzz { padding: 1px 6px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); font-size: 11px; }
 .card__title { font-size: 17px; font-weight: 500; line-height: 1.35; margin: 0 0 8px; overflow-wrap: anywhere; }
@@ -107,11 +109,13 @@ h2.divider { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 footer { color: var(--muted); font-size: 12px; padding-top: 40px; padding-bottom: 48px; border-top: 1px solid var(--border); margin-top: 40px; }
 [hidden] { display: none !important; }
 .card__save {
-  font: inherit; font-size: 18px; line-height: 1; color: var(--muted);
-  background: transparent; border: 0; border-radius: 6px; padding: 0;
-  min-width: 32px; min-height: 32px; cursor: pointer;
+  font: inherit; font-size: 13px; font-weight: 600; line-height: 1; white-space: nowrap;
+  color: var(--text); background: transparent;
+  border: 1px solid var(--muted); border-radius: 999px; padding: 5px 10px;
+  min-height: 32px; cursor: pointer;
 }
-.card__save:hover, .card__save[aria-pressed="true"] { color: var(--accent); }
+.card__save:hover { color: var(--accent); border-color: var(--accent); }
+.card__save[aria-pressed="true"] { color: var(--bg); background: var(--accent); border-color: var(--accent); }
 .card__save:focus-visible, .linkbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .card--read { opacity: 0.55; }
 .card--read .card__meta::after { content: 'đã đọc'; font-size: 11px; border: 1px solid var(--border); border-radius: 999px; padding: 1px 6px; }
