@@ -14,3 +14,6 @@ data/sightings.json
 
 # Claude Code worktrees
 .claude/worktrees/
+
+# local credentials (Reddit app key); never committed
+config/secrets.local.json
