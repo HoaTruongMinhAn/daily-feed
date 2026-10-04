@@ -3,7 +3,9 @@ import { fileURLToPath } from 'node:url';
 import { sources } from '../config/sources.mjs';
 import { feedConfig as cfg } from '../config/feed.mjs';
 import { adapters } from '../lib/sources/index.mjs';
-import { fetchJson, fetchText } from '../lib/http.mjs';
+import { fetchJson, fetchText, publicLookup } from '../lib/http.mjs';
+import { redditCredentials } from '../lib/secrets.mjs';
+import { makeRedditClient } from '../lib/reddit-client.mjs';
 import { collect } from '../lib/collect.mjs';
 import { dataFile, readJson, writeJson, updateStatus, todayIn } from '../lib/store.mjs';
 import { retainedItems } from '../lib/merge.mjs';
@@ -14,7 +16,13 @@ export async function main() {
   const dropped = readJson(dataFile('dropped.json'), []);
   const knownIds = new Set([...items.map((i) => i.id), ...dropped.map((d) => d.id)]);
 
-  const { candidates, sightings, failed, consulted } = await collect({ sources, adapters, http: { fetchJson, fetchText }, now, cfg, knownIds, knownItems: retainedItems(items, todayIn(cfg.timezone, now), cfg) });
+  const redditClient = makeRedditClient({
+    creds: redditCredentials(),
+    lookup: cfg.redditResolvers?.length ? publicLookup(cfg.redditResolvers) : undefined,
+  });
+  console.error(`[fetch] reddit: ${redditClient.mode}`);
+
+  const { candidates, sightings, failed, consulted } = await collect({ sources, adapters, http: { fetchJson, fetchText, redditClient }, now, cfg, knownIds, knownItems: retainedItems(items, todayIn(cfg.timezone, now), cfg) });
 
   if (consulted === 0 || failed.length === consulted) {
     updateStatus('fetch', { ok: false, message: 'every source failed', failedSources: failed, candidates: 0 });

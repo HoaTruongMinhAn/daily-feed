@@ -4,6 +4,10 @@ export const feedConfig = {
   siteTitle: 'Daily Feed',
   siteUrl: 'https://hoatruongminhan.github.io/daily-feed/',
   timezone: 'Asia/Ho_Chi_Minh',
+  // Reddit requests (only those) resolve hostnames through these public
+  // resolvers: the ISP DNS answers 127.0.0.1 for reddit.com. The Mac's DNS
+  // is not changed. Empty array = system DNS.
+  redditResolvers: ['1.1.1.1', '8.8.8.8'],
   retentionDays: 14,       // items.json keeps this many days
   droppedMemoryDays: 30,   // dropped.json remembers ids this long
   maxCandidates: 120,      // sent to Claude per run

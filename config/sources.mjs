@@ -2,13 +2,6 @@
 // used to normalise hotness across sources. Low-volume sources may set
 // maxAgeHours above the global 72 h. `disabled: '<reason>'` keeps an entry
 // in the list but skips it at runtime. Edit freely; ids must stay unique.
-const reddit = (sub, t = 'day') => `https://www.reddit.com/r/${sub}/top.json?t=${t}&limit=40`;
-
-// Reddit: this network's ISP DNS resolves reddit.com to 127.0.0.1, so every
-// Reddit request fails. Remove `disabled` once the Mac uses a resolver that
-// returns the real address (e.g. 1.1.1.1 or 8.8.8.8 in System Settings).
-const REDDIT_BLOCKED = 'reddit.com is blocked by the ISP DNS on this network';
-
 export const sources = [
   // Hacker News: front page as-is, plus recency-bounded topical searches.
   { id: 'hn-front', name: 'Hacker News', family: 'hn', url: 'https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=60', categoryHint: 'it', p90: 300 },
@@ -18,14 +11,16 @@ export const sources = [
   { id: 'hn-testing', name: 'Hacker News', family: 'hn', query: 'testing', minPoints: 20, sinceHours: 96, categoryHint: 'testing', p90: 100 },
   { id: 'hn-playwright', name: 'Hacker News', family: 'hn', query: 'Playwright', minPoints: 10, sinceHours: 168, categoryHint: 'testing', p90: 100, maxAgeHours: 168 },
 
-  // Reddit (adapter tested; disabled on this network, see REDDIT_BLOCKED)
-  { id: 'r-artificial', name: 'r/artificial', family: 'reddit', url: reddit('artificial'), categoryHint: 'ai', p90: 800, disabled: REDDIT_BLOCKED },
-  { id: 'r-localllama', name: 'r/LocalLLaMA', family: 'reddit', url: reddit('LocalLLaMA'), categoryHint: 'ai', p90: 800, disabled: REDDIT_BLOCKED },
-  { id: 'r-claudeai', name: 'r/ClaudeAI', family: 'reddit', url: reddit('ClaudeAI'), categoryHint: 'ai', p90: 400, disabled: REDDIT_BLOCKED },
-  { id: 'r-qualityassurance', name: 'r/QualityAssurance', family: 'reddit', url: reddit('QualityAssurance', 'week'), categoryHint: 'testing', p90: 40, maxAgeHours: 168, disabled: REDDIT_BLOCKED },
-  { id: 'r-softwaretesting', name: 'r/softwaretesting', family: 'reddit', url: reddit('softwaretesting', 'week'), categoryHint: 'testing', p90: 40, maxAgeHours: 168, disabled: REDDIT_BLOCKED },
-  { id: 'r-programming', name: 'r/programming', family: 'reddit', url: reddit('programming'), categoryHint: 'it', p90: 800, disabled: REDDIT_BLOCKED },
-  { id: 'r-programmerhumor', name: 'r/ProgrammerHumor', family: 'reddit', url: reddit('ProgrammerHumor'), categoryHint: 'humor', p90: 8000, isMeme: true, disabled: REDDIT_BLOCKED },
+  // Reddit, via lib/reddit-client.mjs: app-only OAuth when
+  // config/secrets.local.json has a key (see README), else the public .json
+  // listing, which Reddit often answers with 403. `t` = top-of window.
+  { id: 'r-artificial', name: 'r/artificial', family: 'reddit', sub: 'artificial', categoryHint: 'ai', p90: 1200 },
+  { id: 'r-localllama', name: 'r/LocalLLaMA', family: 'reddit', sub: 'LocalLLaMA', categoryHint: 'ai', p90: 1200 },
+  { id: 'r-claudeai', name: 'r/ClaudeAI', family: 'reddit', sub: 'ClaudeAI', categoryHint: 'ai', p90: 600 },
+  { id: 'r-qualityassurance', name: 'r/QualityAssurance', family: 'reddit', sub: 'QualityAssurance', t: 'week', categoryHint: 'testing', p90: 60, maxAgeHours: 168 },
+  { id: 'r-softwaretesting', name: 'r/softwaretesting', family: 'reddit', sub: 'softwaretesting', t: 'week', categoryHint: 'testing', p90: 60, maxAgeHours: 168 },
+  { id: 'r-programming', name: 'r/programming', family: 'reddit', sub: 'programming', categoryHint: 'it', p90: 1200 },
+  { id: 'r-programmerhumor', name: 'r/ProgrammerHumor', family: 'reddit', sub: 'ProgrammerHumor', categoryHint: 'humor', p90: 12000, isMeme: true },
 
   // GitHub (search API, unauthenticated)
   { id: 'gh-testing', name: 'GitHub', family: 'github', query: 'topic:testing', createdWithinDays: 30, categoryHint: 'testing', p90: 500 },

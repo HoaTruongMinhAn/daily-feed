@@ -18,18 +18,23 @@ test('hn adapter maps hits, uses the thread as url when none, skips untitled', a
   assert.equal(out[1].url, 'https://news.ycombinator.com/item?id=101');
 });
 
-test('reddit adapter: image memes get imageUrl, video/self posts do not, stickied skipped (review focus 2)', async () => {
-  const src = { id: 'r-humor', name: 'r/ProgrammerHumor', family: 'reddit', url: 'u', categoryHint: 'humor', p90: 5000, isMeme: true };
-  const out = await adapters.reddit(src, { fetchJson: async () => fixture('reddit.json'), now });
+test('reddit adapter: reads through the client, memes get imageUrl, engagement counts comments (review focus 2)', async () => {
+  const src = { id: 'r-humor', name: 'r/ProgrammerHumor', family: 'reddit', sub: 'ProgrammerHumor', t: 'week', categoryHint: 'humor', p90: 12000, isMeme: true };
+  let asked;
+  const redditClient = { top: async (sub, t) => { asked = [sub, t]; return fixture('reddit.json'); } };
+  const out = await adapters.reddit(src, { redditClient, now });
+  assert.deepEqual(asked, ['ProgrammerHumor', 'week']);
   assert.equal(out.length, 3);
   assert.equal(out[0].imageUrl, 'https://i.redd.it/meme1.png');
   assert.equal(out[0].isMeme, true);
+  assert.equal(out[0].engagement, 5400 + 2 * 300);
   assert.equal(out[0].discussionUrl, 'https://www.reddit.com/r/ProgrammerHumor/comments/abc/when_the_test/');
   assert.equal(out[1].imageUrl, null);
   assert.equal(out[2].url, 'https://reddit.com/r/QualityAssurance/comments/jkl/flaky');
   assert.equal(out[2].excerpt, 'We cut flaky tests by 80% by...');
   assert.equal(out[2].source, 'reddit:r/QualityAssurance');
   assert.equal(out[0].publishedAt, new Date(1791072000 * 1000).toISOString());
+  await assert.rejects(adapters.reddit(src, { now }), /reddit client not configured/);
 });
 
 test('github adapter builds a dated query and titles repos', async () => {
@@ -67,9 +72,19 @@ test('config/sources.mjs entries are well formed', () => {
     assert.ok(adapters[s.family], `${s.id} unknown family ${s.family}`);
     assert.ok(['ai', 'testing', 'it', 'humor'].includes(s.categoryHint), `${s.id} bad hint`);
     assert.ok(s.p90 > 0, `${s.id} needs p90`);
-    assert.ok(s.url || s.query, `${s.id} needs url or query`);
+    assert.ok(s.url || s.query || s.sub || s.tag || s.feed || s.mode, `${s.id} needs url, query, sub, tag, feed or mode`);
   }
   assert.equal(new Set(sources.map((s) => s.id)).size, sources.length, 'ids unique');
+});
+
+test('reddit sources are enabled and name a subreddit', () => {
+  const r = sources.filter((s) => s.family === 'reddit');
+  assert.ok(r.length >= 7);
+  for (const s of r) {
+    assert.match(s.sub, /^[A-Za-z0-9_]+$/, s.id);
+    assert.equal(s.disabled, undefined, s.id);
+    assert.ok(['day', 'week'].includes(s.t ?? 'day'), s.id);
+  }
 });
 
 test('hn adapter builds a recency-bounded search url when given query/minPoints instead of url', async () => {
