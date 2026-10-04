@@ -16,5 +16,5 @@ export const feedConfig = {
   feedDays: 2,             // index shows items added within this many days
   articleMaxChars: 5000,   // article text kept per item as detail source
   detailBatchSize: 12,     // items per `claude -p "/daily-feed-detail"` call
-  detailMaxPerDay: 60,     // items that get a Vietnamese detail per day, best rank first
+  detailMaxPerDay: 120,    // items that get a Vietnamese detail per day, best rank first (= maxCandidates, so every kept item fits)
 };

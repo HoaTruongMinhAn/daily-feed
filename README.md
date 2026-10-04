@@ -21,7 +21,7 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
    Uses your Claude Code login; no API key.
 3. `scripts/merge.mjs` validates the decisions and merges them into
    `data/items.json` (14-day window) and `data/dropped.json` (30-day memory).
-4. Detail, in batches of 12 up to 60 items a day (best rank first; see
+4. Detail, in batches of 12 up to 120 items a day (best rank first; see
    `config/feed.mjs`): `scripts/detail-prep.mjs` fetches each item's article
    text (cached in `data/articles/`), `claude -p "/daily-feed-detail"`
    (skill in `skills/daily-feed-detail/`) writes the Vietnamese detail, and
