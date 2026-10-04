@@ -1,0 +1,9 @@
+{
+  "fetch": {
+    "ok": true,
+    "message": "120 candidates from 31/31 sources",
+    "failedSources": [],
+    "candidates": 120,
+    "at": "2026-10-04T04:13:16.178Z"
+  }
+}

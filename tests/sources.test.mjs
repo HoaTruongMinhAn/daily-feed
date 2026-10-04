@@ -67,7 +67,17 @@ test('config/sources.mjs entries are well formed', () => {
     assert.ok(adapters[s.family], `${s.id} unknown family ${s.family}`);
     assert.ok(['ai', 'testing', 'it', 'humor'].includes(s.categoryHint), `${s.id} bad hint`);
     assert.ok(s.p90 > 0, `${s.id} needs p90`);
-    assert.ok(s.family === 'github' ? s.query : s.url, `${s.id} needs url/query`);
+    assert.ok(s.url || s.query, `${s.id} needs url or query`);
   }
   assert.equal(new Set(sources.map((s) => s.id)).size, sources.length, 'ids unique');
+});
+
+test('hn adapter builds a recency-bounded search url when given query/minPoints instead of url', async () => {
+  let requested;
+  const src = { id: 'hn-llm', name: 'Hacker News', family: 'hn', query: 'LLM', minPoints: 40, sinceHours: 72, categoryHint: 'ai', p90: 200 };
+  await adapters.hn(src, { fetchJson: async (url) => { requested = url; return fixture('hn.json'); }, now });
+  const since = Math.floor(now / 1000) - 72 * 3600;
+  assert.match(requested, /^https:\/\/hn\.algolia\.com\/api\/v1\/search\?query=LLM&tags=story&numericFilters=/);
+  assert.ok(requested.includes(`created_at_i>${since}`), requested);
+  assert.ok(requested.includes('points>40'), requested);
 });
