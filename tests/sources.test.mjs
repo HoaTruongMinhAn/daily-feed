@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { adapters } from '../lib/sources/index.mjs';
 import { sources } from '../config/sources.mjs';
+import { tootText } from '../lib/sources/mastodon.mjs';
 
 const fixture = (name) => JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8'));
 const text = (name) => readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8');
@@ -96,4 +97,60 @@ test('hn adapter builds a recency-bounded search url when given query/minPoints 
   assert.match(requested, /^https:\/\/hn\.algolia\.com\/api\/v1\/search\?query=LLM&tags=story&numericFilters=/);
   assert.ok(requested.includes(`created_at_i>${since}`), requested);
   assert.ok(requested.includes('points>40'), requested);
+});
+
+test('mastodon tag mode: card link wins, toot is the discussion, HTML stripped, empty posts skipped', async () => {
+  let asked;
+  const src = { id: 'm', name: 'Mastodon', family: 'mastodon', instance: 'hachyderm.io', tag: 'softwaretesting', categoryHint: 'testing', p90: 20 };
+  const out = await adapters.mastodon(src, { fetchJson: async (u) => { asked = u; return fixture('mastodon-tag.json'); }, now });
+  assert.equal(asked, 'https://hachyderm.io/api/v1/timelines/tag/softwaretesting?limit=40');
+  assert.equal(out.length, 2);
+  assert.equal(out[0].url, 'https://blog.example.com/flaky');
+  assert.equal(out[0].discussionUrl, 'https://hachyderm.io/@ana/1');
+  assert.equal(out[0].title, 'Taming flaky tests');
+  assert.equal(out[0].engagement, 12 + 30 + 2 * 4);
+  assert.equal(out[0].source, 'mastodon:hachyderm.io');
+  assert.equal(out[1].url, 'https://hachyderm.io/@bo/2');
+  assert.equal(out[1].discussionUrl, null);
+  assert.equal(out[1].title, 'Hot take: #qa is a role, not a phase');
+  assert.ok(!out[1].excerpt.includes('<'), out[1].excerpt);
+});
+
+test('tootText decodes entities after stripping tags, so markup cannot be re-created', () => {
+  assert.equal(tootText('<p>a &amp; b</p><p>c</p>'), 'a & b\nc');
+  assert.equal(tootText('<p>&lt;img src=x onerror=1&gt;</p>'), '<img src=x onerror=1>', 'decoded text is plain data; render escapes it');
+});
+
+test('mastodon trendsLinks: engagement sums accounts, publishedAt is now, url-less links skipped', async () => {
+  const src = { id: 'mt', name: 'Mastodon trends', family: 'mastodon', instance: 'hachyderm.io', mode: 'trendsLinks', categoryHint: 'hot', p90: 50 };
+  let asked;
+  const out = await adapters.mastodon(src, { fetchJson: async (u) => { asked = u; return fixture('mastodon-trends.json'); }, now });
+  assert.equal(asked, 'https://hachyderm.io/api/v1/trends/links?limit=40');
+  assert.equal(out.length, 1);
+  assert.equal(out[0].engagement, 40);
+  assert.equal(out[0].publishedAt, new Date(now).toISOString());
+  assert.equal(out[0].categoryHint, 'hot');
+});
+
+test('bluesky adapter: external embed becomes the link, text posts link to bsky.app, broken posts skipped', async () => {
+  let asked;
+  const feed = 'at://did:plc:x/app.bsky.feed.generator/whats-llm';
+  const out = await adapters.bluesky({ id: 'b', name: 'Bluesky', family: 'bluesky', feed, categoryHint: 'ai', p90: 30 }, { fetchJson: async (u) => { asked = u; return fixture('bluesky-feed.json'); }, now });
+  assert.equal(asked, `https://public.api.bsky.app/xrpc/app.bsky.feed.getFeed?feed=${encodeURIComponent(feed)}&limit=50`);
+  assert.equal(out.length, 2);
+  assert.equal(out[0].url, 'https://example.com/llm-evals');
+  assert.equal(out[0].discussionUrl, 'https://bsky.app/profile/ana.bsky.social/post/3kx1');
+  assert.equal(out[0].engagement, 10 + 40 + 2 * 5);
+  assert.equal(out[1].url, 'https://bsky.app/profile/bo.dev/post/3kx2');
+  assert.equal(out[1].title, 'When the test passes on the first try');
+});
+
+test('lobsters adapter: score + 2*comments, text posts use the comments page', async () => {
+  let asked;
+  const out = await adapters.lobsters({ id: 'l', name: 'Lobsters', family: 'lobsters', tag: 'testing', categoryHint: 'testing', p90: 60 }, { fetchJson: async (u) => { asked = u; return fixture('lobsters.json'); }, now });
+  assert.equal(asked, 'https://lobste.rs/t/testing.json');
+  assert.equal(out[0].engagement, 38 + 28);
+  assert.equal(out[0].discussionUrl, 'https://lobste.rs/s/2r2sg8/finding_bugs');
+  assert.equal(out[1].url, 'https://lobste.rs/s/ab12cd/ask_how_do_you_test');
+  assert.equal(out[1].excerpt, 'We run them twice.');
 });

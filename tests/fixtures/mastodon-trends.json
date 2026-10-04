@@ -1,0 +1,4 @@
+[
+  { "url": "https://www.theverge.com/x/outage", "title": "Big cloud outage takes down half the web", "description": "A config push.", "history": [ { "day": "1791072000", "uses": "40", "accounts": "35" }, { "day": "1790985600", "uses": "5", "accounts": "5" } ] },
+  { "url": "", "title": "no url", "history": [] }
+]

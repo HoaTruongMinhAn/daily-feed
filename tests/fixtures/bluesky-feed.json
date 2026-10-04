@@ -1,0 +1,14 @@
+{
+  "feed": [
+    { "post": {
+      "uri": "at://did:plc:abc/app.bsky.feed.post/3kx1", "author": { "handle": "ana.bsky.social" },
+      "record": { "text": "Worth reading", "createdAt": "2026-10-03T20:00:00.000Z" },
+      "embed": { "$type": "app.bsky.embed.external#view", "external": { "uri": "https://example.com/llm-evals", "title": "LLM evals in CI", "description": "How we gate releases." } },
+      "likeCount": 40, "repostCount": 10, "replyCount": 5, "indexedAt": "2026-10-03T20:00:01.000Z" } },
+    { "post": {
+      "uri": "at://did:plc:def/app.bsky.feed.post/3kx2", "author": { "handle": "bo.dev" },
+      "record": { "text": "\nWhen the test passes on the first try\nsuspicious", "createdAt": "2026-10-03T21:00:00.000Z" },
+      "likeCount": 3, "repostCount": 0, "replyCount": 1 } },
+    { "post": { "uri": "garbage", "record": { "text": "" } } }
+  ]
+}
