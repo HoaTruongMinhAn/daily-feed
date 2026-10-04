@@ -35,3 +35,12 @@ test('neither claude step may read local secrets or search the repo (final revie
     assert.ok(block.includes('"Grep"') && block.includes('"Glob"'), `${name} must deny Grep and Glob`);
   }
 });
+
+test('scheduled run marks the day done only after success, and retries a bounded number of times', () => {
+  const mark = sh.indexOf('printf \'%s\' "$TODAY" > "$STATE"');
+  assert.ok(mark > sh.indexOf('git push -q origin main'), 'success marker must come after the push');
+  assert.ok(sh.includes('MAX_ATTEMPTS="${DAILY_FEED_MAX_ATTEMPTS:-4}"'));
+  assert.match(sh, /curate step failed[^\n]*\n\s*FAILED=1/);
+  assert.match(sh, /push failed[^\n]*\n\s*FAILED=1/);
+  assert.match(sh, /if \[ "\$FAILED" = 0 \]; then\s*\n\s*printf '%s' "\$TODAY" > "\$STATE"/);
+});

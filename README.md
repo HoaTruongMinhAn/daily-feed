@@ -9,8 +9,9 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
 
 ## How it works
 
-1. `scripts/fetch.mjs` pulls candidates from Hacker News, GitHub, dev.to,
-   Lobsters, and RSS feeds (`config/sources.mjs`), scores hotness, dedups,
+1. `scripts/fetch.mjs` pulls candidates from Hacker News, Reddit, GitHub,
+   dev.to, Lobsters, Mastodon, Bluesky, and RSS feeds
+   (`config/sources.mjs`), scores hotness, dedups,
    skips anything already seen, and writes `data/candidates.json`. A story
    already kept that shows up from another source is recorded as an extra
    source (`data/sightings.json`, applied by merge) instead of being
@@ -40,6 +41,14 @@ npm run feed:detail      # only write missing Vietnamese details for items alrea
 npm run serve            # http://localhost:8080 (pick another port if 8080 is busy)
 ```
 
+Single steps, when you only want one part of the pipeline:
+
+```bash
+npm run fetch            # crawl all sources → data/candidates.json + data/sightings.json (no curation)
+npm run merge            # apply data/curated.json + sightings into data/items.json
+npm run build            # re-render site/ from data/
+```
+
 ## Schedule (macOS, opt-in)
 
 ```bash
@@ -52,6 +61,18 @@ weekends**. Override with `DAILY_FEED_TZ` / `DAILY_FEED_TIME` before
 installing. The Mac must be awake for the run to happen; a missed day
 runs at the next poll once the Mac is awake. Logs:
 `~/Library/Logs/daily-feed.log`.
+
+A run that fails (curation, push, or any hard error) is retried on the
+next 15-minute poll, up to `DAILY_FEED_MAX_ATTEMPTS` (default 4) a day.
+After a successful run the rest of the day's polls do nothing. State lives
+in `~/Library/Application Support/daily-feed.lastday` (last successful
+day) and `daily-feed.attempts` (today's attempt count). To force another
+run today, delete both and kickstart:
+
+```bash
+rm "$HOME/Library/Application Support/daily-feed."{lastday,attempts}
+launchctl kickstart "gui/$(id -u)/com.dailyfeed.run"
+```
 
 Uninstall:
 

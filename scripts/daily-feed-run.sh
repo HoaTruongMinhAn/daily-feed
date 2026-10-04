@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Daily Feed runner. Scheduled mode (no flags): called every 15 min by the
-# LaunchAgent, runs once per calendar day after DAILY_FEED_TIME in
-# DAILY_FEED_TZ, EVERY day including Saturday and Sunday (owner decision,
-# 2026-10-04), then commits and pushes. `--now` runs immediately without
+# LaunchAgent, runs after DAILY_FEED_TIME in DAILY_FEED_TZ, EVERY day
+# including Saturday and Sunday (owner decision, 2026-10-04), then commits
+# and pushes. A failed run (curate, push, or any hard error) is retried on
+# the next poll, up to DAILY_FEED_MAX_ATTEMPTS a day; after one success the
+# rest of the day's polls do nothing. `--now` runs immediately without
 # the schedule check and without committing. `--stub` replaces the Claude
 # curation and detail steps with scripts/stub-curate.mjs and
 # scripts/stub-detail.mjs (offline preview). `--detail-only` (with --now)
@@ -22,8 +24,11 @@ CURATE_EFFORT="${DAILY_FEED_CURATE_EFFORT:-medium}"
 DETAIL_MODEL="${DAILY_FEED_DETAIL_MODEL:-claude-sonnet-5-5}"
 DETAIL_EFFORT="${DAILY_FEED_DETAIL_EFFORT:-low}"
 FALLBACK_MODEL="${DAILY_FEED_FALLBACK_MODEL:-claude-haiku-4-5-20251001}"
-STATE="$HOME/Library/Application Support/daily-feed.lastday"
+MAX_ATTEMPTS="${DAILY_FEED_MAX_ATTEMPTS:-4}"
+STATE="$HOME/Library/Application Support/daily-feed.lastday"       # date of the last successful run
+ATTEMPTS="$HOME/Library/Application Support/daily-feed.attempts"   # "<date> <count>"
 LOG="$HOME/Library/Logs/daily-feed.log"
+FAILED=0
 MODE=scheduled
 STUB=0
 DETAIL_ONLY=0
@@ -51,8 +56,10 @@ if [ "$MODE" = scheduled ]; then
   LAST="$(cat "$STATE" 2>/dev/null || true)"
   [ "$TODAY" != "$LAST" ] || exit 0
   [[ "$NOW_TIME" > "$TARGET_TIME" || "$NOW_TIME" == "$TARGET_TIME" ]] || exit 0
+  read -r ATT_DAY ATT_COUNT < "$ATTEMPTS" 2>/dev/null || true
+  [ "${ATT_DAY:-}" = "$TODAY" ] || ATT_COUNT=0
+  [ "${ATT_COUNT:-0}" -lt "$MAX_ATTEMPTS" ] || exit 0   # gave up for today
   mkdir -p "$(dirname "$STATE")" "$(dirname "$LOG")"
-  printf '%s' "$TODAY" > "$STATE"   # mark first, so a crash does not retry all day
   exec >>"$LOG" 2>&1
 fi
 
@@ -72,6 +79,9 @@ if [ "$MODE" = scheduled ]; then
     echo "[run] data/ or site/ has uncommitted changes; skipping today's run so they are not swept into the feed commit"
     exit 0
   fi
+  ATT_COUNT=$(( ${ATT_COUNT:-0} + 1 ))
+  printf '%s %s' "$TODAY" "$ATT_COUNT" > "$ATTEMPTS"   # counted first, so a crash still uses up an attempt
+  echo "[run] attempt $ATT_COUNT of $MAX_ATTEMPTS today"
 fi
 
 if [ "$DETAIL_ONLY" = 0 ]; then
@@ -95,7 +105,8 @@ if [ "$DETAIL_ONLY" = 0 ]; then
         --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
         --model "$CURATE_MODEL" --effort "$CURATE_EFFORT" --fallback-model "$FALLBACK_MODEL" \
         --output-format text --max-turns 20; then
-      echo "[run] curate step failed; continuing with previous items"
+      echo "[run] curate step failed; continuing with previous items, will retry on the next poll"
+      FAILED=1
     fi
   fi
 
@@ -140,7 +151,12 @@ if [ "$MODE" = scheduled ]; then
   if git push -q origin main; then
     echo "[run] pushed"
   else
-    echo "[run] push failed; commit kept, will retry on the next run"
+    echo "[run] push failed; commit kept, will retry on the next poll"
+    FAILED=1
+  fi
+  if [ "$FAILED" = 0 ]; then
+    printf '%s' "$TODAY" > "$STATE"   # success: the rest of today's polls do nothing
+    echo "[run] success; done for $TODAY"
   fi
 fi
-echo "=== $(date) done ==="
+echo "=== $(date) done (failed=$FAILED) ==="
