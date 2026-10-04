@@ -66,7 +66,7 @@ test('feedConfig carries the spec constants', () => {
 
 - [ ] **Step 2: Run it to verify it fails**
 
-Run: `cd "/Users/minhanhoa.truong/Project/AI Agent/07-daily-feed" && node --test tests/`
+Run: `cd daily-feed && node --test tests/`
 Expected: FAIL, cannot find module `config/feed.mjs`.
 
 - [ ] **Step 3: Create package.json, .gitignore, config**
@@ -2315,7 +2315,7 @@ git commit -m "Add daily runner, LaunchAgent installer, Pages workflow, and READ
 
 Run:
 ```bash
-cd "/Users/minhanhoa.truong/Project/AI Agent/07-daily-feed"
+cd daily-feed
 gh repo create HoaTruongMinhAn/daily-feed --public --source . --remote origin --push --description "Personal daily feed: AI, testing, IT, IT humor"
 ```
 Expected: repo created, `main` pushed.

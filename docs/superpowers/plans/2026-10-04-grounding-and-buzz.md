@@ -740,7 +740,7 @@ Expected: all PASS.
 - [ ] **Step 1: Copy the repo to the scratchpad** so `data/` (committed memory) is untouched:
 
 ```bash
-SCR=/private/tmp/claude-504/-Users-minhanhoa-truong-Project-AI-Agent-07-daily-feed/0a3147a6-e5f4-47cf-aa16-5a55eb9cf068/scratchpad/feedcopy
+SCR="$(mktemp -d)/feedcopy"
 rm -rf "$SCR" && rsync -a --exclude node_modules --exclude .git ./ "$SCR/"
 ```
 
