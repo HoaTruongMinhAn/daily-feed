@@ -1,0 +1,30 @@
+{
+  "fetch": {
+    "ok": true,
+    "message": "120 candidates from 24/24 sources",
+    "failedSources": [],
+    "candidates": 120,
+    "at": "2026-10-04T04:28:58.177Z"
+  },
+  "curate": {
+    "ok": true,
+    "message": "kept 97, dropped 23, invalid 0",
+    "at": "2026-10-04T04:34:09.655Z"
+  },
+  "merge": {
+    "ok": true,
+    "message": "97 items retained",
+    "counts": {
+      "candidates": 120,
+      "kept": 97,
+      "dropped": 23,
+      "invalid": 0
+    },
+    "at": "2026-10-04T04:34:09.655Z"
+  },
+  "build": {
+    "ok": true,
+    "message": "97 items on index, 1 archive pages",
+    "at": "2026-10-04T04:34:09.716Z"
+  }
+}
