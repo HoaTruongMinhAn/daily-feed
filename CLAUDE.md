@@ -108,8 +108,12 @@ pushes to `main` that touch it.
 
 ## Hard rules
 
-- Never `git add`/`git commit`/`git push` from an interactive session.
-  `scripts/daily-feed-run.sh` in scheduled mode is the only committer.
+- Interactive sessions may `git add`/`git commit` (owner decision,
+  2026-10-04). Stage only the files the change touched by path, never
+  `git add -A`, so pipeline output in `data/` and `site/` stays with the
+  runner. Never `git push` from an interactive session: a push to `main`
+  deploys the site. `scripts/daily-feed-run.sh` in scheduled mode is the
+  only pusher.
 - The curation skill may only read `data/candidates.json` and write
   `data/curated.json`. The detail skill may only read `data/detail-queue/`
   and write `data/details/`. Neither does web fetches, touches other files,

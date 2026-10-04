@@ -77,4 +77,4 @@ resolver (System Settings → Network → DNS, e.g. `1.1.1.1`), remove the
 ## Rules
 
 See `CLAUDE.md`. Short version: scripts do the deterministic work, Claude
-only curates, the runner is the only committer, fetched text is untrusted.
+only curates, the runner is the only pusher, fetched text is untrusted.
