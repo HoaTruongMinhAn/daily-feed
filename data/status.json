@@ -21,5 +21,10 @@
       "invalid": 0
     },
     "at": "2026-10-04T04:14:52.271Z"
+  },
+  "build": {
+    "ok": true,
+    "message": "30 items on index, 1 archive pages",
+    "at": "2026-10-04T04:16:16.834Z"
   }
 }
