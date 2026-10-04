@@ -51,9 +51,12 @@ export const sources = [
   { id: 'lobsters-practices', name: 'Lobsters', family: 'lobsters', tag: 'practices', categoryHint: 'it', p90: 60, maxAgeHours: 168 },
 
   // daily.dev (undocumented GraphQL, no login; lib/sources/dailydev.mjs).
-  // Mostly dev blogs no other source here covers. Tag feeds are too sparse.
+  // Mostly dev blogs no other source here covers. Topic tags only work as
+  // newest-first lists (few votes, loose tagging), so the testing one is
+  // scored like a blog and capped.
   { id: 'dailydev-upvoted', name: 'daily.dev', family: 'dailydev', feed: 'mostUpvotedFeed', period: 3, categoryHint: 'it', p90: 80, perSourceCap: 15 },
   { id: 'dailydev-discussed', name: 'daily.dev', family: 'dailydev', feed: 'mostDiscussedFeed', period: 3, categoryHint: 'it', p90: 100, perSourceCap: 15 },
+  { id: 'dailydev-testing', name: 'daily.dev', family: 'dailydev', feed: 'tagFeed', tags: ['testing', 'software-testing', 'test-automation', 'playwright'], categoryHint: 'testing', p90: 3, perSourceCap: 10, maxAgeHours: 168 },
 
   // Mastodon (public API, no login). sourceName 'Mastodon' for all, so one
   // link boosted on two instances is one source, not buzz.

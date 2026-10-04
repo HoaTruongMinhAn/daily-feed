@@ -181,3 +181,16 @@ test('dailydev adapter: only the two known feeds are queried, and GraphQL errors
   await assert.rejects(adapters.dailydev({ ...src, feed: 'post(id: "x") { title } x: mostUpvotedFeed' }, { fetchJson: async () => fixture('dailydev.json'), now }), /unknown daily\.dev feed/);
   await assert.rejects(adapters.dailydev(src, { fetchJson: async () => ({ errors: [{ message: 'Unknown argument' }] }), now }), /daily\.dev: Unknown argument/);
 });
+
+test('dailydev adapter: tagFeed asks for the newest posts of each tag in one request and merges repeats', async () => {
+  let body;
+  const fetchJson = async (u, opts) => { body = JSON.parse(opts.body); return fixture('dailydev-tags.json'); };
+  const out = await adapters.dailydev({ id: 'd', name: 'daily.dev', family: 'dailydev', feed: 'tagFeed', tags: ['testing', 'playwright'], categoryHint: 'testing', p90: 3 }, { fetchJson, now });
+  assert.match(body.query, /t0: tagFeed\(tag: \$t0, first: \$first, ranking: TIME\)/);
+  assert.match(body.query, /t1: tagFeed\(tag: \$t1,/);
+  assert.deepEqual(body.variables, { first: 50, t0: 'testing', t1: 'playwright' });
+  assert.deepEqual(out.map((c) => c.title), ['Why Every QA Wolf AI Agent Gets Its Own Computer', 'Test logging with ReplaceAttr']);
+  assert.equal(out[1].engagement, 3);
+  assert.equal(out[0].engagement, 1, 'unvoted posts count as 1, like RSS');
+  await assert.rejects(adapters.dailydev({ id: 'd', name: 'daily.dev', family: 'dailydev', feed: 'tagFeed', tags: [], categoryHint: 'testing', p90: 3 }, { fetchJson, now }), /needs tags/);
+});

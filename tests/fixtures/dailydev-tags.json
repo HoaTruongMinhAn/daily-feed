@@ -1,0 +1,15 @@
+{
+  "data": {
+    "t0": {
+      "edges": [
+        { "node": { "id": "aaa111", "type": "article", "title": "Why Every QA Wolf AI Agent Gets Its Own Computer", "url": "https://www.qawolf.com/blog/agent-computer", "summary": "Each agent runs in its own VM.", "createdAt": "2026-10-03T09:00:00.000Z", "numUpvotes": 0, "numComments": 0, "commentsPermalink": "https://daily.dev/posts/why-every-qa-wolf-aaa111", "sharedPost": null } },
+        { "node": { "id": "bbb222", "type": "article", "title": "Test logging with ReplaceAttr", "url": "https://example.dev/test-logging", "summary": null, "createdAt": "2026-10-02T09:00:00.000Z", "numUpvotes": 3, "numComments": 0, "commentsPermalink": "https://daily.dev/posts/test-logging-bbb222", "sharedPost": null } }
+      ]
+    },
+    "t1": {
+      "edges": [
+        { "node": { "id": "bbb222", "type": "article", "title": "Test logging with ReplaceAttr", "url": "https://example.dev/test-logging", "summary": null, "createdAt": "2026-10-02T09:00:00.000Z", "numUpvotes": 3, "numComments": 0, "commentsPermalink": "https://daily.dev/posts/test-logging-bbb222", "sharedPost": null } }
+      ]
+    }
+  }
+}
