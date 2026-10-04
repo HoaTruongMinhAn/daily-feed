@@ -10,7 +10,7 @@ import {
 
 const SEEN_MS = 2000;
 const SEEN_RATIO = 0.6;
-const GROUPS = ['ai', 'testing', 'it', 'humor'];
+const GROUPS = ['ai', 'testing', 'it', 'humor', 'hot'];
 const NO_STORAGE = 'Không lưu được trên trình duyệt này';
 const CANNOT_SAVE = 'Không lưu được bài này';
 const IMPORT_ERROR = {
@@ -181,9 +181,10 @@ function buildCard(item) {
   card.dataset.id = item.id;
   card.dataset.url = isHttpUrl(item.url) ? item.url : '';
   card.dataset.category = item.category;
+  if (item.categoryLabel) card.dataset.categoryLabel = item.categoryLabel;
   card.dataset.added = item.addedAt;
   const meta = el('div', 'card__meta');
-  meta.append(el('span', `chip chip--${g}`, $(`[data-filter="${g}"]`)?.textContent ?? g), el('span', 'card__src', item.sourceName), saveButton());
+  meta.append(el('span', `chip chip--${g}`, item.categoryLabel || ($(`[data-filter="${g}"]`)?.textContent ?? g)), el('span', 'card__src', item.sourceName), saveButton());
   const title = el('h3', 'card__title');
   const parts = [title];
   if (item.titleVi) {
@@ -249,6 +250,7 @@ function snapshotFromCard(card) {
     summary: clip('summary', textOf(card, '.card__summary')),
     detail: clip('detail', detailText(card)),
     category: clip('category', card.dataset.category || ''),
+    categoryLabel: clip('categoryLabel', card.dataset.categoryLabel || ''),
     sourceName: clip('sourceName', textOf(card, '.card__src')),
     addedAt: clip('addedAt', card.dataset.added || ''),
     tags: [...card.querySelectorAll('.tag')].slice(0, MAX_TAGS).map((t) => t.textContent.trim().slice(0, MAX_TAG)),

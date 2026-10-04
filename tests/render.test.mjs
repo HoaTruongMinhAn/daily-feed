@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { escapeHtml, groupOf, renderCard, renderDetail, renderPage } from '../lib/render.mjs';
+import { escapeHtml, groupOf, renderCard, renderDetail, renderPage, GROUP_LABEL } from '../lib/render.mjs';
 
 const item = {
   id: '1', url: 'https://a.com/x', discussionUrl: 'https://news.ycombinator.com/item?id=1', extraLinks: ['https://b.com/y'],
@@ -132,4 +132,22 @@ test('renderPage archive loads ../assets/app.js and has no Home paging', () => {
   assert.ok(html.includes('<section id="feed">'), 'no data-page-size on archive');
   assert.ok(!html.includes('id="feed-more"') && !html.includes('id="read-hidden"'));
   assert.ok(html.includes('id="saved"') && html.includes('id="export"'));
+});
+
+test('hot-* items render in the hot group with an escaped Vietnamese label (review focus 5)', () => {
+  const hotItem = { id: 'a'.repeat(40), url: 'https://a.com/x', title: 'T', titleVi: 'TV', summary: 'S', category: 'hot-security', categoryLabel: '<img src=x onerror=alert(1)>', sourceName: 'Techmeme', tags: ['x'], fit: 3, hotness: 1, addedAt: '2026-10-04' };
+  assert.equal(groupOf('hot-security'), 'hot');
+  assert.equal(GROUP_LABEL.hot, 'Hot trên mạng');
+  const html = renderCard(hotItem);
+  assert.ok(html.includes('data-group="hot"'));
+  assert.ok(html.includes('<span class="chip chip--hot">&lt;img src=x onerror=alert(1)&gt;</span>'), html);
+  assert.ok(html.includes('data-category-label="&lt;img src=x onerror=alert(1)&gt;"'));
+  assert.ok(!html.includes('<img src=x'));
+  const plain = renderCard({ ...hotItem, category: 'ai-tip', categoryLabel: undefined });
+  assert.ok(plain.includes('<span class="chip chip--ai">AI tip</span>'));
+  assert.ok(!plain.includes('data-category-label'));
+});
+
+test('the filter bar has a Hot trên mạng pill', () => {
+  assert.ok(page().includes('<button class="pill" data-filter="hot" type="button">Hot trên mạng</button>'));
 });

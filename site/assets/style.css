@@ -10,6 +10,7 @@
   --testing: #4cc38a;
   --it: #5aa9ff;
   --humor: #e879f9;
+  --hot-color: #f87171;  /* not --hot: cards set --hot inline as their hotness % */
   --radius: 10px;
   --font: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -98,9 +99,11 @@ h2.divider { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 .chip--testing { background: var(--testing); }
 .chip--it { background: var(--it); }
 .chip--humor { background: var(--humor); }
+.chip--hot { background: var(--hot-color); }
 .card[data-group="testing"] .hot { background: linear-gradient(90deg, var(--testing) var(--hot), transparent var(--hot)); }
 .card[data-group="it"] .hot { background: linear-gradient(90deg, var(--it) var(--hot), transparent var(--hot)); }
 .card[data-group="humor"] .hot { background: linear-gradient(90deg, var(--humor) var(--hot), transparent var(--hot)); }
+.card[data-group="hot"] .hot { background: linear-gradient(90deg, var(--hot-color) var(--hot), transparent var(--hot)); }
 
 .notice { color: var(--warning); border: 1px solid var(--warning); border-radius: var(--radius); padding: 10px 14px; margin-top: 18px; font-size: 13px; }
 .empty { color: var(--muted); padding: 24px 0; }

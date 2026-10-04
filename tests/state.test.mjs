@@ -112,9 +112,9 @@ test('save, unsave, isSaved, savedList (newest first)', () => {
 
 test('sanitizeSnapshot keeps known fields, fills gaps, rejects bad input (review focus 3)', () => {
   const ok = sanitizeSnapshot({ ...snap(), html: '<b>x</b>' });
-  assert.deepEqual(Object.keys(ok).sort(), ['addedAt', 'category', 'detail', 'id', 'sourceName', 'summary', 'tags', 'title', 'titleVi', 'url']);
+  assert.deepEqual(Object.keys(ok).sort(), ['addedAt', 'category', 'categoryLabel', 'detail', 'id', 'sourceName', 'summary', 'tags', 'title', 'titleVi', 'url']);
   const gaps = sanitizeSnapshot({ id: A, url: '', title: 'T', titleVi: null });
-  assert.deepEqual(gaps, { id: A, url: '', title: 'T', titleVi: '', summary: '', detail: '', category: '', sourceName: '', addedAt: '', tags: [] });
+  assert.deepEqual(gaps, { id: A, url: '', title: 'T', titleVi: '', summary: '', detail: '', category: '', categoryLabel: '', sourceName: '', addedAt: '', tags: [] });
   const bad = [
     snap(A, { url: 'javascript:alert(1)' }), snap(A, { url: 'data:text/html,x' }), snap(A, { url: '/relative' }),
     snap('A'.repeat(40)), snap('1'), snap(A, { title: 42 }), snap(A, { title: '' }), snap(A, { title: 'x'.repeat(501) }),
@@ -128,7 +128,7 @@ test('sanitizeSnapshot keeps known fields, fills gaps, rejects bad input (review
 test('isHttpUrl and groupOf (kept in sync with lib/render.mjs)', () => {
   assert.ok(isHttpUrl('https://a.com') && isHttpUrl('http://a.com/x'));
   for (const bad of ['javascript:alert(1)', 'data:x', 'a.com', '', null]) assert.equal(isHttpUrl(bad), false);
-  for (const c of [...Object.keys(CATEGORY_LABEL), 'weird', '']) assert.equal(groupOf(c), renderGroupOf(c), c);
+  for (const c of [...Object.keys(CATEGORY_LABEL), 'hot-security', 'hot-x', 'weird', '']) assert.equal(groupOf(c), renderGroupOf(c), c);
 });
 
 const C = 'c'.repeat(40);
@@ -203,4 +203,10 @@ test('mergeImport does not mutate the current state, and an export round-trips',
   assert.deepEqual(s, before);
   assert.ok(r.state.read[C]);
   assert.deepEqual(mergeImport(emptyState(), JSON.stringify(s)).state, s);
+});
+
+test('sanitizeSnapshot keeps a hot label and caps it', () => {
+  assert.equal(sanitizeSnapshot(snap(A, { category: 'hot-launch', categoryLabel: 'Ra mắt' })).categoryLabel, 'Ra mắt');
+  assert.equal(sanitizeSnapshot(snap(A, { categoryLabel: 'x'.repeat(41) })), null);
+  assert.equal(groupOf('hot-launch'), 'hot');
 });

@@ -8,7 +8,7 @@ export const DAY_MS = 24 * 60 * 60 * 1000;
 export const SEEN_GRACE_MS = DAY_MS;
 export const READ_TTL_MS = 30 * DAY_MS;
 export const MAX_IMPORT_BYTES = 5 * 1024 * 1024;
-export const LIMITS = { title: 500, titleVi: 500, summary: 500, detail: 8000, category: 40, sourceName: 100, addedAt: 10 };
+export const LIMITS = { title: 500, titleVi: 500, summary: 500, detail: 8000, category: 40, categoryLabel: 40, sourceName: 100, addedAt: 10 };
 export const MAX_TAGS = 10;
 export const MAX_TAG = 40;
 
@@ -31,6 +31,7 @@ export function isHttpUrl(raw) {
 
 // Must match groupOf in lib/render.mjs (tests/state.test.mjs checks).
 export function groupOf(category) {
+  if (category.startsWith('hot-')) return 'hot';
   if (category.startsWith('ai-')) return 'ai';
   if (category.startsWith('test-')) return 'testing';
   if (category === 'humor') return 'humor';
