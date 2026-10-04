@@ -92,3 +92,10 @@ test('publicLookup resolves through the given servers, supports all:true, falls 
   const got = await new Promise((r) => fb('www.reddit.com', {}, (e, a) => r(a)));
   assert.equal(got, '127.0.0.1');
 });
+
+test('requestText sends content-length with a body, so the token POST is not chunked (final review M1)', async () => {
+  await withServer((req, res) => res.end(JSON.stringify({ len: req.headers['content-length'] ?? null, te: req.headers['transfer-encoding'] ?? null })), async (base) => {
+    const got = JSON.parse(await requestText(`${base}/t`, { method: 'POST', body: 'grant_type=client_credentials', request: http.request }));
+    assert.deepEqual(got, { len: String('grant_type=client_credentials'.length), te: null });
+  });
+});

@@ -145,3 +145,11 @@ test('mergeRun counts hot-* on an ineligible candidate as invalid', () => {
   const out = mergeRun({ candidates: [c], curated, items: [], dropped: [], today: '2026-10-04', cfg, timezone: 'UTC' });
   assert.deepEqual([out.counts.kept, out.counts.invalid], [0, 1]);
 });
+
+test('a null or empty categoryLabelVi on a core category counts as absent (final review I2)', () => {
+  const c = cand('core-null');
+  const ids = new Set([c.id]);
+  assert.deepEqual(validateDecision(keep(c, { categoryLabelVi: null }), ids), []);
+  assert.deepEqual(validateDecision(keep(c, { categoryLabelVi: '' }), ids), []);
+  assert.ok(validateDecision(keep(c, { categoryLabelVi: 'x' }), ids).includes('unexpected categoryLabelVi'));
+});

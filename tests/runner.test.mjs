@@ -26,3 +26,12 @@ test('runner pins model, effort and fallback per claude step, overridable by env
 test('curate skill documents the hot-* schema the validator enforces', () => {
   for (const s of ['hot-<slug>', 'categoryLabelVi', 'hotEligible', 'hotCategories', '24', 'Runs on']) assert.ok(skill.includes(s), s);
 });
+
+test('neither claude step may read local secrets or search the repo (final review I1)', () => {
+  for (const name of ['daily-feed-curate', 'daily-feed-detail']) {
+    const start = sh.indexOf(`claude -p "/${name}"`);
+    const block = sh.slice(start, sh.indexOf('--max-turns', start));
+    assert.ok(block.includes('"Read(./config/**)"'), `${name} must deny Read(./config/**)`);
+    assert.ok(block.includes('"Grep"') && block.includes('"Glob"'), `${name} must deny Grep and Glob`);
+  }
+});

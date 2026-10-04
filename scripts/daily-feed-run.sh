@@ -91,6 +91,7 @@ if [ "$DETAIL_ONLY" = 0 ]; then
         --allowedTools "Read(./data/candidates.json)" "Edit(./data/curated.json)" \
         --disallowedTools "Bash" "WebFetch" "WebSearch" "Agent" "NotebookEdit" \
           "Read(./data/items.json)" "Read(./data/dropped.json)" "Read(./data/status.json)" \
+          "Read(./config/**)" "Grep" "Glob" \
         --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
         --model "$CURATE_MODEL" --effort "$CURATE_EFFORT" --fallback-model "$FALLBACK_MODEL" \
         --output-format text --max-turns 20; then
@@ -115,6 +116,7 @@ for _ in $(seq 1 20); do
       --allowedTools "Read(./data/detail-queue/**)" "Edit(./data/details/**)" \
       --disallowedTools "Bash" "WebFetch" "WebSearch" "Agent" "NotebookEdit" \
         "Read(./data/items.json)" "Read(./data/dropped.json)" "Read(./data/status.json)" \
+          "Read(./config/**)" "Grep" "Glob" \
       --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
       --model "$DETAIL_MODEL" --effort "$DETAIL_EFFORT" --fallback-model "$FALLBACK_MODEL" \
       --output-format text --max-turns 40; then

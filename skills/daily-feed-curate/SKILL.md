@@ -37,7 +37,7 @@ description: >-
       "id": "<candidate id>",
       "keep": true,
       "category": "ai-trend | ai-product-idea | ai-tip | test-automation | test-manual | test-db | test-api | test-perf | it-general | humor | hot-<slug>",
-      "categoryLabelVi": "<only for hot-<slug>: nhãn tiếng Việt ngắn, 1-24 ký tự, một dòng, e.g. \"Bảo mật\">",
+      "categoryLabelVi": "<omit this field entirely unless category is hot-<slug>; nhãn tiếng Việt ngắn, 1-24 ký tự, một dòng, e.g. \"Bảo mật\">",
       "title": "<clean English title, max 110 chars, no 'Show HN:' prefixes, no clickbait>",
       "titleVi": "<tiêu đề tiếng Việt, một dòng, tối đa 140 ký tự>",
       "summary": "<1-2 câu tiếng Việt, tối đa 220 ký tự, nói rõ nội dung chính và vì sao đáng mở>",
