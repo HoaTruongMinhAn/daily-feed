@@ -152,17 +152,21 @@ function linkEl(href, text, cls = '') {
   return a;
 }
 
-// Same format as renderDetail in lib/render.mjs.
+// Same format as renderDetail in lib/render.mjs (CODE_SPAN there).
+function appendInline(parent, line) {
+  line.split(/`([^`\n]+)`/).forEach((part, i) => parent.append(i % 2 ? el('code', '', part) : part));
+}
+
 function appendDetail(body, detail) {
   for (const block of detail.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean)) {
     const lines = block.split('\n').map((l) => l.trim()).filter(Boolean);
     if (lines.every((l) => l.startsWith('- '))) {
       const ul = el('ul');
-      ul.append(...lines.map((l) => el('li', '', l.slice(2))));
+      for (const l of lines) { const li = el('li'); appendInline(li, l.slice(2)); ul.append(li); }
       body.append(ul);
     } else {
       const p = el('p');
-      lines.forEach((l, i) => { if (i) p.append(el('br')); p.append(l); });
+      lines.forEach((l, i) => { if (i) p.append(el('br')); appendInline(p, l); });
       body.append(p);
     }
   }
@@ -225,14 +229,18 @@ function buildCard(item) {
 
 const textOf = (card, sel) => card.querySelector(sel)?.textContent.trim() ?? '';
 
+// Inverse of appendInline: <br> back to a newline, <code> back to `x`.
+const inlineText = (node) => [...node.childNodes]
+  .map((n) => (n.nodeName === 'BR' ? '\n' : n.nodeName === 'CODE' ? `\`${n.textContent}\`` : n.textContent)).join('').trim();
+
 function detailText(card) {
   const body = card.querySelector('.card__detail');
   if (!body) return '';
   const blocks = [];
   for (const child of body.children) {
     if (child.classList.contains('card__source')) continue;
-    if (child.tagName === 'UL') blocks.push([...child.children].map((li) => `- ${li.textContent.trim()}`).join('\n'));
-    else if (child.tagName === 'P') blocks.push([...child.childNodes].map((n) => (n.nodeName === 'BR' ? '\n' : n.textContent)).join('').trim());
+    if (child.tagName === 'UL') blocks.push([...child.children].map((li) => `- ${inlineText(li)}`).join('\n'));
+    else if (child.tagName === 'P') blocks.push(inlineText(child));
   }
   return blocks.filter(Boolean).join('\n\n');
 }

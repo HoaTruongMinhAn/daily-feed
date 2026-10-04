@@ -54,7 +54,7 @@ test('renderPage builds hot-now, feed with date dividers, filters, archive, foot
   assert.ok(html.startsWith('<!doctype html>'));
   assert.ok(html.includes('<title>Daily Feed</title>'));
   assert.ok(html.includes('href="assets/style.css"'));
-  assert.ok(html.includes('fonts.googleapis.com') && html.includes('JetBrains+Mono'));
+  assert.ok(html.includes('fonts.googleapis.com') && html.includes('JetBrains+Mono') && html.includes('Be+Vietnam+Pro'));
   assert.ok(html.includes('id="hot-now"'));
   for (const g of ['all', 'ai', 'testing', 'it', 'humor']) assert.ok(html.includes(`data-filter="${g}"`));
   assert.ok(html.includes('2026-10-04') && html.includes('2026-10-03'));
@@ -97,6 +97,12 @@ test('renderCard with detail expands in place and ends with the source link; det
   assert.ok(!html.includes('<img src=x'));
   assert.equal(renderDetail(''), '');
   assert.ok(!renderCard({ ...item, detail: 'x', url: 'javascript:alert(1)' }).includes('javascript:'));
+});
+
+test('renderDetail shows `backtick` spans as escaped inline code; a lone backtick stays literal', () => {
+  assert.equal(renderDetail('Gọi `read()` rồi `<b>x</b>`'), '<p>Gọi <code>read()</code> rồi <code>&lt;b&gt;x&lt;/b&gt;</code></p>');
+  assert.equal(renderDetail('- ý `a` một'), '<ul><li>ý <code>a</code> một</li></ul>');
+  assert.equal(renderDetail('giá `5 và 6'), '<p>giá `5 và 6</p>');
 });
 
 test('renderCard lists several sources escaped, single source unchanged (review focus 2)', () => {
