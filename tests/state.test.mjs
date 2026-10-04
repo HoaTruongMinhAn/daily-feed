@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   STORAGE_KEY, CORRUPT_KEY, DAY_MS, emptyState, parseState, prune, markOpened, markSeen, isHiddenOnHome,
   isSaved, save, unsave, savedList, sanitizeSnapshot, groupOf, isHttpUrl, isId, mergeImport, MAX_IMPORT_BYTES,
+  rebase, isOpeningClick,
 } from '../site/assets/state.js';
 import { groupOf as renderGroupOf, CATEGORY_LABEL } from '../lib/render.mjs';
 
@@ -172,6 +173,27 @@ test('mergeImport skips and counts bad entries, including prototype keys (review
   assert.deepEqual(Object.keys(r.state.saved), [C]);
   assert.deepEqual([r.read, r.saved, r.skipped], [1, 1, 3]);
   assert.equal(({}).state, undefined);
+});
+
+test('rebase: a change made in another tab survives this tab\'s next write (final review Important 1)', () => {
+  const thisTab = emptyState();
+  const otherTab = save(emptyState(), snap(A), T0);
+  const next = markSeen(rebase(thisTab, JSON.stringify(otherTab), T0 + 1), B, T0 + 1);
+  assert.ok(isSaved(next, A), 'save from the other tab is kept');
+  assert.equal(next.read[B].state, 'seen');
+  const unsavedElsewhere = rebase(save(emptyState(), snap(A), T0), JSON.stringify(emptyState()), T0);
+  assert.equal(isSaved(unsavedElsewhere, A), false, 'an unsave in the other tab is not undone');
+  const cur = save(emptyState(), snap(A), T0);
+  assert.equal(rebase(cur, null, T0), cur, 'nothing stored: keep this tab\'s state');
+  assert.equal(rebase(cur, '{bad', T0), cur, 'corrupt stored value: keep this tab\'s state');
+  assert.equal(rebase(emptyState(), JSON.stringify({ v: 1, read: { [A]: { state: 'seen', at: T0 - 31 * DAY_MS } }, saved: {} }), T0).read[A], undefined, 'rebased state is pruned');
+});
+
+test('isOpeningClick: left and middle clicks open, right-click does not (final review minor 7)', () => {
+  assert.equal(isOpeningClick({ type: 'click', button: 0 }), true);
+  assert.equal(isOpeningClick({ type: 'auxclick', button: 1 }), true);
+  assert.equal(isOpeningClick({ type: 'auxclick', button: 2 }), false);
+  assert.equal(isOpeningClick({ type: 'contextmenu', button: 2 }), false);
 });
 
 test('mergeImport does not mutate the current state, and an export round-trips', () => {

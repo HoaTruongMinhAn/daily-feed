@@ -5,7 +5,7 @@
 import {
   STORAGE_KEY, CORRUPT_KEY, MAX_IMPORT_BYTES, LIMITS, MAX_TAGS, MAX_TAG,
   parseState, prune, markOpened, markSeen, isHiddenOnHome, isSaved, save, unsave, savedList,
-  mergeImport, groupOf, isHttpUrl,
+  mergeImport, groupOf, isHttpUrl, rebase, isOpeningClick,
 } from './state.js';
 
 const SEEN_MS = 2000;
@@ -44,6 +44,19 @@ function persist() {
     }
   }
   say(NO_STORAGE);
+}
+
+function stored() {
+  try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
+}
+
+// Applies one change on top of what is stored now, so another open tab's
+// changes are not overwritten.
+function update(op) {
+  const base = storageOk ? rebase(state, stored(), Date.now()) : state;
+  const next = op(base);
+  state = next;
+  if (next !== base) persist();
 }
 
 // ---- page model
@@ -268,18 +281,16 @@ function renderSaved() {
 // ---- opened and seen
 
 function opened(card) {
-  if (!card) return;
-  const next = markOpened(state, card.dataset.id, Date.now());
-  if (next !== state) { state = next; persist(); }
+  if (card) update((s) => markOpened(s, card.dataset.id, Date.now()));
 }
 
 function onCardClick(e) {
+  if (!isOpeningClick(e)) return;
   const card = e.target.closest?.('.card');
   if (!card) return;
   if (e.type === 'click' && e.target.closest('.card__save')) {
     const id = card.dataset.id;
-    state = isSaved(state, id) ? unsave(state, id) : save(state, snapshotFromCard(card), Date.now());
-    persist();
+    update((s) => (isSaved(s, id) ? unsave(s, id) : save(s, snapshotFromCard(card), Date.now())));
     syncSaveButtons();
     return;
   }
@@ -296,8 +307,7 @@ function watchSeen() {
       timers.delete(card);
       qualifying.delete(card);
       io.unobserve(card);
-      const next = markSeen(state, card.dataset.id, Date.now());
-      if (next !== state) { state = next; persist(); }
+      update((s) => markSeen(s, card.dataset.id, Date.now()));
     }, SEEN_MS));
   };
   const stop = (card) => { clearTimeout(timers.get(card)); timers.delete(card); };
@@ -333,7 +343,8 @@ async function importState(input) {
   input.value = '';
   if (!file) return;
   if (file.size > MAX_IMPORT_BYTES) { say(IMPORT_ERROR.size); return; }
-  const res = mergeImport(state, await file.text());
+  const text = await file.text();
+  const res = mergeImport(storageOk ? rebase(state, stored(), Date.now()) : state, text);
   if (!res.ok) { say(IMPORT_ERROR[res.error]); return; }
   state = prune(res.state, Date.now());
   persist();
@@ -349,6 +360,12 @@ if (!isHome) {
   document.querySelectorAll('#feed .card').forEach((c) => c.classList.toggle('card--read', isHiddenOnHome(state, c.dataset.id, loadedAt)));
 }
 setHidden('.state-tools', false);
+// Another tab changed the state: follow it. Home hiding stays as decided at load.
+window.addEventListener('storage', (e) => {
+  if (e.key !== STORAGE_KEY) return;
+  state = rebase(state, e.newValue, Date.now());
+  syncSaveButtons();
+});
 document.addEventListener('click', onCardClick);
 document.addEventListener('auxclick', onCardClick);
 // `toggle` does not bubble; a capturing listener still sees it.

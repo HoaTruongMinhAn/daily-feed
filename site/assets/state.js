@@ -140,6 +140,18 @@ export function savedList(state) {
   return Object.values(state.saved).sort((a, b) => b.savedAt - a.savedAt).map((e) => e.item);
 }
 
+// Another tab may have written since this one loaded. Every change starts
+// from the stored value so this tab's write does not erase that tab's
+// saves; when nothing usable is stored, this tab's state stands.
+export function rebase(current, raw, now) {
+  if (raw == null) return current;
+  const p = parseState(raw);
+  return p.corrupt ? current : prune(p.state, now);
+}
+
+// Left click or middle click opens a link; right-click (context menu) does not.
+export const isOpeningClick = (e) => (e.type === 'click' && e.button === 0) || (e.type === 'auxclick' && e.button === 1);
+
 const strength = (e) => (e.state === 'opened' ? 2 : 1);
 
 // Merges an exported file into the current state; never replaces it. Saved:
