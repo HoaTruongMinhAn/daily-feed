@@ -112,3 +112,36 @@ test('retainedItems keeps what mergeRun keeps, so fetch never matches against an
   const out = mergeRun({ candidates: [], curated: { generatedAt: '2026-10-04T00:10:00Z', decisions: [] }, items, dropped: [], today: '2026-10-04', cfg, timezone: 'UTC', log: () => {} });
   assert.deepEqual(out.items.map((i) => i.id), retainedItems(items, '2026-10-04', cfg).map((i) => i.id));
 });
+
+test('validateDecision: hot-* needs eligibility and a short Vietnamese label; core categories must not carry one', () => {
+  const c = cand('hot');
+  const ids = new Set([c.id]);
+  const hotIds = new Set([c.id]);
+  const hot = keep(c, { category: 'hot-security', categoryLabelVi: 'Bảo mật' });
+  assert.deepEqual(validateDecision(hot, ids, hotIds), []);
+  assert.ok(validateDecision(hot, ids).includes('not hot-eligible'), 'default: nobody is eligible');
+  assert.ok(validateDecision(keep(c, { category: 'hot-security' }), ids, hotIds).includes('bad categoryLabelVi'));
+  for (const label of ['', '   ', 'x'.repeat(25), 'a\nb', 42]) {
+    assert.ok(validateDecision(keep(c, { category: 'hot-x', categoryLabelVi: label }), ids, hotIds).includes('bad categoryLabelVi'), JSON.stringify(label));
+  }
+  assert.ok(validateDecision(keep(c, { category: 'hot-Bad', categoryLabelVi: 'x' }), ids, hotIds).includes('bad category'));
+  assert.ok(validateDecision(keep(c, { category: 'ai-trend', categoryLabelVi: 'x' }), ids, hotIds).includes('unexpected categoryLabelVi'));
+});
+
+test('mergeRun keeps the hot label and strips internal candidate fields', () => {
+  const c = { ...cand('h2'), signal: true, editorialHot: false, hotEligible: true };
+  const curated = { generatedAt: '2026-10-04T01:00:00.000Z', decisions: [keep(c, { category: 'hot-launch', categoryLabelVi: ' Ra mắt ' })] };
+  const out = mergeRun({ candidates: [c], curated, items: [], dropped: [], today: '2026-10-04', cfg, timezone: 'UTC' });
+  assert.equal(out.counts.kept, 1);
+  const [item] = out.items;
+  assert.equal(item.category, 'hot-launch');
+  assert.equal(item.categoryLabel, 'Ra mắt');
+  for (const k of ['signal', 'editorialHot', 'hotEligible']) assert.equal(k in item, false, k);
+});
+
+test('mergeRun counts hot-* on an ineligible candidate as invalid', () => {
+  const c = { ...cand('h3'), hotEligible: false };
+  const curated = { generatedAt: '2026-10-04T01:00:00.000Z', decisions: [keep(c, { category: 'hot-launch', categoryLabelVi: 'Ra mắt' })] };
+  const out = mergeRun({ candidates: [c], curated, items: [], dropped: [], today: '2026-10-04', cfg, timezone: 'UTC' });
+  assert.deepEqual([out.counts.kept, out.counts.invalid], [0, 1]);
+});

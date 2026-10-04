@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 // Offline stand-in for the Claude curation step, for previews and tests.
-// Keeps the hottest 30 candidates, maps the category hint to a category,
+// Keeps the hottest 30 candidates, maps the category hint to a category
+// (hot-eligible `hot` candidates become `hot-general`),
 // and uses the excerpt (or title) as the "summary".
 import { fileURLToPath } from 'node:url';
 import { dataFile, readJson, writeJson } from '../lib/store.mjs';
 
 const CATEGORY_FOR_HINT = { ai: 'ai-trend', testing: 'test-automation', it: 'it-general', humor: 'humor' };
+
+function stubCategory(c) {
+  if (c.categoryHint === 'hot' && c.hotEligible === true) return { category: 'hot-general', categoryLabelVi: 'Tin nóng' };
+  return { category: CATEGORY_FOR_HINT[c.categoryHint] ?? 'it-general' };
+}
 
 export function stubCurate(candidates, nowIso = new Date().toISOString()) {
   const sorted = [...candidates].sort((a, b) => b.hotness - a.hotness);
@@ -13,7 +19,7 @@ export function stubCurate(candidates, nowIso = new Date().toISOString()) {
     ? {
       id: c.id,
       keep: true,
-      category: CATEGORY_FOR_HINT[c.categoryHint] ?? 'it-general',
+      ...stubCategory(c),
       title: c.title.slice(0, 110),
       titleVi: `[stub] ${c.title.slice(0, 120)}`,
       summary: `[stub] ${(c.excerpt || c.title).slice(0, 200)}`,
