@@ -40,7 +40,8 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    sightings (`splitSightings`), ids in `dropped.json` are dropped,
    title-Jaccard dedup (which unions each story's `sources`), then
    `markHot` (`lib/hot.mjs`: `hotEligible` = 2+ sources, an
-   `editorialHot` source, or top 25% hotness among non-RSS candidates) and
+   `editorialHot` source, or top 25% hotness among non-RSS candidates with at
+   least `hotMinEngagement` engagement) and
    `selectByQuota` (`candidateQuota` per `categoryHint`, up to
    `maxCandidates`). Reddit goes through `lib/reddit-client.mjs` (OAuth key
    from gitignored `config/secrets.local.json`; public resolvers from

@@ -38,3 +38,9 @@ test('hotCategoriesFrom lists hot-* slugs with the latest label, most used first
     { slug: 'hot-launch', label: 'Ra mắt', count: 1 },
   ]);
 });
+
+test('markHot: the percentile rule also needs minEngagement, so 1-2 likes are never hot', () => {
+  const out = markHot([c('quiet', 2, { engagement: 2 }), c('loud', 1.5, { engagement: 300 }), c('mid', 0.1, { engagement: 50 }), c('low', 0.05, { engagement: 40 })], { minEngagement: 10 });
+  assert.deepEqual(out.filter((x) => x.hotEligible).map((x) => x.id), ['loud']);
+  assert.equal(markHot([c('q', 2, { engagement: 2 })])[0].hotEligible, true, 'default minEngagement 0 keeps old behaviour');
+});

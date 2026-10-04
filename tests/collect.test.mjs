@@ -120,3 +120,10 @@ test('collect marks signal/editorialHot per source family and sets hotEligible',
   assert.deepEqual([tm.signal, tm.editorialHot, tm.hotEligible], [false, true, true]);
   assert.deepEqual([hn.signal, hn.editorialHot, hn.hotEligible], [true, false, true], 'only measured candidate → top 25%');
 });
+
+test('collect passes cfg.hotMinEngagement to markHot', async () => {
+  const adapters = { hn: async () => [mk('https://h.com/q', 'Quiet measured story', '2026-10-03T20:00:00Z', 3)] };
+  const run = (hotMinEngagement) => collect({ sources: [{ id: 'h', family: 'hn', p90: 1, categoryHint: 'it' }], adapters, http: {}, now, cfg: { ...cfg, hotMinEngagement }, knownIds: new Set(), log: () => {} });
+  assert.equal((await run(10)).candidates[0].hotEligible, false);
+  assert.equal((await run(0)).candidates[0].hotEligible, true);
+});

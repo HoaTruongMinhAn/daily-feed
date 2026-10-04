@@ -51,7 +51,7 @@ test('fetchJson parses JSON and sends the daily-feed user agent', async () => {
 async function withServer(handler, fn) {
   const server = http.createServer(handler);
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
-  try { return await fn(`http://127.0.0.1:${server.address().port}`); } finally { server.close(); }
+  try { return await fn(`http://127.0.0.1:${server.address().port}`); } finally { server.closeAllConnections(); server.close(); }
 }
 
 test('requestText sends method, headers and body, and returns the text', async () => {
@@ -98,4 +98,27 @@ test('requestText sends content-length with a body, so the token POST is not chu
     const got = JSON.parse(await requestText(`${base}/t`, { method: 'POST', body: 'grant_type=client_credentials', request: http.request }));
     assert.deepEqual(got, { len: String('grant_type=client_credentials'.length), te: null });
   });
+});
+
+test('requestText rejects a response over maxBytes', async () => {
+  await withServer((req, res) => res.end('x'.repeat(2000)), async (base) => {
+    await assert.rejects(requestText(`${base}/big`, { maxBytes: 1000, request: http.request }), /response too large/);
+  });
+});
+
+test('requestText enforces an overall deadline, not just socket idle time', async () => {
+  // Trickles a byte every 30 ms for ~0.6 s: never idle for 200 ms, but slower than the deadline.
+  await withServer((req, res) => {
+    let n = 0;
+    const t = setInterval(() => { res.write('a'); if (++n === 20) { clearInterval(t); res.end(); } }, 30);
+    res.on('close', () => clearInterval(t));
+  }, async (base) => {
+    await assert.rejects(requestText(`${base}/slow`, { timeoutMs: 200, request: http.request }), /timeout after 200 ms/);
+  });
+});
+
+test('publicLookup gives the resolver a short timeout and one try', () => {
+  class R { constructor(o) { R.opts = o; } setServers() {} resolve4() {} }
+  publicLookup(['1.1.1.1'], { Resolver: R });
+  assert.deepEqual(R.opts, { timeout: 2000, tries: 1 });
 });

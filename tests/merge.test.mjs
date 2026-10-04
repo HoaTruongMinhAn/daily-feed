@@ -153,3 +153,11 @@ test('a null or empty categoryLabelVi on a core category counts as absent (final
   assert.deepEqual(validateDecision(keep(c, { categoryLabelVi: '' }), ids), []);
   assert.ok(validateDecision(keep(c, { categoryLabelVi: 'x' }), ids).includes('unexpected categoryLabelVi'));
 });
+
+test('categoryLabelVi rejects any control character, not just newline', () => {
+  const c = cand('ctrl');
+  const ids = new Set([c.id]);
+  for (const label of ['a\rb', 'a\tb', 'a\u0000b', 'a\u007fb']) {
+    assert.ok(validateDecision(keep(c, { category: 'hot-x', categoryLabelVi: label }), ids, ids).includes('bad categoryLabelVi'), JSON.stringify(label));
+  }
+});

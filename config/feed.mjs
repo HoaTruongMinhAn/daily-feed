@@ -14,6 +14,7 @@ export const feedConfig = {
   // Candidates per source categoryHint, hottest first; unused slots go to
   // the hottest leftovers. Must sum to maxCandidates (tests check).
   candidateQuota: { ai: 50, testing: 50, it: 35, humor: 30, hot: 35 },
+  hotMinEngagement: 10,    // top-25% hot rule also needs this raw engagement (lib/hot.mjs markHot)
   perSourceCap: 25,        // per source, before dedup
   maxAgeHours: 72,         // older candidates are discarded (sources may override)
   recencyDecayHours: 36,   // hotness = normalised * exp(-age / this)
