@@ -1,0 +1,695 @@
+{
+  "generatedAt": "2026-10-04T04:14:52.061Z",
+  "decisions": [
+    {
+      "id": "0365ec89c7e54041668d3658bd9ba9467ba5c78c",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "yetone/magpie: Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "summary": "[stub] Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "3abc31c9034e0ad47c52a7fd4b3e7190fcab78ef",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "KKKKhazix/AIHOT: 一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
+      "summary": "[stub] 一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "fc994d69ad09d9fe606a29c733bdd1a093f98374",
+      "keep": true,
+      "category": "test-automation",
+      "title": "Getting the most out of Opus 5.5 in Claude and Claude Code",
+      "summary": "[stub] Getting the most out of Opus 5.5 in Claude and Claude Code",
+      "tags": [
+        "testing"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "9a14422b82b9b3e36471621a13f3a8cf078c55c6",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
+      "summary": "[stub] Aleph Alpha Kolibri: How the sovereign German LLM works",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "6cf30f044df65ecb5423e409b1bd6c2cc8ca5b80",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "jev-chat/jev-chat-jarvis: 装在手机上的对话副驾：在 QQ / X / 飞书里读懂对方、给出候选回复、一键填入输入框，发不发由你。非侵入，只读屏幕，不 hook 不改包。",
+      "summary": "[stub] 装在手机上的对话副驾：在 QQ / X / 飞书里读懂对方、给出候选回复、一键填入输入框，发不发由你。非侵入，只读屏幕，不 hook 不改包。",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "a650c74fe354cb9f07b74f64ee2a44ec35c59eab",
+      "keep": true,
+      "category": "it-general",
+      "title": "Kolibri: A Sovereign Open-Weight Model",
+      "summary": "[stub] Kolibri: A Sovereign Open-Weight Model",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "6a468f70a022a31e8d6657237d7b1620eed686f9",
+      "keep": true,
+      "category": "it-general",
+      "title": "Federal judge calls Flock 'indiscriminate mass surveillance'",
+      "summary": "[stub] Federal judge calls Flock 'indiscriminate mass surveillance'",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "3ba89625595d441660969d2fe678f22c0efbe6fa",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "We're going to need default hard budget caps on pretty much everything",
+      "summary": "[stub] Here's a product feature which the world is going to need a whole lot more of over the coming months and years: default hard budget caps . I'm talking about the feature of pay-by-usage services and AP",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "89764eae00994ca8ac3f14f46dfe626a5f9aca4b",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "The Agent Said It Was Done. The Database Disagreed.",
+      "summary": "[stub] The Agent Said It Was Done. The Database Disagreed.",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "c25e6552df82ae8a71be1b08d1e197942091f433",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "September sponsors-only newsletter",
+      "summary": "[stub] I just sent the September edition of my sponsors-only monthly newsletter . If you are a sponsor (or start a sponsorship now) you can access it here . This month: More Fable class models A pricing war ",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "ee1071d66dee35807e60a2a05cf6a09fbc162d29",
+      "keep": true,
+      "category": "it-general",
+      "title": "Bob Cringely Has Died",
+      "summary": "[stub] Bob Cringely Has Died",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "aabbcc9e7cb585195d6ba1930c986e5a4d2d0257",
+      "keep": true,
+      "category": "it-general",
+      "title": "AI is speeding up exploits. Vulnerability spreadsheets can’t keep up.",
+      "summary": "[stub] Artificial intelligence has changed almost every aspect of software development and cybersecurity. But perhaps one of the most profound changes is happening in an area that has traditionally received ",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "3577570198f46e55bc455931499eec1fffe53895",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "From the creator of Redis; run LLM locally with ds4",
+      "summary": "[stub] From the creator of Redis; run LLM locally with ds4",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "14103ec9973068df28175591c515b79e193dbafb",
+      "keep": true,
+      "category": "it-general",
+      "title": "OpenAI safety leader quits, warning AI company's culture is 'broken'",
+      "summary": "[stub] OpenAI safety leader quits, warning AI company's culture is 'broken'",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "75a5212102f5c1961926b62d0d8f3b2b5fa8787b",
+      "keep": true,
+      "category": "it-general",
+      "title": "Hole Punch: Sling your spaceship around gravitational fields",
+      "summary": "[stub] Hole Punch: Sling your spaceship around gravitational fields",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "7839b9876f75e3fa7ce72a92aac0c32c7ef06294",
+      "keep": true,
+      "category": "test-automation",
+      "title": "Apple's \"Clean Design\" Is Stupidity When It Comes to Hiding Fire Extinguishers",
+      "summary": "[stub] Apple's \"Clean Design\" Is Stupidity When It Comes to Hiding Fire Extinguishers",
+      "tags": [
+        "testing"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "26a13a7fbf23abc0810bb04899f4b06fe2433fd0",
+      "keep": true,
+      "category": "it-general",
+      "title": "Anthropic’s answer to Dots and Muse is already inside Claude",
+      "summary": "[stub] I’m Matt Burns, Chief Content Officer at Insight Media Group. Each week, I round up the most important AI developments, explaining what they mean for people and organizations putting this technology t",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "e35138269f8b51f6f176c1f4cc9c6503f762410b",
+      "keep": true,
+      "category": "test-automation",
+      "title": "Show HN: Made an open-source Lego AI generator",
+      "summary": "[stub] Show HN: Made an open-source Lego AI generator",
+      "tags": [
+        "testing"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "416126da9dd8649086479250ec077b3b5e7bd765",
+      "keep": true,
+      "category": "it-general",
+      "title": "The work by Valve's Timur Kristóf on improving old AMD GPUs on Linux",
+      "summary": "[stub] The work by Valve's Timur Kristóf on improving old AMD GPUs on Linux",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "803705924fa300dffd324a9d65319b62c9e8e3f1",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "nanaism/yomiyasu: AI生成の日本語を自然な日本語へ推敲するAgent Skill / Agent Skill for Refining AI-Generated Japanese into Natura",
+      "summary": "[stub] AI生成の日本語を自然な日本語へ推敲するAgent Skill / Agent Skill for Refining AI-Generated Japanese into Natural Japanese",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "70add7d4c3fcd6013ab8b32344ba09a89986743a",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "Rex's Dino Store",
+      "summary": "[stub] Museum: Rex's Dino Store Located just before the turnstiles in the Grand Army Plaza subway station at the north end of Brooklyn's Prospect Park is this former newsstand which is now operated by a dino",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "c3530cb12d1318c65471b052622ad383cf17f6bc",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "Greg Kroah-Hartman – Security in the LLM Age [video]",
+      "summary": "[stub] Greg Kroah-Hartman – Security in the LLM Age [video]",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "90e946a5da3efac20df5a346f5f80944be954a7f",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "One month coding with GLM 5.3 Flash",
+      "summary": "[stub] One month coding with GLM 5.3 Flash",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "148e29009f1e7987e323db7818ba5a277c710641",
+      "keep": true,
+      "category": "it-general",
+      "title": "GitHub’s advice for its new Copilot feature is to try something else first",
+      "summary": "[stub] GitHub launched computer use in public preview on Thursday , giving Copilot CLI and its desktop app the ability to operate applications on macOS and Windows. Agents can read app content and click, typ",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "930fd13f94ddb0d318c028c59e5f0b45729b6580",
+      "keep": true,
+      "category": "it-general",
+      "title": "What Kubernetes’ “monolith” lesson means for AI agent harnesses",
+      "summary": "[stub] Welcome to another edition of Road to KubeCon , your source for everything Kubernetes and cloud-native as we count down the days to KubeCon + CloudNativeCon NA , happening November 9-12 in Salt Lake C",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "8e206c4d9ed6ea5b326e3f64cf71247a89bf9979",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "A model guide for the GPT-6 family",
+      "summary": "[stub] Learn how startups can choose GPT-6 models, tune reasoning effort, improve prompts and skills, coordinate tools, and prepare workflows for production.",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "45d53ae466660bd029da656d7c4a8766b4666ff2",
+      "keep": true,
+      "category": "it-general",
+      "title": "FTL: A new operating system for clouds",
+      "summary": "[stub] FTL: A new operating system for clouds",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "d599f0a282be129fcd4b84962346f2b0c0ebfef2",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "Open-sourcing AstaBrief, the fast report-generation model in Asta",
+      "summary": "[stub] Open-sourcing AstaBrief, the fast report-generation model in Asta",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "d26cbd17958291f739529c5e68871be8748ef33a",
+      "keep": true,
+      "category": "ai-trend",
+      "title": "The latest AI news we announced in September 2026",
+      "summary": "[stub] Here are Google’s latest AI updates from September 2026",
+      "tags": [
+        "ai"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "2f2085474683d8eadad6484948ed07acf3ff1517",
+      "keep": true,
+      "category": "it-general",
+      "title": "“No reason why everyone should have an identical Claude experience”: Anthropic’s mods let you change Claude Co",
+      "summary": "[stub] Developers have long been able to customize Claude Code to their preferences, via settings , persistent instructions in CLAUDE.md , hooks , and MCP servers , alongside tweaks such as status lines and ",
+      "tags": [
+        "it"
+      ],
+      "fit": 3
+    },
+    {
+      "id": "b6abde03cfbd86d8c963c642245fbc4a7c223740",
+      "keep": false
+    },
+    {
+      "id": "fb4fc03ac1a4491ae1c802f207ce5a0b50f16249",
+      "keep": false
+    },
+    {
+      "id": "c97910447bf1b51369762203bedca8d98cb38f1a",
+      "keep": false
+    },
+    {
+      "id": "c258f2ded7a61985df99ae3a638aa2ab554779d5",
+      "keep": false
+    },
+    {
+      "id": "549bdd288f9a970c87935524e40d87c423c86e1e",
+      "keep": false
+    },
+    {
+      "id": "a885ed61f54a415a08d1866acde4d0ebc6368a44",
+      "keep": false
+    },
+    {
+      "id": "acde359076df6e085f3f621163b3824b4ee67060",
+      "keep": false
+    },
+    {
+      "id": "a97398f76ee518bf736bd99bb5eae108305b51c5",
+      "keep": false
+    },
+    {
+      "id": "469827d724e531fde44082457cfec8884689a3be",
+      "keep": false
+    },
+    {
+      "id": "39a6cfc0a703e3942217a346569a38f09d7be6bf",
+      "keep": false
+    },
+    {
+      "id": "63d8a396bbbe83eaa34e428139a6883c605ea1dd",
+      "keep": false
+    },
+    {
+      "id": "b0b89935c96be5e77b069c8656248d28b0d9b984",
+      "keep": false
+    },
+    {
+      "id": "a2b6e88e5fba2d16da756bd2d4d50970a146f533",
+      "keep": false
+    },
+    {
+      "id": "558f04f054bd95765f0b9a8dfd1db6763cf4e7ad",
+      "keep": false
+    },
+    {
+      "id": "3e173afb7822c01821e614e1c8f965cc9912c353",
+      "keep": false
+    },
+    {
+      "id": "f16653790b520f5b86dd20edbcbf99f2f7053c46",
+      "keep": false
+    },
+    {
+      "id": "2ad697ead091eb32ce981a5d26407e1c83d48293",
+      "keep": false
+    },
+    {
+      "id": "bf9feba788d56daaa085922a319e82745a636bfc",
+      "keep": false
+    },
+    {
+      "id": "7e67b43cf9d0e609b77c8416e1333d34aa00dfc5",
+      "keep": false
+    },
+    {
+      "id": "ef82bf948d435c5095a64f2aacd85d8b7c0a6c34",
+      "keep": false
+    },
+    {
+      "id": "d05372b4e7672b6912031c0734e3db83bc9385ec",
+      "keep": false
+    },
+    {
+      "id": "a80484c2d5849bdb14051812d38a301cb6633866",
+      "keep": false
+    },
+    {
+      "id": "c19c15f4a59f35e0daf27cfc86b30f27c925b1f7",
+      "keep": false
+    },
+    {
+      "id": "5a90baf8edaf3a621b19bdd3176b53b7464edb04",
+      "keep": false
+    },
+    {
+      "id": "414cf449385f8053ef8f8c28e921ee006e68231b",
+      "keep": false
+    },
+    {
+      "id": "ce6d33b217a8119deccc13c0db2f9ff3cf251ee0",
+      "keep": false
+    },
+    {
+      "id": "611d65e64b18097f369d7c79082cbad0056a0e40",
+      "keep": false
+    },
+    {
+      "id": "336b976f9dc2058afdf9f803b26be5b685721287",
+      "keep": false
+    },
+    {
+      "id": "8b452ae16383cc1ef7738f036cfb432619378976",
+      "keep": false
+    },
+    {
+      "id": "bfd0086ce3cf591b84fc1b9d7155a0b3495534c0",
+      "keep": false
+    },
+    {
+      "id": "7c6cfb0b20b8b45fdce61fd17d5f43bf3bd0e3cf",
+      "keep": false
+    },
+    {
+      "id": "4307735ee3eeac1c42e4b88cefeca3288c36d30c",
+      "keep": false
+    },
+    {
+      "id": "10f513f94bf8b9c3e4d33a9007ceb25da2a858cd",
+      "keep": false
+    },
+    {
+      "id": "16e387cce67aac02eb855f6a23726cb27df56fbf",
+      "keep": false
+    },
+    {
+      "id": "440c8b0e062c90ada9a024e673903a73c59cd3a9",
+      "keep": false
+    },
+    {
+      "id": "ee28032e8ec27be9eb5e2ea87aa87b08591f5470",
+      "keep": false
+    },
+    {
+      "id": "0df501c1fcf96db2491aa9de07976e58bfb1380b",
+      "keep": false
+    },
+    {
+      "id": "aab1e04eee6eaf002d7a38020597138165e9ffe4",
+      "keep": false
+    },
+    {
+      "id": "9d290c9fc2b662f523d2a5490bba8a2b7a72f148",
+      "keep": false
+    },
+    {
+      "id": "fc133fc0d44bd27d190a2b1c4e9adb7cbad38621",
+      "keep": false
+    },
+    {
+      "id": "89ed10d59c95d20ff24f7863b767bee1148278d4",
+      "keep": false
+    },
+    {
+      "id": "3f2cc80e5b2967fe46c4d50b208810aae56f83c1",
+      "keep": false
+    },
+    {
+      "id": "1eec939cd47c32ddf607cb95e33e2ed2e3566bca",
+      "keep": false
+    },
+    {
+      "id": "cd369c4968f319b85a3ab0f9dba120b3111d05e6",
+      "keep": false
+    },
+    {
+      "id": "e009d974688ddbeadad681d673e9e325a491c64f",
+      "keep": false
+    },
+    {
+      "id": "7cd04343877127e9b9bcd73461a79bfa225a6ec1",
+      "keep": false
+    },
+    {
+      "id": "b4a26691d6579520075152a726365c02d778a675",
+      "keep": false
+    },
+    {
+      "id": "de3ce8b60ddda5624267e136aa026d8c88a37685",
+      "keep": false
+    },
+    {
+      "id": "c13570246f0908f64d109037524c26288e222df6",
+      "keep": false
+    },
+    {
+      "id": "be270d1902fb4afb20869372c1fde1108c40a387",
+      "keep": false
+    },
+    {
+      "id": "b7ecd4ce769c3ecd9228036932c627e97befd8e0",
+      "keep": false
+    },
+    {
+      "id": "6a19be6e43091fd49c49645d8c842bb95a57234e",
+      "keep": false
+    },
+    {
+      "id": "2708632b72b98b529fbf43316d4fa334fdb57af0",
+      "keep": false
+    },
+    {
+      "id": "f79b7e9f1fc723656129c91f51983fb1acea2b46",
+      "keep": false
+    },
+    {
+      "id": "09cc2e8aeb9fbfb692121926f8e7184ab2f6f6bb",
+      "keep": false
+    },
+    {
+      "id": "5c34efbd94aff8b5b0af6cf42cc2c3c5cde27bca",
+      "keep": false
+    },
+    {
+      "id": "00083ec8b20bfe3fe1261cc4e0ea4a769e4a73d4",
+      "keep": false
+    },
+    {
+      "id": "29c164ab02342944e1df8caab2e28d18859a409e",
+      "keep": false
+    },
+    {
+      "id": "18468b15c1bf781e9d678d7d0a6d93815452bb47",
+      "keep": false
+    },
+    {
+      "id": "9795195c1da402bfb5338f5cb4d87bbdcf506a2e",
+      "keep": false
+    },
+    {
+      "id": "a0541af1c1c41d1f0b2a8494febadc837d33c988",
+      "keep": false
+    },
+    {
+      "id": "e7e44e539217e21b03c518b80b25c410461fc21c",
+      "keep": false
+    },
+    {
+      "id": "1f8594458db6b5e6508a8504b2925d18bd643250",
+      "keep": false
+    },
+    {
+      "id": "f458b9ac8cf4c2729728edfc0db991c59f7fc67c",
+      "keep": false
+    },
+    {
+      "id": "aa9aec19ef3bd391fb90d08d5d0c829c98726375",
+      "keep": false
+    },
+    {
+      "id": "cd6c2fb0f60cdf72eef7ac37fdd96bb92c4b7f47",
+      "keep": false
+    },
+    {
+      "id": "5a9f83d0bc36f2b453e7f7be4b7745db3f9aab16",
+      "keep": false
+    },
+    {
+      "id": "bdf036870cf0ec10aebd5dcfdcddadaafe668833",
+      "keep": false
+    },
+    {
+      "id": "c0452bcb8132408d41c09ea17d58127df933c1fb",
+      "keep": false
+    },
+    {
+      "id": "53c5565c32877cf71ffbea52724e8eebe2c1db29",
+      "keep": false
+    },
+    {
+      "id": "640638626025253ff501aa14ffc251530a1c23a8",
+      "keep": false
+    },
+    {
+      "id": "b8cbbb7e809f91f5e47016b81c07301df9ab7997",
+      "keep": false
+    },
+    {
+      "id": "9a232daff98b3b9afb30bce341c2f16f625addd7",
+      "keep": false
+    },
+    {
+      "id": "1d1ddbc9e0f6b64adcb8eca5544cdc8e75c1dd0d",
+      "keep": false
+    },
+    {
+      "id": "34844e1f5c6886593397a25a94d3b3a0735df4f4",
+      "keep": false
+    },
+    {
+      "id": "a4fbe4b094996f1fbea40587ba5173e3e88f2626",
+      "keep": false
+    },
+    {
+      "id": "dec32a4e425636cedd0a28729692ad34e12360af",
+      "keep": false
+    },
+    {
+      "id": "93a54377877c8cfb56f833bcf2d1b8e1b6a629df",
+      "keep": false
+    },
+    {
+      "id": "9b50fa1b92070d3fdbc1c4562944fd31b08a8aa5",
+      "keep": false
+    },
+    {
+      "id": "0d2a6417724c284cc62a80b24dc112fcdac33021",
+      "keep": false
+    },
+    {
+      "id": "964c5084e155626c4b90b7b373d5c221114530b0",
+      "keep": false
+    },
+    {
+      "id": "753500dab59adf21c64e0e58fe08994d373ad299",
+      "keep": false
+    },
+    {
+      "id": "6102ac4cd82d24be5dd190cdb6d6bc975abdd68f",
+      "keep": false
+    },
+    {
+      "id": "06285fbf7592248743a3904f401489294a486230",
+      "keep": false
+    },
+    {
+      "id": "7344bae708cbe8724a907fada143e8459f622ca1",
+      "keep": false
+    },
+    {
+      "id": "a9bd5d35d5fbb1aa456ded2ed76c0fb2ee6a2cc5",
+      "keep": false
+    },
+    {
+      "id": "ed85f03ec56d2bde8a3035c00ef381236a2ccc2c",
+      "keep": false
+    },
+    {
+      "id": "dd341e78028ae5c293ff286d0161a317ad9d7f00",
+      "keep": false
+    },
+    {
+      "id": "f9d621c2b15bc2e8347da326cd940112da24bd8a",
+      "keep": false
+    },
+    {
+      "id": "8fc9ea8d34aee40e29b50698b2d1b718c19f6ff1",
+      "keep": false
+    }
+  ]
+}

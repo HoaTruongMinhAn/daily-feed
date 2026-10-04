@@ -5,5 +5,21 @@
     "failedSources": [],
     "candidates": 120,
     "at": "2026-10-04T04:13:16.178Z"
+  },
+  "curate": {
+    "ok": true,
+    "message": "kept 30, dropped 90, invalid 0",
+    "at": "2026-10-04T04:14:52.271Z"
+  },
+  "merge": {
+    "ok": true,
+    "message": "30 items retained",
+    "counts": {
+      "candidates": 120,
+      "kept": 30,
+      "dropped": 90,
+      "invalid": 0
+    },
+    "at": "2026-10-04T04:14:52.271Z"
   }
 }
