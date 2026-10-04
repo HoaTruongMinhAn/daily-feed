@@ -41,3 +41,16 @@ test('collect skips sources marked disabled without calling their adapter or cou
   assert.deepEqual(candidates, []);
   assert.deepEqual(failed, []);
 });
+
+test('collect reports how many sources were consulted so callers can detect total failure (review fix 3)', async () => {
+  const adapters = { bad: async () => { throw new Error('down'); } };
+  const sources = [
+    { id: 'a', family: 'bad', p90: 1, categoryHint: 'it' },
+    { id: 'b', family: 'bad', p90: 1, categoryHint: 'it' },
+    { id: 'off', family: 'bad', p90: 1, categoryHint: 'it', disabled: 'x' },
+  ];
+  const out = await collect({ sources, adapters, http: {}, now, cfg, knownIds: new Set(), log: () => {} });
+  assert.equal(out.consulted, 2);
+  assert.equal(out.failed.length, 2);
+  assert.equal(out.failed.length === out.consulted, true);
+});

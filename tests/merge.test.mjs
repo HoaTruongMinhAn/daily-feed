@@ -48,3 +48,13 @@ test('mergeRun ignores a stale curated file (review focus 3)', () => {
   assert.equal(out.stale, true);
   assert.deepEqual(out.items, []);
 });
+
+test('mergeRun treats an unparsable generatedAt as stale instead of throwing (review fix 1)', () => {
+  const a = cand(1);
+  const bad = { generatedAt: 'now', decisions: [keep(a)] };
+  const out = mergeRun({ candidates: [a], curated: bad, items: [], dropped: [], today: '2026-10-04', cfg, timezone: 'UTC', log: () => {} });
+  assert.equal(out.stale, true);
+  assert.deepEqual(out.items, []);
+  const arr = mergeRun({ candidates: [a], curated: [], items: [], dropped: [], today: '2026-10-04', cfg, timezone: 'UTC', log: () => {} });
+  assert.equal(arr.stale, true);
+});

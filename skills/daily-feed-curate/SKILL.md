@@ -5,7 +5,8 @@ description: >-
   keep/drop per item, assigns a category, cleans the English title, writes a
   1-2 sentence Vietnamese summary, scores fit 1-5, and writes
   data/curated.json. Invoked only by scripts/daily-feed-run.sh via
-  `claude -p "/daily-feed-curate" --allowedTools "Read,Write"`. Use when the
+  `claude -p "/daily-feed-curate"` with permissions scoped to reading
+  data/candidates.json and writing data/curated.json. Use when the
   user says daily feed curate, curate today's feed.
 ---
 

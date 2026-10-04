@@ -43,14 +43,39 @@ fi
 cd "$ROOT"
 echo "=== $(date) daily-feed run (mode=$MODE stub=$STUB today=$TODAY tz=$TZN) ==="
 
+if [ "$MODE" = scheduled ]; then
+  # The published site is built from main. An interactive session may have
+  # left another branch checked out; do not commit there, and do not sweep
+  # unrelated uncommitted edits into the daily commit.
+  BRANCH="$(git branch --show-current)"
+  if [ "$BRANCH" != "main" ]; then
+    echo "[run] branch is '$BRANCH', not main; skipping today's run"
+    exit 0
+  fi
+  if ! git diff --quiet -- data site || ! git diff --cached --quiet -- data site; then
+    echo "[run] data/ or site/ has uncommitted changes; skipping today's run so they are not swept into the feed commit"
+    exit 0
+  fi
+fi
+
 node scripts/fetch.mjs
 
 rm -f data/curated.json            # never let yesterday's decisions be re-applied
 if [ "$STUB" = 1 ]; then
   node scripts/stub-curate.mjs
 else
-  # Read/Write only: candidates are untrusted web text; no shell, no network for the agent.
-  if ! claude -p "/daily-feed-curate" --allowedTools "Read,Write" --output-format text --max-turns 20; then
+  # Candidates are untrusted web text. The agent may write exactly one file
+  # (file writes are governed by Edit(...) rules), has no shell, no network,
+  # no subagents and no MCP servers, and may not read the pipeline's memory
+  # files. Reads inside this public repo are allowed by Claude Code's default
+  # rules; reads outside the repo need a permission that headless mode never
+  # grants. Verified against claude 2.1.237 on 2026-10-04.
+  if ! claude -p "/daily-feed-curate" \
+      --allowedTools "Read(./data/candidates.json)" "Edit(./data/curated.json)" \
+      --disallowedTools "Bash" "WebFetch" "WebSearch" "Agent" "NotebookEdit" \
+        "Read(./data/items.json)" "Read(./data/dropped.json)" "Read(./data/status.json)" \
+      --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
+      --output-format text --max-turns 20; then
     echo "[run] curate step failed; continuing with previous items"
   fi
 fi

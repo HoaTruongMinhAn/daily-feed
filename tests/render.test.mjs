@@ -55,3 +55,18 @@ test('renderPage builds hot-now, feed with date dividers, filters, archive, foot
   assert.ok(archive.includes('href="../assets/style.css"') && archive.includes('href="../index.html"'));
   assert.ok(!archive.includes('id="hot-now"'));
 });
+
+test('safeUrl allows only http(s); renderCard drops javascript:, data: and relative links (review fix 2)', async () => {
+  const { safeUrl } = await import('../lib/render.mjs');
+  assert.equal(safeUrl('https://a.com/x?q=1'), 'https://a.com/x?q=1');
+  assert.equal(safeUrl('http://a.com'), 'http://a.com');
+  assert.equal(safeUrl('javascript:alert(1)'), null);
+  assert.equal(safeUrl('data:text/html,hi'), null);
+  assert.equal(safeUrl('post/123'), null);
+  assert.equal(safeUrl(''), null);
+  const html = renderCard({ ...item, url: 'javascript:alert(1)', discussionUrl: 'data:text/html,x', extraLinks: ['javascript:alert(3)', 'https://ok.com/z'], imageUrl: 'javascript:alert(2)' });
+  assert.ok(!html.includes('javascript:') && !html.includes('data:text'));
+  assert.ok(html.includes('href="https://ok.com/z"'));
+  assert.ok(!html.includes('<img'));
+  assert.ok(html.includes('Hello &lt;script&gt;'), 'title still shown as text when its url is unsafe');
+});

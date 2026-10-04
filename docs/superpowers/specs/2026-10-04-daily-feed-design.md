@@ -56,8 +56,13 @@ GitHub, on push to main (.github/workflows/pages.yml)
 ```
 
 The Claude step is isolated to one input file and one output file. It
-runs with `--allowedTools "Read,Write"` only, because the candidate text
-is untrusted web content. Fetch, merge, and build never call Claude.
+runs with permissions scoped to `Read(./data/candidates.json)` and
+`Edit(./data/curated.json)` (file writes are governed by Edit rules), with
+Bash, web tools, subagents, MCP servers and the pipeline's memory files
+explicitly disallowed, because the candidate text is untrusted web
+content. Reads of other files inside this public repo remain possible;
+reads outside the repo are never granted in headless mode. Fetch, merge,
+and build never call Claude.
 
 ### 3.1 Repository layout
 
@@ -176,7 +181,7 @@ scoring.
 ## 5. Curation (`skills/daily-feed-curate/SKILL.md`)
 
 Invoked only by `daily-feed-run.sh` as
-`claude -p "/daily-feed-curate" --allowedTools "Read,Write" --output-format text`.
+`claude -p "/daily-feed-curate"` with the scoped permission flags in section 3.
 The skill directory is symlinked into `~/.claude/skills/` by the installer.
 
 Contract:

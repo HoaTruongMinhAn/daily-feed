@@ -12,7 +12,7 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
    Lobsters, and RSS feeds (`config/sources.mjs`), scores hotness, dedups,
    skips anything already seen, and writes `data/candidates.json`.
 2. `claude -p "/daily-feed-curate"` (skill in `skills/daily-feed-curate/`,
-   Read/Write tools only) decides keep/drop, category, clean English title,
+   permissions scoped to one input and one output file) decides keep/drop, category, clean English title,
    Vietnamese summary, and fit score into `data/curated.json`. Uses your
    Claude Code login; no API key.
 3. `scripts/merge.mjs` validates the decisions and merges them into
@@ -26,7 +26,7 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
 ```bash
 npm test                 # unit tests, no network
 npm run feed:stub        # fetch → stub curation → merge → build (no Claude, no commit)
-npm run feed             # same but with real Claude curation (no commit)
+npm run feed             # same but with real Claude curation (no commit); needs the skill symlink from scripts/install-daily-feed.sh
 npm run serve            # http://localhost:8080 (pick another port if 8080 is busy)
 ```
 

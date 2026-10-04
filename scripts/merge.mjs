@@ -20,7 +20,7 @@ export function main() {
 
   const result = mergeRun({ candidates, curated, items, dropped, today, cfg, timezone: cfg.timezone, log: console.error });
   if (result.stale) {
-    updateStatus('curate', { ok: false, message: 'curated.json is from a previous day; items unchanged' });
+    updateStatus('curate', { ok: false, message: 'curated.json is from a previous day, undated or malformed; items unchanged' });
     updateStatus('merge', { ok: true, message: 'skipped (stale curation)', counts: result.counts });
     return;
   }
@@ -32,4 +32,12 @@ export function main() {
   console.error(`[merge] kept ${result.counts.kept}, dropped ${result.counts.dropped}, invalid ${result.counts.invalid}; ${result.items.length} items total`);
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main();
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+  try {
+    main();
+  } catch (err) {
+    // Curation output is untrusted; never let it abort the day's build.
+    updateStatus('curate', { ok: false, message: `merge threw: ${err?.message ?? err}; items unchanged` });
+    console.error('[merge] unexpected error, items unchanged:', err);
+  }
+}
