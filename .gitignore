@@ -11,3 +11,6 @@ data/details/
 
 # fetch → merge hand-off; merge deletes it
 data/sightings.json
+
+# Claude Code worktrees
+.claude/worktrees/
