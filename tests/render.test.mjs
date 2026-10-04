@@ -29,10 +29,20 @@ test('renderCard escapes untrusted text and links every source (review focus 5)'
   assert.ok(html.includes('target="_blank"') && html.includes('rel="noopener"'));
 });
 
-test('renderCard shows meme images lazily with an onerror fallback', () => {
+test('renderCard shows meme images lazily, with no inline handler (app.js drops broken ones)', () => {
   const html = renderCard(meme);
-  assert.ok(html.includes('<img') && html.includes('loading="lazy"') && html.includes('src="https://i.redd.it/m.png"') && html.includes('onerror'));
+  assert.ok(html.includes('<img') && html.includes('loading="lazy"') && html.includes('src="https://i.redd.it/m.png"'));
+  assert.ok(!/\son[a-z]+=/i.test(html), 'no inline event handlers: the CSP forbids inline script');
   assert.ok(renderCard(item).includes('<img') === false);
+});
+
+test('renderPage sets a CSP that allows only same-origin script', () => {
+  const html = renderPage({ title: 'T', heading: 'H', items: [item], hotNow: [meme], archiveDates: [], status: {}, sourceNames: [], generatedAt: '2026-10-04', basePath: '', isArchive: false, pageSize: 20 });
+  const csp = html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)">/)?.[1];
+  assert.ok(csp, 'CSP meta present');
+  assert.match(csp, /script-src 'self'(;|$)/);
+  assert.match(csp, /object-src 'none'/);
+  assert.ok(!/\son[a-z]+=/i.test(html.replace(/<meta http-equiv[^>]+>/, '')), 'no inline event handlers anywhere on the page');
 });
 
 test('renderPage builds hot-now, feed with date dividers, filters, archive, footer notice', () => {

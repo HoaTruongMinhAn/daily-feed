@@ -66,7 +66,9 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
 4. **detail**, in a loop of batches (`detailBatchSize`, up to
    `detailMaxPerDay`): `scripts/detail-prep.mjs` picks recent items with no
    `detail` that were not tried today (`selectForDetail` in
-   `lib/detail.mjs`), fetches article text via `lib/article.mjs` into the
+   `lib/detail.mjs`), fetches article text via `lib/article.mjs` (public
+   addresses only: IP literals, every redirect hop and the connect-time DNS
+   answer are checked, since item links are strangers' URLs) into the
    cache `data/articles/<id>.txt` (never refetched; empty = nothing usable),
    and writes `data/detail-queue/<id>.md` + `index.json`. The
    `daily-feed-detail` skill (or `scripts/stub-detail.mjs`) writes
@@ -77,7 +79,9 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    `titleVi`/`detail` on the item. These three folders are gitignored.
 5. **build** (`scripts/build.mjs` → `lib/render.mjs`): renders `site/`
    (index, `archive/<date>.html`, `feed.json`). All item text goes through
-   `escapeHtml` and URLs through `safeUrl`.
+   `escapeHtml` and URLs through `safeUrl`. Pages carry a CSP meta (`CSP`
+   in `lib/render.mjs`) that allows only same-origin script, so markup must
+   have no inline `<script>` or `on*=` handlers.
 
 Saved items and read state live only in the reader's browser
 (`localStorage` key `dailyfeed:v1`). `site/assets/state.js` (pure rules,

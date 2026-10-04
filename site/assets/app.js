@@ -400,6 +400,13 @@ const fileInput = $('#import-file');
 $('#import')?.addEventListener('click', () => fileInput?.click());
 fileInput?.addEventListener('change', () => importState(fileInput));
 
+// Broken card images drop their link. Done here, not by an inline onerror,
+// so the page CSP can forbid inline script. Images that failed before this
+// module ran fire no further event, so sweep those once.
+const dropBrokenImage = (img) => img.parentElement?.remove();
+document.addEventListener('error', (e) => { if (e.target instanceof HTMLImageElement && e.target.matches('.card__img')) dropBrokenImage(e.target); }, true);
+document.querySelectorAll('img.card__img').forEach((img) => { if (img.complete && img.naturalWidth === 0) dropBrokenImage(img); });
+
 const initial = location.hash.slice(1);
 if (initial === 'saved') { view = 'saved'; renderSaved(); } else if (GROUPS.includes(initial)) group = initial;
 syncSaveButtons();
