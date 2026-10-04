@@ -25,6 +25,17 @@
   "build": {
     "ok": true,
     "message": "97 items on index, 1 archive pages",
-    "at": "2026-10-04T04:34:09.716Z"
+    "at": "2026-10-04T05:19:59.219Z"
+  },
+  "detail": {
+    "ok": true,
+    "day": "2026-10-04",
+    "message": "55 details written today",
+    "counts": {
+      "written": 55,
+      "missing": 5,
+      "invalid": 0
+    },
+    "at": "2026-10-04T05:19:59.101Z"
   }
 }
