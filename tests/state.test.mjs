@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   STORAGE_KEY, CORRUPT_KEY, DAY_MS, emptyState, parseState, prune, markOpened, markSeen, isHiddenOnHome,
-  isSaved, save, unsave, savedList, sanitizeSnapshot, groupOf, isHttpUrl, isId,
+  isSaved, save, unsave, savedList, sanitizeSnapshot, groupOf, isHttpUrl, isId, mergeImport, MAX_IMPORT_BYTES,
 } from '../site/assets/state.js';
 import { groupOf as renderGroupOf, CATEGORY_LABEL } from '../lib/render.mjs';
 
@@ -128,4 +128,57 @@ test('isHttpUrl and groupOf (kept in sync with lib/render.mjs)', () => {
   assert.ok(isHttpUrl('https://a.com') && isHttpUrl('http://a.com/x'));
   for (const bad of ['javascript:alert(1)', 'data:x', 'a.com', '', null]) assert.equal(isHttpUrl(bad), false);
   for (const c of [...Object.keys(CATEGORY_LABEL), 'weird', '']) assert.equal(groupOf(c), renderGroupOf(c), c);
+});
+
+const C = 'c'.repeat(40);
+const file = (obj) => JSON.stringify({ v: 1, read: {}, saved: {}, ...obj });
+
+test('mergeImport rejects oversize, non-JSON and wrong-format files without touching state', () => {
+  const s = save(emptyState(), snap(A), T0);
+  assert.deepEqual(mergeImport(s, 'x'.repeat(MAX_IMPORT_BYTES + 1)), { ok: false, error: 'size' });
+  assert.deepEqual(mergeImport(s, '{nope'), { ok: false, error: 'json' });
+  assert.deepEqual(mergeImport(s, '{"v":2}'), { ok: false, error: 'format' });
+  assert.deepEqual(mergeImport(s, '{"v":1,"read":[]}'), { ok: false, error: 'format' });
+  assert.deepEqual(mergeImport(s, 42), { ok: false, error: 'size' });
+  assert.ok(isSaved(s, A));
+});
+
+test('mergeImport: saved is a union, the later savedAt wins a conflict', () => {
+  const s = save(emptyState(), snap(A), T0);
+  const newer = mergeImport(s, file({ saved: { [A]: { savedAt: T0 + 1, item: snap(A, { title: 'New' }) }, [B]: { savedAt: T0, item: snap(B) } } }));
+  assert.equal(newer.ok, true);
+  assert.equal(newer.state.saved[A].item.title, 'New');
+  assert.ok(newer.state.saved[B]);
+  assert.equal(newer.saved, 2);
+  const older = mergeImport(s, file({ saved: { [A]: { savedAt: T0 - 1, item: snap(A, { title: 'Old' }) } } }));
+  assert.equal(older.state.saved[A].item.title, 'Hello');
+});
+
+test('mergeImport: opened beats seen, equal states keep the earlier time', () => {
+  const s = { v: 1, saved: {}, read: { [A]: { state: 'seen', at: T0 }, [B]: { state: 'opened', at: T0 }, [C]: { state: 'seen', at: T0 + 10 } } };
+  const r = mergeImport(s, file({ read: { [A]: { state: 'opened', at: T0 + 5 }, [B]: { state: 'seen', at: T0 - 5 }, [C]: { state: 'seen', at: T0 } } }));
+  assert.deepEqual(r.state.read[A], { state: 'opened', at: T0 + 5 });
+  assert.deepEqual(r.state.read[B], { state: 'opened', at: T0 });
+  assert.deepEqual(r.state.read[C], { state: 'seen', at: T0 });
+  assert.equal(r.read, 3);
+});
+
+test('mergeImport skips and counts bad entries, including prototype keys (review focus 1)', () => {
+  const text = `{"v":1,"read":{"${A}":{"state":"opened","at":1},"BAD":{"state":"opened","at":1},"__proto__":{"state":"seen","at":1}},`
+    + `"saved":{"${B}":${JSON.stringify({ savedAt: 1, item: snap(B, { url: 'javascript:alert(1)' }) })},"${C}":${JSON.stringify({ savedAt: 1, item: snap(C) })}}}`;
+  const r = mergeImport(emptyState(), text);
+  assert.equal(r.ok, true);
+  assert.deepEqual(Object.keys(r.state.read), [A]);
+  assert.deepEqual(Object.keys(r.state.saved), [C]);
+  assert.deepEqual([r.read, r.saved, r.skipped], [1, 1, 3]);
+  assert.equal(({}).state, undefined);
+});
+
+test('mergeImport does not mutate the current state, and an export round-trips', () => {
+  const s = markOpened(save(emptyState(), snap(A), T0), B, T0);
+  const before = structuredClone(s);
+  const r = mergeImport(s, file({ read: { [C]: { state: 'seen', at: T0 } } }));
+  assert.deepEqual(s, before);
+  assert.ok(r.state.read[C]);
+  assert.deepEqual(mergeImport(emptyState(), JSON.stringify(s)).state, s);
 });

@@ -139,3 +139,33 @@ export function unsave(state, id) {
 export function savedList(state) {
   return Object.values(state.saved).sort((a, b) => b.savedAt - a.savedAt).map((e) => e.item);
 }
+
+const strength = (e) => (e.state === 'opened' ? 2 : 1);
+
+// Merges an exported file into the current state; never replaces it. Saved:
+// union, the later savedAt wins. Read: opened beats seen; between equal
+// states the earlier time wins.
+export function mergeImport(state, text) {
+  if (typeof text !== 'string' || text.length > MAX_IMPORT_BYTES) return { ok: false, error: 'size' };
+  let obj;
+  try {
+    obj = JSON.parse(text);
+  } catch {
+    return { ok: false, error: 'json' };
+  }
+  const n = normalize(obj);
+  if (!n) return { ok: false, error: 'format' };
+  const read = { ...state.read };
+  for (const [id, e] of Object.entries(n.state.read)) {
+    const cur = read[id];
+    if (!cur || strength(e) > strength(cur) || (e.state === cur.state && e.at < cur.at)) read[id] = e;
+  }
+  const saved = { ...state.saved };
+  for (const [id, e] of Object.entries(n.state.saved)) {
+    if (!saved[id] || e.savedAt > saved[id].savedAt) saved[id] = e;
+  }
+  return {
+    ok: true, state: { v: 1, read, saved },
+    saved: Object.keys(n.state.saved).length, read: Object.keys(n.state.read).length, skipped: n.skipped,
+  };
+}
