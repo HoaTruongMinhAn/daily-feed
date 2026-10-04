@@ -9,6 +9,7 @@ import { makeRedditClient } from '../lib/reddit-client.mjs';
 import { collect } from '../lib/collect.mjs';
 import { dataFile, readJson, writeJson, updateStatus, todayIn } from '../lib/store.mjs';
 import { retainedItems } from '../lib/merge.mjs';
+import { hotCategoriesFrom } from '../lib/hot.mjs';
 
 export async function main() {
   const now = Date.now();
@@ -16,13 +17,14 @@ export async function main() {
   const dropped = readJson(dataFile('dropped.json'), []);
   const knownIds = new Set([...items.map((i) => i.id), ...dropped.map((d) => d.id)]);
 
+  const retained = retainedItems(items, todayIn(cfg.timezone, now), cfg);
   const redditClient = makeRedditClient({
     creds: redditCredentials(),
     lookup: cfg.redditResolvers?.length ? publicLookup(cfg.redditResolvers) : undefined,
   });
   console.error(`[fetch] reddit: ${redditClient.mode}`);
 
-  const { candidates, sightings, failed, consulted } = await collect({ sources, adapters, http: { fetchJson, fetchText, redditClient }, now, cfg, knownIds, knownItems: retainedItems(items, todayIn(cfg.timezone, now), cfg) });
+  const { candidates, sightings, failed, consulted } = await collect({ sources, adapters, http: { fetchJson, fetchText, redditClient }, now, cfg, knownIds, knownItems: retained });
 
   if (consulted === 0 || failed.length === consulted) {
     updateStatus('fetch', { ok: false, message: 'every source failed', failedSources: failed, candidates: 0 });
@@ -30,7 +32,7 @@ export async function main() {
     process.exit(1);
   }
 
-  writeJson(dataFile('candidates.json'), { generatedAt: new Date(now).toISOString(), candidates });
+  writeJson(dataFile('candidates.json'), { generatedAt: new Date(now).toISOString(), hotCategories: hotCategoriesFrom(retained), candidates });
   writeJson(dataFile('sightings.json'), { generatedAt: new Date(now).toISOString(), sightings });
   updateStatus('fetch', { ok: true, message: `${candidates.length} candidates, ${sightings.length} sightings from ${consulted - failed.length}/${consulted} sources`, failedSources: failed, candidates: candidates.length });
   console.error(`[fetch] wrote ${candidates.length} candidates, ${sightings.length} sightings (${failed.length} sources failed)`);

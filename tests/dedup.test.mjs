@@ -84,3 +84,15 @@ test('splitSightings turns known ids and title matches into sightings (review fo
   ]);
   assert.deepEqual(splitSightings([fresh], []).candidates, [fresh]);
 });
+
+test('dedup keeps signal/editorialHot if any merged copy had them, without adding them otherwise', () => {
+  const a = { id: 'a', url: 'https://a.com/1', title: 'Big cloud outage takes down the web', hotness: 1, sourceName: 'Techmeme', sources: ['Techmeme'], editorialHot: true, signal: false, extraLinks: [] };
+  const b = { id: 'b', url: 'https://b.com/2', title: 'Big cloud outage takes down the web', hotness: 0.5, sourceName: 'HN', sources: ['HN'], signal: true, extraLinks: [] };
+  const [m] = dedupeCandidates([a, b]);
+  assert.equal(m.signal, true);
+  assert.equal(m.editorialHot, true);
+  assert.deepEqual(m.sources, ['Techmeme', 'HN']);
+  const { signal: _s, ...noSignal } = b;
+  const [plain] = dedupeCandidates([noSignal, { ...noSignal, id: 'c', url: 'https://c.com/3' }]);
+  assert.equal('signal' in plain, false, 'absorb adds nothing when neither copy had the field');
+});

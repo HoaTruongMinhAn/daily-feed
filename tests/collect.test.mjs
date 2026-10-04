@@ -104,3 +104,19 @@ test('feed config quotas sum to maxCandidates and cover every hint', () => {
   assert.deepEqual(Object.keys(q).sort(), ['ai', 'hot', 'humor', 'it', 'testing']);
   assert.equal(feedConfig.detailMaxPerDay, feedConfig.maxCandidates);
 });
+
+test('collect marks signal/editorialHot per source family and sets hotEligible', async () => {
+  const adapters = {
+    rss: async () => [mk('https://t.com/1', 'Editorial pick of the day')],
+    hn: async () => [mk('https://h.com/1', 'Measured story with points')],
+  };
+  const sources = [
+    { id: 'tm', family: 'rss', p90: 1, categoryHint: 'hot', editorialHot: true },
+    { id: 'h', family: 'hn', p90: 100, categoryHint: 'it' },
+  ];
+  const { candidates } = await collect({ sources, adapters, http: {}, now, cfg: { ...cfg, perSourceCap: 5 }, knownIds: new Set(), log: () => {} });
+  const tm = candidates.find((x) => x.url === 'https://t.com/1');
+  const hn = candidates.find((x) => x.url === 'https://h.com/1');
+  assert.deepEqual([tm.signal, tm.editorialHot, tm.hotEligible], [false, true, true]);
+  assert.deepEqual([hn.signal, hn.editorialHot, hn.hotEligible], [true, false, true], 'only measured candidate → top 25%');
+});
