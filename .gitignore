@@ -3,3 +3,8 @@ node_modules/
 *.log
 .playwright-mcp/
 .superpowers/
+
+# detail step scratch: cached article text and per-batch hand-off files
+data/articles/
+data/detail-queue/
+data/details/

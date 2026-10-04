@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { escapeHtml, groupOf, renderCard, renderPage } from '../lib/render.mjs';
+import { escapeHtml, groupOf, renderCard, renderDetail, renderPage } from '../lib/render.mjs';
 
 const item = {
   id: '1', url: 'https://a.com/x', discussionUrl: 'https://news.ycombinator.com/item?id=1', extraLinks: ['https://b.com/y'],
@@ -69,4 +69,22 @@ test('safeUrl allows only http(s); renderCard drops javascript:, data: and relat
   assert.ok(html.includes('href="https://ok.com/z"'));
   assert.ok(!html.includes('<img'));
   assert.ok(html.includes('Hello &lt;script&gt;'), 'title still shown as text when its url is unsafe');
+});
+
+test('renderCard without detail links the title; with titleVi shows it as heading and the English title below', () => {
+  const plain = renderCard(item);
+  assert.ok(!plain.includes('<details') && plain.includes('<h3 class="card__title"><a'));
+  const vi = renderCard({ ...item, titleVi: 'Xin chào <b>' });
+  assert.ok(vi.includes('Xin chào &lt;b&gt;') && vi.includes('class="card__orig" lang="en">Hello &lt;script&gt;'));
+});
+
+test('renderCard with detail expands in place and ends with the source link; detail is escaped', () => {
+  const html = renderCard({ ...item, titleVi: 'Tiêu đề', detail: 'Đoạn <img src=x onerror=alert(1)>\ndòng hai\n\n- ý một\n- ý <b>hai</b>' });
+  assert.ok(html.includes('<details class="card__details">') && html.includes('<summary class="card__head">'));
+  assert.ok(html.includes('<p>Đoạn &lt;img src=x onerror=alert(1)&gt;<br>dòng hai</p>'));
+  assert.ok(html.includes('<ul><li>ý một</li><li>ý &lt;b&gt;hai&lt;/b&gt;</li></ul>'));
+  assert.ok(html.includes('href="https://a.com/x"') && html.includes('Đọc bài gốc'));
+  assert.ok(!html.includes('<img src=x'));
+  assert.equal(renderDetail(''), '');
+  assert.ok(!renderCard({ ...item, detail: 'x', url: 'javascript:alert(1)' }).includes('javascript:'));
 });

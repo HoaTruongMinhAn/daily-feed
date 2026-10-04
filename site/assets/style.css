@@ -46,7 +46,8 @@ h2.divider { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 #hot-now h2::before, .archive h2::before { content: '## '; color: var(--accent); }
 
 .grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-@media (min-width: 720px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 720px) { .grid { grid-template-columns: repeat(3, 1fr); align-items: start; } }
+.grid .card:has(details[open]) { grid-column: 1 / -1; }
 .list { display: grid; gap: 12px; }
 
 .card {
@@ -55,7 +56,7 @@ h2.divider { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
   padding: 16px 18px 18px;
   transition: transform 120ms ease, border-color 120ms ease;
 }
-.card:hover { transform: translateY(-1px); border-color: #4a4e57; }
+.card:hover { border-color: #4a4e57; }
 .card[hidden] { display: none; }
 .card__meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
 .card__fit { margin-left: auto; letter-spacing: 1px; color: var(--muted); }
@@ -63,7 +64,24 @@ h2.divider { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 .card--large .card__title { font-size: 20px; }
 .card__title a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
 .card__img { display: block; width: 100%; max-height: 420px; object-fit: contain; background: #202126; border-radius: 6px; margin: 6px 0 10px; }
-.card__summary { color: var(--muted); margin: 0 0 12px; overflow-wrap: anywhere; }
+.card__head { display: block; margin-bottom: 12px; }
+.card__orig { display: block; font-size: 12px; color: var(--muted); margin: -4px 0 8px; overflow-wrap: anywhere; }
+.card__summary { display: block; color: var(--muted); overflow-wrap: anywhere; }
+.card__details > summary { list-style: none; cursor: pointer; }
+.card__details > summary::-webkit-details-marker { display: none; }
+.card__details > summary:hover .card__title { color: var(--accent); }
+.card__details > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.card__toggle { display: inline-block; margin-top: 8px; font-size: 12px; color: var(--accent); }
+.card__toggle::before { content: '▸ Xem chi tiết'; }
+.card__details[open] .card__toggle::before { content: '▾ Thu gọn'; }
+.card__detail { border-left: 2px solid var(--border); margin: 4px 0 14px; padding: 2px 0 2px 14px; line-height: 1.7; overflow-wrap: anywhere; }
+.card__detail p { margin: 0 0 10px; }
+.card__detail ul { margin: 0 0 10px; padding-left: 18px; }
+.card__detail li { margin-bottom: 4px; }
+.card__source { margin: 12px 0 0; }
+.card__go { color: var(--accent); font-weight: 500; }
+.card__go::after { content: ' ↗'; }
+.card__go:hover { text-decoration: underline; }
 .card__foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 12px; }
 .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tag { border: 1px solid var(--border); border-radius: 999px; padding: 1px 9px; color: var(--muted); }

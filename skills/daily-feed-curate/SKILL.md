@@ -3,7 +3,7 @@ name: daily-feed-curate
 description: >-
   Curates today's Daily Feed candidates: reads data/candidates.json, decides
   keep/drop per item, assigns a category, cleans the English title, writes a
-  1-2 sentence Vietnamese summary, scores fit 1-5, and writes
+  Vietnamese title and a 1-2 sentence Vietnamese summary, scores fit 1-5, and writes
   data/curated.json. Invoked only by scripts/daily-feed-run.sh via
   `claude -p "/daily-feed-curate"` with permissions scoped to reading
   data/candidates.json and writing data/curated.json. Use when the
@@ -37,6 +37,7 @@ description: >-
       "keep": true,
       "category": "ai-trend | ai-product-idea | ai-tip | test-automation | test-manual | test-db | test-api | test-perf | it-general | humor",
       "title": "<clean English title, max 110 chars, no 'Show HN:' prefixes, no clickbait>",
+      "titleVi": "<tiêu đề tiếng Việt, một dòng, tối đa 140 ký tự>",
       "summary": "<1-2 câu tiếng Việt, tối đa 220 ký tự, nói rõ nội dung chính và vì sao đáng mở>",
       "tags": ["<1-3 lowercase tags, e.g. playwright, llm, sql>"],
       "fit": 1
@@ -65,6 +66,7 @@ How much the owner gains from opening the link: 5 = actionable today or genuinel
 ## Title and summary
 
 - Title: English, cleaned. Keep the original meaning; remove site prefixes, ALL CAPS, emoji, trailing "| SiteName".
+- Vietnamese title (`titleVi`): natural Vietnamese rendering of the cleaned title, one line. Keep product, tool, library and company names, and established English terms (LLM, API, prompt, test case, CI), in English. Not a word-for-word translation; no clickbait.
 - Summary: Vietnamese, natural tone, concrete. Say what it is and why it matters, not "Bài viết nói về...". No markdown, no quotes around the whole text.
 - Tags: lowercase, 1-3, prefer tool/topic names.
 

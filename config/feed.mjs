@@ -12,4 +12,7 @@ export const feedConfig = {
   recencyDecayHours: 36,   // hotness = normalised * exp(-age / this)
   hotNowCount: 3,
   feedDays: 2,             // index shows items added within this many days
+  articleMaxChars: 5000,   // article text kept per item as detail source
+  detailBatchSize: 12,     // items per `claude -p "/daily-feed-detail"` call
+  detailMaxPerDay: 60,     // items that get a Vietnamese detail per day, best rank first
 };

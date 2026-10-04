@@ -15,6 +15,7 @@ export function stubCurate(candidates, nowIso = new Date().toISOString()) {
       keep: true,
       category: CATEGORY_FOR_HINT[c.categoryHint] ?? 'it-general',
       title: c.title.slice(0, 110),
+      titleVi: `[stub] ${c.title.slice(0, 120)}`,
       summary: `[stub] ${(c.excerpt || c.title).slice(0, 200)}`,
       tags: [c.categoryHint],
       fit: 3,

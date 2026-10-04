@@ -1,7 +1,8 @@
 # Daily Feed
 
 A personal, daily-refreshed feed of AI, testing, IT, and IT-humor links
-with Vietnamese one-line summaries. Static site on GitHub Pages:
+with Vietnamese titles and one-line summaries. Clicking an item expands a
+10-20 line Vietnamese detail with a link to the original. Static site on GitHub Pages:
 https://hoatruongminhan.github.io/daily-feed/
 
 Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
@@ -13,12 +14,17 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
    skips anything already seen, and writes `data/candidates.json`.
 2. `claude -p "/daily-feed-curate"` (skill in `skills/daily-feed-curate/`,
    permissions scoped to one input and one output file) decides keep/drop, category, clean English title,
-   Vietnamese summary, and fit score into `data/curated.json`. Uses your
-   Claude Code login; no API key.
+   Vietnamese title and summary, and fit score into `data/curated.json`.
+   Uses your Claude Code login; no API key.
 3. `scripts/merge.mjs` validates the decisions and merges them into
    `data/items.json` (14-day window) and `data/dropped.json` (30-day memory).
-4. `scripts/build.mjs` renders `site/` (index, archive pages, feed.json).
-5. In scheduled mode the runner commits `data/` and `site/` and pushes;
+4. Detail, in batches of 12 up to 60 items a day (best rank first; see
+   `config/feed.mjs`): `scripts/detail-prep.mjs` fetches each item's article
+   text (cached in `data/articles/`), `claude -p "/daily-feed-detail"`
+   (skill in `skills/daily-feed-detail/`) writes the Vietnamese detail, and
+   `scripts/detail-merge.mjs` validates it into `data/items.json`.
+5. `scripts/build.mjs` renders `site/` (index, archive pages, feed.json).
+6. In scheduled mode the runner commits `data/` and `site/` and pushes;
    `.github/workflows/pages.yml` deploys `site/` to Pages.
 
 ## Run locally
@@ -26,7 +32,8 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
 ```bash
 npm test                 # unit tests, no network
 npm run feed:stub        # fetch → stub curation → merge → build (no Claude, no commit)
-npm run feed             # same but with real Claude curation (no commit); needs the skill symlink from scripts/install-daily-feed.sh
+npm run feed             # same but with real Claude curation (no commit); needs the skill symlinks from scripts/install-daily-feed.sh
+npm run feed:detail      # only write missing Vietnamese details for items already on the feed (no fetch, no commit)
 npm run serve            # http://localhost:8080 (pick another port if 8080 is busy)
 ```
 

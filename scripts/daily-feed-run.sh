@@ -4,7 +4,10 @@
 # DAILY_FEED_TZ, EVERY day including Saturday and Sunday (owner decision,
 # 2026-10-04), then commits and pushes. `--now` runs immediately without
 # the schedule check and without committing. `--stub` replaces the Claude
-# curation step with scripts/stub-curate.mjs (offline preview).
+# curation and detail steps with scripts/stub-curate.mjs and
+# scripts/stub-detail.mjs (offline preview). `--detail-only` (with --now)
+# skips fetch/curate/merge and only writes missing Vietnamese details for
+# the items already on the feed, then rebuilds.
 set -euo pipefail
 
 ROOT="${DAILY_FEED_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
@@ -14,10 +17,12 @@ STATE="$HOME/Library/Application Support/daily-feed.lastday"
 LOG="$HOME/Library/Logs/daily-feed.log"
 MODE=scheduled
 STUB=0
+DETAIL_ONLY=0
 for arg in "$@"; do
   case "$arg" in
     --now) MODE=now ;;
     --stub) STUB=1 ;;
+    --detail-only) DETAIL_ONLY=1 ;;
     *) echo "unknown flag: $arg" >&2; exit 2 ;;
   esac
 done
@@ -27,6 +32,8 @@ export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
 NODE_BIN="$(ls -d "$HOME"/.nvm/versions/node/*/bin 2>/dev/null | sort -V | tail -1 || true)"
 [ -n "$NODE_BIN" ] && export PATH="$NODE_BIN:$PATH"
 export DAILY_FEED_ROOT="$ROOT"
+
+[ "$DETAIL_ONLY" = 0 ] || [ "$MODE" = now ] || { echo "--detail-only needs --now" >&2; exit 2; }
 
 TODAY="$(TZ="$TZN" date +%F)"
 NOW_TIME="$(TZ="$TZN" date +%H:%M)"
@@ -58,29 +65,55 @@ if [ "$MODE" = scheduled ]; then
   fi
 fi
 
-node scripts/fetch.mjs
+if [ "$DETAIL_ONLY" = 0 ]; then
+  node scripts/fetch.mjs
 
-rm -f data/curated.json            # never let yesterday's decisions be re-applied
-if [ "$STUB" = 1 ]; then
-  node scripts/stub-curate.mjs
-else
-  # Candidates are untrusted web text. The agent may write exactly one file
-  # (file writes are governed by Edit(...) rules), has no shell, no network,
-  # no subagents and no MCP servers, and may not read the pipeline's memory
-  # files. Reads inside this public repo are allowed by Claude Code's default
-  # rules; reads outside the repo need a permission that headless mode never
-  # grants. Verified against claude 2.1.237 on 2026-10-04.
-  if ! claude -p "/daily-feed-curate" \
-      --allowedTools "Read(./data/candidates.json)" "Edit(./data/curated.json)" \
+  rm -f data/curated.json            # never let yesterday's decisions be re-applied
+  if [ "$STUB" = 1 ]; then
+    node scripts/stub-curate.mjs
+  else
+    # Candidates are untrusted web text. The agent may write exactly one file
+    # (file writes are governed by Edit(...) rules), has no shell, no network,
+    # no subagents and no MCP servers, and may not read the pipeline's memory
+    # files. Reads inside this repo are allowed by Claude Code's default
+    # rules; reads outside the repo need a permission that headless mode never
+    # grants. Verified against claude 2.1.237 on 2026-10-04.
+    if ! claude -p "/daily-feed-curate" \
+        --allowedTools "Read(./data/candidates.json)" "Edit(./data/curated.json)" \
+        --disallowedTools "Bash" "WebFetch" "WebSearch" "Agent" "NotebookEdit" \
+          "Read(./data/items.json)" "Read(./data/dropped.json)" "Read(./data/status.json)" \
+        --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
+        --output-format text --max-turns 20; then
+      echo "[run] curate step failed; continuing with previous items"
+    fi
+  fi
+
+  node scripts/merge.mjs
+fi
+
+# Vietnamese detail, in batches so each claude call keeps a small context.
+# detail-prep fetches article text (scripted, cached) and queues one file per
+# item; the agent reads only the queue and writes only data/details/; the
+# merge validates every file before it touches items.json. Bounded by
+# detailMaxPerDay in config/feed.mjs; the loop limit is a backstop.
+for _ in $(seq 1 20); do
+  QUEUED="$(node scripts/detail-prep.mjs)"
+  [ "${QUEUED:-0}" -gt 0 ] 2>/dev/null || break
+  if [ "$STUB" = 1 ]; then
+    node scripts/stub-detail.mjs
+  elif ! claude -p "/daily-feed-detail" \
+      --allowedTools "Read(./data/detail-queue/**)" "Edit(./data/details/**)" \
       --disallowedTools "Bash" "WebFetch" "WebSearch" "Agent" "NotebookEdit" \
         "Read(./data/items.json)" "Read(./data/dropped.json)" "Read(./data/status.json)" \
       --strict-mcp-config --mcp-config '{"mcpServers":{}}' \
-      --output-format text --max-turns 20; then
-    echo "[run] curate step failed; continuing with previous items"
+      --output-format text --max-turns 40; then
+    echo "[run] detail step failed; keeping what was written"
+    node scripts/detail-merge.mjs
+    break
   fi
-fi
+  node scripts/detail-merge.mjs
+done
 
-node scripts/merge.mjs
 node scripts/build.mjs
 
 if [ "$MODE" = scheduled ]; then

@@ -5,7 +5,7 @@ import { makeCandidate } from '../lib/candidate.mjs';
 
 const cfg = { retentionDays: 14, droppedMemoryDays: 30 };
 const cand = (n, hotness = 1) => ({ ...makeCandidate({ url: `https://a.com/${n}`, title: `T${n}`, source: 's', sourceName: 's', publishedAt: '2026-10-03T00:00:00Z', categoryHint: 'ai' }), hotness });
-const keep = (c, extra = {}) => ({ id: c.id, keep: true, category: 'ai-tip', title: 'Clean title', summary: 'Tóm tắt ngắn.', tags: ['llm'], fit: 4, ...extra });
+const keep = (c, extra = {}) => ({ id: c.id, keep: true, category: 'ai-tip', title: 'Clean title', titleVi: 'Tiêu đề sạch', summary: 'Tóm tắt ngắn.', tags: ['llm'], fit: 4, ...extra });
 
 test('validateDecision accepts a good decision and rejects bad fields (review focus 4)', () => {
   const c = cand(1);
@@ -18,6 +18,9 @@ test('validateDecision accepts a good decision and rejects bad fields (review fo
   assert.ok(validateDecision(keep(c, { fit: 6 }), ids).includes('bad fit'));
   assert.ok(validateDecision(keep(c, { category: 'news' }), ids).includes('bad category'));
   assert.ok(validateDecision(keep(c, { title: 'x'.repeat(111) }), ids).includes('bad title'));
+  assert.ok(validateDecision(keep(c, { titleVi: undefined }), ids).includes('bad titleVi'));
+  assert.ok(validateDecision(keep(c, { titleVi: 'a\nb' }), ids).includes('bad titleVi'));
+  assert.ok(validateDecision(keep(c, { titleVi: 'x'.repeat(141) }), ids).includes('bad titleVi'));
   assert.ok(validateDecision({ id: c.id }, ids).includes('keep must be boolean'));
   assert.ok(validateDecision(null, ids).length > 0);
   assert.equal(CATEGORIES.length, 10);
@@ -37,6 +40,7 @@ test('mergeRun keeps valid, drops invalid and keep:false, ranks, prunes', () => 
   assert.equal(kept.rank, 0.8);
   assert.equal(kept.addedAt, '2026-10-04');
   assert.equal(kept.category, 'ai-tip');
+  assert.equal(kept.titleVi, 'Tiêu đề sạch');
   assert.deepEqual(out.dropped.map((x) => x.id).sort(), [b.id, c.id, 'y'].sort());
   assert.equal(out.items.some((i) => i.id === d.id), false, 'unmentioned candidate neither kept nor dropped');
 });

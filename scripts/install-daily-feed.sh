@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Opt-in: installs the LaunchAgent that polls scripts/daily-feed-run.sh
-# every 15 minutes and symlinks the curation skill into ~/.claude/skills.
+# every 15 minutes and symlinks the curation and detail skills into ~/.claude/skills.
 # Override DAILY_FEED_TZ / DAILY_FEED_TIME in the environment before running.
 set -euo pipefail
 
@@ -15,6 +15,7 @@ command -v node >/dev/null || { echo "node not found on PATH" >&2; exit 1; }
 
 mkdir -p "$HOME/Library/LaunchAgents" "$HOME/.claude/skills" "$HOME/Library/Logs"
 ln -sfn "$ROOT/skills/daily-feed-curate" "$HOME/.claude/skills/daily-feed-curate"
+ln -sfn "$ROOT/skills/daily-feed-detail" "$HOME/.claude/skills/daily-feed-detail"
 
 cat > "$PLIST" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>

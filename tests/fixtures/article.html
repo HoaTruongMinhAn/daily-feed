@@ -1,0 +1,14 @@
+<!doctype html>
+<html><head><title>x</title><style>.a{color:red}</style><script>alert('no')</script></head>
+<body>
+<header><nav><a href="/">Home</a> <a href="/blog">Blog</a></nav></header>
+<aside>Subscribe to our newsletter!</aside>
+<article>
+<h1>Flaky tests &amp; how to kill them</h1>
+<p>Flaky tests fail without any code change. This post explains the three causes we found in a year of CI data, and what fixed each one.</p>
+<p>First, shared state between tests. Second, timing assumptions such as fixed sleeps. Third, order dependence when the runner shuffles.</p>
+<ul><li>Isolate fixtures per test</li><li>Replace sleeps with explicit waits</li><li>Run with random order in CI</li></ul>
+<p>After the changes the flake rate went from 4.1% to 0.3%&nbsp;over six weeks &#8212; measured on 12&#x2009;000 runs.</p>
+</article>
+<footer>© 2026 Example</footer>
+</body></html>
