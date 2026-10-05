@@ -1,9 +1,12 @@
 # Daily Feed
 
-A personal, daily-refreshed feed of AI, testing, IT, and IT-humor links
-with Vietnamese titles and one-line summaries. Clicking an item expands a
-10-20 line Vietnamese detail with a link to the original. Static site on GitHub Pages:
-https://hoatruongminhan.github.io/daily-feed/
+A personal, daily-refreshed feed of AI, testing, IT, and IT-humor links,
+in Vietnamese and English: title, one-line summary, and an expandable
+10-20 line detail per item, each with a link to the original. A dropdown
+in the header switches language; the default follows the browser language
+and time zone (Vietnamese for a Vietnamese browser or a Vietnam time zone,
+English otherwise) and the choice is remembered in the browser. Static
+site on GitHub Pages: https://hoatruongminhan.github.io/daily-feed/
 
 Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
 
@@ -18,14 +21,14 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
    re-curated; each extra source raises its rank, up to x1.75.
 2. `claude -p "/daily-feed-curate"` (skill in `skills/daily-feed-curate/`,
    permissions scoped to one input and one output file) decides keep/drop, category, clean English title,
-   Vietnamese title and summary, and fit score into `data/curated.json`.
+   Vietnamese title, Vietnamese and English summary, and fit score into `data/curated.json`.
    Uses your Claude Code login; no API key.
 3. `scripts/merge.mjs` validates the decisions and merges them into
    `data/items.json` (14-day window) and `data/dropped.json` (30-day memory).
 4. Detail, in batches of 12 up to 120 items a day (best rank first; see
    `config/feed.mjs`): `scripts/detail-prep.mjs` fetches each item's article
    text (cached in `data/articles/`), `claude -p "/daily-feed-detail"`
-   (skill in `skills/daily-feed-detail/`) writes the Vietnamese detail, and
+   (skill in `skills/daily-feed-detail/`) writes the Vietnamese and English detail, and
    `scripts/detail-merge.mjs` validates it into `data/items.json`.
 5. `scripts/build.mjs` renders `site/` (index, archive pages, feed.json).
 6. In scheduled mode the runner commits `data/` and `site/` and pushes;
@@ -37,7 +40,7 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
 npm test                 # unit tests, no network
 npm run feed:stub        # fetch → stub curation → merge → build (no Claude, no commit)
 npm run feed             # same but with real Claude curation (no commit); needs the skill symlinks from scripts/install-daily-feed.sh
-npm run feed:detail      # only write missing Vietnamese details for items already on the feed (no fetch, no commit)
+npm run feed:detail      # only write missing details for items already on the feed (no fetch, no commit)
 npm run serve            # http://localhost:8080 (pick another port if 8080 is busy)
 ```
 
@@ -135,7 +138,8 @@ Override with environment variables:
 Each card has a ☆ button; saved items are under the **Saved** pill. Home
 hides items you have read: opened (detail expanded or a link clicked) at
 once, merely scrolled past after a day. "Hiện" at the bottom shows them
-again for that visit, and archive pages always show everything.
+again for that visit, and archive pages always show everything. Saved
+cards keep both languages and follow the dropdown.
 
 This state lives only in the current browser, with no account and no
 sync. To move it between phone and laptop, use **Xuất** (export a JSON

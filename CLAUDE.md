@@ -4,8 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 # Daily Feed — rules for Claude Code in this repo
 
-Personal daily feed site (AI, testing, IT, IT humor; Vietnamese titles with the English
-original, Vietnamese summaries, and an expandable Vietnamese detail per item). Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
+Personal daily feed site (AI, testing, IT, IT humor; bilingual: Vietnamese and
+English title, summary and expandable detail per item, switched by a header
+dropdown whose default follows the reader's browser language and time zone).
+Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`. Bilingual:
+`docs/superpowers/specs/2026-10-05-bilingual-site-design.md`.
 
 ## Commands
 
@@ -61,7 +64,8 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    today in the feed timezone; validates every decision
    (`validateDecision`), invalid ones count as drops; kept items get
    `rank = hotness * buzz(sources) * fit/5` (`rankOf` in `lib/score.mjs`)
-   and keep their raw `sourceTitle`; prunes `items.json` to
+   and keep their raw `sourceTitle`; kept items carry `summary` (Vietnamese) and
+   `summaryEn`; prunes `items.json` to
    `retentionDays` and `dropped.json` to `droppedMemoryDays`.
 4. **detail**, in a loop of batches (`detailBatchSize`, up to
    `detailMaxPerDay`): `scripts/detail-prep.mjs` picks recent items with no
@@ -72,16 +76,21 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    cache `data/articles/<id>.txt` (never refetched; empty = nothing usable),
    and writes `data/detail-queue/<id>.md` + `index.json`. The
    `daily-feed-detail` skill (or `scripts/stub-detail.mjs`) writes
-   `data/details/<id>.txt` (line 1 Vietnamese title, then the detail).
+   `data/details/<id>.txt` (line 1 Vietnamese title, the Vietnamese detail, a
+   `===== EN =====` line, the English detail).
    `scripts/detail-merge.mjs` validates with `parseDetail`, which also
    rejects a detail with 2+ names/numbers absent from the source
    (`ungroundedTokens`; names are skipped for mostly-CJK sources), and sets
-   `titleVi`/`detail` on the item. These three folders are gitignored.
+   `titleVi`/`detail`/`detailEn` on the item; an item with `detail` but no
+   `detailEn` is re-queued. These three folders are gitignored.
 5. **build** (`scripts/build.mjs` → `lib/render.mjs`): renders `site/`
    (index, `archive/<date>.html`, `feed.json`). All item text goes through
    `escapeHtml` and URLs through `safeUrl`. Pages carry a CSP meta (`CSP`
    in `lib/render.mjs`) that allows only same-origin script, so markup must
-   have no inline `<script>` or `on*=` handlers.
+   have no inline `<script>` or `on*=` handlers. Both languages are rendered
+   into every page as `.l-vi`/`.l-en` span pairs (`pair` in `lib/render.mjs`);
+   `site/assets/lang.js` (classic script in `<head>`) sets `html[data-lang]`
+   before paint and CSS hides the other language.
 
 Saved items and read state live only in the reader's browser
 (`localStorage` key `dailyfeed:v1`). `site/assets/state.js` (pure rules,
@@ -90,6 +99,10 @@ are hand-written source, not build output. The index renders `homeDays`
 of items and `app.js` hides read ones, so `lib/render.mjs` card markup and
 `app.js` (`snapshotFromCard`, `buildCard`) must stay in step. Spec:
 `docs/superpowers/specs/2026-10-04-saved-and-read-state-design.md`.
+`site/assets/strings.js` holds every UI string in both languages and is
+imported by both `lib/render.mjs` and `app.js`; `site/assets/lang.js` is
+tested from `tests/lang.test.mjs` through `node:vm`. The language choice is
+`localStorage` key `dailyfeed:lang`.
 
 Every step records its outcome in `data/status.json` via `updateStatus`,
 which the rendered page shows. Tunables live in `config/feed.mjs`.
@@ -99,7 +112,8 @@ which the rendered page shows. Tunables live in `config/feed.mjs`.
 The decision schema is defined twice and must stay in sync:
 `skills/daily-feed-curate/SKILL.md` (what Claude is told) and
 `lib/merge.mjs` (`CATEGORIES` and the length/tag/fit/`titleVi` limits in
-`validateDecision`). Likewise the detail file format and limits:
+`validateDecision`, including `summaryEn`). Likewise the detail file format
+and limits (`DETAIL_EN_MARKER`):
 `skills/daily-feed-detail/SKILL.md` and `lib/detail.mjs`. `lib/render.mjs` maps categories to site sections
 (`groupOf`, by prefix) and display names (`CATEGORY_LABEL`), and `scripts/stub-curate.mjs` maps `categoryHint` to categories,
 so a category change touches all four. `hot-*` categories (`lib/hot.mjs`:
