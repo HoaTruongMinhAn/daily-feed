@@ -145,3 +145,16 @@ footer { color: var(--muted); font-size: 12px; padding-top: 40px; padding-bottom
 .state-tools { margin-top: 12px; }
 #state-msg { margin-left: 8px; color: var(--text); }
 .card__meta, .card__buzz, .chip, h2, .top__date, .pill, footer, .card__orig { font-family: var(--mono); }
+
+/* Language pairs: every bilingual text is a .l-vi span and a .l-en span;
+   lang.js sets html[data-lang] before paint. Without JS the page is Vietnamese. */
+html[data-lang="vi"] .l-en, html[data-lang="en"] .l-vi, html:not([data-lang]) .l-en { display: none; }
+html[data-lang="en"] .card--read .card__meta::after { content: 'read'; }
+.card__note { margin: 0 0 10px; font-size: 13px; font-style: italic; color: var(--muted); }
+.lang {
+  font: inherit; font-family: var(--mono); font-size: 13px; color: var(--muted);
+  background: transparent; border: 1px solid var(--border); border-radius: 999px;
+  padding: 4px 10px; cursor: pointer;
+}
+.lang:hover { border-color: var(--border-strong); color: var(--text); }
+.lang option { color: var(--text); background: var(--bg); }
