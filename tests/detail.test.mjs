@@ -74,7 +74,7 @@ test('parseDetail rejects two or more ungrounded tokens and reports one', () => 
   assert.deepEqual(one.ungrounded, ['Kubernetes']);
   const two = parseDetail(`Playwright 1.48 có gì mới\n\n${body} Kubernetes và Cypress.${EN}${en}`, SRC);
   assert.deepEqual(two.errors, ['ungrounded: Kubernetes | Cypress']);
-  const twoEn = parseDetail(`Playwright 1.48 có gì mới\n\n${body}${EN}${en} Kubernetes and Cypress.`, SRC);
+  const twoEn = parseDetail(`Playwright 1.48 có gì mới\n\n${body}${EN}${en} It mentions Kubernetes and Cypress.`, SRC);
   assert.deepEqual(twoEn.errors, ['ungrounded: Kubernetes | Cypress'], 'the English half is checked too');
   assert.deepEqual(parseDetail(`Tiêu đề\n\n${body} Kubernetes và Cypress.${EN}${en}`).errors, [], 'no sourceText: no check');
 });
@@ -105,4 +105,19 @@ test('a versioned name and its embedded number count as one miss (final review)'
 test('sourceTextFor leaves out the curated summary, which is model output, not source', () => {
   const item = it('a', { title: 'Playwright 1.48 ships', summary: 'Kubernetes và Cypress được nhắc tới.' });
   assert.ok(!sourceTextFor(item, '').includes('Kubernetes'));
+});
+
+test('the English half is checked for numbers and real names only, not capitalised sentence starters (final review 1)', () => {
+  const body = 'Playwright 1.48 thêm trace viewer v2 vào CLI. '.repeat(6);
+  const en = 'However, Playwright 1.48 adds trace viewer v2 to the CLI. Developers get faster runs. Overall it is a solid release. Instead of waiting, upgrade. '.repeat(2);
+  assert.deepEqual(ungroundedTokens(en, SRC, { sentenceNames: false }), []);
+  assert.deepEqual(ungroundedTokens(en, SRC), ['However', 'Developers', 'Overall', 'Instead'], 'default rule still flags them (Vietnamese text)');
+  const ok = parseDetail(`Playwright 1.48 có gì mới\n\n${body}${EN}${en}`, SRC);
+  assert.deepEqual(ok.errors, []);
+  assert.deepEqual(ok.ungrounded, []);
+  const bad = parseDetail(`Playwright 1.48 có gì mới\n\n${body}${EN}${en} It also runs on Kubernetes 4.200 and GPT-5.5.`, SRC);
+  assert.deepEqual(bad.errors, ['ungrounded: Kubernetes | 4200 | GPT-5.5'], 'mid-sentence names, digits and numbers are still checked in English');
+  assert.deepEqual(ungroundedTokens('Kubernetes is used.\n- Cypress too.\nAlso Cypress.', SRC, { sentenceNames: false }), ['Cypress'], 'line and bullet starts are skipped, mid-sentence is not');
+  const viStarter = parseDetail(`Playwright 1.48 có gì mới\n\n${body} Theo Developers và Researchers.${EN}${en}`, SRC);
+  assert.deepEqual(viStarter.errors, ['ungrounded: Developers | Researchers'], 'the Vietnamese half keeps the strict rule');
 });
