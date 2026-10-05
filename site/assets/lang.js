@@ -34,7 +34,7 @@
     var tz = null;
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { tz = null; }
     var nav = global.navigator || {};
-    var languages = Array.isArray(nav.languages) ? nav.languages : (nav.language ? [nav.language] : []);
+    var languages = Array.isArray(nav.languages) && nav.languages.length ? nav.languages : (nav.language ? [nav.language] : []);
     applyLang(global.document, detectLang(languages, tz, stored));
   }
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -49,6 +49,7 @@ test('on load it sets data-lang and lang on <html> from the page environment', (
   assert.deepEqual(load({ languages: ['en-GB'], timeZone: 'Asia/Ho_Chi_Minh' }).attrs, { 'data-lang': 'vi', lang: 'vi' });
   assert.deepEqual(load({ languages: ['vi-VN'], stored: 'en' }).attrs, { 'data-lang': 'en', lang: 'en' });
   assert.deepEqual(load({ language: 'vi' }).attrs, { 'data-lang': 'vi', lang: 'vi' }, 'review focus 2: navigator.language fallback');
+  assert.deepEqual(load({ languages: [], language: 'vi' }).attrs, { 'data-lang': 'vi', lang: 'vi' }, 'an empty languages list still falls back to navigator.language');
   assert.deepEqual(load({}).attrs, { 'data-lang': 'en', lang: 'en' }, 'review focus 2: no language info at all');
   assert.deepEqual(load({ languages: ['vi-VN'], storageThrows: true }).attrs, { 'data-lang': 'vi', lang: 'vi' }, 'review focus 3: storage that throws is ignored');
 });

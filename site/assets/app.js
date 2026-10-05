@@ -411,8 +411,7 @@ async function importState(input) {
   persist();
   syncSaveButtons();
   if (view === 'saved') { renderSaved(); apply(); }
-  say('imported', res);
-  if (!storageOk) { const m = $('#state-msg'); if (m) m.textContent += ` · ${tr('noStorage')}`; }
+  say(storageOk ? 'imported' : 'importedNoStorage', res);
 }
 
 // ---- init

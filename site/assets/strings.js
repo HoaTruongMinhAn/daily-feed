@@ -63,6 +63,12 @@ export const STRINGS = {
     en: (r) => `Imported: ${r.saved} saved, ${r.read} read${r.skipped ? `, ${r.skipped} bad entries skipped` : ''}`,
   },
 };
+// Import done but the result could not be stored: one message, so a
+// language switch re-renders it whole.
+STRINGS.importedNoStorage = {
+  vi: (r) => `${STRINGS.imported.vi(r)} · ${STRINGS.noStorage.vi}`,
+  en: (r) => `${STRINGS.imported.en(r)} · ${STRINGS.noStorage.en}`,
+};
 
 // One string in one language. Unknown language falls back to Vietnamese
 // (the no-JS default); an unknown key is '' so a typo never throws in the browser.

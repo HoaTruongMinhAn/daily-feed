@@ -68,8 +68,8 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    `summaryEn`; prunes `items.json` to
    `retentionDays` and `dropped.json` to `droppedMemoryDays`.
 4. **detail**, in a loop of batches (`detailBatchSize`, up to
-   `detailMaxPerDay`): `scripts/detail-prep.mjs` picks recent items with no
-   `detail` that were not tried today (`selectForDetail` in
+   `detailMaxPerDay`): `scripts/detail-prep.mjs` picks recent items missing
+   `detail` or `detailEn` that were not tried today (`selectForDetail` in
    `lib/detail.mjs`), fetches article text via `lib/article.mjs` (public
    addresses only: IP literals, every redirect hop and the connect-time DNS
    answer are checked, since item links are strangers' URLs) into the

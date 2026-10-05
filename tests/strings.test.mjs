@@ -23,6 +23,8 @@ test('every string has both languages and t() picks one', () => {
   assert.equal(t('sourcesCount', 'en', 3), '3 sources');
   assert.equal(t('imported', 'en', { saved: 2, read: 5, skipped: 0 }), 'Imported: 2 saved, 5 read');
   assert.equal(t('imported', 'vi', { saved: 2, read: 5, skipped: 1 }), 'Đã nhập: 2 lưu, 5 đã đọc, bỏ qua 1 mục lỗi');
+  assert.equal(t('importedNoStorage', 'en', { saved: 1, read: 0, skipped: 0 }), 'Imported: 1 saved, 0 read · Cannot save in this browser');
+  assert.equal(t('importedNoStorage', 'vi', { saved: 1, read: 0, skipped: 0 }), 'Đã nhập: 1 lưu, 0 đã đọc · Không lưu được trên trình duyệt này');
   assert.equal(t('save', 'xx'), 'Lưu', 'unknown language falls back to Vietnamese');
   assert.equal(t('nope', 'en'), '', 'unknown key is empty, never throws');
 });
