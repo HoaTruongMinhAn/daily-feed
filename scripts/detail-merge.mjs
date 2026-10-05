@@ -9,7 +9,6 @@ import { fileURLToPath } from 'node:url';
 import { feedConfig as cfg } from '../config/feed.mjs';
 import { dataFile, readJson, writeJson, updateStatus, todayIn } from '../lib/store.mjs';
 import { parseDetail, sourceTextFor } from '../lib/detail.mjs';
-import { commentsText } from '../lib/comments.mjs';
 import { queueDir, detailsDir, articlesDir, commentsDir } from './detail-prep.mjs';
 
 export function main({ log = console.error } = {}) {
@@ -28,7 +27,7 @@ export function main({ log = console.error } = {}) {
     const article = existsSync(articlePath) ? readFileSync(articlePath, 'utf8') : '';
     const commentsPath = join(commentsDir(), `${id}.json`);
     const cached = existsSync(commentsPath) ? readJson(commentsPath, { comments: [] }).comments ?? [] : [];
-    const parsed = parseDetail(readFileSync(path, 'utf8'), sourceTextFor(item, article), cached.length ? commentsText(cached) : null);
+    const parsed = parseDetail(readFileSync(path, 'utf8'), sourceTextFor(item, article), cached.length ? cached : null);
     if (parsed.errors.length) {
       invalid++;
       if (parsed.errors.some((e) => e.startsWith('ungrounded'))) ungrounded++;

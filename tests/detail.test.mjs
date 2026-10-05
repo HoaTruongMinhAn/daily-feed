@@ -52,7 +52,7 @@ test('parseDetail splits title, Vietnamese and English halves and enforces limit
 test('stubDetail output passes parseDetail, with and without comments', () => {
   assert.deepEqual(parseDetail(stubDetail(queueFile(it('a'), 'short'))).errors, []);
   const q = queueFile(it('a'), 'short', comments);
-  const r = parseDetail(stubDetail(q), null, ctext);
+  const r = parseDetail(stubDetail(q), null, comments);
   assert.deepEqual([r.errors, r.warnings], [[], []]);
   assert.ok(r.discussion.startsWith('[stub]') && r.discussionEn.includes('— @tptacek, Hacker News'));
   assert.equal(parseDiscussionSection(r.discussionEn).quotes.length, 2);
@@ -65,7 +65,6 @@ const comments = [
   { author: '@pushcx', source: 'Lobsters', score: 14, text: 'A cap that returns errors is a cap that pages you; still better than a bill.' },
   { author: '@bob.dev', source: 'Bluesky', score: 34, text: 'Hot take: budgets are the "customer\'s" job, not the vendor\'s.' },
 ];
-const ctext = comments.map((c) => c.text).join('\n');
 const viDetail = 'Đoạn một. '.repeat(30);
 const base = `Tiêu đề\n\n${viDetail}\n\n===== EN =====\n\n${enBody}`;
 const discVi = '\n\n===== DISCUSSION VI =====\n\nHai phe rõ rệt: đa số đòi hạn mức cứng, một vài người bảo đó là việc của khách hàng.\n- "Hạn mức cứng là chuyện đương nhiên với API tính theo mức dùng. Tôi bị cháy túi hai lần rồi." — @tptacek, Hacker News\n- "Ý kiến gây sốc: ngân sách là việc của “khách hàng”, không phải của nhà cung cấp." — @bob.dev, Bluesky';
@@ -87,49 +86,71 @@ test('parseDiscussionSection splits lead and quote lines, accepts curly quotes, 
 });
 
 test('parseDetail without discussion markers returns nulls and no warnings', () => {
-  const r = parseDetail(base, null, ctext);
+  const r = parseDetail(base, null, comments);
   assert.deepEqual([r.errors, r.warnings, r.discussion, r.discussionEn], [[], [], null, null]);
   assert.equal(DISCUSSION_VI_MARKER, '===== DISCUSSION VI =====');
   assert.equal(DISCUSSION_EN_MARKER, '===== DISCUSSION EN =====');
 });
 
 test('parseDetail accepts a valid discussion and stores canonical sections; detail unchanged', () => {
-  const r = parseDetail(base + discVi + discEn, null, ctext);
+  const r = parseDetail(base + discVi + discEn, null, comments);
   assert.deepEqual([r.errors, r.warnings], [[], []]);
   assert.ok(r.detailEn.startsWith('Paragraph one.') && !r.detailEn.includes('DISCUSSION'));
   assert.ok(r.discussion.startsWith('Hai phe rõ rệt') && r.discussion.includes('\n\n- "Hạn mức cứng'));
   assert.ok(r.discussionEn.includes('- "Hot take: budgets are the "customer\'s" job, not the vendor\'s." — @bob.dev, Bluesky'));
-  const curly = parseDetail(base + discVi + discEn.replace('"Hard caps', '“Hard caps').replace('twice."', 'twice.”'), null, ctext);
+  const curly = parseDetail(base + discVi + discEn.replace('"Hard caps', '“Hard caps').replace('twice."', 'twice.”'), null, comments);
   assert.ok(curly.discussionEn.includes('- "Hard caps are'), 'curly quotes are stored straight');
 });
 
 test('parseDetail invalidates the discussion but keeps the detail (quote not in comments, unequal counts, one marker, short lead, no comments, too many quotes, mid-cut ellipsis)', () => {
   const keep = (r) => { assert.deepEqual(r.errors, []); assert.equal(r.discussion, null); assert.equal(r.discussionEn, null); assert.equal(r.warnings.length, 1); return r.warnings[0]; };
-  assert.match(keep(parseDetail(base + discVi + discEn.replace('burned twice', 'burned thrice'), null, ctext)), /quote not in comments/);
-  assert.match(keep(parseDetail(base + discVi + discEn + '\n- "A cap that returns errors is a cap that pages you; still better than a bill." — @pushcx, Lobsters', null, ctext)), /quote count/);
-  assert.match(keep(parseDetail(base + discVi, null, ctext)), /one discussion marker/);
-  assert.match(keep(parseDetail(base + discEn, null, ctext)), /one discussion marker/);
-  assert.match(keep(parseDetail(base + discVi.replace('Hai phe rõ rệt: đa số đòi hạn mức cứng, một vài người bảo đó là việc của khách hàng.', 'Ngắn quá.') + discEn, null, ctext)), /lead/);
+  assert.match(keep(parseDetail(base + discVi + discEn.replace('burned twice', 'burned thrice'), null, comments)), /quote not in comments/);
+  assert.match(keep(parseDetail(base + discVi + discEn + '\n- "A cap that returns errors is a cap that pages you; still better than a bill." — @pushcx, Lobsters', null, comments)), /quote count/);
+  assert.match(keep(parseDetail(base + discVi, null, comments)), /one discussion marker/);
+  assert.match(keep(parseDetail(base + discEn, null, comments)), /one discussion marker/);
+  assert.match(keep(parseDetail(base + discVi.replace('Hai phe rõ rệt: đa số đòi hạn mức cứng, một vài người bảo đó là việc của khách hàng.', 'Ngắn quá.') + discEn, null, comments)), /lead/);
   assert.match(keep(parseDetail(base + discVi + discEn, null, null)), /no comments/);
   const five = (s) => s + '\n- "A cap that returns errors is a cap that pages you; still better than a bill." — @pushcx, Lobsters'.repeat(3);
-  assert.match(keep(parseDetail(base + five(discVi) + five(discEn), null, ctext)), /quote count/);
-  assert.match(keep(parseDetail(base + discVi + discEn.replace("API. I've been", 'API. ... been'), null, ctext)), /quote not in comments/, 'a cut in the middle is not verbatim');
+  assert.match(keep(parseDetail(base + five(discVi) + five(discEn), null, comments)), /quote count/);
+  assert.match(keep(parseDetail(base + discVi + discEn.replace("API. I've been", 'API. ... been'), null, comments)), /quote not in comments/, 'a cut in the middle is not verbatim');
 });
 
 test('parseDetail accepts edge ellipses and runs the grounding check on the discussion separately', () => {
-  const edge = parseDetail(base + discVi + discEn.replace('"Hard caps are table stakes for any pay-by-usage API. I\'ve been burned twice."', '"...for any pay-by-usage API. I\'ve been burned twice…"'), null, ctext);
+  const edge = parseDetail(base + discVi + discEn.replace('"Hard caps are table stakes for any pay-by-usage API. I\'ve been burned twice."', '"...for any pay-by-usage API. I\'ve been burned twice…"'), null, comments);
   assert.deepEqual(edge.warnings, []);
   assert.ok(edge.discussionEn.includes('- "...for any pay-by-usage API. I\'ve been burned twice…" — @tptacek'), 'edge ellipses are kept in the stored quote');
   // Source text that grounds the detail but not the invented names in the lead.
   const src = `Budget caps post text\n${enBody}\n${viDetail}`;
-  const r = parseDetail(base + discVi.replace('Hai phe rõ rệt', 'Cypress 13.2 và Kubernetes: hai phe rõ rệt') + discEn, src, ctext);
+  const r = parseDetail(base + discVi.replace('Hai phe rõ rệt', 'Cypress 13.2 và Kubernetes: hai phe rõ rệt') + discEn, src, comments);
   assert.deepEqual(r.errors, [], 'the detail itself is grounded');
   assert.equal(r.discussion, null);
   assert.match(r.warnings[0], /ungrounded/);
 });
 
+test('review fixes: swapped markers, wrong attribution, cross-comment quote, curly apostrophes, en-dash separator', () => {
+  const keep = (r) => { assert.deepEqual(r.errors, []); assert.equal(r.discussion, null); return r.warnings[0]; };
+  // EN section before VI section: the detail must stay clean.
+  const swapped = parseDetail(base + discEn + discVi, null, comments);
+  assert.deepEqual(swapped.errors, ['discussion markers out of order']);
+  // Verbatim text with the wrong author or source is rejected.
+  assert.match(keep(parseDetail(base + discVi + discEn.replace('— @tptacek, Hacker News', '— @mallory, Hacker News'), null, comments)), /attribution/);
+  assert.match(keep(parseDetail(base + discVi + discEn.replace('— @tptacek, Hacker News', '— @tptacek, Reddit'), null, comments)), /attribution/);
+  // The Vietnamese line N must credit the same voice as the English line N.
+  assert.match(keep(parseDetail(base + discVi.replace('— @tptacek, Hacker News', '— @pushcx, Lobsters') + discEn, null, comments)), /attribution/);
+  // A quote spanning two comments is not one comment.
+  assert.match(keep(parseDetail(base + discVi + discEn.replace('"Hard caps are table stakes for any pay-by-usage API. I\'ve been burned twice."', '"burned twice. A cap that returns errors"'), null, comments)), /quote not in comments/);
+  // Curly apostrophes and inner quotes compare equal to straight ones.
+  const curly = parseDetail(base + discVi + discEn.replace("I've", 'I’ve').replace('"customer\'s"', '“customer’s”'), null, comments);
+  assert.deepEqual(curly.warnings, []);
+  assert.ok(curly.discussionEn.includes("I've been burned twice"), 'stored straight');
+  // An en-dash before the attribution is accepted and stored as an em-dash.
+  const dash = parseDetail(base + discVi + discEn.replace(/ — @tptacek/, ' – @tptacek'), null, comments);
+  assert.deepEqual(dash.warnings, []);
+  assert.ok(dash.discussionEn.includes('twice." — @tptacek, Hacker News'));
+});
+
 test('a discussion marker before the English detail rejects the whole file', () => {
-  assert.ok(parseDetail(`Tiêu đề\n\n${viDetail}${discVi}\n\n===== EN =====\n\n${enBody}${discEn}`, null, ctext).errors.includes('discussion before english detail'));
+  assert.ok(parseDetail(`Tiêu đề\n\n${viDetail}${discVi}\n\n===== EN =====\n\n${enBody}${discEn}`, null, comments).errors.includes('discussion before english detail'));
 });
 
 const SRC = 'Playwright 1.48 adds trace viewer v2 to the CLI. It is 37.5% faster on 10,000 tests. See CLAUDE.md and the README on github.com.';
