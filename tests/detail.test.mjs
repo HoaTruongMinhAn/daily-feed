@@ -49,8 +49,13 @@ test('parseDetail splits title, Vietnamese and English halves and enforces limit
   assert.deepEqual(indented.errors, [], 'marker with surrounding spaces still splits');
 });
 
-test('stubDetail output passes parseDetail', () => {
+test('stubDetail output passes parseDetail, with and without comments', () => {
   assert.deepEqual(parseDetail(stubDetail(queueFile(it('a'), 'short'))).errors, []);
+  const q = queueFile(it('a'), 'short', comments);
+  const r = parseDetail(stubDetail(q), null, ctext);
+  assert.deepEqual([r.errors, r.warnings], [[], []]);
+  assert.ok(r.discussion.startsWith('[stub]') && r.discussionEn.includes('— @tptacek, Hacker News'));
+  assert.equal(parseDiscussionSection(r.discussionEn).quotes.length, 2);
 });
 
 // ---- discussion sections
