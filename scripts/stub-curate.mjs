@@ -2,7 +2,7 @@
 // Offline stand-in for the Claude curation step, for previews and tests.
 // Keeps the hottest 30 candidates, maps the category hint to a category
 // (hot-eligible `hot` candidates become `hot-general`),
-// and uses the excerpt (or title) as the "summary".
+// and uses the excerpt (or title) as both the Vietnamese and the English "summary".
 import { fileURLToPath } from 'node:url';
 import { dataFile, readJson, writeJson } from '../lib/store.mjs';
 
@@ -23,6 +23,7 @@ export function stubCurate(candidates, nowIso = new Date().toISOString()) {
       title: c.title.slice(0, 110),
       titleVi: `[stub] ${c.title.slice(0, 120)}`,
       summary: `[stub] ${(c.excerpt || c.title).slice(0, 200)}`,
+      summaryEn: `[stub] ${(c.excerpt || c.title).slice(0, 200)}`,
       tags: [c.categoryHint],
       fit: 3,
     }

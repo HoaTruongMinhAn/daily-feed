@@ -5,7 +5,7 @@ import { makeCandidate } from '../lib/candidate.mjs';
 
 const cfg = { retentionDays: 14, droppedMemoryDays: 30 };
 const cand = (n, hotness = 1) => ({ ...makeCandidate({ url: `https://a.com/${n}`, title: `T${n}`, source: 's', sourceName: 's', publishedAt: '2026-10-03T00:00:00Z', categoryHint: 'ai' }), hotness });
-const keep = (c, extra = {}) => ({ id: c.id, keep: true, category: 'ai-tip', title: 'Clean title', titleVi: 'Tiêu đề sạch', summary: 'Tóm tắt ngắn.', tags: ['llm'], fit: 4, ...extra });
+const keep = (c, extra = {}) => ({ id: c.id, keep: true, category: 'ai-tip', title: 'Clean title', titleVi: 'Tiêu đề sạch', summary: 'Tóm tắt ngắn.', summaryEn: 'Short summary.', tags: ['llm'], fit: 4, ...extra });
 
 test('validateDecision accepts a good decision and rejects bad fields (review focus 4)', () => {
   const c = cand(1);
@@ -14,6 +14,10 @@ test('validateDecision accepts a good decision and rejects bad fields (review fo
   assert.deepEqual(validateDecision({ id: c.id, keep: false }, ids), []);
   assert.ok(validateDecision(keep(c, { id: 'zzz' }), ids).includes('unknown id'));
   assert.ok(validateDecision(keep(c, { summary: 'x'.repeat(221) }), ids).includes('bad summary'));
+  assert.ok(validateDecision(keep(c, { summaryEn: undefined }), ids).includes('bad summaryEn'));
+  assert.ok(validateDecision(keep(c, { summaryEn: '   ' }), ids).includes('bad summaryEn'));
+  assert.ok(validateDecision(keep(c, { summaryEn: 'x'.repeat(221) }), ids).includes('bad summaryEn'));
+  assert.deepEqual(validateDecision({ id: c.id, keep: false }, ids), [], 'a drop needs no summaryEn');
   assert.ok(validateDecision(keep(c, { tags: 'llm' }), ids).includes('bad tags'));
   assert.ok(validateDecision(keep(c, { fit: 6 }), ids).includes('bad fit'));
   assert.ok(validateDecision(keep(c, { category: 'news' }), ids).includes('bad category'));
@@ -41,6 +45,7 @@ test('mergeRun keeps valid, drops invalid and keep:false, ranks, prunes', () => 
   assert.equal(kept.addedAt, '2026-10-04');
   assert.equal(kept.category, 'ai-tip');
   assert.equal(kept.titleVi, 'Tiêu đề sạch');
+  assert.equal(kept.summaryEn, 'Short summary.');
   assert.equal(kept.sourceTitle, 'T1');
   assert.deepEqual(kept.sources, ['s']);
   assert.deepEqual(out.dropped.map((x) => x.id).sort(), [b.id, c.id, 'y'].sort());

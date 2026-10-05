@@ -3,7 +3,7 @@ name: daily-feed-curate
 description: >-
   Curates today's Daily Feed candidates: reads data/candidates.json, decides
   keep/drop per item, assigns a category, cleans the English title, writes a
-  Vietnamese title and a 1-2 sentence Vietnamese summary, scores fit 1-5, and writes
+  Vietnamese title, a 1-2 sentence Vietnamese summary and a 1-2 sentence English summary, scores fit 1-5, and writes
   data/curated.json. Invoked only by scripts/daily-feed-run.sh via
   `claude -p "/daily-feed-curate"` with permissions scoped to reading
   data/candidates.json and writing data/curated.json. Use when the
@@ -41,6 +41,7 @@ description: >-
       "title": "<clean English title, max 110 chars, no 'Show HN:' prefixes, no clickbait>",
       "titleVi": "<tiêu đề tiếng Việt, một dòng, tối đa 140 ký tự>",
       "summary": "<1-2 câu tiếng Việt, tối đa 220 ký tự, nói rõ nội dung chính và vì sao đáng mở>",
+      "summaryEn": "<1-2 English sentences, max 220 chars, same content as summary: what it is and why it is worth opening>",
       "tags": ["<1-3 lowercase tags, e.g. playwright, llm, sql>"],
       "fit": 1
     }
@@ -83,8 +84,9 @@ How much the owner gains from opening the link: 5 = actionable today or genuinel
 - Vietnamese title (`titleVi`): natural Vietnamese rendering of the cleaned title, one line. Keep product, tool, library and company names, and established English terms (LLM, API, prompt, test case, CI), in English. Not a word-for-word translation; no clickbait.
 - Tags: lowercase, 1-3, prefer tool/topic names.
 
-## Writing rules (summary)
+## Writing rules (summary and summaryEn)
 
+- **Two summaries, one meaning.** `summary` is Vietnamese, `summaryEn` is English. Both say the same thing; neither is a word-for-word translation of the other. Every rule below applies to both.
 - **Answer first.** The first sentence says who did what and what changed or resulted, e.g. "Playwright 1.48 thêm trace viewer mới, mở nhanh hơn với test lớn." Never open with "Bài viết nói về…", "Tác giả cho rằng…", "Theo bài viết…". The optional second sentence gives the one most useful fact or why it matters to the owner.
 - **Only what the input says.** Every product, company, feature, number, and version in `titleVi` and `summary` must appear in the candidate's title, excerpt, source name, or URL. Do not add what you know about similar products. If the input is thin, write a shorter summary.
 - Keep relative times as written; never add a year the input does not state.
