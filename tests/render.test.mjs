@@ -153,7 +153,7 @@ test('renderPage archive loads ../assets/app.js and has no Home paging', () => {
 test('hot-* items render in the hot group with an escaped Vietnamese label (review focus 5)', () => {
   const hotItem = { id: 'a'.repeat(40), url: 'https://a.com/x', title: 'T', titleVi: 'TV', summary: 'S', category: 'hot-security', categoryLabel: '<img src=x onerror=alert(1)>', sourceName: 'Techmeme', tags: ['x'], fit: 3, hotness: 1, addedAt: '2026-10-04' };
   assert.equal(groupOf('hot-security'), 'hot');
-  assert.equal(GROUP_LABEL.hot, 'Hot trên mạng');
+  assert.equal(GROUP_LABEL.hot.vi, 'Hot trên mạng');
   const html = renderCard(hotItem);
   assert.ok(html.includes('data-group="hot"'));
   assert.ok(html.includes('<span class="chip chip--hot">&lt;img src=x onerror=alert(1)&gt;</span>'), html);
