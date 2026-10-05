@@ -268,9 +268,10 @@ const inlineText = (node) => [...node.childNodes]
   .map((n) => (n.nodeName === 'BR' ? '\n' : n.nodeName === 'CODE' ? `\`${n.textContent}\`` : n.textContent)).join('').trim();
 
 // Rebuilds the detail text of one language block; '' for a fallback block
-// (borrowed Vietnamese text must not be stored as English).
+// (borrowed Vietnamese text must not be stored as English). A card rendered
+// before the language pairs existed has one unmarked block: Vietnamese.
 function detailText(card, l) {
-  const body = card.querySelector(`.card__detail.l-${l}`);
+  const body = card.querySelector(`.card__detail.l-${l}`) ?? (l === 'vi' ? card.querySelector('.card__detail') : null);
   if (!body || (l === 'en' && body.hasAttribute('data-fallback'))) return '';
   const blocks = [];
   for (const child of body.children) {
