@@ -9,7 +9,11 @@
 # curation and detail steps with scripts/stub-curate.mjs and
 # scripts/stub-detail.mjs (offline preview). `--detail-only` (with --now)
 # skips fetch/curate/merge and only writes missing Vietnamese details for
-# the items already on the feed, then rebuilds.
+# the items already on the feed, then rebuilds. `--backfill` (with
+# --detail-only) covers every item in items.json, not just the last
+# detailDays, ignores detailMaxPerDay, and also re-queues detailed items
+# whose threads have usable comments but that have no discussion yet
+# (one attempt per item, see buildBatch in lib/detail.mjs).
 set -euo pipefail
 
 ROOT="${DAILY_FEED_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
@@ -32,11 +36,13 @@ FAILED=0
 MODE=scheduled
 STUB=0
 DETAIL_ONLY=0
+BACKFILL=0
 for arg in "$@"; do
   case "$arg" in
     --now) MODE=now ;;
     --stub) STUB=1 ;;
     --detail-only) DETAIL_ONLY=1 ;;
+    --backfill) BACKFILL=1 ;;
     *) echo "unknown flag: $arg" >&2; exit 2 ;;
   esac
 done
@@ -48,6 +54,10 @@ NODE_BIN="$(ls -d "$HOME"/.nvm/versions/node/*/bin 2>/dev/null | sort -V | tail 
 export DAILY_FEED_ROOT="$ROOT"
 
 [ "$DETAIL_ONLY" = 0 ] || [ "$MODE" = now ] || { echo "--detail-only needs --now" >&2; exit 2; }
+[ "$BACKFILL" = 0 ] || [ "$DETAIL_ONLY" = 1 ] || { echo "--backfill needs --detail-only" >&2; exit 2; }
+export DAILY_FEED_BACKFILL="$BACKFILL"
+# A backfill may cover every item on the feed (retentionDays of them).
+MAX_BATCHES=$([ "$BACKFILL" = 1 ] && echo 60 || echo 20)
 
 TODAY="$(TZ="$TZN" date +%F)"
 NOW_TIME="$(TZ="$TZN" date +%H:%M)"
@@ -64,7 +74,7 @@ if [ "$MODE" = scheduled ]; then
 fi
 
 cd "$ROOT"
-echo "=== $(date) daily-feed run (mode=$MODE stub=$STUB today=$TODAY tz=$TZN curate=$CURATE_MODEL/$CURATE_EFFORT detail=$DETAIL_MODEL/$DETAIL_EFFORT) ==="
+echo "=== $(date) daily-feed run (mode=$MODE stub=$STUB backfill=$BACKFILL today=$TODAY tz=$TZN curate=$CURATE_MODEL/$CURATE_EFFORT detail=$DETAIL_MODEL/$DETAIL_EFFORT) ==="
 
 if [ "$MODE" = scheduled ]; then
   # The published site is built from main. An interactive session may have
@@ -118,7 +128,7 @@ fi
 # item; the agent reads only the queue and writes only data/details/; the
 # merge validates every file before it touches items.json. Bounded by
 # detailMaxPerDay in config/feed.mjs; the loop limit is a backstop.
-for _ in $(seq 1 20); do
+for _ in $(seq 1 "$MAX_BATCHES"); do
   QUEUED="$(node scripts/detail-prep.mjs)"
   [ "${QUEUED:-0}" -gt 0 ] 2>/dev/null || break
   if [ "$STUB" = 1 ]; then

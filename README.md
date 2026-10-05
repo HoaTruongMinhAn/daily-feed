@@ -27,9 +27,15 @@ Design: `docs/superpowers/specs/2026-10-04-daily-feed-design.md`.
    `data/items.json` (14-day window) and `data/dropped.json` (30-day memory).
 4. Detail, in batches of 12 up to 120 items a day (best rank first; see
    `config/feed.mjs`): `scripts/detail-prep.mjs` fetches each item's article
-   text (cached in `data/articles/`), `claude -p "/daily-feed-detail"`
-   (skill in `skills/daily-feed-detail/`) writes the Vietnamese and English detail, and
-   `scripts/detail-merge.mjs` validates it into `data/items.json`.
+   text (cached in `data/articles/`) and the top-level comments of the
+   discussion threads it links to on Hacker News, Lobsters, Mastodon, Bluesky
+   and Reddit (public endpoints only, cached in `data/comments/`),
+   `claude -p "/daily-feed-detail"` (skill in `skills/daily-feed-detail/`)
+   writes the Vietnamese and English detail plus, when there are comments, a
+   short "Thảo luận / Discussion" block (the camps and 2-4 quoted voices), and
+   `scripts/detail-merge.mjs` validates it into `data/items.json`. Every
+   English quote must be a verbatim piece of a fetched comment with the right
+   author, or the discussion is dropped and the detail kept.
 5. `scripts/build.mjs` renders `site/` (index, archive pages, feed.json).
 6. In scheduled mode the runner commits `data/` and `site/` and pushes;
    `.github/workflows/pages.yml` deploys `site/` to Pages.
@@ -41,6 +47,7 @@ npm test                 # unit tests, no network
 npm run feed:stub        # fetch → stub curation → merge → build (no Claude, no commit)
 npm run feed             # same but with real Claude curation (no commit); needs the skill symlinks from scripts/install-daily-feed.sh
 npm run feed:detail      # only write missing details for items already on the feed (no fetch, no commit)
+npm run feed:backfill    # same for every item in items.json, no daily cap; also adds discussions to detailed items (no commit)
 npm run serve            # http://localhost:8080 (pick another port if 8080 is busy)
 ```
 

@@ -9,7 +9,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { feedConfig as cfg } from '../config/feed.mjs';
 import { ROOT, dataFile, readJson, writeJson, todayIn } from '../lib/store.mjs';
-import { selectForDetail, queueFile } from '../lib/detail.mjs';
+import { buildBatch, queueFile } from '../lib/detail.mjs';
 import { fetchArticleText } from '../lib/article.mjs';
 import { fetchComments } from '../lib/comments.mjs';
 import { publicLookup } from '../lib/http.mjs';
@@ -60,16 +60,15 @@ export async function main({ log = console.error } = {}) {
   for (const f of readdirSync(articlesDir())) if (!known.has(f.replace(/\.txt$/, ''))) rmSync(join(articlesDir(), f));
   for (const f of readdirSync(commentsDir())) if (!known.has(f.replace(/\.json$/, ''))) rmSync(join(commentsDir(), f));
 
-  const batch = selectForDetail(items, today, cfg);
+  // Comments first: in backfill they decide whether a detailed item is worth
+  // re-queuing. Article text is fetched only for what is actually queued.
+  const backfill = process.env.DAILY_FEED_BACKFILL === '1';
+  const redditClient = makeRedditClient({ creds: redditCredentials(), lookup: cfg.redditResolvers?.length ? publicLookup(cfg.redditResolvers) : undefined });
+  const ctx = { redditClient, cfg };
+  const { batch, comments, items: marked } = await buildBatch(items, today, cfg, { backfill, commentsFor: (it) => commentsFor(it, ctx, log) });
   const texts = [];
   for (let i = 0; i < batch.length; i += 4) {
     texts.push(...await Promise.all(batch.slice(i, i + 4).map((it) => articleText(it, log))));
-  }
-  const redditClient = makeRedditClient({ creds: redditCredentials(), lookup: cfg.redditResolvers?.length ? publicLookup(cfg.redditResolvers) : undefined });
-  const ctx = { redditClient, cfg };
-  const comments = [];
-  for (let i = 0; i < batch.length; i += 4) {
-    comments.push(...await Promise.all(batch.slice(i, i + 4).map((it) => commentsFor(it, ctx, log))));
   }
   batch.forEach((it, i) => writeFileSync(join(queueDir(), `${it.id}.md`), queueFile(it, texts[i], comments[i])));
   writeJson(join(queueDir(), 'index.json'), {
@@ -77,9 +76,8 @@ export async function main({ log = console.error } = {}) {
     items: batch.map((it) => ({ id: it.id, input: `data/detail-queue/${it.id}.md`, output: `data/details/${it.id}.txt` })),
   });
 
-  const ids = new Set(batch.map((b) => b.id));
-  if (ids.size) writeJson(dataFile('items.json'), items.map((i) => (ids.has(i.id) ? { ...i, detailTriedAt: today } : i)));
-  log(`[detail-prep] queued ${batch.length} (${texts.filter(Boolean).length} with article text, ${comments.filter((c) => c.length).length} with comments)`);
+  if (marked !== items) writeJson(dataFile('items.json'), marked);
+  log(`[detail-prep] queued ${batch.length}${backfill ? ' (backfill)' : ''} (${texts.filter(Boolean).length} with article text, ${comments.filter((c) => c.length).length} with comments)`);
   return batch.length;
 }
 

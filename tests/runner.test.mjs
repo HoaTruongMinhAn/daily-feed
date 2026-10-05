@@ -12,6 +12,16 @@ test('runner is valid bash', () => {
   execFileSync('bash', ['-n', path]);
 });
 
+test('--backfill is a manual detail-only flag that tells detail-prep to cover every item', () => {
+  assert.match(sh, /--backfill\) BACKFILL=1 ;;/);
+  assert.ok(sh.includes('[ "$BACKFILL" = 0 ] || [ "$DETAIL_ONLY" = 1 ] || { echo "--backfill needs --detail-only" >&2; exit 2; }'));
+  assert.ok(sh.includes('export DAILY_FEED_BACKFILL="$BACKFILL"'));
+  assert.ok(sh.includes('MAX_BATCHES=$([ "$BACKFILL" = 1 ] && echo 60 || echo 20)'));
+  assert.ok(sh.includes('for _ in $(seq 1 "$MAX_BATCHES"); do'));
+  const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+  assert.equal(pkg.scripts['feed:backfill'], 'bash scripts/daily-feed-run.sh --now --detail-only --backfill');
+});
+
 test('runner pins model, effort and fallback per claude step, overridable by env', () => {
   assert.ok(sh.includes('CURATE_MODEL="${DAILY_FEED_CURATE_MODEL:-claude-sonnet-5-5}"'));
   assert.ok(sh.includes('CURATE_EFFORT="${DAILY_FEED_CURATE_EFFORT:-medium}"'));

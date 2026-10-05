@@ -19,6 +19,7 @@ node --test --test-name-pattern="stale" tests/merge.test.mjs   # one test
 npm run feed:stub   # fetch → stub-curate → merge → build; no Claude, no commit
 npm run feed        # same with real `claude -p "/daily-feed-curate"`; no commit
 npm run feed:detail # only write missing Vietnamese details for current items, then build
+npm run feed:backfill # same over every item, no daily cap, plus discussions for detailed items
 npm run serve       # serve site/ on :8080
 ```
 
@@ -69,8 +70,11 @@ One pipeline, driven by `scripts/daily-feed-run.sh`, with JSON files in
    `retentionDays` and `dropped.json` to `droppedMemoryDays`.
 4. **detail**, in a loop of batches (`detailBatchSize`, up to
    `detailMaxPerDay`): `scripts/detail-prep.mjs` picks recent items missing
-   `detail` or `detailEn` that were not tried today (`selectForDetail` in
-   `lib/detail.mjs`), fetches article text via `lib/article.mjs` (public
+   `detail` or `detailEn` that were not tried today (`selectForDetail` /
+   `buildBatch` in `lib/detail.mjs`; `--backfill` drops the window and the
+   cap and also picks detailed items with a readable thread and no
+   `discussionTriedAt`, keeping them only when the thread gave comments),
+   fetches article text via `lib/article.mjs` (public
    addresses only: IP literals, every redirect hop and the connect-time DNS
    answer are checked, since item links are strangers' URLs) into the
    cache `data/articles/<id>.txt` (never refetched; empty = nothing usable),

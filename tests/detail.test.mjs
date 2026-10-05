@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { selectForDetail, queueFile, parseDetail, ungroundedTokens, sourceTextFor, DETAIL_EN_MARKER, DISCUSSION_VI_MARKER, DISCUSSION_EN_MARKER, parseDiscussionSection } from '../lib/detail.mjs';
+import { selectForDetail, buildBatch, queueFile, parseDetail, ungroundedTokens, sourceTextFor, DETAIL_EN_MARKER, DISCUSSION_VI_MARKER, DISCUSSION_EN_MARKER, parseDiscussionSection } from '../lib/detail.mjs';
 import { stubDetail } from '../scripts/stub-detail.mjs';
 
 const cfg = { detailDays: 2, detailBatchSize: 2, detailMaxPerDay: 3 };
@@ -20,6 +20,47 @@ test('selectForDetail picks recent items missing either detail, best rank first,
   assert.deepEqual(selectForDetail(tried, '2026-10-04', cfg).map((i) => i.id), [], 'f, b, h used the budget of 3');
   assert.deepEqual(selectForDetail(tried, '2026-10-04', { ...cfg, detailMaxPerDay: 10 }).map((i) => i.id), ['c', 'a']);
   assert.deepEqual(selectForDetail(tried, '2026-10-04', { ...cfg, detailMaxPerDay: 10, detailBatchSize: 5 }).map((i) => i.id), ['c', 'a', 'g']);
+});
+
+test('selectForDetail backfill: any age, no daily budget, and detailed items with a thread but no discussion yet', () => {
+  const hn = 'https://news.ycombinator.com/item?id=1';
+  const items = [
+    it('old', { addedAt: '2026-09-25', rank: 0.1 }),                                         // missing detail, outside the 2-day window
+    it('en', { addedAt: '2026-09-28', rank: 0.2, detail: 'vi only' }),                        // missing English
+    it('thr', { rank: 0.9, detail: 'x', detailEn: 'y', discussionUrl: hn }),                  // needs a discussion
+    it('done', { rank: 0.8, detail: 'x', detailEn: 'y', discussionUrl: hn, discussion: 'd' }),
+    it('tried', { rank: 0.7, detail: 'x', detailEn: 'y', discussionUrl: hn, discussionTriedAt: '2026-10-01' }),
+    it('nothr', { rank: 0.6, detail: 'x', detailEn: 'y', discussionUrl: 'https://app.daily.dev/posts/x' }),
+    it('today', { rank: 0.5, detailTriedAt: '2026-10-04' }),
+  ];
+  const big = { ...cfg, detailBatchSize: 10, detailMaxPerDay: 0 };
+  assert.deepEqual(selectForDetail(items, '2026-10-04', big, { backfill: true }).map((i) => i.id), ['thr', 'en', 'old']);
+  assert.deepEqual(selectForDetail(items, '2026-10-04', big).map((i) => i.id), [], 'normal mode keeps the window and the budget');
+  assert.equal(selectForDetail(items, '2026-10-04', { ...big, detailBatchSize: 2 }, { backfill: true }).length, 2, 'still one batch at a time');
+});
+
+test('buildBatch: skips a detailed item whose threads have no usable comments, refills the batch, marks every attempt', async () => {
+  const hn = (n) => `https://news.ycombinator.com/item?id=${n}`;
+  const items = [
+    it('a', { rank: 0.9, detail: 'x', detailEn: 'y', discussionUrl: hn(1) }),   // comments → kept
+    it('b', { rank: 0.8, detail: 'x', detailEn: 'y', discussionUrl: hn(2) }),   // no comments → skipped
+    it('c', { rank: 0.7, discussionUrl: hn(3) }),                               // needs detail → kept even without comments
+    it('d', { rank: 0.6 }),                                                     // needs detail, no thread
+  ];
+  const fetched = [];
+  const commentsFor = async (item) => { fetched.push(item.id); return item.id === 'a' ? [{ author: '@x', source: 'Hacker News', score: null, text: 't' }] : []; };
+  const { batch, comments, items: next } = await buildBatch(items, '2026-10-04', { ...cfg, detailBatchSize: 3, detailMaxPerDay: 0 }, { backfill: true, commentsFor });
+  assert.deepEqual(batch.map((i) => i.id), ['a', 'c', 'd']);
+  assert.deepEqual(comments.map((c) => c.length), [1, 0, 0]);
+  assert.deepEqual(fetched, ['a', 'b', 'c', 'd'], 'items without threads are still asked (cheap: no recognised thread, no request)');
+  const by = Object.fromEntries(next.map((i) => [i.id, i]));
+  assert.equal(by.a.detailTriedAt, '2026-10-04');
+  assert.equal(by.a.discussionTriedAt, '2026-10-04');
+  assert.equal(by.b.discussionTriedAt, '2026-10-04', 'one discussion attempt, never re-selected');
+  assert.equal(by.b.detailTriedAt, undefined, 'its detail is not touched');
+  assert.equal(by.d.discussionTriedAt, undefined, 'no thread, no discussion attempt');
+  const normal = await buildBatch([it('n', { addedAt: '2026-10-04' })], '2026-10-04', cfg, { commentsFor: async () => [] });
+  assert.deepEqual(normal.batch.map((i) => i.id), ['n']);
 });
 
 test('queueFile marks article text as untrusted and handles a missing article', () => {
