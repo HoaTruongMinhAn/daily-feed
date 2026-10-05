@@ -59,4 +59,6 @@ test('style.css hides the inactive language and shows Vietnamese without JS', ()
   assert.ok(css.includes('html[data-lang="en"] .l-vi'));
   assert.ok(css.includes('html:not([data-lang]) .l-en'));
   assert.ok(css.includes(`html[data-lang="en"] .card--read .card__meta::after { content: 'read'; }`));
+  assert.ok(css.includes(`html[data-lang="en"] .card__toggle::before { content: '▸ Show detail'; }`));
+  assert.ok(css.includes(`html[data-lang="en"] .card__details[open] .card__toggle::before { content: '▾ Collapse'; }`));
 });

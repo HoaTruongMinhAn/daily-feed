@@ -2,26 +2,36 @@
 // this file wires them to the DOM. Nothing from storage or an imported file
 // is ever assigned to innerHTML. Spec:
 // docs/superpowers/specs/2026-10-04-saved-and-read-state-design.md
+// Language: lang.js sets html[data-lang] before paint; strings.js holds every
+// UI string; this file wires the dropdown and re-renders the strings it sets
+// itself. Spec: docs/superpowers/specs/2026-10-05-bilingual-site-design.md
 import {
   STORAGE_KEY, CORRUPT_KEY, MAX_IMPORT_BYTES, LIMITS, MAX_TAGS, MAX_TAG,
   parseState, prune, markOpened, markSeen, isHiddenOnHome, isSaved, save, unsave, savedList,
   mergeImport, groupOf, isHttpUrl, rebase, isOpeningClick,
 } from './state.js';
+import { LANGS, LANG_KEY, GROUP_LABEL, CATEGORY_LABEL, t, hotLabelEn } from './strings.js';
 
 const SEEN_MS = 2000;
 const SEEN_RATIO = 0.6;
 const GROUPS = ['ai', 'testing', 'it', 'humor', 'hot'];
-const NO_STORAGE = 'Không lưu được trên trình duyệt này';
-const CANNOT_SAVE = 'Không lưu được bài này';
-const IMPORT_ERROR = {
-  size: 'Tệp quá lớn (tối đa 5 MB)',
-  json: 'Tệp không phải JSON',
-  format: 'Tệp không đúng định dạng Daily Feed',
-};
+const IMPORT_ERROR = { size: 'importSize', json: 'importJson', format: 'importFormat' };
+
+// ---- language (lang.js already set html[data-lang] before paint)
+
+const root = document.documentElement;
+let lang = LANGS.includes(root.dataset.lang) ? root.dataset.lang : 'vi';
+const tr = (key, ...args) => t(key, lang, ...args);
 
 const $ = (sel) => document.querySelector(sel);
 const setHidden = (sel, hidden) => { const e = $(sel); if (e) e.hidden = hidden; };
-const say = (text) => { const m = $('#state-msg'); if (m) m.textContent = text; };
+// Status messages are kept by key so a language switch can re-render them.
+let message = null;
+const say = (key, ...args) => {
+  message = key ? { key, args } : null;
+  const m = $('#state-msg');
+  if (m) m.textContent = key ? tr(key, ...args) : '';
+};
 
 // ---- storage
 
@@ -42,10 +52,10 @@ function persist() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     storageOk = true;
-    if ($('#state-msg')?.textContent === NO_STORAGE) say('');
+    if (message?.key === 'noStorage') say(null);
   } catch {
     storageOk = false;
-    say(NO_STORAGE);
+    say('noStorage');
   }
 }
 
@@ -172,8 +182,19 @@ function appendDetail(body, detail) {
   }
 }
 
+// A bilingual text as two spans, mirroring pair() in lib/render.mjs.
+function pairEl(tag, cls, vi, en, { fallbackEn = false } = {}) {
+  const mk = (l, text) => {
+    const e = el(tag, `${cls ? `${cls} ` : ''}l l-${l}`, text);
+    e.lang = l;
+    if (l === 'en' && fallbackEn) e.dataset.fallback = '';
+    return e;
+  };
+  return [mk('vi', vi), mk('en', en)];
+}
+
 function saveButton() {
-  const b = el('button', 'card__save', 'Save');
+  const b = el('button', 'card__save', tr('save'));
   b.type = 'button';
   return b;
 }
@@ -188,38 +209,51 @@ function buildCard(item) {
   if (item.categoryLabel) card.dataset.categoryLabel = item.categoryLabel;
   card.dataset.added = item.addedAt;
   const meta = el('div', 'card__meta');
-  meta.append(el('span', `chip chip--${g}`, item.categoryLabel || ($(`[data-filter="${g}"]`)?.textContent ?? g)), el('span', 'card__src', item.sourceName), saveButton());
+  const chip = el('span', `chip chip--${g}`);
+  if (item.categoryLabel) chip.append(...pairEl('span', '', item.categoryLabel, hotLabelEn(item.category)));
+  else if (CATEGORY_LABEL[item.category]) chip.textContent = CATEGORY_LABEL[item.category];
+  else chip.append(...pairEl('span', '', GROUP_LABEL[g].vi, GROUP_LABEL[g].en));
+  meta.append(chip, el('span', 'card__src', item.sourceName), saveButton());
   const title = el('h3', 'card__title');
   const parts = [title];
   if (item.titleVi) {
-    const orig = el('span', 'card__orig', item.title);
+    const orig = el('span', 'card__orig l l-vi', item.title);
     orig.lang = 'en';
     parts.push(orig);
   }
-  parts.push(el('span', 'card__summary', item.summary));
-  const heading = item.titleVi || item.title;
+  parts.push(...pairEl('span', 'card__summary', item.summary, item.summaryEn || item.summary, { fallbackEn: !item.summaryEn }));
+  const heading = pairEl('span', '', item.titleVi || item.title, item.title);
+  // Without an English detail the English block borrows the Vietnamese one,
+  // marked data-fallback and prefixed with a note (same as lib/render.mjs).
+  const detailBlock = (l, text, fallback) => {
+    const body = el('div', `card__detail l l-${l}`);
+    body.lang = l;
+    if (fallback) { body.dataset.fallback = ''; body.append(el('p', 'card__note', t('viOnly', 'en'))); }
+    appendDetail(body, text);
+    const src = el('p', 'card__source');
+    src.append(linkEl(item.url, t('readOriginal', l), 'card__go'));
+    body.append(src);
+    return body;
+  };
   let head;
   if (item.detail) {
-    title.textContent = heading;
+    title.append(...heading);
     head = el('details', 'card__details');
     const summary = el('summary', 'card__head');
     const toggle = el('span', 'card__toggle');
     toggle.setAttribute('aria-hidden', 'true');
     summary.append(...parts, toggle);
-    const body = el('div', 'card__detail');
-    appendDetail(body, item.detail);
-    const src = el('p', 'card__source');
-    src.append(linkEl(item.url, 'Đọc bài gốc', 'card__go'));
-    body.append(src);
-    head.append(summary, body);
+    head.append(summary, detailBlock('vi', item.detail, false), detailBlock('en', item.detailEn || item.detail, !item.detailEn));
   } else {
-    title.append(linkEl(item.url, heading));
+    const a = linkEl(item.url, '');
+    a.append(...heading);
+    title.append(a);
     head = el('div', 'card__head');
     head.append(...parts);
   }
   const foot = el('div', 'card__foot');
   const tags = el('span', 'tags');
-  tags.append(...item.tags.map((t) => el('span', 'tag', t)));
+  tags.append(...item.tags.map((tg) => el('span', 'tag', tg)));
   foot.append(tags);
   card.append(meta, head, foot);
   return card;
@@ -233,12 +267,14 @@ const textOf = (card, sel) => card.querySelector(sel)?.textContent.trim() ?? '';
 const inlineText = (node) => [...node.childNodes]
   .map((n) => (n.nodeName === 'BR' ? '\n' : n.nodeName === 'CODE' ? `\`${n.textContent}\`` : n.textContent)).join('').trim();
 
-function detailText(card) {
-  const body = card.querySelector('.card__detail');
-  if (!body) return '';
+// Rebuilds the detail text of one language block; '' for a fallback block
+// (borrowed Vietnamese text must not be stored as English).
+function detailText(card, l) {
+  const body = card.querySelector(`.card__detail.l-${l}`);
+  if (!body || (l === 'en' && body.hasAttribute('data-fallback'))) return '';
   const blocks = [];
   for (const child of body.children) {
-    if (child.classList.contains('card__source')) continue;
+    if (child.classList.contains('card__source') || child.classList.contains('card__note')) continue;
     if (child.tagName === 'UL') blocks.push([...child.children].map((li) => `- ${inlineText(li)}`).join('\n'));
     else if (child.tagName === 'P') blocks.push(inlineText(child));
   }
@@ -248,20 +284,23 @@ function detailText(card) {
 function snapshotFromCard(card) {
   const clip = (key, s) => s.slice(0, LIMITS[key]);
   const orig = textOf(card, '.card__orig');
-  const heading = textOf(card, '.card__title');
+  const summaryEnEl = card.querySelector('.card__summary.l-en');
   return {
     id: card.dataset.id,
     // A link too long to store is dropped rather than refusing the save.
     url: (card.dataset.url || '').length > 2000 ? '' : card.dataset.url || '',
-    title: clip('title', orig || heading),
-    titleVi: orig ? clip('titleVi', heading) : '',
-    summary: clip('summary', textOf(card, '.card__summary')),
-    detail: clip('detail', detailText(card)),
+    // The `||` fallbacks read a card rendered before the language pairs existed.
+    title: clip('title', textOf(card, '.card__title .l-en') || orig || textOf(card, '.card__title')),
+    titleVi: orig ? clip('titleVi', textOf(card, '.card__title .l-vi') || textOf(card, '.card__title')) : '',
+    summary: clip('summary', textOf(card, '.card__summary.l-vi') || textOf(card, '.card__summary')),
+    summaryEn: summaryEnEl && !summaryEnEl.hasAttribute('data-fallback') ? clip('summaryEn', summaryEnEl.textContent.trim()) : '',
+    detail: clip('detail', detailText(card, 'vi')),
+    detailEn: clip('detailEn', detailText(card, 'en')),
     category: clip('category', card.dataset.category || ''),
     categoryLabel: clip('categoryLabel', card.dataset.categoryLabel || ''),
     sourceName: clip('sourceName', textOf(card, '.card__src')),
     addedAt: clip('addedAt', card.dataset.added || ''),
-    tags: [...card.querySelectorAll('.tag')].slice(0, MAX_TAGS).map((t) => t.textContent.trim().slice(0, MAX_TAG)),
+    tags: [...card.querySelectorAll('.tag')].slice(0, MAX_TAGS).map((tg) => tg.textContent.trim().slice(0, MAX_TAG)),
   };
 }
 
@@ -271,9 +310,9 @@ function syncSaveButtons() {
   document.querySelectorAll('.card__save').forEach((b) => {
     const on = isSaved(state, b.closest('.card')?.dataset.id);
     b.setAttribute('aria-pressed', String(on));
-    b.textContent = on ? 'Saved' : 'Save';
-    b.title = on ? 'Bỏ lưu' : 'Lưu';
-    b.setAttribute('aria-label', on ? 'Bỏ lưu bài' : 'Lưu bài');
+    b.textContent = tr(on ? 'savedBtn' : 'save');
+    b.title = tr(on ? 'unsave' : 'save');
+    b.setAttribute('aria-label', tr(on ? 'unsaveItem' : 'saveItem'));
   });
   const n = Object.keys(state.saved).length;
   document.querySelectorAll('[data-saved-count]').forEach((s) => { s.textContent = `(${n})`; });
@@ -311,7 +350,7 @@ function onCardClick(e) {
       saving = !isSaved(s, id);
       return saving ? save(s, snapshotFromCard(card), Date.now()) : unsave(s, id);
     });
-    if (saving && !isSaved(state, id)) say(CANNOT_SAVE);
+    if (saving && !isSaved(state, id)) say('cannotSave');
     syncSaveButtons();
     return;
   }
@@ -363,7 +402,7 @@ async function importState(input) {
   const file = input.files?.[0];
   input.value = '';
   if (!file) return;
-  if (file.size > MAX_IMPORT_BYTES) { say(IMPORT_ERROR.size); return; }
+  if (file.size > MAX_IMPORT_BYTES) { say('importSize'); return; }
   const text = await file.text();
   const res = mergeImport(storageOk ? rebase(state, stored(), Date.now()) : state, text);
   if (!res.ok) { say(IMPORT_ERROR[res.error]); return; }
@@ -371,8 +410,8 @@ async function importState(input) {
   persist();
   syncSaveButtons();
   if (view === 'saved') { renderSaved(); apply(); }
-  const done = `Đã nhập: ${res.saved} lưu, ${res.read} đã đọc${res.skipped ? `, bỏ qua ${res.skipped} mục lỗi` : ''}`;
-  say(storageOk ? done : `${done} · ${NO_STORAGE}`);
+  say('imported', res);
+  if (!storageOk) { const m = $('#state-msg'); if (m) m.textContent += ` · ${tr('noStorage')}`; }
 }
 
 // ---- init
@@ -407,6 +446,24 @@ $('#export')?.addEventListener('click', exportState);
 const fileInput = $('#import-file');
 $('#import')?.addEventListener('click', () => fileInput?.click());
 fileInput?.addEventListener('change', () => importState(fileInput));
+
+// Language dropdown: flips html[data-lang] (CSS does the rest), remembers
+// the choice, and refreshes the few strings this script sets itself.
+const langSel = $('#lang');
+function setLang(next) {
+  if (!LANGS.includes(next)) return;
+  lang = next;
+  if (window.DailyFeedLang) window.DailyFeedLang.applyLang(document, lang);
+  else { root.dataset.lang = lang; root.lang = lang; }
+  try { localStorage.setItem(LANG_KEY, lang); } catch { /* remembered for this page only */ }
+  if (langSel) langSel.value = lang;
+  syncSaveButtons();
+  if (message) say(message.key, ...message.args);
+}
+if (langSel) {
+  langSel.value = lang;
+  langSel.addEventListener('change', () => setLang(langSel.value));
+}
 
 // Broken card images drop their link. Done here, not by an inline onerror,
 // so the page CSP can forbid inline script. Images that failed before this

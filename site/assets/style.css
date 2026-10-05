@@ -151,6 +151,8 @@ footer { color: var(--muted); font-size: 12px; padding-top: 40px; padding-bottom
    lang.js sets html[data-lang] before paint. Without JS the page is Vietnamese. */
 html[data-lang="vi"] .l-en, html[data-lang="en"] .l-vi, html:not([data-lang]) .l-en { display: none; }
 html[data-lang="en"] .card--read .card__meta::after { content: 'read'; }
+html[data-lang="en"] .card__toggle::before { content: '▸ Show detail'; }
+html[data-lang="en"] .card__details[open] .card__toggle::before { content: '▾ Collapse'; }
 .card__note { margin: 0 0 10px; font-size: 13px; font-style: italic; color: var(--muted); }
 .lang {
   font: inherit; font-family: var(--mono); font-size: 13px; color: var(--muted);
