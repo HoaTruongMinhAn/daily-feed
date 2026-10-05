@@ -1,21 +1,25 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { selectForDetail, queueFile, parseDetail, ungroundedTokens, sourceTextFor } from '../lib/detail.mjs';
+import { selectForDetail, queueFile, parseDetail, ungroundedTokens, sourceTextFor, DETAIL_EN_MARKER } from '../lib/detail.mjs';
 import { stubDetail } from '../scripts/stub-detail.mjs';
 
 const cfg = { detailDays: 2, detailBatchSize: 2, detailMaxPerDay: 3 };
 const it = (id, extra = {}) => ({ id, title: `T${id}`, url: `https://a.com/${id}`, sourceName: 'HN', category: 'ai-tip', summary: 'Tóm tắt.', rank: 1, addedAt: '2026-10-04', ...extra });
+const EN = '\n\n===== EN =====\n\n';
+const enBody = 'Paragraph one. '.repeat(20);
 
-test('selectForDetail picks recent items without detail, best rank first, within batch and daily budget', () => {
+test('selectForDetail picks recent items missing either detail, best rank first, within batch and daily budget', () => {
   const items = [
     it('a', { rank: 0.2 }), it('b', { rank: 0.9 }), it('c', { rank: 0.5 }),
-    it('d', { detail: 'x' }), it('e', { addedAt: '2026-10-02' }), it('f', { detailTriedAt: '2026-10-04' }),
+    it('d', { detail: 'x', detailEn: 'y' }), it('e', { addedAt: '2026-10-02' }), it('f', { detailTriedAt: '2026-10-04' }),
     it('g', { addedAt: '2026-10-03', rank: 0.1, detailTriedAt: '2026-10-03' }),
+    it('h', { rank: 0.7, detail: 'vietnamese only' }),
   ];
-  assert.deepEqual(selectForDetail(items, '2026-10-04', cfg).map((i) => i.id), ['b', 'c']);
-  const tried = items.map((i) => (['b', 'c'].includes(i.id) ? { ...i, detailTriedAt: '2026-10-04' } : i));
-  assert.deepEqual(selectForDetail(tried, '2026-10-04', cfg).map((i) => i.id), [], 'f, b, c used the budget of 3');
-  assert.deepEqual(selectForDetail(tried, '2026-10-04', { ...cfg, detailMaxPerDay: 10 }).map((i) => i.id), ['a', 'g']);
+  assert.deepEqual(selectForDetail(items, '2026-10-04', cfg).map((i) => i.id), ['b', 'h'], 'h has a Vietnamese detail but no English one, so it is redone');
+  const tried = items.map((i) => (['b', 'h'].includes(i.id) ? { ...i, detailTriedAt: '2026-10-04' } : i));
+  assert.deepEqual(selectForDetail(tried, '2026-10-04', cfg).map((i) => i.id), [], 'f, b, h used the budget of 3');
+  assert.deepEqual(selectForDetail(tried, '2026-10-04', { ...cfg, detailMaxPerDay: 10 }).map((i) => i.id), ['c', 'a']);
+  assert.deepEqual(selectForDetail(tried, '2026-10-04', { ...cfg, detailMaxPerDay: 10, detailBatchSize: 5 }).map((i) => i.id), ['c', 'a', 'g']);
 });
 
 test('queueFile marks article text as untrusted and handles a missing article', () => {
@@ -24,16 +28,25 @@ test('queueFile marks article text as untrusted and handles a missing article', 
   assert.ok(queueFile(it('a'), '').includes('(article text unavailable)'));
 });
 
-test('parseDetail splits title from body and enforces limits', () => {
+test('parseDetail splits title, Vietnamese and English halves and enforces limits on each', () => {
+  assert.equal(DETAIL_EN_MARKER, '===== EN =====');
   const body = 'Đoạn một. '.repeat(30) + '\n\n\n\n- ý một\n- ý hai';
-  const ok = parseDetail(`Tiêu đề tiếng Việt\r\n\r\n${body}\u0007`);
+  const ok = parseDetail(`Tiêu đề tiếng Việt\r\n\r\n${body}\u0007\r\n\r\n===== EN =====\r\n\r\n${enBody}\n\n\n- point one\n`);
   assert.deepEqual(ok.errors, []);
   assert.equal(ok.titleVi, 'Tiêu đề tiếng Việt');
   assert.ok(ok.detail.endsWith('- ý một\n- ý hai') && !ok.detail.includes('\n\n\n'));
+  assert.ok(ok.detailEn.startsWith('Paragraph one.') && ok.detailEn.endsWith('- point one') && !ok.detailEn.includes('\n\n\n'));
+  assert.ok(!ok.detail.includes('EN =====') && !ok.detailEn.includes('EN ====='));
   assert.ok(parseDetail('only a title').errors.includes('no body'));
-  assert.ok(parseDetail('Title\n\nshort').errors.some((e) => e.startsWith('bad detail length')));
-  assert.ok(parseDetail(`${'x'.repeat(141)}\n\n${body}`).errors.includes('bad titleVi'));
-  assert.ok(parseDetail(`T\n\n${'y'.repeat(4001)}`).errors.some((e) => e.startsWith('bad detail length')));
+  assert.deepEqual(parseDetail(`Title\n\n${body}`).errors, ['no english detail'], 'review focus 4: no marker rejects the whole file');
+  assert.ok(parseDetail(`Title\n\nshort${EN}${enBody}`).errors.some((e) => e.startsWith('bad detail length')));
+  assert.deepEqual(parseDetail(`Title\n\n${body}${EN}`).errors, ['bad detailEn length 0'], 'review focus 4: empty English half');
+  assert.ok(parseDetail(`Title\n\n${body}${EN}short`).errors.some((e) => e.startsWith('bad detailEn length')));
+  assert.ok(parseDetail(`${'x'.repeat(141)}\n\n${body}${EN}${enBody}`).errors.includes('bad titleVi'));
+  assert.ok(parseDetail(`T\n\n${'y'.repeat(4001)}${EN}${enBody}`).errors.some((e) => e.startsWith('bad detail length')));
+  assert.ok(parseDetail(`T\n\n${body}${EN}${'y'.repeat(4001)}`).errors.some((e) => e.startsWith('bad detailEn length')));
+  const indented = parseDetail(`T\n\n${body}\n  ===== EN =====  \n${enBody}`);
+  assert.deepEqual(indented.errors, [], 'marker with surrounding spaces still splits');
 });
 
 test('stubDetail output passes parseDetail', () => {
@@ -52,15 +65,18 @@ test('ungroundedTokens finds names and numbers missing from the source (review f
 
 test('parseDetail rejects two or more ungrounded tokens and reports one', () => {
   const body = 'Playwright 1.48 thêm trace viewer v2 vào CLI. '.repeat(6);
-  const ok = parseDetail(`Playwright 1.48 có gì mới\n\n${body}`, SRC);
+  const en = 'Playwright 1.48 adds trace viewer v2 to the CLI. '.repeat(5);
+  const ok = parseDetail(`Playwright 1.48 có gì mới\n\n${body}${EN}${en}`, SRC);
   assert.deepEqual(ok.errors, []);
   assert.deepEqual(ok.ungrounded, []);
-  const one = parseDetail(`Playwright 1.48 có gì mới\n\n${body} Kubernetes.`, SRC);
+  const one = parseDetail(`Playwright 1.48 có gì mới\n\n${body} Kubernetes.${EN}${en}`, SRC);
   assert.deepEqual(one.errors, []);
   assert.deepEqual(one.ungrounded, ['Kubernetes']);
-  const two = parseDetail(`Playwright 1.48 có gì mới\n\n${body} Kubernetes và Cypress.`, SRC);
+  const two = parseDetail(`Playwright 1.48 có gì mới\n\n${body} Kubernetes và Cypress.${EN}${en}`, SRC);
   assert.deepEqual(two.errors, ['ungrounded: Kubernetes | Cypress']);
-  assert.deepEqual(parseDetail(`Tiêu đề\n\n${body} Kubernetes và Cypress.`).errors, [], 'no sourceText: no check');
+  const twoEn = parseDetail(`Playwright 1.48 có gì mới\n\n${body}${EN}${en} Kubernetes and Cypress.`, SRC);
+  assert.deepEqual(twoEn.errors, ['ungrounded: Kubernetes | Cypress'], 'the English half is checked too');
+  assert.deepEqual(parseDetail(`Tiêu đề\n\n${body} Kubernetes và Cypress.${EN}${en}`).errors, [], 'no sourceText: no check');
 });
 
 test('sourceTextFor joins article, titles, excerpt, summary, source and url; empty article still checks against the rest', () => {
@@ -81,7 +97,8 @@ test('ungroundedTokens checks only numbers when the source is mostly CJK (names 
 test('a versioned name and its embedded number count as one miss (final review)', () => {
   assert.deepEqual(ungroundedTokens('GPT-5.5 và 405B.', 'An unrelated English source text.'), ['GPT-5.5', '405B']);
   const body = 'Playwright 1.48 thêm trace viewer v2 vào CLI. '.repeat(6);
-  assert.deepEqual(parseDetail(`Playwright 1.48 có gì mới\n\n${body} So với GPT-5.5.`, SRC).errors, [], 'one invented name is a note, not a reject');
+  const en = 'Playwright 1.48 adds trace viewer v2 to the CLI. '.repeat(5);
+  assert.deepEqual(parseDetail(`Playwright 1.48 có gì mới\n\n${body} So với GPT-5.5.${EN}${en}`, SRC).errors, [], 'one invented name is a note, not a reject');
   assert.deepEqual(ungroundedTokens('Mô hình GPT-5.5 nhanh hơn.', '模型速度提升。'.repeat(10)), ['55'], 'CJK source: names unchecked, embedded numbers still checked');
 });
 

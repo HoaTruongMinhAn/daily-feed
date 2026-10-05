@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Reads the per-item files the daily-feed-detail skill wrote to
-// data/details/, validates them, and attaches titleVi + detail to items.
+// data/details/, validates them, and attaches titleVi + detail + detailEn to items.
 // Only ids that were queued are read; anything else in the folder is ignored.
 import { existsSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
@@ -32,7 +32,7 @@ export function main({ log = console.error } = {}) {
       continue;
     }
     if (parsed.ungrounded.length) log(`[detail-merge] note ${id}: unsupported ${parsed.ungrounded.join(', ')}`);
-    byId.set(id, { ...item, titleVi: parsed.titleVi, detail: parsed.detail });
+    byId.set(id, { ...item, titleVi: parsed.titleVi, detail: parsed.detail, detailEn: parsed.detailEn });
     ok++;
   }
 

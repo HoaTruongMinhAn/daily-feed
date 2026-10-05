@@ -1,8 +1,8 @@
 ---
 name: daily-feed-detail
 description: >-
-  Writes the Vietnamese title and the expandable Vietnamese detail (about
-  10-20 lines) for each Daily Feed item queued in data/detail-queue/, one
+  Writes the Vietnamese title and the expandable detail in Vietnamese and in
+  English (about 10-20 lines each) for each Daily Feed item queued in data/detail-queue/, one
   output file per item in data/details/. Invoked only by
   scripts/daily-feed-run.sh via `claude -p "/daily-feed-detail"` with
   permissions scoped to reading data/detail-queue/ and writing
@@ -32,8 +32,14 @@ Plain text, UTF-8, no markdown headings, no code fences:
 ```
 <Vietnamese title, one line, max 140 chars>
 
-<detail: paragraphs separated by one blank line; a list is lines starting with "- ">
+<Vietnamese detail: paragraphs separated by one blank line; a list is lines starting with "- ">
+
+===== EN =====
+
+<English detail: same shape, same points>
 ```
+
+The marker line is exactly `===== EN =====` on its own line. A file without it, or with an English half shorter than 200 characters, is rejected whole and the item is retried another day.
 
 ## Title
 
@@ -41,7 +47,7 @@ Natural Vietnamese rendering of the item's `title`. Keep product, tool, library 
 
 ## Detail
 
-- Vietnamese, roughly 10-20 lines on screen (about 700-2000 characters; hard limits 200-4000). Shorter is fine when the source is short; never pad.
+- Two halves, same substance: Vietnamese first, then English after the marker. Each half is roughly 10-20 lines on screen (about 700-2000 characters; hard limits 200-4000). The English half covers the same points in natural English, not a sentence-by-sentence translation. Shorter is fine when the source is short; never pad.
 - Cover, as applicable: what it is / what happened; the key points, numbers, steps or arguments; how it works; who it matters to and why, especially for testing/QA or building AI products; caveats, limits or open questions.
 - Open with one answer sentence: who did what and what changed or resulted. No "Bài viết nói về…", "Tác giả cho rằng…" openers, no background first.
 - Plain sentences; use a "- " list for steps, features or takeaways. Keep code identifiers, commands and names as written.
@@ -53,7 +59,7 @@ Natural Vietnamese rendering of the item's `title`. Keep product, tool, library 
 - **Thin source, short detail.** If the article text is unavailable or short, write only what the title, summary, and excerpt support and say briefly that the details are in the original. Never pad with general knowledge.
 - **No upgrades.** Keep relative times as written and never add a year the source does not state. "đang thử nghiệm" is not "đã áp dụng"; keep "đầu tiên / duy nhất / hoàn toàn / độc lập" only when the source says so. Do not expand acronyms the source does not expand.
 - **Title keeps the article type.** A How / Why / Guide / Review / Benchmark title is never turned into "ra mắt / phát hành / công bố". If the item title is only a version or teaser, name the subject from the source name or text.
-- **Checked by script.** After you finish, a script compares names (words with inner capitals or digits, long capitalised English words) and numbers (decimals, 3+ digits) in your title and detail against the title, excerpt, and article text. A versioned name such as `GPT-5.5` counts once. A detail with two or more that are not in the source is discarded. Names translated from a Chinese/Japanese/Korean source are fine; numbers are always checked.
+- **Checked by script.** After you finish, a script compares names (words with inner capitals or digits, long capitalised English words) and numbers (decimals, 3+ digits) in your title and both halves of the detail against the title, excerpt, and article text. A versioned name such as `GPT-5.5` counts once. A detail with two or more that are not in the source is discarded. Names translated from a Chinese/Japanese/Korean source are fine; numbers are always checked.
 
 ## Done
 
