@@ -1,0 +1,5 @@
+{ "ancestors": [], "descendants": [
+  { "id": "901", "in_reply_to_id": "117384254326007619", "content": "<p>Finally someone says it. Hard caps or it didn&#39;t happen.</p>", "favourites_count": 5, "reblogs_count": 2, "account": { "acct": "vnzn@mas.to" } },
+  { "id": "902", "in_reply_to_id": "901", "content": "<p>a nested reply long enough to pass the length filter</p>", "favourites_count": 50, "reblogs_count": 0, "account": { "acct": "nested" } },
+  { "id": "903", "in_reply_to_id": "117384254326007619", "content": "<p>This is a billing UX problem, not an API problem, and <a href=\"https://x.y\">providers</a> know it.</p>", "favourites_count": 1, "reblogs_count": 0, "account": { "acct": "ops" } }
+] }

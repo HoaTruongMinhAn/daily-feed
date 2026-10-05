@@ -1,0 +1,10 @@
+[
+  { "kind": "Listing", "data": { "children": [ { "kind": "t3", "data": { "title": "Trace viewer" } } ] } },
+  { "kind": "Listing", "data": { "children": [
+    { "kind": "t1", "data": { "author": "qa_lead", "body": "We added hard caps after an agent spent $400 overnight. Never again.", "score": 88, "depth": 0 } },
+    { "kind": "t1", "data": { "author": "[deleted]", "body": "[removed]", "score": 3, "depth": 0 } },
+    { "kind": "t1", "data": { "author": "nested", "body": "a nested reply long enough to pass the length filter", "score": 500, "depth": 1 } },
+    { "kind": "more", "data": { "count": 12 } },
+    { "kind": "t1", "data": { "author": "contrarian", "body": "Caps just move the failure from your bill to your users. Pick your poison.", "score": 41, "depth": 0 } }
+  ] } }
+]

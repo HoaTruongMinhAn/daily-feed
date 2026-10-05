@@ -1,0 +1,7 @@
+{ "id": 100, "type": "story", "title": "Default hard budget caps", "children": [
+  { "id": 201, "author": "tptacek", "points": null, "type": "comment", "text": "<p>Hard caps are table stakes for any pay-by-usage API. I&#x27;ve been burned twice.</p>", "children": [
+    { "id": 301, "author": "reply", "text": "<p>Same here, a reply that must not be included at all</p>", "children": [] } ] },
+  { "id": 202, "author": "dang", "points": null, "type": "comment", "text": null, "children": [] },
+  { "id": 203, "author": "skeptic", "points": null, "type": "comment", "text": "Soft caps with a warning email are enough for most people, &quot;hard&quot; caps break prod at 3am.", "children": [] },
+  { "id": 204, "author": "c", "points": null, "type": "comment", "text": "+1", "children": [] }
+] }
