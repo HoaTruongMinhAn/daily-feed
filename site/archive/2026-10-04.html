@@ -15,7 +15,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-04</a>
-    <span class="top__date">refreshed 2026-10-04</span>
+    <span class="top__date">refreshed 2026-10-05</span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button">All</button><button class="pill" data-filter="ai" type="button">AI</button><button class="pill" data-filter="testing" type="button">Testing</button><button class="pill" data-filter="it" type="button">IT</button><button class="pill" data-filter="humor" type="button">Humor</button><button class="pill" data-filter="hot" type="button">Hot trên mạng</button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false">Saved <span data-saved-count></span></button></nav>
 </header>
@@ -118,7 +118,7 @@
 <article class="card" data-group="ai" data-id="3ba89625595d441660969d2fe678f22c0efbe6fa" data-url="https://simonwillison.net/2026/Oct/3/default-hard-budget-caps" data-category="ai-tip" data-added="2026-10-04">
   <div class="card__meta">
     <span class="chip chip--ai">AI tip</span>
-    <span class="card__src">Simon Willison · Hacker News · Lobsters</span> <span class="card__buzz">3 nguồn</span>
+    <span class="card__src">Simon Willison · Hacker News · Lobsters · Mastodon</span> <span class="card__buzz">4 nguồn</span>
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
@@ -143,7 +143,7 @@
   
   <div class="card__foot">
     <span class="tags"><span class="tag">cost</span><span class="tag">api</span><span class="tag">coding-agent</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=49949235" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://news.ycombinator.com/item?id=49949235" target="_blank" rel="noopener">more 1</a> <a class="card__link" href="https://lobste.rs/s/xkwswd/we_re_going_need_default_hard_budget_caps" target="_blank" rel="noopener">more 2</a></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=49949235" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://news.ycombinator.com/item?id=49949235" target="_blank" rel="noopener">more 1</a> <a class="card__link" href="https://lobste.rs/s/xkwswd/we_re_going_need_default_hard_budget_caps" target="_blank" rel="noopener">more 2</a> <a class="card__link" href="https://mas.to/@vnzn/117384254326007619" target="_blank" rel="noopener">more 3</a></span>
   </div>
   <div class="hot" style="--hot: 44%"></div>
 </article>
@@ -3602,6 +3602,36 @@
   </div>
   <div class="hot" style="--hot: 2%"></div>
 </article>
+<article class="card" data-group="ai" data-id="9641f0c84823c573b79c4cf9239a8c0338fb6bd5" data-url="https://blog.documentfoundation.org/blog/2026/09/03/yes-no-ai-is-now-a-feature" data-category="ai-trend" data-added="2026-10-04">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI trend</span>
+    <span class="card__src">Lobsters · Mastodon trends</span> <span class="card__buzz">2 nguồn</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">Vâng, &quot;không có AI&quot; giờ là một tính năng</h3>
+    <span class="card__orig" lang="en">Yes, no AI is now a feature</span>
+    <span class="card__summary">Bài trên blog The Document Foundation nói về việc “không AI” nay được xem là một tính năng.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>The Document Foundation giải thích vì sao LibreOffice không đưa AI vào cấu hình mặc định: một bộ office dùng ở trường học, bệnh viện, cơ quan nhà nước và văn phòng luật sẽ không thêm tính năng mặc định cho đến khi nó đáp ứng các điều kiện theo nguyên tắc của dự án. Bài viết là phản hồi cho một bình luận trên thông báo LibreOffice 26.8: &quot;So, no AI is now a feature?&quot;</p>
+<p>Sáu điều kiện:<br>- User kiểm soát nơi chạy inference: máy local, hạ tầng do user kiểm soát, hoặc dịch vụ do user tự chọn. Mặc định âm thầm chuyển về một nhà cung cấp không phải là lựa chọn.<br>- Không nội dung nào rời máy khi chưa được phép (hồ sơ y tế, hồ sơ vụ án, dữ liệu học sinh...).<br>- Không telemetry dưới bất kỳ hình thức nào.<br>- Không phụ thuộc một nhà cung cấp duy nhất; interface mở, nhiều backend triển khai được.<br>- Không thỏa hiệp về định dạng: nội dung sinh ra phải là ODF, giữ cấu trúc, style và ngữ nghĩa.<br>- Hoàn toàn tùy chọn: cài và gỡ được, ẩn khỏi giao diện cho người không muốn dùng.</p>
+<p>Hiện chưa có tích hợp nào đáp ứng đủ. Ai muốn dùng AI có thể cài extension của bên thứ ba, phần lớn nối với model chạy local qua Ollama, LM Studio hoặc endpoint tương thích OpenAI; cần tự kiểm tra có cấu hình cloud endpoint hay không.</p>
+<p>Lý do khác với các bộ office lớn: công ty bán subscription dùng AI để biện minh tăng giá và giữ tài liệu trong hạ tầng của họ, còn The Document Foundation là tổ chức phi lợi nhuận, không có gói để bảo vệ hay dữ liệu để kiếm tiền.</p>
+<p>Đây không phải từ chối vĩnh viễn: nếu có cách tiếp cận đáp ứng đủ điều kiện họ sẽ đánh giá kỹ. Đến lúc đó, bản cài mặc định không có AI. Sáu tiêu chí này cũng là checklist tham khảo khi đánh giá sản phẩm AI về quyền riêng tư.</p>
+  <p class="card__source"><a class="card__go" href="https://blog.documentfoundation.org/blog/2026/09/03/yes-no-ai-is-now-a-feature" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">ai</span><span class="tag">opensource</span></span>
+    <span class="links"><a class="card__link" href="https://lobste.rs/s/sxcz4v/yes_no_ai_is_now_feature" target="_blank" rel="noopener">discussion</a></span>
+  </div>
+  <div class="hot" style="--hot: 2%"></div>
+</article>
 <article class="card" data-group="it" data-id="aa9aec19ef3bd391fb90d08d5d0c829c98726375" data-url="https://rhun.app" data-category="it-general" data-added="2026-10-04">
   <div class="card__meta">
     <span class="chip chip--it">IT</span>
@@ -3889,11 +3919,20 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/slabb/i-attack-tested-my-agents-seatbelt-heres-what-survived-15mj" target="_blank" rel="noopener">Tôi tấn công thử “dây an toàn” của agent: cái gì còn trụ lại</a></h3>
-  <span class="card__orig" lang="en">I attack-tested my agent&#39;s seatbelt. Here&#39;s what survived.</span>
-  <span class="card__summary">Một blocklist chặn lệnh phá hoại của agent qua hết test của chính nó nhưng bị bốn cách vượt qua do tác giả viết.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">Tôi tấn công thử &quot;dây an toàn&quot; của agent: thứ gì còn trụ lại</h3>
+    <span class="card__orig" lang="en">I attack-tested my agent&#39;s seatbelt. Here&#39;s what survived.</span>
+    <span class="card__summary">Một blocklist chặn lệnh phá hoại của agent qua hết test của chính nó nhưng bị bốn cách vượt qua do tác giả viết.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>Tác giả viết một blocklist chặn các lệnh phá hoại của agent; blocklist này qua hết test của chính nó nhưng lại thất bại trước bốn cách vượt qua (bypass) do chính tác giả viết.</p>
+<p>Không có nội dung bài viết, chỉ có tiêu đề và đoạn trích, nên chưa rõ bốn bypass cụ thể là gì và cái gì &quot;sống sót&quot;. Chi tiết nằm trong bài gốc.</p>
+<p>Điểm đáng chú ý cho QA: test của chính mình pass chưa chứng minh được cơ chế chặn đủ chắc; cần viết thêm các ca tấn công từ phía đối nghịch.</p>
+  <p class="card__source"><a class="card__go" href="https://dev.to/slabb/i-attack-tested-my-agents-seatbelt-heres-what-survived-15mj" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">agents</span><span class="tag">security</span></span>
@@ -3928,36 +3967,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 1%"></div>
-</article>
-<article class="card" data-group="ai" data-id="9641f0c84823c573b79c4cf9239a8c0338fb6bd5" data-url="https://blog.documentfoundation.org/blog/2026/09/03/yes-no-ai-is-now-a-feature" data-category="ai-trend" data-added="2026-10-04">
-  <div class="card__meta">
-    <span class="chip chip--ai">AI trend</span>
-    <span class="card__src">Lobsters</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title">Vâng, &quot;không có AI&quot; giờ là một tính năng</h3>
-    <span class="card__orig" lang="en">Yes, no AI is now a feature</span>
-    <span class="card__summary">Bài trên blog The Document Foundation nói về việc “không AI” nay được xem là một tính năng.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail">
-<p>The Document Foundation giải thích vì sao LibreOffice không đưa AI vào cấu hình mặc định: một bộ office dùng ở trường học, bệnh viện, cơ quan nhà nước và văn phòng luật sẽ không thêm tính năng mặc định cho đến khi nó đáp ứng các điều kiện theo nguyên tắc của dự án. Bài viết là phản hồi cho một bình luận trên thông báo LibreOffice 26.8: &quot;So, no AI is now a feature?&quot;</p>
-<p>Sáu điều kiện:<br>- User kiểm soát nơi chạy inference: máy local, hạ tầng do user kiểm soát, hoặc dịch vụ do user tự chọn. Mặc định âm thầm chuyển về một nhà cung cấp không phải là lựa chọn.<br>- Không nội dung nào rời máy khi chưa được phép (hồ sơ y tế, hồ sơ vụ án, dữ liệu học sinh...).<br>- Không telemetry dưới bất kỳ hình thức nào.<br>- Không phụ thuộc một nhà cung cấp duy nhất; interface mở, nhiều backend triển khai được.<br>- Không thỏa hiệp về định dạng: nội dung sinh ra phải là ODF, giữ cấu trúc, style và ngữ nghĩa.<br>- Hoàn toàn tùy chọn: cài và gỡ được, ẩn khỏi giao diện cho người không muốn dùng.</p>
-<p>Hiện chưa có tích hợp nào đáp ứng đủ. Ai muốn dùng AI có thể cài extension của bên thứ ba, phần lớn nối với model chạy local qua Ollama, LM Studio hoặc endpoint tương thích OpenAI; cần tự kiểm tra có cấu hình cloud endpoint hay không.</p>
-<p>Lý do khác với các bộ office lớn: công ty bán subscription dùng AI để biện minh tăng giá và giữ tài liệu trong hạ tầng của họ, còn The Document Foundation là tổ chức phi lợi nhuận, không có gói để bảo vệ hay dữ liệu để kiếm tiền.</p>
-<p>Đây không phải từ chối vĩnh viễn: nếu có cách tiếp cận đáp ứng đủ điều kiện họ sẽ đánh giá kỹ. Đến lúc đó, bản cài mặc định không có AI. Sáu tiêu chí này cũng là checklist tham khảo khi đánh giá sản phẩm AI về quyền riêng tư.</p>
-  <p class="card__source"><a class="card__go" href="https://blog.documentfoundation.org/blog/2026/09/03/yes-no-ai-is-now-a-feature" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">ai</span><span class="tag">opensource</span></span>
-    <span class="links"><a class="card__link" href="https://lobste.rs/s/sxcz4v/yes_no_ai_is_now_feature" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 2%"></div>
 </article>
 <article class="card" data-group="ai" data-id="a4fbe4b094996f1fbea40587ba5173e3e88f2626" data-url="https://dev.to/valyuai/5-ways-to-run-deepresearch-plus-deliverables-tools-and-workflows-2c04" data-category="ai-tip" data-added="2026-10-04">
   <div class="card__meta">
@@ -4712,11 +4721,18 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://defcon.social/@theqadepartment/117372181619975290" target="_blank" rel="noopener">Webcomic The QA Department #2: Drop Test</a></h3>
-  <span class="card__orig" lang="en">The QA Department comic #2: Drop Test</span>
-  <span class="card__summary">Webcomic về QA, số 2 có tên Drop Test, nằm trong loạt The QA Department.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">Truyện tranh The QA Department #2: Drop Test</h3>
+    <span class="card__orig" lang="en">The QA Department comic #2: Drop Test</span>
+    <span class="card__summary">Webcomic về QA, số 2 có tên Drop Test, nằm trong loạt The QA Department.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>Bài đăng Mastodon giới thiệu số 2 của webcomic The QA Department, tên &quot;Drop Test&quot;, gắn hashtag #WebComics, #QA, #QualityAssurance và #Klutz. Nội dung truyện nằm ở link trang theqadepartment.net, chưa có mô tả trong nguồn.</p>
+  <p class="card__source"><a class="card__go" href="https://defcon.social/@theqadepartment/117372181619975290" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">qa</span><span class="tag">comic</span></span>
@@ -5021,11 +5037,23 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/r3v3rs3/le-puse-muros-a-mi-agente-de-ia-y-ahora-rompe-la-web-pero-porque-se-lo-pido-3i8b" target="_blank" rel="noopener">Tôi dựng tường quanh agent AI (giờ nó phá web, nhưng là do tôi yêu cầu)</a></h3>
-  <span class="card__orig" lang="en">I put walls around my AI agent (and now it breaks the web, but because I ask it to)</span>
-  <span class="card__summary">Tác giả bắt đầu làm dự án với agent AI bằng Codex rồi tới Claude Code, và đặt ra các giới hạn cho agent. Bài viết bằng tiếng Tây Ban Nha.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">Tôi dựng &quot;tường&quot; quanh agent AI của mình, giờ nó phá web nhưng là do tôi yêu cầu</h3>
+    <span class="card__orig" lang="en">I put walls around my AI agent (and now it breaks the web, but because I ask it to)</span>
+    <span class="card__summary">Tác giả bắt đầu làm dự án với agent AI bằng Codex rồi tới Claude Code, và đặt ra các giới hạn cho agent. Bài viết bằng tiếng Tây Ban Nha.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>Tác giả gom các chuẩn làm việc với Codex và Claude Code thành bộ Senzu, trong đó quy tắc quan trọng được biến thành hook chặn hành động thay vì chỉ là lời khuyên trong CLAUDE.md.</p>
+<p>Lý do: dự án nào tác giả cũng phải nhắc agent cùng một việc (đừng commit vào main, kiểm tra trên mobile, ghi lại đã làm gì). Trong cùng một tuần xảy ra nhiều chuyện:<br>- Prettier với cấu hình mặc định thêm 204 dấu chấm phẩy vào một file của dự án không dùng chúng, và agent vẫn coi là ổn.<br>- Bộ cài đặt của chính tác giả làm rỗng .mcp.json của một dự án Laravel, mất một MCP server đã cấu hình.<br>- Agent nói đã kiểm tra web trên mobile, nhưng ảnh chụp nằm trong thư mục tạm.<br>- Hook của Codex vẫn chạy, nhưng không hiểu cách Codex mô tả một lần sửa file nên bỏ qua mọi thứ.</p>
+<p>Quy tắc trong CLAUDE.md hay AGENTS.md chỉ là gợi ý: agent đọc và &quot;gần như luôn&quot; tuân theo, nhưng với dự án thật thì &quot;gần như&quot; là chưa đủ.</p>
+<p>Senzu là gói cho Claude Code và Codex, viết bằng tiếng Tây Ban Nha, gồm ba phần:<br>- Skills: của tác giả và của người khác (ghi tác giả, giấy phép), có một bộ định tuyến chọn skill cần đọc để không làm đầy context.<br>- Muros (hooks): chặn thật sự, khi bị chặn agent nhận thông báo kèm cách làm đúng.<br>- Lệnh: /plan, /verificar, /brief, /propuestas.</p>
+<p>Trong 16 hook, tác giả nêu các hook hay cứu nhất:<br>- guard: không git push khi chưa được duyệt, không rm -rf, không xóa database hay deploy production tùy tiện.<br>- secrets-guard và protect-files: không ghi key thật vào code, không đụng .env, migration đã áp dụng hay file tự sinh.<br>- stop-guard: agent không được báo xong nếu đã sửa code mà chưa chạy build, lint, test, hoặc chưa kiểm tra UI trên mobile, hoặc chưa viết devlog.<br>- backend-guard: chặn migration xóa hoặc đổi tên cột đột ngột và dữ liệu cá nhân trong log.<br>- code-hygiene: loại console.log, dd() và .only bị bỏ quên.<br>- conventions-guard: /adoptar phân tích convention thật của dự án rồi &quot;đóng dấu&quot;, code vi phạm sẽ không vào.</p>
+<p>Bài đọc bị cắt giữa chừng; phần còn lại xem ở bài gốc.</p>
+  <p class="card__source"><a class="card__go" href="https://dev.to/r3v3rs3/le-puse-muros-a-mi-agente-de-ia-y-ahora-rompe-la-web-pero-porque-se-lo-pido-3i8b" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">agents</span><span class="tag">claude-code</span></span>
@@ -5357,11 +5385,18 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://chaos.social/@bloody_albatross/117343915586664196" target="_blank" rel="noopener">Viết server bằng Python có phải là “indented servitude” (nô dịch thụt lề) không?</a></h3>
-  <span class="card__orig" lang="en">Is writing a server in Python indented servitude?</span>
-  <span class="card__summary">Chơi chữ lập trình: viết server bằng Python có phải là “indented servitude”.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">Viết server bằng Python có phải là &quot;indented servitude&quot; không?</h3>
+    <span class="card__orig" lang="en">Is writing a server in Python indented servitude?</span>
+    <span class="card__summary">Chơi chữ lập trình: viết server bằng Python có phải là “indented servitude”.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>Một bài đăng đùa trên Mastodon, gắn thẻ #programminghumor. Câu đùa chơi chữ: &quot;indented servitude&quot; nghe gần giống &quot;indentured servitude&quot; (lao động khế ước), ám chỉ Python dùng thụt lề để định nghĩa khối code, còn viết server thì như bị &quot;ràng buộc&quot; bởi nó. Không có nội dung nào thêm ngoài câu hỏi này.</p>
+  <p class="card__source"><a class="card__go" href="https://chaos.social/@bloody_albatross/117343915586664196" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">python</span><span class="tag">pun</span></span>
@@ -5850,11 +5885,22 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/_66d02d0cc1ece7d1137c5f/configuration-drift-is-a-production-incident-with-a-long-fuse-23b7" target="_blank" rel="noopener">Configuration drift là sự cố production có ngòi nổ chậm</a></h3>
-  <span class="card__orig" lang="en">Configuration Drift Is a Production Incident With a Long Fuse</span>
-  <span class="card__summary">Một cài đặt sửa tay đã cứu sự cố nhưng không quay lại repo; vài tháng sau restart xóa mất. Bài nêu cách phát hiện và chặn drift.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">Configuration drift là sự cố production có ngòi nổ chậm</h3>
+    <span class="card__orig" lang="en">Configuration Drift Is a Production Incident With a Long Fuse</span>
+    <span class="card__summary">Một cài đặt sửa tay đã cứu sự cố nhưng không quay lại repo; vài tháng sau restart xóa mất. Bài nêu cách phát hiện và chặn drift.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>Một cài đặt sửa tay từng cứu một sự cố nhưng không bao giờ quay lại repo; vài tháng sau, một lần node rotation làm mất nó và các pod checkout bắt đầu trả 502 trên mọi request chạm payments.</p>
+<p>Diễn biến:<br>- Pod mới lên cùng image tag, cùng version, cùng deploy log, pod khỏe, CPU phẳng, nhưng payment client timeout với provider.<br>- Nguyên nhân là một environment variable chỉ tồn tại trên các node cũ. Từ trước, khi provider chậm, một operator đã chạy một lệnh trên deployment đang chạy để tăng client timeout, lỗi giảm và không ai ghi lại.<br>- Repo vẫn ghi clientTimeoutMs: 8000, còn bản sửa tay đặt 20000. Pod tạo từ repo nhận 8000 nên lỗi quay lại.</p>
+<p>Vì sao khó hiểu: code không đổi, image tag không đổi, repo config không ai đụng, nên mọi tín hiệu quen thuộc đều im. Những thao tác như node rotation, scale-up, instance refresh hay region failover tạo instance mới từ bản &quot;sự thật&quot; trong repo, dẫn tới fleet lẫn lộn: hai pod sau cùng một service trả lời cùng request khác nhau. Dấu hiệu: &quot;chạy được trên pod cũ&quot;.</p>
+<p>Cách phát hiện: so sánh trạng thái đang chạy với trạng thái đã commit, chạy theo lịch chứ không phải lúc đang có sự cố, ví dụ:<br>- kubectl exec deploy/payments -- env | sort, so với file config trong repo bằng diff -u.<br>- Mọi biến có ở live mà thiếu trong repo, hay khác giá trị, đều là một finding. Cách này dùng được cho database parameter, feature-flag default, hạ tầng quản lý qua console.</p>
+<p>Quy tắc: nếu không có trong repo thì nó không tồn tại. Cho phép sửa tay khẩn cấp lúc 2 a.m., nhưng phải mở commit vào repo trong cùng ca, liên kết trong kênh incident, và incident chỉ đóng khi commit được merge.</p>
+  <p class="card__source"><a class="card__go" href="https://dev.to/_66d02d0cc1ece7d1137c5f/configuration-drift-is-a-production-incident-with-a-long-fuse-23b7" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">drift</span><span class="tag">devops</span></span>
@@ -5869,11 +5915,21 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/kalikys/an-sbom-is-a-tool-output-not-a-fact-about-your-software-3j2g" target="_blank" rel="noopener">SBOM là kết quả của một công cụ, không phải sự thật về phần mềm của bạn</a></h3>
-  <span class="card__orig" lang="en">An SBOM is a tool output, not a fact about your software</span>
-  <span class="card__summary">Bài dựa trên hai bài arXiv tháng 9 mô tả từ hai đầu một kiểm soát trong pipeline, lập luận rằng SBOM chỉ là output của công cụ.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">SBOM là output của công cụ, không phải sự thật về phần mềm của bạn</h3>
+    <span class="card__orig" lang="en">An SBOM is a tool output, not a fact about your software</span>
+    <span class="card__summary">Bài dựa trên hai bài arXiv tháng 9 mô tả từ hai đầu một kiểm soát trong pipeline, lập luận rằng SBOM chỉ là output của công cụ.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>Tác giả lập luận rằng SBOM sinh trong CI là bằng chứng về công cụ đã chạy (đúng version, đúng flag), chỉ là bằng chứng yếu về phần mềm; thứ nên đặt dưới version control và bảo vệ khi audit là công thức sinh SBOM chứ không phải số component. Bài là bình luận về hai bài arXiv tháng 9, tác giả không tái hiện lại chúng.</p>
+<p>Bài thứ nhất (Inria và ANSSI, 17 September 2026): chạy Syft 1.38.2, Trivy 0.68.2 và cdxgen 12.0.0 trên 2,050 repo JavaScript và 1,276 repo Rust, lấy lockfile mới sinh làm chuẩn.<br>- Khi có lockfile, JavaScript: Syft thấy 43.78% package, Trivy 32.71%. Rust: Syft 100%, Trivy 83.85%. cdxgen khoảng 98.72% và 99.34%.<br>- Không có lockfile thì Syft và Trivy cho SBOM rỗng, &quot;with no error or warning shown to the operator.&quot;<br>- Phần lớn khoảng hụt ở JavaScript là devDependencies: Syft loại chúng theo thiết kế nhưng chỉ với một số package manager; Trivy loại ở cấp đầu nên dependency bắc cầu của dev package có thể hiện như dependency production. cdxgen bỏ qua thư mục tên examples, docs, tests, .github.<br>- Cùng một package có thể ra định danh khác nhau tùy công cụ, nên cùng code quét bằng hai tool có thể cho hai danh sách lỗ hổng.<br>- Trường Supplier không công cụ nào điền; license trên JavaScript: cdxgen 75.8%, Syft 60.2%, Trivy 0%.</p>
+<p>Giới hạn: mẫu là repo phổ biến trên GitHub, kết quả gắn với đúng ba version (Trivy 0.75.0 và Syft 1.54.0 đã ra ngày 1 October nên số liệu có thể đã cũ), chỉ kiểm tra có trường hay không chứ không kiểm tra nội dung đúng hay sai, và chỉ JavaScript và Rust.</p>
+<p>Bài thứ hai (Pengyin Shan, 7 September 2026): kiểm tra khi AI assistant cài phần mềm có đọc SBOM, chữ ký hay attestation không. Trong 9 của 1,920 trial nó mở file provenance trước khi cài; trong 0 của 2,114 trial có lệnh xác minh nào được chạy. Kết luận của tác giả bài đó: xác minh &quot;has to be built into the program that runs the assistant.&quot; (Phần &quot;giới hạn&quot; của bài này bị cắt.)</p>
+  <p class="card__source"><a class="card__go" href="https://dev.to/kalikys/an-sbom-is-a-tool-output-not-a-fact-about-your-software-3j2g" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">sbom</span><span class="tag">supply-chain</span></span>
@@ -5888,11 +5944,24 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/twinhull/patroni-pgrewind-password-authentication-failed-and-the-pgpassword-trap-1nai" target="_blank" rel="noopener">Patroni: lỗi pg_rewind “password authentication failed” và cái bẫy PGPASSWORD</a></h3>
-  <span class="card__orig" lang="en">Patroni: pg_rewind “password authentication failed” and the PGPASSWORD trap</span>
-  <span class="card__summary">Thử trên Patroni 4.1, PostgreSQL 16: cluster qua mọi test switchover, rồi pg_rewind lỗi “password authentication failed” vì bẫy PGPASSWORD.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">Patroni: pg_rewind &quot;password authentication failed&quot; và cái bẫy PGPASSWORD</h3>
+    <span class="card__orig" lang="en">Patroni: pg_rewind “password authentication failed” and the PGPASSWORD trap</span>
+    <span class="card__summary">Thử trên Patroni 4.1, PostgreSQL 16: cluster qua mọi test switchover, rồi pg_rewind lỗi “password authentication failed” vì bẫy PGPASSWORD.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>Khi leader sập thật, node cũ có thể kẹt ở trạng thái start failed vì pg_rewind dùng sai mật khẩu, do biến môi trường PGPASSWORD còn sót trong tiến trình Patroni. Thử trên Patroni 4.1, PostgreSQL 16.</p>
+<p>Triệu chứng: patronictl list cho thấy node cũ &quot;start failed&quot;; log PostgreSQL lặp &quot;requested timeline 3 is not a child of this server&#39;s history&quot;; log Patroni cho thấy pg_rewind exit code=1 với &quot;password authentication failed for user rewind_user&quot;.</p>
+<p>Nguyên nhân: Patroni không đưa mật khẩu qua dòng lệnh mà ghi vào file .pgpass. Nhưng libpq ưu tiên: mật khẩu trong connection string, rồi biến PGPASSWORD, rồi mới tới file password. Nếu Patroni khởi động với PGPASSWORD (thường là mật khẩu superuser còn trong shell), pg_rewind gửi mật khẩu đó cho rewind_user và thất bại. primary_conninfo cũng dùng passfile nên node đó không stream được từ leader.</p>
+<p>Vì sao test không bắt được: biến chỉ ảnh hưởng tiến trình Patroni thừa hưởng nó. Switchover có kế hoạch trong môi trường sạch luôn qua; nguy hiểm nằm ở lần khởi động lại sau sự cố, khi ai đó chạy psql với PGPASSWORD rồi bật Patroni từ cùng shell.</p>
+<p>Biến vào bằng các đường:<br>- Chạy Patroni tay từ shell đã export PGPASSWORD.<br>- Script deploy dùng set -a để nạp file môi trường.<br>- systemd unit có Environment=PGPASSWORD=… hoặc EnvironmentFile= dùng chung.<br>- Container image đặt PGPASSWORD cho tiện.</p>
+<p>Kiểm tra nhanh: đọc /proc/&lt;pid&gt;/environ của tiến trình Patroni và grep &#39;^PG|^PATRONI_&#39;. Bất kỳ PGPASSWORD, PGUSER, PGHOST, PGSERVICE hay PATRONI_* bất ngờ đều là vấn đề (PATRONI_* ghi đè patroni.yml).</p>
+<p>Cách sửa: chỉ khởi động Patroni qua systemd với môi trường sạch, bỏ PGPASSWORD khỏi Environment= và EnvironmentFile=, rồi systemctl daemon-reload &amp;&amp; systemctl restart patroni (PostgreSQL vẫn chạy). Thường restart là đủ để pg_rewind thử lại; nếu WAL cần đã bị recycle thì rebuild bằng patronictl reinit. Để chứng minh đã sửa phải kill leader bằng SIGKILL khi đang ghi; sau sửa, leader sập trong lab rejoin sau khoảng 34 giây.</p>
+  <p class="card__source"><a class="card__go" href="https://dev.to/twinhull/patroni-pgrewind-password-authentication-failed-and-the-pgpassword-trap-1nai" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">patroni</span><span class="tag">postgresql</span></span>
@@ -5907,11 +5976,22 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu">Save</button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/fernan101002/estrategias-de-respaldo-en-postgresql-logico-fisico-y-pitr-con-un-laboratorio-que-corre-en-tu-boc" target="_blank" rel="noopener">Chiến lược sao lưu PostgreSQL: logic, vật lý và PITR (kèm lab chạy trên trình duyệt)</a></h3>
-  <span class="card__orig" lang="en">PostgreSQL backup strategies: logical, physical and PITR (with a lab in your browser)</span>
-  <span class="card__summary">Bài tiếng Tây Ban Nha về các chiến lược backup logic, vật lý và PITR cho PostgreSQL, kèm lab chạy trên trình duyệt.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title">Chiến lược backup PostgreSQL: logic, vật lý và PITR (kèm lab chạy trên trình duyệt)</h3>
+    <span class="card__orig" lang="en">PostgreSQL backup strategies: logical, physical and PITR (with a lab in your browser)</span>
+    <span class="card__summary">Bài tiếng Tây Ban Nha về các chiến lược backup logic, vật lý và PITR cho PostgreSQL, kèm lab chạy trên trình duyệt.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail">
+<p>Bài của một sinh viên Ingeniería de Sistemas so sánh ba cách backup của PostgreSQL và cách chọn theo RPO và RTO, kèm ứng dụng web PgBackupLab chạy PostgreSQL 18 thật trong trình duyệt.</p>
+<p>Mở đầu bằng sự cố GitLab.com ngày 31 tháng 1 năm 2017: xóa nhầm thư mục dữ liệu của server chính, dù có replica, dump pg_dump hằng ngày lên Amazon S3 và snapshot, vẫn mất khoảng sáu giờ dữ liệu vì dump lỗi âm thầm (dùng pg_dump 9.2 với server 9.6) và email cảnh báo bị từ chối.</p>
+<p>Hai chỉ số cần định trước:<br>- RPO: có thể mất bao nhiêu dữ liệu tính theo thời gian.<br>- RTO: hệ thống được phép ngừng bao lâu để khôi phục.<br>Thêm quy tắc 3-2-1: ba bản sao, hai loại phương tiện, một bản ngoài site.</p>
+<p>Ba chiến lược:<br>- Logic (pg_dump): file SQL, snapshot nhất quán không khóa người dùng khác. Ví dụ pg_dump -Fc rồi pg_restore (có thể song song bằng -j). Ưu: chuyển được giữa các version, khôi phục được riêng một bảng. Nhược: chậm với DB lớn, RPO bằng khoảng cách giữa các lần dump.<br>- Vật lý (pg_basebackup): copy PGDATA, khôi phục nhanh, nhưng chỉ cùng major version và luôn copy cả cluster.<br>- Archiving liên tục và PITR: bật archive_mode và archive_command, base backup cộng WAL đã archive cho phép quay về bất kỳ thời điểm nào (recovery_target_time). RPO tính bằng giây, quay về ngay trước một DELETE nhầm; đổi lại cần cấu hình, chỗ chứa WAL và phải theo dõi archive không lỗi.</p>
+<p>Từ PostgreSQL 17 có backup tăng dần native: pg_basebackup --incremental và pg_combinebackup. Ở production, pgBackRest, Barman, WAL-G tự động hóa nén, mã hóa, retention và đẩy lên cloud. Điểm chốt của bài: người ta muốn khôi phục chứ không phải backup, nên phải kiểm tra thật sự restore được. Bài bị cắt ở bảng so sánh; phần còn lại xem ở bài gốc.</p>
+  <p class="card__source"><a class="card__go" href="https://dev.to/fernan101002/estrategias-de-respaldo-en-postgresql-logico-fisico-y-pitr-con-un-laboratorio-que-corre-en-tu-boc" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">postgresql</span><span class="tag">backup</span></span>
@@ -5921,11 +6001,11 @@
 </article></div></section>
 
 <section id="saved" hidden><h2>Saved</h2><div class="list"></div><p id="saved-empty" class="empty" hidden>Chưa có bài đã lưu</p></section>
-<section class="archive"><h2>Archive</h2><p><a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2>Archive</h2><p><a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
-  <p>Sources: Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
-  <p>Refreshed from 38 sources · every item links to where it came from.</p>
+  <p>Sources: Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
+  <p>Refreshed from 39 sources · every item links to where it came from.</p>
   <p class="state-tools" hidden>Dữ liệu trên trình duyệt này: <button class="linkbtn" id="export" type="button">Xuất</button> · <button class="linkbtn" id="import" type="button">Nhập</button><input id="import-file" type="file" accept="application/json,.json" hidden> <span id="state-msg" role="status"></span></p>
 </footer>
 <script type="module" src="../assets/app.js"></script>
