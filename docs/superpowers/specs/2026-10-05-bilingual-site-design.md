@@ -160,9 +160,9 @@ unchanged: the file is same-origin.
    `'vi'` or `'en'`: `stored` wins when it is one of `LANGS`; otherwise
    `'vi'` when any entry of `languages` starts with `vi` (case
    insensitive) or `timeZone` is `Asia/Ho_Chi_Minh` or `Asia/Saigon`;
-   otherwise `'en'`. It is attached to `window.DailyFeedLang` for `app.js`
-   and exported for Node when `module` exists, so `tests/lang.test.mjs`
-   can import it.
+   otherwise `'en'`. It is attached to `window.DailyFeedLang` for `app.js`;
+   `tests/lang.test.mjs` runs the file with `node:vm` against a fake
+   document, which also covers the on-load wiring.
 2. On load: read `localStorage` key `dailyfeed:lang` (try/catch), call
    `detectLang(navigator.languages, Intl.DateTimeFormat().resolvedOptions().timeZone, stored)`,
    and set `document.documentElement.dataset.lang` and `lang`.
