@@ -28,4 +28,7 @@ export const feedConfig = {
   articleMaxChars: 5000,   // article text kept per item as detail source
   detailBatchSize: 12,     // items per `claude -p "/daily-feed-detail"` call
   detailMaxPerDay: 200,    // items that get a Vietnamese detail per day, best rank first (= maxCandidates, so every kept item fits)
+  discussionMaxComments: 12, // comments sent to Claude per item, across all its threads
+  discussionMinComments: 3,  // fewer usable comments than this = no discussion for the item
+  discussionCommentChars: 600, // each comment is cut to this many characters
 };
