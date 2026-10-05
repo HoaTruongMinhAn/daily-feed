@@ -195,7 +195,8 @@ line becomes `detailed <written>/<queued>, discussed <n>`.
 
 ### Validation
 
-`parseDetail(raw, sourceText, commentsText = null)`:
+`parseDetail(raw, sourceText, comments = null)` (`comments`: the cached
+`[{ author, source, text }]` list):
 
 - splits on the two discussion markers after the English detail;
 - with no discussion markers, behaves as today and returns
@@ -203,9 +204,15 @@ line becomes `detailed <written>/<queued>, discussed <n>`.
 - with one marker but not the other, or an unequal quote count, or a
   quote count outside 2-4, or a lead outside 20-400 characters, or a line
   between lead and quotes that is neither, the discussion is invalid;
-- each English quote, whitespace-normalised and with a leading or
-  trailing `...` removed, must be a substring of `commentsText`
-  (whitespace-normalised); one miss makes the discussion invalid;
+- each English quote, whitespace-normalised, curly quotes straightened
+  and with a leading or trailing `...` removed, must be a substring of one
+  cached comment's text (same normalisation), and that comment's
+  `@author, Source` must equal the line's attribution, which must also be
+  identical on the Vietnamese line N; one miss makes the discussion
+  invalid;
+- `===== DISCUSSION EN =====` before `===== DISCUSSION VI =====` rejects
+  the whole file (`discussion markers out of order`), since the English
+  detail would otherwise carry a marker line;
 - the Vietnamese lead and quotes run through `ungroundedTokens` against
   `sourceText + commentsText`, the English lead likewise with
   `sentenceNames: false`; the existing `DETAIL_UNGROUNDED_MAX` applies to

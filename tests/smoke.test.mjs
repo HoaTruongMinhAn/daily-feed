@@ -15,6 +15,9 @@ test('feedConfig carries the spec constants', () => {
   assert.equal(feedConfig.homeDays, 7);
   assert.equal(feedConfig.homePageSize, 40);
   assert.equal(feedConfig.detailDays, 2);
+  assert.equal(feedConfig.discussionMaxComments, 12);
+  assert.equal(feedConfig.discussionMinComments, 3);
+  assert.equal(feedConfig.discussionCommentChars, 600);
   assert.equal('feedDays' in feedConfig, false);
   assert.equal(feedConfig.siteTitle, 'Daily Feed');
   assert.equal(feedConfig.buzzPerSource, 0.25);

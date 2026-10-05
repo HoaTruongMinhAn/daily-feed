@@ -35,6 +35,7 @@ export const STRINGS = {
   noSaved: { vi: 'Chưa có bài đã lưu', en: 'No saved items yet' },
   readOriginal: { vi: 'Đọc bài gốc', en: 'Read the original' },
   viOnly: { vi: 'Chỉ có bản tiếng Việt.', en: 'Detail available in Vietnamese only.' },
+  discussion: { vi: 'Thảo luận', en: 'Discussion' },
   sourcesCount: { vi: (n) => `${n} nguồn`, en: (n) => `${n} sources` },
   save: { vi: 'Lưu', en: 'Save' },
   savedBtn: { vi: 'Đã lưu', en: 'Saved' },

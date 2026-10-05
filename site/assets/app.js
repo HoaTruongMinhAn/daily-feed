@@ -182,6 +182,27 @@ function appendDetail(body, detail) {
   }
 }
 
+// Same shape as renderDiscussion in lib/render.mjs: lead paragraph, then
+// `- "quote" — attribution` lines. Appends nothing when unparsable.
+const DISC_QUOTE = /^- "(.+)" — (.+)$/;
+function appendDiscussion(body, text, l) {
+  const lines = String(text ?? '').split('\n').map((s) => s.trim()).filter(Boolean);
+  const first = lines.findIndex((s) => s.startsWith('- '));
+  if (first < 1) return;
+  const quotes = lines.slice(first).map((s) => DISC_QUOTE.exec(s));
+  if (quotes.some((m) => !m)) return;
+  const box = el('div', 'card__discussion');
+  box.append(el('h4', 'card__discussion-title', t('discussion', l)), el('p', 'card__discussion-lead', lines.slice(0, first).join(' ')));
+  const ul = el('ul', 'quotes');
+  for (const m of quotes) {
+    const li = el('li');
+    li.append(el('q', '', m[1]), ' ', el('span', 'quote__by', m[2]));
+    ul.append(li);
+  }
+  box.append(ul);
+  body.append(box);
+}
+
 // A bilingual text as two spans, mirroring pair() in lib/render.mjs.
 function pairEl(tag, cls, vi, en, { fallbackEn = false } = {}) {
   const mk = (l, text) => {
@@ -225,25 +246,26 @@ function buildCard(item) {
   const heading = pairEl('span', '', item.titleVi || item.title, item.title);
   // Without an English detail the English block borrows the Vietnamese one,
   // marked data-fallback and prefixed with a note (same as lib/render.mjs).
-  const detailBlock = (l, text, fallback) => {
+  const detailBlock = (l, text, fallback, disc) => {
     const body = el('div', `card__detail l l-${l}`);
     body.lang = l;
     if (fallback) { body.dataset.fallback = ''; body.append(el('p', 'card__note', t('viOnly', 'en'))); }
-    appendDetail(body, text);
+    if (text) appendDetail(body, text);
+    if (disc) appendDiscussion(body, disc, l);
     const src = el('p', 'card__source');
     src.append(linkEl(item.url, t('readOriginal', l), 'card__go'));
     body.append(src);
     return body;
   };
   let head;
-  if (item.detail) {
+  if (item.detail || item.discussion) {
     title.append(...heading);
     head = el('details', 'card__details');
     const summary = el('summary', 'card__head');
     const toggle = el('span', 'card__toggle');
     toggle.setAttribute('aria-hidden', 'true');
     summary.append(...parts, toggle);
-    head.append(summary, detailBlock('vi', item.detail, false), detailBlock('en', item.detailEn || item.detail, !item.detailEn));
+    head.append(summary, detailBlock('vi', item.detail, false, item.discussion), detailBlock('en', item.detailEn || item.detail, Boolean(item.detail) && !item.detailEn, item.discussionEn || item.discussion));
   } else {
     const a = linkEl(item.url, '');
     a.append(...heading);
@@ -275,11 +297,20 @@ function detailText(card, l) {
   if (!body || (l === 'en' && body.hasAttribute('data-fallback'))) return '';
   const blocks = [];
   for (const child of body.children) {
-    if (child.classList.contains('card__source') || child.classList.contains('card__note')) continue;
+    if (child.classList.contains('card__source') || child.classList.contains('card__note') || child.classList.contains('card__discussion')) continue;
     if (child.tagName === 'UL') blocks.push([...child.children].map((li) => `- ${inlineText(li)}`).join('\n'));
     else if (child.tagName === 'P') blocks.push(inlineText(child));
   }
   return blocks.filter(Boolean).join('\n\n');
+}
+
+// Rebuilds a discussion section from its rendered box; '' when none.
+function discussionText(card, l) {
+  const box = card.querySelector(`.card__detail.l-${l} .card__discussion`);
+  if (!box) return '';
+  const lead = box.querySelector('.card__discussion-lead')?.textContent.trim() ?? '';
+  const quotes = [...box.querySelectorAll('.quotes li')].map((li) => `- "${li.querySelector('q')?.textContent.trim() ?? ''}" — ${li.querySelector('.quote__by')?.textContent.trim() ?? ''}`);
+  return lead && quotes.length ? `${lead}\n\n${quotes.join('\n')}` : '';
 }
 
 function snapshotFromCard(card) {
@@ -297,6 +328,8 @@ function snapshotFromCard(card) {
     summaryEn: summaryEnEl && !summaryEnEl.hasAttribute('data-fallback') ? clip('summaryEn', summaryEnEl.textContent.trim()) : '',
     detail: clip('detail', detailText(card, 'vi')),
     detailEn: clip('detailEn', detailText(card, 'en')),
+    discussion: clip('discussion', discussionText(card, 'vi')),
+    discussionEn: clip('discussionEn', discussionText(card, 'en')),
     category: clip('category', card.dataset.category || ''),
     categoryLabel: clip('categoryLabel', card.dataset.categoryLabel || ''),
     sourceName: clip('sourceName', textOf(card, '.card__src')),

@@ -1,0 +1,5 @@
+{ "thread": { "post": { "uri": "at://did:plc:abc/app.bsky.feed.post/3kz2abc", "record": { "text": "root" } }, "replies": [
+  { "post": { "author": { "handle": "alice.bsky.social" }, "record": { "text": "Caps by default would have saved my weekend and my card." }, "likeCount": 12, "repostCount": 1 }, "replies": [
+    { "post": { "author": { "handle": "deep" }, "record": { "text": "a nested reply long enough to pass the length filter" }, "likeCount": 99, "repostCount": 0 } } ] },
+  { "post": { "author": { "handle": "bob.dev" }, "record": { "text": "Hot take: budgets are the customer's job, not the vendor's." }, "likeCount": 30, "repostCount": 4 } }
+] } }

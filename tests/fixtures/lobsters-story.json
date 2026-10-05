@@ -1,0 +1,5 @@
+{ "short_id": "xkwswd", "title": "Hard budget caps", "comments": [
+  { "short_id": "c1", "comment": "<p>A cap that returns errors is a cap that pages you; still better than a bill.</p>", "comment_plain": "A cap that returns errors is a cap that pages you; still better than a bill.", "score": 14, "depth": 0, "parent_comment": null, "commenting_user": "pushcx" },
+  { "short_id": "c2", "comment": "<p>reply text that is long enough but is a reply so excluded</p>", "comment_plain": "reply text that is long enough but is a reply so excluded", "score": 30, "depth": 1, "parent_comment": "c1", "commenting_user": { "username": "nested" } },
+  { "short_id": "c3", "comment": "<p>Most providers already have this, the post overstates the gap.</p>", "comment_plain": "Most providers already have this, the post overstates the gap.", "score": 21, "depth": 0, "parent_comment": null, "commenting_user": { "username": "old_style" } }
+] }

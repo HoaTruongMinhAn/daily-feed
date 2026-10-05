@@ -70,3 +70,16 @@ test('token failure fails every call with a message free of the secret (review f
   }
   assert.equal(tokenCalls, 3, 'one token attempt per client, shared by every source');
 });
+
+test('comments() reads the permalink listing, anonymous and oauth', async () => {
+  const calls = [];
+  const requestText = async (url, opts) => { calls.push({ url, opts }); return url.includes('access_token') ? JSON.stringify({ access_token: 'tok' }) : '[]'; };
+  const anon = makeRedditClient({ requestText });
+  assert.deepEqual(await anon.comments('/r/QA/comments/x/t/'), []);
+  assert.equal(calls[0].url, 'https://www.reddit.com/r/QA/comments/x/t.json?limit=50&depth=1&sort=top&raw_json=1');
+  calls.length = 0;
+  const auth = makeRedditClient({ creds: { clientId: 'id', clientSecret: 'sec' }, requestText });
+  await auth.comments('/r/QA/comments/x');
+  assert.equal(calls[1].url, 'https://oauth.reddit.com/r/QA/comments/x?limit=50&depth=1&sort=top&raw_json=1');
+  assert.equal(calls[1].opts.headers.authorization, 'Bearer tok');
+});

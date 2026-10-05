@@ -3,7 +3,9 @@ name: daily-feed-detail
 description: >-
   Writes the Vietnamese title and the expandable detail in Vietnamese and in
   English (about 10-20 lines each) for each Daily Feed item queued in data/detail-queue/, one
-  output file per item in data/details/. Invoked only by
+  output file per item in data/details/. When the queue file carries a
+  DISCUSSION block of thread comments, also writes a short bilingual
+  discussion: the camps and 2-4 quoted voices with their tone kept. Invoked only by
   scripts/daily-feed-run.sh via `claude -p "/daily-feed-detail"` with
   permissions scoped to reading data/detail-queue/ and writing
   data/details/. Use when the user says daily feed detail.
@@ -37,9 +39,23 @@ Plain text, UTF-8, no markdown headings, no code fences:
 ===== EN =====
 
 <English detail: same shape, same points>
+
+===== DISCUSSION VI =====
+
+<1-2 câu dẫn: các phe đang tranh luận gì, phe nào áp đảo>
+- "<câu trích dịch sang tiếng Việt, giữ đúng giọng điệu>" — @author, Source
+- "<...>" — @author, Source
+
+===== DISCUSSION EN =====
+
+<1-2 sentence lead, same meaning as the Vietnamese lead>
+- "<original comment text, copied verbatim>" — @author, Source
+- "<...>" — @author, Source
 ```
 
 The marker line is exactly `===== EN =====` on its own line. A file without it, or with an English half shorter than 200 characters, is rejected whole and the item is retried another day.
+
+The two DISCUSSION sections are written only when the input has a `----- DISCUSSION -----` block, both together, after the English detail, with markers exactly `===== DISCUSSION VI =====` and `===== DISCUSSION EN =====` on their own lines. A file whose discussion fails the checks below keeps its detail and loses only the discussion.
 
 ## Title
 
@@ -53,6 +69,17 @@ Natural Vietnamese rendering of the item's `title`. Keep product, tool, library 
 - Plain sentences; use a "- " list for steps, features or takeaways. Keep code identifiers, commands and names as written.
 - Humor items: describe the joke in one or two lines.
 
+## Discussion
+
+Only when the queue file has a `----- DISCUSSION -----` block. Each line there is one top-level comment: `[Source] @author (N pts): text`.
+
+- **Lead** (20-400 characters, one paragraph): name the camps and what each argues; say which has more weight when the block shows it ("đa số", "một vài người"). State nothing the comments do not contain.
+- **Quotes**: 2-4 lines of the exact shape `- "<quote>" — @author, Source`, the same number on both sides and in the same order, so line N in Vietnamese is the translation of line N in English. A quote is at most 240 characters. The attribution (at most 80 characters) is the comment's `@author` and `Source` copied from its block line, identical on the Vietnamese and English line; a script checks that the quoted text comes from a comment with exactly that author and source.
+- **Pick voices, not scores.** Choose comments that carry a distinct position so the disagreement shows. Two quotes from the same camp only when no opposing voice exists, and then the lead says so. Never quote a line that is only a link, a joke with no position, personal abuse, or a reply to something not in the block.
+- **English quotes are verbatim.** Copy the comment text exactly as it appears in the block. You may trim at the start or the end, marking the cut with `...`; never cut in the middle, never paraphrase, never fix typos. A script checks every English quote against the block; one altered quote discards the whole discussion.
+- **Vietnamese keeps the register.** Sarcasm stays sarcastic, blunt stays blunt, hedged stays hedged, a joke stays a joke. Do not soften or formalise. Keep names, tool names, code and numbers as written.
+- **The detail stays the article's.** The detail summarises the article; the discussion summarises the comments. Do not mix them.
+
 ## Writing rules (detail and title)
 
 - **Only what the queued text says.** Every product, company, feature, number, version, and quote must appear in the queue file's title, excerpt, or article text. The `summary` line was written by an earlier model step: use it for orientation, but it is not a source. Do not fill gaps from what you know about similar tools. If a point is unclear in the source, keep its key words as written instead of interpreting.
@@ -63,4 +90,4 @@ Natural Vietnamese rendering of the item's `title`. Keep product, tool, library 
 
 ## Done
 
-After writing all files, reply with one line: `detailed <written>/<queued>`. Nothing else.
+After writing all files, reply with one line: `detailed <written>/<queued>, discussed <n>`. Nothing else.

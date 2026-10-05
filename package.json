@@ -12,6 +12,7 @@
     "feed": "bash scripts/daily-feed-run.sh --now",
     "feed:stub": "bash scripts/daily-feed-run.sh --now --stub",
     "feed:detail": "bash scripts/daily-feed-run.sh --now --detail-only",
+    "feed:backfill": "bash scripts/daily-feed-run.sh --now --detail-only --backfill",
     "serve": "python3 -m http.server 8080 -d site"
   }
 }

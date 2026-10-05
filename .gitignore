@@ -8,6 +8,7 @@ node_modules/
 data/articles/
 data/detail-queue/
 data/details/
+data/comments/
 
 # fetch → merge hand-off; merge deletes it
 data/sightings.json

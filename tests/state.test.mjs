@@ -112,9 +112,9 @@ test('save, unsave, isSaved, savedList (newest first)', () => {
 
 test('sanitizeSnapshot keeps known fields, fills gaps, rejects bad input (review focus 3)', () => {
   const ok = sanitizeSnapshot({ ...snap(), html: '<b>x</b>' });
-  assert.deepEqual(Object.keys(ok).sort(), ['addedAt', 'category', 'categoryLabel', 'detail', 'detailEn', 'id', 'sourceName', 'summary', 'summaryEn', 'tags', 'title', 'titleVi', 'url']);
+  assert.deepEqual(Object.keys(ok).sort(), ['addedAt', 'category', 'categoryLabel', 'detail', 'detailEn', 'discussion', 'discussionEn', 'id', 'sourceName', 'summary', 'summaryEn', 'tags', 'title', 'titleVi', 'url']);
   const gaps = sanitizeSnapshot({ id: A, url: '', title: 'T', titleVi: null });
-  assert.deepEqual(gaps, { id: A, url: '', title: 'T', titleVi: '', summary: '', summaryEn: '', detail: '', detailEn: '', category: '', categoryLabel: '', sourceName: '', addedAt: '', tags: [] });
+  assert.deepEqual(gaps, { id: A, url: '', title: 'T', titleVi: '', summary: '', summaryEn: '', detail: '', detailEn: '', discussion: '', discussionEn: '', category: '', categoryLabel: '', sourceName: '', addedAt: '', tags: [] });
   const bad = [
     snap(A, { url: 'javascript:alert(1)' }), snap(A, { url: 'data:text/html,x' }), snap(A, { url: '/relative' }),
     snap('A'.repeat(40)), snap('1'), snap(A, { title: 42 }), snap(A, { title: '' }), snap(A, { title: 'x'.repeat(501) }),
@@ -223,4 +223,18 @@ test('sanitizeSnapshot keeps summaryEn and detailEn, and accepts a snapshot with
   assert.equal(sanitizeSnapshot(snap(A, { summaryEn: 5 })), null);
   const raw = JSON.stringify({ v: 1, read: {}, saved: { [A]: { savedAt: T0, item: snap(A) } } });
   assert.equal(parseState(raw).corrupt, false, 'an export from before the English fields still imports');
+});
+
+test('sanitizeSnapshot keeps discussion and discussionEn, caps them, and accepts an old snapshot without them', () => {
+  const d = 'Lead.\n\n- "q" — @a, HN\n- "r" — @b, Lobsters';
+  const full = sanitizeSnapshot(snap(A, { discussion: d, discussionEn: d }));
+  assert.equal(full.discussion, d);
+  assert.equal(full.discussionEn, d);
+  const without = sanitizeSnapshot(snap(A));
+  assert.equal(without.discussion, '');
+  assert.equal(without.discussionEn, '');
+  assert.equal(sanitizeSnapshot(snap(A, { discussion: 'x'.repeat(4001) })), null);
+  assert.equal(sanitizeSnapshot(snap(A, { discussionEn: 7 })), null);
+  const raw = JSON.stringify({ v: 1, read: {}, saved: { [A]: { savedAt: T0, item: snap(A) } } });
+  assert.equal(parseState(raw).corrupt, false);
 });

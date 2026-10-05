@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { escapeHtml, groupOf, renderCard, renderDetail, renderPage, GROUP_LABEL } from '../lib/render.mjs';
+import { escapeHtml, groupOf, renderCard, renderDetail, renderDiscussion, renderPage, GROUP_LABEL } from '../lib/render.mjs';
 
 const item = {
   id: '1', url: 'https://a.com/x', discussionUrl: 'https://news.ycombinator.com/item?id=1', extraLinks: ['https://b.com/y'],
@@ -232,4 +232,31 @@ test('renderPage versions its asset URLs so a new page never runs with cached ol
 
 test('the language dropdown sits in a styled wrapper', () => {
   assert.ok(page().includes('<span class="lang-wrap"><select id="lang" class="lang" aria-label="Language">'));
+});
+
+// ---- discussion block
+
+const disc = 'Hai phe: đa số đòi hạn mức cứng.\n\n- "Hạn mức cứng là chuyện đương nhiên." — @tptacek, Hacker News\n- "Ngân sách là việc của <b>khách</b>." — @bob.dev, <b>Bluesky</b>';
+const discEn = 'Two camps: most want hard caps.\n\n- "Hard caps are table stakes." — @tptacek, Hacker News\n- "<script>alert(1)</script> budgets are the customer\'s job." — @bob.dev, Bluesky';
+
+test('renderDiscussion: lead, quote list, escaped quote and attribution (review focus 5)', () => {
+  const html = renderDiscussion(discEn, 'en');
+  assert.ok(html.startsWith('<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Two camps: most want hard caps.</p><ul class="quotes">'));
+  assert.ok(html.includes('<li><q>Hard caps are table stakes.</q> <span class="quote__by">@tptacek, Hacker News</span></li>'));
+  assert.ok(html.includes('<q>&lt;script&gt;alert(1)&lt;/script&gt; budgets are the customer&#39;s job.</q>') && !html.includes('<script>'));
+  assert.ok(renderDiscussion(disc, 'vi').includes('<h4 class="card__discussion-title">Thảo luận</h4>') && renderDiscussion(disc, 'vi').includes('<span class="quote__by">@bob.dev, &lt;b&gt;Bluesky&lt;/b&gt;</span>'));
+  assert.equal(renderDiscussion('', 'vi'), '');
+  assert.equal(renderDiscussion('lead without quotes', 'vi'), '');
+  assert.equal(renderDiscussion(null, 'en'), '');
+});
+
+test('renderCard places the discussion inside each language block, and expands with a discussion but no detail', () => {
+  const both = renderCard({ ...item, titleVi: 'Tiêu đề', detail: 'Đoạn một.', detailEn: 'Para one.', discussion: disc, discussionEn: discEn });
+  const vi = both.slice(both.indexOf('card__detail l l-vi'), both.indexOf('card__detail l l-en'));
+  assert.ok(vi.includes('<p>Đoạn một.</p>') && vi.includes('Thảo luận') && vi.indexOf('card__discussion') < vi.indexOf('card__source'), 'vi block: detail, discussion, then the source link');
+  assert.ok(both.slice(both.indexOf('card__detail l l-en')).includes('Discussion'));
+  const only = renderCard({ ...item, discussion: disc, discussionEn: discEn });
+  assert.ok(only.includes('<details class="card__details">') && only.includes('card__discussion') && !only.includes('card__note') && !only.includes('data-fallback'), 'no detail: still expandable, no Vietnamese-only note');
+  assert.ok(only.includes('>Read the original</a>'));
+  assert.ok(!renderCard({ ...item, detail: 'x', detailEn: 'y' }).includes('card__discussion'));
 });
