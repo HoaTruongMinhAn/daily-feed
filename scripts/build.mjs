@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { mkdirSync, writeFileSync, readdirSync, rmSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { feedConfig as cfg } from '../config/feed.mjs';
@@ -7,6 +8,13 @@ import { sources } from '../config/sources.mjs';
 import { dataFile, readJson, updateStatus, siteDir, todayIn } from '../lib/store.mjs';
 import { renderPage } from '../lib/render.mjs';
 import { selectHome } from '../lib/home.mjs';
+
+// Short hash of every file in site/assets, for cache-busting asset URLs.
+export function assetVersion(dir = join(siteDir, 'assets')) {
+  const h = createHash('sha1');
+  for (const f of readdirSync(dir).sort()) h.update(f).update(readFileSync(join(dir, f)));
+  return h.digest('hex').slice(0, 10);
+}
 
 export function main() {
   const items = readJson(dataFile('items.json'), []);
@@ -25,17 +33,18 @@ export function main() {
   const { hotNow, feed } = selectHome(items, today, cfg);
   const archiveDates = [...new Set(items.map((i) => i.addedAt))].sort().reverse();
 
+  const version = assetVersion();
   const archiveDir = join(siteDir, 'archive');
   mkdirSync(archiveDir, { recursive: true });
   for (const f of readdirSync(archiveDir)) rmSync(join(archiveDir, f));
 
   writeFileSync(join(siteDir, 'index.html'), renderPage({
-    title: cfg.siteTitle, heading: cfg.siteTitle, items: feed, hotNow, archiveDates, status, sourceNames, generatedAt, basePath: '', isArchive: false, pageSize: cfg.homePageSize,
+    title: cfg.siteTitle, heading: cfg.siteTitle, items: feed, hotNow, archiveDates, status, sourceNames, generatedAt, basePath: '', isArchive: false, pageSize: cfg.homePageSize, assetVersion: version,
   }));
   for (const date of archiveDates) {
     writeFileSync(join(archiveDir, `${date}.html`), renderPage({
       title: `${cfg.siteTitle} · ${date}`, heading: `${cfg.siteTitle} · ${date}`,
-      items: items.filter((i) => i.addedAt === date).sort(byRank), hotNow: [], archiveDates, status: {}, sourceNames, generatedAt, basePath: '../', isArchive: true,
+      items: items.filter((i) => i.addedAt === date).sort(byRank), hotNow: [], archiveDates, status: {}, sourceNames, generatedAt, basePath: '../', isArchive: true, assetVersion: version,
     }));
   }
   writeFileSync(join(siteDir, 'feed.json'), JSON.stringify({ generatedAt, items: [...items].sort(byRank) }, null, 2) + '\n');

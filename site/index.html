@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src https: http:; connect-src 'none'">
 <title>Daily Feed</title>
-<script src="assets/lang.js"></script>
+<script src="assets/lang.js?v=a17babc1e0"></script>
 <meta name="description" content="Daily curated feed: AI, testing, IT, and IT humor.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=a17babc1e0">
 </head>
 <body data-page="home">
 <header class="top">
   <div class="top__row">
     <a class="brand" href="index.html">Daily Feed</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-05</span> <select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-05</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -9923,6 +9923,6 @@
   <p><span class="l l-vi" lang="vi">Lấy từ 39 nguồn (17 nguồn lỗi lần này) · mỗi bài đều dẫn về nơi đăng gốc.</span><span class="l l-en" lang="en">Refreshed from 39 sources (17 failed this run) · every item links to where it came from.</span></p>
   <p class="state-tools" hidden><span class="l l-vi" lang="vi">Dữ liệu trên trình duyệt này:</span><span class="l l-en" lang="en">Data in this browser:</span> <button class="linkbtn" id="export" type="button"><span class="l l-vi" lang="vi">Xuất</span><span class="l l-en" lang="en">Export</span></button> · <button class="linkbtn" id="import" type="button"><span class="l l-vi" lang="vi">Nhập</span><span class="l l-en" lang="en">Import</span></button><input id="import-file" type="file" accept="application/json,.json" hidden> <span id="state-msg" role="status"></span></p>
 </footer>
-<script type="module" src="assets/app.js"></script>
+<script type="module" src="assets/app.js?v=a17babc1e0"></script>
 </body>
 </html>

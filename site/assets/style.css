@@ -154,10 +154,14 @@ html[data-lang="en"] .card--read .card__meta::after { content: 'read'; }
 html[data-lang="en"] .card__toggle::before { content: '▸ Show detail'; }
 html[data-lang="en"] .card__details[open] .card__toggle::before { content: '▾ Collapse'; }
 .card__note { margin: 0 0 10px; font-size: 13px; font-style: italic; color: var(--muted); }
+.lang-wrap { position: relative; display: inline-flex; align-items: center; }
+.lang-wrap::after { content: '▾'; position: absolute; right: 10px; color: var(--accent); pointer-events: none; font-size: 12px; }
 .lang {
+  appearance: none; -webkit-appearance: none;
   font: inherit; font-family: var(--mono); font-size: 13px; color: var(--muted);
   background: transparent; border: 1px solid var(--border); border-radius: 999px;
-  padding: 4px 10px; cursor: pointer;
+  padding: 5px 26px 5px 12px; cursor: pointer; line-height: 1.2;
 }
-.lang:hover { border-color: var(--border-strong); color: var(--text); }
+.lang:hover, .lang:focus-visible { border-color: var(--border-strong); color: var(--text); outline: none; }
+.lang:focus-visible { box-shadow: 0 0 0 2px rgba(204, 120, 50, 0.35); }
 .lang option { color: var(--text); background: var(--bg); }

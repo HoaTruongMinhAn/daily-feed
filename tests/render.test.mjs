@@ -217,3 +217,19 @@ test('renderPage loads lang.js synchronously in <head>, has the dropdown and bil
   const failed = page({ status: { curate: { ok: false, at: '2026-10-04T00:10:00Z' } } });
   assert.ok(failed.includes('Curation failed on 2026-10-04') && failed.includes('Bước chọn bài lỗi ngày 2026-10-04'));
 });
+
+test('renderPage versions its asset URLs so a new page never runs with cached old assets', () => {
+  const html = page({ assetVersion: 'abc12345' });
+  assert.ok(html.includes('<script src="assets/lang.js?v=abc12345"></script>'));
+  assert.ok(html.includes('<link rel="stylesheet" href="assets/style.css?v=abc12345">'));
+  assert.ok(html.includes('<script type="module" src="assets/app.js?v=abc12345"></script>'));
+  const archive = page({ assetVersion: 'abc12345', basePath: '../', isArchive: true, hotNow: [] });
+  assert.ok(archive.includes('href="../assets/style.css?v=abc12345"') && archive.includes('src="../assets/app.js?v=abc12345"'));
+  const plain = page();
+  assert.ok(plain.includes('href="assets/style.css"') && !plain.includes('?v='), 'no version: plain URLs');
+  assert.ok(!page({ assetVersion: 'x"><script>' }).includes('<script>'), 'version is escaped');
+});
+
+test('the language dropdown sits in a styled wrapper', () => {
+  assert.ok(page().includes('<span class="lang-wrap"><select id="lang" class="lang" aria-label="Language">'));
+});
