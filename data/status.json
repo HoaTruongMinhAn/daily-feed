@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "181 candidates, 116 sightings from 45/62 sources",
+    "message": "200 candidates, 78 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -72,25 +72,25 @@
         "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
       }
     ],
-    "candidates": 181,
-    "at": "2026-10-05T01:33:59.346Z"
+    "candidates": 200,
+    "at": "2026-10-06T02:07:16.912Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 58, dropped 123, invalid 0",
-    "at": "2026-10-05T01:38:49.173Z"
+    "message": "kept 105, dropped 95, invalid 0",
+    "at": "2026-10-06T02:12:46.027Z"
   },
   "merge": {
     "ok": true,
-    "message": "262 items retained, 2 re-sighted",
+    "message": "367 items retained, 2 re-sighted",
     "counts": {
-      "candidates": 181,
-      "kept": 58,
-      "dropped": 123,
+      "candidates": 200,
+      "kept": 105,
+      "dropped": 95,
       "invalid": 0,
       "sighted": 2
     },
-    "at": "2026-10-05T01:38:49.173Z"
+    "at": "2026-10-06T02:12:46.028Z"
   },
   "build": {
     "ok": true,
