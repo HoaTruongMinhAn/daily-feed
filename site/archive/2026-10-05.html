@@ -24,7 +24,47 @@
 
 
 <section id="feed"><h2 class="divider" id="d-2026-10-05">2026-10-05</h2>
-<div class="list"><article class="card" data-group="ai" data-id="bca476fd34631d9d662cd56662a8baa94313727b" data-url="https://github.com/Niko1221/Strata" data-category="ai-trend" data-added="2026-10-05">
+<div class="list"><article class="card" data-group="it" data-id="fb514e83ae1ccc16c8e526a58a7d93a8176e118d" data-url="https://github.com/omlahore/RemoveMacAI" data-category="it-general" data-added="2026-10-05">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Hacker News · Bluesky</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Tắt Apple Intelligence trên macOS 27 và lấy lại dung lượng ổ đĩa</span><span class="l l-en" lang="en">Turn off Apple Intelligence on macOS 27 and get its disk space back</span></h3>
+    <span class="card__orig l l-vi" lang="en">Turn off Apple Intelligence on macOS 27 and get its disk space back</span>
+    <span class="card__summary l l-vi" lang="vi">RemoveMacAI là repo GitHub giúp tắt Apple Intelligence trên macOS 27 và giải phóng dung lượng ổ đĩa mà tính năng này chiếm.</span><span class="card__summary l l-en" lang="en" data-fallback="">RemoveMacAI là repo GitHub giúp tắt Apple Intelligence trên macOS 27 và giải phóng dung lượng ổ đĩa mà tính năng này chiếm.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>RemoveMacAI là công cụ dòng lệnh trên GitHub tắt các tính năng Apple Intelligence trên macOS 27, xóa các mô hình đã tải và chặn macOS tải lại. Theo README, macOS 27 không còn một công tắc duy nhất cho Apple Intelligence và các mô hình vẫn nằm trên đĩa sau khi tắt tính năng.</p>
+<p>Cách dùng:<br>- Cài bằng lệnh curl ... | bash (script tải bản release, kiểm tra checksum SHA-256 rồi chạy từ thư mục tạm, không cài gì) hoặc bằng Homebrew: brew install omlahore/tap/removemacai.<br>- removemacai hiển thị trạng thái rồi tắt; status xem từng tính năng và dung lượng mô hình; off --keep giữ lại một số tính năng; off --dry-run xem trước; revert hoàn tác mọi thay đổi.</p>
+<p>Công cụ tắt: Siri (kể cả &quot;Hey Siri&quot;), Writing Tools, Genmoji, Image Playground, tiện ích ChatGPT, tóm tắt trong Mail/Messages/Safari/Notes và thông báo, gợi ý trả lời Mail, Photos Clean Up, Xcode predictive code completion.</p>
+<p>Cơ chế: một configuration profile áp dụng các khóa hạn chế của Apple; mô hình bị xóa qua asset service của Apple, System Integrity Protection vẫn bật và không sửa trực tiếp file trong /System; profile chuyển hướng việc tải từng mô hình tới một cổng cục bộ đóng để macOS không tải lại. macOS yêu cầu người dùng duyệt profile trong System Settings. Cập nhật macOS không hoàn tác thay đổi.</p>
+<p>Hạn chế: chỉ hỗ trợ Apple silicon và macOS 27 (thử trên 27.0; với 27.0.1 dùng 0.2.3 trở lên). Các app dùng mô hình on-device của Apple (Foundation Models framework, Use Model trong Shortcuts) sẽ ngừng hoạt động. Dictation vẫn dùng được. Công cụ nói không gửi request mạng và không thu thập dữ liệu.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Cộng đồng chia làm hai: nhiều người bực vì Apple bỏ công tắc tắt AI và coi việc phải dùng công cụ bên thứ ba là dấu hiệu &quot;xuống cấp&quot; của macOS; một số khác nhắc về rủi ro của việc chạy script qua curl | bash, dù cũng có người khen cách công cụ này làm đúng bài.</p><ul class="quotes"><li><q>Stop the curl | bash insanity.</q> <span class="quote__by">@arialdomartini, Hacker News</span></li><li><q>&gt; Every release is built from its tag by GitHub Actions and carries a build provenance attestation. Huh cool. They&#39;re doing curl | bash properly.</q> <span class="quote__by">@nailer, Hacker News</span></li><li><q>Looks like we&#39;ve gotten to the point on macOS too, where you need to run third party scripts on a new OS installation to gain back control of your system resources and remove unwanted crapware.</q> <span class="quote__by">@ryandrake, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://github.com/omlahore/RemoveMacAI" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>RemoveMacAI is a command-line tool on GitHub that turns off Apple Intelligence features on macOS 27, removes the downloaded models and stops macOS from downloading them again. Per the README, macOS 27 no longer has a single switch for Apple Intelligence, and its models stay on disk after the features are turned off.</p>
+<p>Usage:<br>- Install with a curl ... | bash one-liner (the script downloads the latest release, verifies its SHA-256 checksum and runs from a temporary directory, installing nothing) or with Homebrew: brew install omlahore/tap/removemacai.<br>- removemacai shows the current state, then turns Apple Intelligence off; status lists each feature and model size; off --keep leaves chosen features on; off --dry-run previews; revert undoes everything.</p>
+<p>It turns off Siri (including &quot;Hey Siri&quot;), Writing Tools, Genmoji, Image Playground, the ChatGPT extension, summaries in Mail, Messages, Safari, Notes and notifications, Mail smart replies, Photos Clean Up and Xcode predictive code completion.</p>
+<p>How it works: a configuration profile applies Apple&#39;s restriction keys; models are removed through Apple&#39;s asset service, System Integrity Protection stays enabled and nothing under /System is modified directly; the profile redirects each removed model&#39;s download to a closed local port so macOS does not fetch it again. macOS requires the user to approve the profile in System Settings. macOS updates do not undo the changes.</p>
+<p>Limits: Apple silicon and macOS 27 only (tested on 27.0; on 27.0.1 use 0.2.3 or later). Apps that use Apple&#39;s on-device models (the Foundation Models framework, the Use Model action in Shortcuts) stop working. Dictation still works. The tool says it makes no network requests and collects no data.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Opinion splits: many are annoyed that Apple removed a single off switch and see needing a third-party tool as a sign macOS is declining; others warn about running curl | bash scripts, though one commenter credits this project for doing it properly.</p><ul class="quotes"><li><q>Stop the curl | bash insanity.</q> <span class="quote__by">@arialdomartini, Hacker News</span></li><li><q>Huh cool. They&#39;re doing curl | bash properly.</q> <span class="quote__by">@nailer, Hacker News</span></li><li><q>Looks like we&#39;ve gotten to the point on macOS too, where you need to run third party scripts on a new OS installation to gain back control of your system resources and remove unwanted crapware.</q> <span class="quote__by">@ryandrake, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://github.com/omlahore/RemoveMacAI" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">macos</span><span class="tag">apple-intelligence</span></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=49957116" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://bsky.app/profile/wmhenrymorris.com/post/3mx6chhfc4s2q" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 75%"></div>
+</article>
+<article class="card" data-group="ai" data-id="bca476fd34631d9d662cd56662a8baa94313727b" data-url="https://github.com/Niko1221/Strata" data-category="ai-trend" data-added="2026-10-05">
   <div class="card__meta">
     <span class="chip chip--ai">AI trend</span>
     <span class="card__src">Hacker News</span>
@@ -108,46 +148,6 @@
     <span class="links"><a class="card__link" href="https://daily.dev/posts/agents-have-made-ci-the-bottleneck-faster-pipelines-are-the-wrong-fix--fott4jdmy" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://daily.dev/posts/agents-have-made-ci-the-bottleneck-faster-pipelines-are-the-wrong-fix--fott4jdmy" target="_blank" rel="noopener">more 1</a></span>
   </div>
   <div class="hot" style="--hot: 37%"></div>
-</article>
-<article class="card" data-group="it" data-id="fb514e83ae1ccc16c8e526a58a7d93a8176e118d" data-url="https://github.com/omlahore/RemoveMacAI" data-category="it-general" data-added="2026-10-05">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">Hacker News</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Tắt Apple Intelligence trên macOS 27 và lấy lại dung lượng ổ đĩa</span><span class="l l-en" lang="en">Turn off Apple Intelligence on macOS 27 and get its disk space back</span></h3>
-    <span class="card__orig l l-vi" lang="en">Turn off Apple Intelligence on macOS 27 and get its disk space back</span>
-    <span class="card__summary l l-vi" lang="vi">RemoveMacAI là repo GitHub giúp tắt Apple Intelligence trên macOS 27 và giải phóng dung lượng ổ đĩa mà tính năng này chiếm.</span><span class="card__summary l l-en" lang="en" data-fallback="">RemoveMacAI là repo GitHub giúp tắt Apple Intelligence trên macOS 27 và giải phóng dung lượng ổ đĩa mà tính năng này chiếm.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>RemoveMacAI là công cụ dòng lệnh trên GitHub tắt các tính năng Apple Intelligence trên macOS 27, xóa các mô hình đã tải và chặn macOS tải lại. Theo README, macOS 27 không còn một công tắc duy nhất cho Apple Intelligence và các mô hình vẫn nằm trên đĩa sau khi tắt tính năng.</p>
-<p>Cách dùng:<br>- Cài bằng lệnh curl ... | bash (script tải bản release, kiểm tra checksum SHA-256 rồi chạy từ thư mục tạm, không cài gì) hoặc bằng Homebrew: brew install omlahore/tap/removemacai.<br>- removemacai hiển thị trạng thái rồi tắt; status xem từng tính năng và dung lượng mô hình; off --keep giữ lại một số tính năng; off --dry-run xem trước; revert hoàn tác mọi thay đổi.</p>
-<p>Công cụ tắt: Siri (kể cả &quot;Hey Siri&quot;), Writing Tools, Genmoji, Image Playground, tiện ích ChatGPT, tóm tắt trong Mail/Messages/Safari/Notes và thông báo, gợi ý trả lời Mail, Photos Clean Up, Xcode predictive code completion.</p>
-<p>Cơ chế: một configuration profile áp dụng các khóa hạn chế của Apple; mô hình bị xóa qua asset service của Apple, System Integrity Protection vẫn bật và không sửa trực tiếp file trong /System; profile chuyển hướng việc tải từng mô hình tới một cổng cục bộ đóng để macOS không tải lại. macOS yêu cầu người dùng duyệt profile trong System Settings. Cập nhật macOS không hoàn tác thay đổi.</p>
-<p>Hạn chế: chỉ hỗ trợ Apple silicon và macOS 27 (thử trên 27.0; với 27.0.1 dùng 0.2.3 trở lên). Các app dùng mô hình on-device của Apple (Foundation Models framework, Use Model trong Shortcuts) sẽ ngừng hoạt động. Dictation vẫn dùng được. Công cụ nói không gửi request mạng và không thu thập dữ liệu.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Cộng đồng chia làm hai: nhiều người bực vì Apple bỏ công tắc tắt AI và coi việc phải dùng công cụ bên thứ ba là dấu hiệu &quot;xuống cấp&quot; của macOS; một số khác nhắc về rủi ro của việc chạy script qua curl | bash, dù cũng có người khen cách công cụ này làm đúng bài.</p><ul class="quotes"><li><q>Stop the curl | bash insanity.</q> <span class="quote__by">@arialdomartini, Hacker News</span></li><li><q>&gt; Every release is built from its tag by GitHub Actions and carries a build provenance attestation. Huh cool. They&#39;re doing curl | bash properly.</q> <span class="quote__by">@nailer, Hacker News</span></li><li><q>Looks like we&#39;ve gotten to the point on macOS too, where you need to run third party scripts on a new OS installation to gain back control of your system resources and remove unwanted crapware.</q> <span class="quote__by">@ryandrake, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://github.com/omlahore/RemoveMacAI" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>RemoveMacAI is a command-line tool on GitHub that turns off Apple Intelligence features on macOS 27, removes the downloaded models and stops macOS from downloading them again. Per the README, macOS 27 no longer has a single switch for Apple Intelligence, and its models stay on disk after the features are turned off.</p>
-<p>Usage:<br>- Install with a curl ... | bash one-liner (the script downloads the latest release, verifies its SHA-256 checksum and runs from a temporary directory, installing nothing) or with Homebrew: brew install omlahore/tap/removemacai.<br>- removemacai shows the current state, then turns Apple Intelligence off; status lists each feature and model size; off --keep leaves chosen features on; off --dry-run previews; revert undoes everything.</p>
-<p>It turns off Siri (including &quot;Hey Siri&quot;), Writing Tools, Genmoji, Image Playground, the ChatGPT extension, summaries in Mail, Messages, Safari, Notes and notifications, Mail smart replies, Photos Clean Up and Xcode predictive code completion.</p>
-<p>How it works: a configuration profile applies Apple&#39;s restriction keys; models are removed through Apple&#39;s asset service, System Integrity Protection stays enabled and nothing under /System is modified directly; the profile redirects each removed model&#39;s download to a closed local port so macOS does not fetch it again. macOS requires the user to approve the profile in System Settings. macOS updates do not undo the changes.</p>
-<p>Limits: Apple silicon and macOS 27 only (tested on 27.0; on 27.0.1 use 0.2.3 or later). Apps that use Apple&#39;s on-device models (the Foundation Models framework, the Use Model action in Shortcuts) stop working. Dictation still works. The tool says it makes no network requests and collects no data.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Opinion splits: many are annoyed that Apple removed a single off switch and see needing a third-party tool as a sign macOS is declining; others warn about running curl | bash scripts, though one commenter credits this project for doing it properly.</p><ul class="quotes"><li><q>Stop the curl | bash insanity.</q> <span class="quote__by">@arialdomartini, Hacker News</span></li><li><q>Huh cool. They&#39;re doing curl | bash properly.</q> <span class="quote__by">@nailer, Hacker News</span></li><li><q>Looks like we&#39;ve gotten to the point on macOS too, where you need to run third party scripts on a new OS installation to gain back control of your system resources and remove unwanted crapware.</q> <span class="quote__by">@ryandrake, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://github.com/omlahore/RemoveMacAI" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">macos</span><span class="tag">apple-intelligence</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=49957116" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 75%"></div>
 </article>
 <article class="card" data-group="hot" data-id="414b95fe0b672c67fe24b3dfd2b8f055af2e79da" data-url="https://1011now.com/2026/09/30/more-questions-than-answers-about-lincolns-google-data-center-water-electricity-usage" data-category="hot-datacenter" data-category-label="Trung tâm dữ liệu" data-added="2026-10-05">
   <div class="card__meta">
@@ -475,6 +475,46 @@
   </div>
   <div class="hot" style="--hot: 25%"></div>
 </article>
+<article class="card" data-group="it" data-id="f896e86c6f5d174fa050590f3f5a4e5a4b670bbc" data-url="https://github.com/PowderworksCode/headstart" data-category="it-general" data-added="2026-10-05">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Hacker News · Bluesky</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">headstart: xuất metadata sớm giúp build/check Rust nhanh gấp tới hai lần</span><span class="l l-en" lang="en">Emitting metadata early makes building/checking Rust up to twice as fast</span></h3>
+    <span class="card__orig l l-vi" lang="en">Emitting metadata early makes building/checking Rust up to twice as fast</span>
+    <span class="card__summary l l-vi" lang="vi">Dự án headstart cho thấy việc xuất metadata sớm có thể giúp build và check Rust nhanh gấp tới hai lần. Hữu ích nếu bạn đau đầu vì thời gian biên dịch.</span><span class="card__summary l l-en" lang="en" data-fallback="">Dự án headstart cho thấy việc xuất metadata sớm có thể giúp build và check Rust nhanh gấp tới hai lần. Hữu ích nếu bạn đau đầu vì thời gian biên dịch.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>headstart làm cho rustc ghi một file metadata sớm ngay khi interface của crate đã được kiểm tra, và cho cargo khởi động các crate phụ thuộc trên metadata sớm đó. Lý do: mỗi crate hiện phải đợi các dependency kiểm tra xong toàn bộ, kể cả thân hàm, trong khi nó chỉ cần interface trong file .rmeta.</p>
+<ul><li>cargo check: dependent chạy tới hết trên metadata sớm.</li><li>cargo build: dependent làm hết phần analysis trên metadata sớm, rồi đợi metadata đầy đủ trước khi sinh code, và trả lại job slot trong lúc đợi.</li><li>Nếu thân hàm có lỗi, build vẫn fail với cùng diagnostics và exit status; chỉ dòng progress và thứ tự JSON message giữa các crate có thể khác.</li></ul>
+<p>Cách làm: 6 patch cho rustc (-Zearly-metadata, query analysis_interfaces mới) và 3 patch cho cargo (-Zheadstart), dự định trở thành pull request upstream.</p>
+<p>Số liệu: trên 13 dự án thật (rust-analyzer, zed, bevy, lemmy, polars...), clean build nhanh hơn tới 54% với cargo check và tới 42% với cargo build, không dự án nào chậm đi. Với parallel front end (-Zthreads=8) mức tăng thêm tới 25%. Đó là số liệu trên 16 core; máy ít core hơn thì lợi ích giảm (4 core: check của rust-analyzer nhanh hơn 24%, build 13-15%).</p>
+<p>Cái giá: công việc downstream bị bỏ đi, lỗi báo muộn hơn một chút, và dùng nhiều bộ nhớ hơn cùng lúc.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phản ứng nhìn chung tích cực, nhiều người ngạc nhiên vì chưa ai làm; một vài người đặt câu hỏi kỹ thuật về trường hợp type checking phụ thuộc vào thân hàm, và một người chê cách tổ chức repo.</p><ul class="quotes"><li><q>Có vẻ là một chiến thắng dễ dàng! Tôi hơi ngạc nhiên là chưa ai làm điều này.</q> <span class="quote__by">@IshKebab, Hacker News</span></li><li><q>Tôi tự hỏi nó hoạt động thế nào khi type checking của một crate thực sự phụ thuộc vào thân hàm của một dependency.</q> <span class="quote__by">@SkiFire13, Hacker News</span></li><li><q>Nói thêm, để repo thành một đống patch check-in sẵn thì thật ngớ ngẩn.</q> <span class="quote__by">@quotemstr, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://github.com/PowderworksCode/headstart" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>headstart makes rustc write an early metadata file as soon as a crate&#39;s interface is checked, and makes cargo start dependents on it. The reason: every crate currently waits for its dependencies to be fully checked, function bodies included, although it only needs the interface in the .rmeta file.</p>
+<ul><li>cargo check: dependents run to completion on early metadata.</li><li>cargo build: dependents do all their analysis on early metadata, then wait for the dependency&#39;s full metadata before generating code, giving their job slot back while they wait.</li><li>If a body has an error, the build still fails with the same diagnostics and exit status; only progress lines and the cross-crate order of JSON messages can differ.</li></ul>
+<p>How it is built: 6 patches for rustc (-Zearly-metadata, a new analysis_interfaces query) and 3 patches for cargo (-Zheadstart), meant to become upstream pull requests.</p>
+<p>Numbers: on 13 real projects (rust-analyzer, zed, bevy, lemmy, polars and others), clean builds are up to 54% faster for cargo check and up to 42% for cargo build, and none is slower. With the parallel front end (-Zthreads=8) it adds up to 25%. Those are 16-core numbers; the gain shrinks on smaller machines (on 4 cores, rust-analyzer&#39;s check is 24% faster and its build 13-15%).</p>
+<p>The costs: downstream work that gets thrown away, errors reported slightly later, and more memory in use at once.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Reaction is mostly positive, with several people surprised nobody did this already; a few raise technical questions about cases where type checking depends on function bodies, and one criticises how the repo is organised.</p><ul class="quotes"><li><q>Seems like an easy win! I&#39;m kind of surprised nobody did this already.</q> <span class="quote__by">@IshKebab, Hacker News</span></li><li><q>I wonder how this works when a crate&#39;s type checking does indeed depend on the bodies of one of its dependency.</q> <span class="quote__by">@SkiFire13, Hacker News</span></li><li><q>As an aside, it&#39;s just silly to make the repository a bunch of checked-in patches.</q> <span class="quote__by">@quotemstr, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://github.com/PowderworksCode/headstart" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">rust</span><span class="tag">build</span></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=49951218" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://bsky.app/profile/hn.rbrt.fr/post/3mx6dl6sphc22" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 12%"></div>
+</article>
 <article class="card" data-group="testing" data-id="3963db59fe9e76f274dbb71f81a3b360df749765" data-url="https://minitestrails.com/guide/testing-api" data-category="test-api" data-added="2026-10-05">
   <div class="card__meta">
     <span class="chip chip--testing">API testing</span>
@@ -512,46 +552,6 @@
     <span class="links"><a class="card__link" href="https://daily.dev/posts/testing-json-apis-in-rails-9cgptzglb" target="_blank" rel="noopener">discussion</a></span>
   </div>
   <div class="hot" style="--hot: 14%"></div>
-</article>
-<article class="card" data-group="it" data-id="f896e86c6f5d174fa050590f3f5a4e5a4b670bbc" data-url="https://github.com/PowderworksCode/headstart" data-category="it-general" data-added="2026-10-05">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">Hacker News</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">headstart: xuất metadata sớm giúp build/check Rust nhanh gấp tới hai lần</span><span class="l l-en" lang="en">Emitting metadata early makes building/checking Rust up to twice as fast</span></h3>
-    <span class="card__orig l l-vi" lang="en">Emitting metadata early makes building/checking Rust up to twice as fast</span>
-    <span class="card__summary l l-vi" lang="vi">Dự án headstart cho thấy việc xuất metadata sớm có thể giúp build và check Rust nhanh gấp tới hai lần. Hữu ích nếu bạn đau đầu vì thời gian biên dịch.</span><span class="card__summary l l-en" lang="en" data-fallback="">Dự án headstart cho thấy việc xuất metadata sớm có thể giúp build và check Rust nhanh gấp tới hai lần. Hữu ích nếu bạn đau đầu vì thời gian biên dịch.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>headstart làm cho rustc ghi một file metadata sớm ngay khi interface của crate đã được kiểm tra, và cho cargo khởi động các crate phụ thuộc trên metadata sớm đó. Lý do: mỗi crate hiện phải đợi các dependency kiểm tra xong toàn bộ, kể cả thân hàm, trong khi nó chỉ cần interface trong file .rmeta.</p>
-<ul><li>cargo check: dependent chạy tới hết trên metadata sớm.</li><li>cargo build: dependent làm hết phần analysis trên metadata sớm, rồi đợi metadata đầy đủ trước khi sinh code, và trả lại job slot trong lúc đợi.</li><li>Nếu thân hàm có lỗi, build vẫn fail với cùng diagnostics và exit status; chỉ dòng progress và thứ tự JSON message giữa các crate có thể khác.</li></ul>
-<p>Cách làm: 6 patch cho rustc (-Zearly-metadata, query analysis_interfaces mới) và 3 patch cho cargo (-Zheadstart), dự định trở thành pull request upstream.</p>
-<p>Số liệu: trên 13 dự án thật (rust-analyzer, zed, bevy, lemmy, polars...), clean build nhanh hơn tới 54% với cargo check và tới 42% với cargo build, không dự án nào chậm đi. Với parallel front end (-Zthreads=8) mức tăng thêm tới 25%. Đó là số liệu trên 16 core; máy ít core hơn thì lợi ích giảm (4 core: check của rust-analyzer nhanh hơn 24%, build 13-15%).</p>
-<p>Cái giá: công việc downstream bị bỏ đi, lỗi báo muộn hơn một chút, và dùng nhiều bộ nhớ hơn cùng lúc.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phản ứng nhìn chung tích cực, nhiều người ngạc nhiên vì chưa ai làm; một vài người đặt câu hỏi kỹ thuật về trường hợp type checking phụ thuộc vào thân hàm, và một người chê cách tổ chức repo.</p><ul class="quotes"><li><q>Có vẻ là một chiến thắng dễ dàng! Tôi hơi ngạc nhiên là chưa ai làm điều này.</q> <span class="quote__by">@IshKebab, Hacker News</span></li><li><q>Tôi tự hỏi nó hoạt động thế nào khi type checking của một crate thực sự phụ thuộc vào thân hàm của một dependency.</q> <span class="quote__by">@SkiFire13, Hacker News</span></li><li><q>Nói thêm, để repo thành một đống patch check-in sẵn thì thật ngớ ngẩn.</q> <span class="quote__by">@quotemstr, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://github.com/PowderworksCode/headstart" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>headstart makes rustc write an early metadata file as soon as a crate&#39;s interface is checked, and makes cargo start dependents on it. The reason: every crate currently waits for its dependencies to be fully checked, function bodies included, although it only needs the interface in the .rmeta file.</p>
-<ul><li>cargo check: dependents run to completion on early metadata.</li><li>cargo build: dependents do all their analysis on early metadata, then wait for the dependency&#39;s full metadata before generating code, giving their job slot back while they wait.</li><li>If a body has an error, the build still fails with the same diagnostics and exit status; only progress lines and the cross-crate order of JSON messages can differ.</li></ul>
-<p>How it is built: 6 patches for rustc (-Zearly-metadata, a new analysis_interfaces query) and 3 patches for cargo (-Zheadstart), meant to become upstream pull requests.</p>
-<p>Numbers: on 13 real projects (rust-analyzer, zed, bevy, lemmy, polars and others), clean builds are up to 54% faster for cargo check and up to 42% for cargo build, and none is slower. With the parallel front end (-Zthreads=8) it adds up to 25%. Those are 16-core numbers; the gain shrinks on smaller machines (on 4 cores, rust-analyzer&#39;s check is 24% faster and its build 13-15%).</p>
-<p>The costs: downstream work that gets thrown away, errors reported slightly later, and more memory in use at once.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Reaction is mostly positive, with several people surprised nobody did this already; a few raise technical questions about cases where type checking depends on function bodies, and one criticises how the repo is organised.</p><ul class="quotes"><li><q>Seems like an easy win! I&#39;m kind of surprised nobody did this already.</q> <span class="quote__by">@IshKebab, Hacker News</span></li><li><q>I wonder how this works when a crate&#39;s type checking does indeed depend on the bodies of one of its dependency.</q> <span class="quote__by">@SkiFire13, Hacker News</span></li><li><q>As an aside, it&#39;s just silly to make the repository a bunch of checked-in patches.</q> <span class="quote__by">@quotemstr, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://github.com/PowderworksCode/headstart" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">rust</span><span class="tag">build</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=49951218" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 12%"></div>
 </article>
 <article class="card" data-group="testing" data-id="6df39636f6193c7bee0cccbe26e521fce96ea56c" data-url="https://dev.to/reidmarlow/when-agent-evals-score-cash-balance-the-model-invents-refund-fraud-227i" data-category="test-automation" data-added="2026-10-05">
   <div class="card__meta">
@@ -2173,7 +2173,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
