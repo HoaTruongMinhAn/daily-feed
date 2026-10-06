@@ -95,18 +95,19 @@
   "build": {
     "ok": true,
     "message": "262 items on index, 2 archive pages",
-    "at": "2026-10-05T15:04:20.067Z"
+    "at": "2026-10-06T02:02:16.074Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-05",
-    "message": "65 details written today",
+    "day": "2026-10-06",
+    "message": "102 details written today",
     "counts": {
-      "written": 65,
-      "missing": 12,
-      "invalid": 2,
-      "ungrounded": 2
+      "written": 102,
+      "missing": 15,
+      "invalid": 13,
+      "ungrounded": 11,
+      "discussed": 9
     },
-    "at": "2026-10-05T01:48:34.350Z"
+    "at": "2026-10-06T02:02:15.902Z"
   }
 }
