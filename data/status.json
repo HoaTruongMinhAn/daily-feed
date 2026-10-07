@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 78 sightings from 45/62 sources",
+    "message": "200 candidates, 96 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -13,11 +13,11 @@
       },
       {
         "id": "r-claudeai",
-        "error": "HTTP 403 for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-qualityassurance",
-        "error": "HTTP 403 for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-softwaretesting",
@@ -29,7 +29,7 @@
       },
       {
         "id": "r-programmerhumor",
-        "error": "HTTP 403 for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-playwright",
@@ -41,7 +41,7 @@
       },
       {
         "id": "r-devops",
-        "error": "HTTP 403 for https://www.reddit.com/r/devops/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/devops/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-experienceddevs",
@@ -65,7 +65,7 @@
       },
       {
         "id": "r-openai",
-        "error": "HTTP 403 for https://www.reddit.com/r/OpenAI/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/OpenAI/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-singularity",
@@ -73,41 +73,41 @@
       }
     ],
     "candidates": 200,
-    "at": "2026-10-06T02:07:16.912Z"
+    "at": "2026-10-07T01:12:09.417Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 105, dropped 95, invalid 0",
-    "at": "2026-10-06T02:12:46.027Z"
+    "message": "kept 115, dropped 85, invalid 0",
+    "at": "2026-10-07T01:18:06.658Z"
   },
   "merge": {
     "ok": true,
-    "message": "367 items retained, 2 re-sighted",
+    "message": "482 items retained, 3 re-sighted",
     "counts": {
       "candidates": 200,
-      "kept": 105,
-      "dropped": 95,
+      "kept": 115,
+      "dropped": 85,
       "invalid": 0,
-      "sighted": 2
+      "sighted": 3
     },
-    "at": "2026-10-06T02:12:46.028Z"
+    "at": "2026-10-07T01:18:06.658Z"
   },
   "build": {
     "ok": true,
-    "message": "367 items on index, 3 archive pages",
-    "at": "2026-10-06T02:29:00.668Z"
+    "message": "482 items on index, 4 archive pages",
+    "at": "2026-10-07T01:49:17.345Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-06",
-    "message": "158 details written today",
+    "day": "2026-10-07",
+    "message": "148 details written today",
     "counts": {
-      "written": 158,
-      "missing": 26,
-      "invalid": 16,
-      "ungrounded": 14,
-      "discussed": 20
+      "written": 148,
+      "missing": 7,
+      "invalid": 9,
+      "ungrounded": 8,
+      "discussed": 13
     },
-    "at": "2026-10-06T02:29:00.424Z"
+    "at": "2026-10-07T01:49:17.141Z"
   }
 }
