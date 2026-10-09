@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-07</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-08</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-09</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -1804,6 +1804,42 @@
   </div>
   <div class="hot" style="--hot: 6%"></div>
 </article>
+<article class="card" data-group="it" data-id="6719dd9b3a148022c926f4305cff84c73a605550" data-url="https://mitchellh.com/writing/program-status-osc7501" data-category="it-general" data-added="2026-10-07">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Lobsters · Hacker News</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 2/5">●●○○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Giao thức terminal cho trạng thái chương trình (OSC 7501)</span><span class="l l-en" lang="en">A Terminal Protocol for Program Status (OSC 7501)</span></h3>
+    <span class="card__orig l l-vi" lang="en">A Terminal Protocol for Program Status (OSC 7501)</span>
+    <span class="card__summary l l-vi" lang="vi">Mitchell Hashimoto đề xuất OSC 7501, một giao thức terminal để chương trình báo trạng thái của nó.</span><span class="card__summary l l-en" lang="en">Mitchell Hashimoto proposes OSC 7501, a terminal protocol for programs to report their status.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Mitchell Hashimoto công bố đặc tả OSC 7501, Program Status Protocol: một escape sequence mới cho phép bất kỳ chương trình nào báo cho terminal biết nó đang idle, working, blocked (chờ người dùng), finished hay failed, và lý do.</p>
+<ul><li>Vấn đề: build, deploy, nâng cấp gói, xử lý dữ liệu và ngày càng nhiều coding agent chạy lâu trong terminal; người dùng đi làm việc khác và muốn biết khi nào xong hoặc cần mình. Các cách cũ (theo dõi tiến trình foreground, chờ output im lặng) không đủ bền.</li><li>Ví dụ: Terraform có thể báo state=blocked với message (mã hóa base64) hỏi &quot;Apply 3 to add, 1 to change, 0 to destroy?&quot;. Terminal hiển thị thế nào tùy ý: thông báo, inbox, icon trạng thái.</li><li>&quot;Agentic inbox&quot; (Herdr, cmux, Agent Deck) hiện dùng heuristics đọc màn hình hoặc title, hoặc API ngoài terminal. Herdr có luật TOML cho Claude Code, file này đổi mười lần trong ba tháng chỉ cho một tool; API ngoài terminal thì mỗi chương trình phải tích hợp riêng với từng inbox và không chạy qua SSH hoặc container nếu thiếu cầu nối.</li><li>OSC 7501 đi qua pty vốn có, nên chạy ở mọi nơi; terminal tốt sẽ bỏ qua OSC lạ. Phần thân là danh sách key=value ngăn bằng dấu hai chấm; khóa bắt buộc duy nhất là state.</li><li>Đặc tả hoàn toàn chung, không gắn với sản phẩm nào, dù xuất phát từ công việc với Superlogical và Ghostty.</li></ul>
+<p>Với dân build AI: có thể là chuẩn chung để các agent báo &quot;đang chờ bạn&quot;.</p>
+
+  <p class="card__source"><a class="card__go" href="https://mitchellh.com/writing/program-status-osc7501" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A terminal protocol for program status (OSC 7501): Mitchell Hashimoto published a specification for OSC 7501, the Program Status Protocol, a new terminal escape sequence that lets any program tell the terminal what it is doing: idle, working, blocked (waiting on the user), finished or failed, and why.</p>
+<ul><li>The problem: builds, deployments, package upgrades, data processing and, more and more, coding agents run for a long time in terminals, and users go elsewhere and want to know when work finishes or needs them. Older approaches (monitoring the foreground process, waiting for quiet output) are not robust enough.</li><li>Example: Terraform could report state=blocked with a base64-encoded message asking &quot;Apply 3 to add, 1 to change, 0 to destroy?&quot;. A terminal can show it however it likes: a notification, an inbox, a status icon.</li><li>&quot;Agentic inboxes&quot; (Herdr, cmux, Agent Deck) currently use heuristics that read the screen or window title, or out-of-band APIs. Herdr&#39;s TOML rules for Claude Code changed ten times in three months for just that one tool; non-terminal APIs mean every program integrates with every inbox separately and a local socket does not work over SSH or in a container without bridging.</li><li>OSC 7501 uses the pty that already exists, so it works everywhere, and well-behaved terminals ignore unknown OSCs. The body is a list of key=value pairs separated by colons; the only required key is state.</li><li>The specification is fully generic with no product-specific language, though it emerged from work on Superlogical and Ghostty.</li></ul>
+<p>For people building AI tools: a possible shared way for agents to say &quot;waiting on you&quot;.</p>
+
+  <p class="card__source"><a class="card__go" href="https://mitchellh.com/writing/program-status-osc7501" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">terminal</span><span class="tag">protocol</span></span>
+    <span class="links"><a class="card__link" href="https://lobste.rs/s/rmh4fg/terminal_protocol_for_program_status_osc" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://news.ycombinator.com/item?id=49984159" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 7%"></div>
+</article>
 <article class="card" data-group="testing" data-id="b4ae20b4c8782f23fe17d4d94bfae56d2a1f9da2" data-url="https://dev.to/devopsdaily/p99-load-balancers-and-autoscaling-latency-intuition-you-can-play-with-41mk" data-category="test-perf" data-added="2026-10-07">
   <div class="card__meta">
     <span class="chip chip--testing">Performance</span>
@@ -1911,42 +1947,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 5%"></div>
-</article>
-<article class="card" data-group="it" data-id="6719dd9b3a148022c926f4305cff84c73a605550" data-url="https://mitchellh.com/writing/program-status-osc7501" data-category="it-general" data-added="2026-10-07">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">Lobsters</span>
-    <span class="card__fit" title="fit 2/5">●●○○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Giao thức terminal cho trạng thái chương trình (OSC 7501)</span><span class="l l-en" lang="en">A Terminal Protocol for Program Status (OSC 7501)</span></h3>
-    <span class="card__orig l l-vi" lang="en">A Terminal Protocol for Program Status (OSC 7501)</span>
-    <span class="card__summary l l-vi" lang="vi">Mitchell Hashimoto đề xuất OSC 7501, một giao thức terminal để chương trình báo trạng thái của nó.</span><span class="card__summary l l-en" lang="en">Mitchell Hashimoto proposes OSC 7501, a terminal protocol for programs to report their status.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Mitchell Hashimoto công bố đặc tả OSC 7501, Program Status Protocol: một escape sequence mới cho phép bất kỳ chương trình nào báo cho terminal biết nó đang idle, working, blocked (chờ người dùng), finished hay failed, và lý do.</p>
-<ul><li>Vấn đề: build, deploy, nâng cấp gói, xử lý dữ liệu và ngày càng nhiều coding agent chạy lâu trong terminal; người dùng đi làm việc khác và muốn biết khi nào xong hoặc cần mình. Các cách cũ (theo dõi tiến trình foreground, chờ output im lặng) không đủ bền.</li><li>Ví dụ: Terraform có thể báo state=blocked với message (mã hóa base64) hỏi &quot;Apply 3 to add, 1 to change, 0 to destroy?&quot;. Terminal hiển thị thế nào tùy ý: thông báo, inbox, icon trạng thái.</li><li>&quot;Agentic inbox&quot; (Herdr, cmux, Agent Deck) hiện dùng heuristics đọc màn hình hoặc title, hoặc API ngoài terminal. Herdr có luật TOML cho Claude Code, file này đổi mười lần trong ba tháng chỉ cho một tool; API ngoài terminal thì mỗi chương trình phải tích hợp riêng với từng inbox và không chạy qua SSH hoặc container nếu thiếu cầu nối.</li><li>OSC 7501 đi qua pty vốn có, nên chạy ở mọi nơi; terminal tốt sẽ bỏ qua OSC lạ. Phần thân là danh sách key=value ngăn bằng dấu hai chấm; khóa bắt buộc duy nhất là state.</li><li>Đặc tả hoàn toàn chung, không gắn với sản phẩm nào, dù xuất phát từ công việc với Superlogical và Ghostty.</li></ul>
-<p>Với dân build AI: có thể là chuẩn chung để các agent báo &quot;đang chờ bạn&quot;.</p>
-
-  <p class="card__source"><a class="card__go" href="https://mitchellh.com/writing/program-status-osc7501" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>A terminal protocol for program status (OSC 7501): Mitchell Hashimoto published a specification for OSC 7501, the Program Status Protocol, a new terminal escape sequence that lets any program tell the terminal what it is doing: idle, working, blocked (waiting on the user), finished or failed, and why.</p>
-<ul><li>The problem: builds, deployments, package upgrades, data processing and, more and more, coding agents run for a long time in terminals, and users go elsewhere and want to know when work finishes or needs them. Older approaches (monitoring the foreground process, waiting for quiet output) are not robust enough.</li><li>Example: Terraform could report state=blocked with a base64-encoded message asking &quot;Apply 3 to add, 1 to change, 0 to destroy?&quot;. A terminal can show it however it likes: a notification, an inbox, a status icon.</li><li>&quot;Agentic inboxes&quot; (Herdr, cmux, Agent Deck) currently use heuristics that read the screen or window title, or out-of-band APIs. Herdr&#39;s TOML rules for Claude Code changed ten times in three months for just that one tool; non-terminal APIs mean every program integrates with every inbox separately and a local socket does not work over SSH or in a container without bridging.</li><li>OSC 7501 uses the pty that already exists, so it works everywhere, and well-behaved terminals ignore unknown OSCs. The body is a list of key=value pairs separated by colons; the only required key is state.</li><li>The specification is fully generic with no product-specific language, though it emerged from work on Superlogical and Ghostty.</li></ul>
-<p>For people building AI tools: a possible shared way for agents to say &quot;waiting on you&quot;.</p>
-
-  <p class="card__source"><a class="card__go" href="https://mitchellh.com/writing/program-status-osc7501" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">terminal</span><span class="tag">protocol</span></span>
-    <span class="links"><a class="card__link" href="https://lobste.rs/s/rmh4fg/terminal_protocol_for_program_status_osc" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 7%"></div>
 </article>
 <article class="card" data-group="it" data-id="fec5cb412ba8d8300b297951dffaea4ca4b2a388" data-url="https://dev.to/mrviduus/behind-cloudflare-and-nginx-all-my-users-had-the-same-ip-3hae" data-category="it-general" data-added="2026-10-07">
   <div class="card__meta">
@@ -4208,7 +4208,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
