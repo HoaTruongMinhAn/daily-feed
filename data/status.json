@@ -1,11 +1,11 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 124 sightings from 45/62 sources",
+    "message": "200 candidates, 116 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-localllama",
@@ -13,7 +13,7 @@
       },
       {
         "id": "r-claudeai",
-        "error": "HTTP 403 for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-qualityassurance",
@@ -21,19 +21,19 @@
       },
       {
         "id": "r-softwaretesting",
-        "error": "HTTP 403 for https://www.reddit.com/r/softwaretesting/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/softwaretesting/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-programming",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmerhumor",
-        "error": "HTTP 403 for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-playwright",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-selenium",
@@ -41,11 +41,11 @@
       },
       {
         "id": "r-devops",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/devops/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/devops/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-experienceddevs",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-sysadmin",
@@ -73,41 +73,41 @@
       }
     ],
     "candidates": 200,
-    "at": "2026-10-09T00:55:48.001Z"
+    "at": "2026-10-10T01:05:06.286Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 106, dropped 94, invalid 0",
-    "at": "2026-10-09T01:01:31.576Z"
+    "message": "kept 119, dropped 81, invalid 0",
+    "at": "2026-10-10T01:11:21.999Z"
   },
   "merge": {
     "ok": true,
-    "message": "710 items retained, 2 re-sighted",
+    "message": "829 items retained, 1 re-sighted",
     "counts": {
       "candidates": 200,
-      "kept": 106,
-      "dropped": 94,
+      "kept": 119,
+      "dropped": 81,
       "invalid": 0,
-      "sighted": 2
+      "sighted": 1
     },
-    "at": "2026-10-09T01:01:31.577Z"
+    "at": "2026-10-10T01:11:21.999Z"
   },
   "build": {
     "ok": true,
-    "message": "710 items on index, 6 archive pages",
-    "at": "2026-10-09T01:22:14.403Z"
+    "message": "829 items on index, 7 archive pages",
+    "at": "2026-10-10T02:01:14.903Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-09",
-    "message": "104 details written today",
+    "day": "2026-10-10",
+    "message": "117 details written today",
     "counts": {
-      "written": 104,
-      "missing": 4,
-      "invalid": 6,
-      "ungrounded": 6,
-      "discussed": 17
+      "written": 117,
+      "missing": 3,
+      "invalid": 7,
+      "ungrounded": 7,
+      "discussed": 11
     },
-    "at": "2026-10-09T01:22:14.160Z"
+    "at": "2026-10-10T02:01:14.685Z"
   }
 }
