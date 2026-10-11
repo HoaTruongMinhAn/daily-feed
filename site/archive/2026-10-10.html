@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-10</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-10</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-11</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -973,11 +973,26 @@
     <span class="card__fit" title="fit 5/5">●●●●●</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/sleepyfalcon247/why-your-playwright-tests-are-flaky-and-why-retries-wont-save-you-3ehc" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Vì sao test Playwright của bạn flaky (và vì sao retry không cứu được)</span><span class="l l-en" lang="en">Why Your Playwright Tests Are Flaky (And Why Retries Won&#39;t Save You)</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Why Your Playwright Tests Are Flaky (And Why Retries Won&#39;t Save You)</span>
-  <span class="card__summary l l-vi" lang="vi">Dù Playwright có auto-waiting, browser context cô lập và assertion tự thử lại, test vẫn flaky; bài giải thích vì sao retry không giải quyết gốc rễ.</span><span class="card__summary l l-en" lang="en">Even with Playwright&#39;s auto-waiting, isolated contexts and retrying assertions, tests stay flaky; the post explains why retries don&#39;t fix the root cause.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Vì sao test Playwright của bạn bị flaky (và vì sao retry không cứu được)</span><span class="l l-en" lang="en">Why Your Playwright Tests Are Flaky (And Why Retries Won&#39;t Save You)</span></h3>
+    <span class="card__orig l l-vi" lang="en">Why Your Playwright Tests Are Flaky (And Why Retries Won&#39;t Save You)</span>
+    <span class="card__summary l l-vi" lang="vi">Dù Playwright có auto-waiting, browser context cô lập và assertion tự thử lại, test vẫn flaky; bài giải thích vì sao retry không giải quyết gốc rễ.</span><span class="card__summary l l-en" lang="en">Even with Playwright&#39;s auto-waiting, isolated contexts and retrying assertions, tests stay flaky; the post explains why retries don&#39;t fix the root cause.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bài viết cho rằng Playwright đã giải quyết phần lớn flakiness của việc tự động hóa trình duyệt, nhưng không giải quyết flakiness của ứng dụng, dữ liệu, môi trường, dependency hay các giả định sai trong kiến trúc test, và đó mới là vấn đề thật khi bộ test lớn lên. Retry chỉ che đi: &quot;412 passed, 7 flaky, 3 failed&quot;, retry, rồi &quot;422 passed&quot; và mọi người đi tiếp, cho đến ngày mai.</p>
+<ul><li>Auto-waiting không có nghĩa ứng dụng đã sẵn sàng. Playwright kiểm tra phần tử có visible, stable, enabled và nhận được sự kiện, nhưng nó hiểu trình duyệt chứ không hiểu business logic. Nút Save có thể click được ở bước hai trong khi luồng chỉ an toàn ở bước sáu (sau khi request nền xong, quyền được tính lại và form render lại).</li><li>Cách sửa sai là waitForTimeout(3000): chạy được đến khi CI cần 3.2 giây, rồi bị tăng lên 5 giây, và sáu tháng sau bộ test chứa 140 giây &quot;mê tín&quot;. Cách đúng là chờ trạng thái có nghĩa, ví dụ expect(...).toHaveText(&#39;Paid&#39;) hoặc waitForResponse cho request liên quan: chờ ý nghĩa, không chờ thời gian.</li><li>Hydration tạo ra phiên bản khó chịu: nút đã tồn tại, visible, Playwright tìm được, rồi framework thay node hoặc gắn event handler muộn hơn, nên test fail một lần trong 40 lần chạy. Hay gặp với server-side rendering, React hydration, lazy component, Suspense, client-side routing, animation, container queries và virtualized content. Thường đây không phải &quot;Playwright flaky&quot; mà test quan sát ứng dụng ở trạng thái chuyển tiếp.</li><li>Shared state: browser context được cô lập mặc định (cookie, local storage, session storage), nhưng dữ liệu backend thì không. Hai test song song dùng chung tài khoản qa@example.com, một test xóa hết notification còn test kia mong có 3, thì tăng worker là thành &quot;máy đánh bạc&quot;. Các lỗi hay gặp: dùng chung user, chung project, dựa vào bản ghi &quot;latest&quot;, giả định database sạch, phụ thuộc thứ tự chạy, teardown xóa dữ liệu của test khác, chung tên file upload, chung giỏ hàng, chung hộp thư. Triệu chứng kinh điển: chạy riêng thì pass.</li><li>Test ổn định nên sở hữu dữ liệu của nó: tạo qa+run-84217@example.com thay vì qa@example.com, tên project có hậu tố, và assert theo order ID do chính test tạo thay vì &quot;Latest Order&quot;.</li><li>Dependency bên thứ ba cũng thừa hưởng độ tin cậy của test; bản trích kết thúc ở phần luồng đăng ký, phần còn lại nằm ở bài gốc.</li></ul>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/sleepyfalcon247/why-your-playwright-tests-are-flaky-and-why-retries-wont-save-you-3ehc" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The article argues that Playwright solved much of browser automation flakiness but not application, data, environment or dependency flakiness, nor bad assumptions in your test architecture, and those become the real problem as a suite grows. Retries only hide it: &quot;412 passed, 7 flaky, 3 failed&quot;, retry, then &quot;422 passed&quot; and everyone moves on until tomorrow.</p>
+<ul><li>Auto-waiting does not mean the application is ready. Playwright checks that an element is visible, stable, enabled and able to receive events, but it understands the browser, not your business logic. The Save button may be clickable at step two while the workflow is only safe at step six (after a background request finishes, permissions are recalculated and the form rerenders).</li><li>The wrong fix is waitForTimeout(3000): it works until CI needs 3.2 seconds, then it becomes 5, and six months later the suite holds 140 seconds of accumulated superstition. The better fix is to wait for the state that matters, such as expect(...).toHaveText(&#39;Paid&#39;) or waitForResponse for the relevant request: wait for meaning, not time.</li><li>Hydration creates a nasty version: the button exists, is visible and Playwright can find it, then the framework replaces the node or attaches event handlers slightly later, so a test fails once every 40 runs. It gets worse with server-side rendering, React hydration, lazy components, Suspense, client-side routing, animation libraries, container queries and virtualized content. These are often mislabeled as Playwright being flaky, when the test just observed the application in a transitional state.</li><li>Shared state: browser contexts are isolated by default (cookies, local storage, session storage), but backend data is not. Two parallel tests using qa@example.com, one deleting all notifications while the other expects 3, turn higher worker counts into a slot machine. Common mistakes: same user, same project, &quot;latest&quot; records, assuming a clean database, order dependence, teardown deleting another test&#39;s data, same uploaded filename, same cart, one shared inbox. The classic symptom: it passes when I run it alone.</li><li>A stable test should own its data: create qa+run-84217@example.com instead of qa@example.com, add a suffix to project names, and assert against the order ID the test created rather than &quot;Latest Order&quot;.</li><li>Third-party dependencies quietly inherit your test reliability; the excerpt ends at the signup flow, and the rest is in the original post.</li></ul>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/sleepyfalcon247/why-your-playwright-tests-are-flaky-and-why-retries-wont-save-you-3ehc" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">playwright</span><span class="tag">flaky-tests</span></span>
@@ -992,11 +1007,26 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://bsky.app/profile/shawonshovon.bsky.social/post/3mxiale6lqp2a" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">sish: tunnel HTTP(S)/WS(S)/TCP về localhost chỉ bằng SSH</span><span class="l l-en" lang="en">sish: HTTP(S)/WS(S)/TCP tunnels to localhost using only SSH</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">sish: HTTP(S)/WS(S)/TCP tunnels to localhost using only SSH</span>
-  <span class="card__summary l l-vi" lang="vi">sish là proxy Go/Docker giấy phép MIT, thay thế serveo/ngrok, tạo tunnel về localhost chỉ bằng SSH.</span><span class="card__summary l l-en" lang="en">sish is an MIT-licensed Go/Docker proxy, a serveo/ngrok alternative, that tunnels to localhost using only SSH.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">sish: tunnel HTTP(S)/WS(S)/TCP về localhost chỉ bằng SSH</span><span class="l l-en" lang="en">sish: HTTP(S)/WS(S)/TCP tunnels to localhost using only SSH</span></h3>
+    <span class="card__orig l l-vi" lang="en">sish: HTTP(S)/WS(S)/TCP tunnels to localhost using only SSH</span>
+    <span class="card__summary l l-vi" lang="vi">sish là proxy Go/Docker giấy phép MIT, thay thế serveo/ngrok, tạo tunnel về localhost chỉ bằng SSH.</span><span class="card__summary l l-en" lang="en">sish is an MIT-licensed Go/Docker proxy, a serveo/ngrok alternative, that tunnels to localhost using only SSH.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một bài đăng trên Bluesky giới thiệu sish, một proxy viết bằng Go, chạy được bằng Docker, phát hành theo giấy phép MIT. Nó tạo tunnel HTTP(S), WS(S) và TCP về localhost chỉ bằng SSH, và được mô tả là lựa chọn thay thế cho serveo và ngrok.</p>
+<p>Bài đăng nói mã nguồn đầy đủ có trên repo và gắn thẻ opensource, selfhosted, proxy. Không có nội dung bài gốc ngoài phần giới thiệu ngắn này, nên chi tiết cách cài đặt và dùng nằm ở đường dẫn gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://bsky.app/profile/shawonshovon.bsky.social/post/3mxiale6lqp2a" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A Bluesky post introduces sish, a proxy written in Go that runs with Docker and is released under the MIT license. It creates HTTP(S), WS(S) and TCP tunnels to localhost using only SSH, and is described as an alternative to serveo and ngrok.</p>
+<p>The post says the full source is available in the repo and tags it opensource, selfhosted and proxy. There is no article text beyond this short introduction, so installation and usage details are in the original link.</p>
+
+  <p class="card__source"><a class="card__go" href="https://bsky.app/profile/shawonshovon.bsky.social/post/3mxiale6lqp2a" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">ssh</span><span class="tag">proxy</span></span>
@@ -1227,11 +1257,30 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://jessewaites.com/blog/post/i-pointed-ai-at-400-years-of-archives" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Dùng AI quét kho lưu trữ tìm ra một thiên thạch bị lãng quên, tê giác thất lạc và hơn thế</span><span class="l l-en" lang="en">Pointing AI at archives found a forgotten meteorite, lost rhinos, and more</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Pointing AI at archives found a forgotten meteorite, lost rhinos, and more</span>
-  <span class="card__summary l l-vi" lang="vi">Tác giả cho AI duyệt kho lưu trữ 400 năm và tìm ra một thiên thạch bị lãng quên cùng nhiều phát hiện khác.</span><span class="card__summary l l-en" lang="en">The author pointed AI at 400 years of archives and found a forgotten meteorite, lost rhinos and more.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Cho AI duyệt kho lưu trữ 400 năm: tìm ra thiên thạch bị lãng quên, những con tê giác thất lạc và hơn thế</span><span class="l l-en" lang="en">Pointing AI at archives found a forgotten meteorite, lost rhinos, and more</span></h3>
+    <span class="card__orig l l-vi" lang="en">Pointing AI at archives found a forgotten meteorite, lost rhinos, and more</span>
+    <span class="card__summary l l-vi" lang="vi">Tác giả cho AI duyệt kho lưu trữ 400 năm và tìm ra một thiên thạch bị lãng quên cùng nhiều phát hiện khác.</span><span class="card__summary l l-en" lang="en">The author pointed AI at 400 years of archives and found a forgotten meteorite, lost rhinos and more.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Jesse Waites, một software engineer, lấy cảm hứng từ bài của sử gia Benjamin Breen (dùng Opus 5.5 tìm ra một ghi chép chứng kiến mới về chim dodo trong hồ sơ Công ty Đông Ấn Hà Lan) và dựng pipeline AI riêng để tìm nhiều bí ẩn lịch sử song song, báo cáo tìm ra một báo cáo thiên thạch bị lãng quên, ba con tê giác thất lạc và các vụ núi lửa phun chưa được ghi lại.</p>
+<p>Cách làm:</p>
+<ul><li>Hỏi một trợ lý &quot;Deep Research&quot; xem câu hỏi lịch sử nào có thể giải bằng dữ liệu sẵn có online, được mười ba ứng viên xếp hạng. Điều kiện quan trọng nhất: kết quả phải kiểm chứng được với trang gốc, vì AI có thể sai một cách tự tin.</li><li>Cùng Claude Code dựng pipeline. Nguồn đọc gồm bản chép GLOBALISE của kho Công ty Đông Ấn Hà Lan (4.35 million trang, thế kỷ 1600 đến 1790), báo số hóa của thư viện quốc gia Hà Lan, hai thế kỷ báo Mỹ và vài nhật ký tàu.</li><li>Đọc hết kho Đông Ấn bằng tay mất khoảng 70 năm; máy ở nhà làm xong trong một lần chạy qua đêm khoảng twelve giờ.</li><li>Vì chính tả thời đó không thống nhất (tê giác có khoảng fifteen cách viết), tác giả biến từng đoạn thành &quot;dấu vân tay&quot; ngữ nghĩa (5.7 million đoạn) để tìm theo nghĩa thay vì từ khóa.</li><li>Một mô hình nhỏ, nhanh kiểu &quot;System One&quot; tên Jev sàng lọc đợt đầu bằng các câu hỏi hẹp (có phải động vật thật không, có hoang dã không, ở đâu). Đọc 59,000 lượt nhắc tới voi tốn khoảng three đô la. Đây là phần tác giả tự hào nhất; những đoạn được xem kỹ đã qua hai vòng máy đọc.</li><li>Tác giả mở mã nguồn workflow dưới dạng toolkit Antiquity.</li></ul>
+<p>Bài gốc bị cắt giữa chừng, các phát hiện cụ thể nằm ở bản đầy đủ.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Bình luận chia ba hướng: có người thích bài và coi như khám phá tri thức đã mất, có người nghi ngờ tác giả học được gì và các tuyên bố có đáng tin không, và có người chê phần hiệu ứng trình bày.</p><ul class="quotes"><li><q>Đó là một bài đọc cuốn hút, mình rất thích. Đúng nghĩa là đang khám phá tri thức đã thất lạc.</q> <span class="quote__by">@jttnr, Hacker News</span></li><li><q>Làm mình tự hỏi bản thân tác giả học được bao nhiêu về Công ty Đông Ấn Hà Lan. Mình ngờ là rất ít, nếu có.</q> <span class="quote__by">@sorokod, Hacker News</span></li><li><q>Con tê giác xoay, thiên thạch va chạm và flowchart hoạt hình hoàn toàn là đồ thừa, làm cả trang trông gần như châm biếm.</q> <span class="quote__by">@jvanderbot, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://jessewaites.com/blog/post/i-pointed-ai-at-400-years-of-archives" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Software engineer Jesse Waites was inspired by historian Benjamin Breen&#39;s post on using Opus 5.5 to find a new eyewitness account of the dodo in Dutch East India Company records. He built his own AI pipeline to search many historical mysteries in parallel, and reports surfacing a forgotten meteorite report, three lost rhinos, and unrecorded volcano eruptions.</p>
+<p>How it worked:</p>
+<ul><li>He asked a &quot;Deep Research&quot; assistant which open historical questions could be solved with data already online and got thirteen candidates. The key criterion: an answer must be checkable against an original page, since AI can be confidently wrong.</li><li>With Claude Code he built the pipeline. Sources: the GLOBALISE transcriptions of the Dutch East India Company archive (4.35 million pages, 1600s to 1790s), the Dutch national library&#39;s digitized newspapers, two centuries of American newspapers, and a few ship logbooks.</li><li>Reading the Company pages himself would take about 70 years; his home AI lab got through the whole archive in one twelve-hour overnight run.</li><li>Because old spelling is inconsistent (&quot;rhinoceros&quot; has about fifteen spellings), he turned each passage into a meaning &quot;fingerprint&quot; (5.7 million passages) to search by what a passage is about rather than keywords.</li><li>A tiny, fast &quot;System One&quot; decision model called Jev did the first read, answering narrow questions (is this a real animal, is it wild, where is it). Reading 59,000 mentions of elephants cost about three dollars. He is proudest of this part; the pages he examined closely had survived two rounds of machine reading.</li><li>He open-sourced the workflow as a toolkit called Antiquity.</li></ul>
+<p>The source text is cut off midway, so the specific findings are in the full post.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Comments split three ways: some loved the post as exploring lost knowledge, some doubt what the author learned and whether the claims hold up, and some dislike the presentation effects.</p><ul class="quotes"><li><q>That was a fascinating read, I really enjoyed it. Literally like exploring lost knowledge.</q> <span class="quote__by">@jttnr, Hacker News</span></li><li><q>Makes me wonder how much the author himself learned about the Dutch East India Company. I suspect very little, if anything.</q> <span class="quote__by">@sorokod, Hacker News</span></li><li><q>The rotating rhino, meteor impact, and animated flowchart is totally unnecessary cruft that makes it look almost satirical.</q> <span class="quote__by">@jvanderbot, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://jessewaites.com/blog/post/i-pointed-ai-at-400-years-of-archives" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">ai</span><span class="tag">archives</span></span>
@@ -2434,11 +2483,28 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://devblogs.microsoft.com/azure-sql/try-sqlclients-new-connection-pool-for-faster-parallel-connections" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Thử connection pool mới của SqlClient để mở kết nối song song nhanh hơn</span><span class="l l-en" lang="en">Try SqlClient&#39;s new connection pool for faster parallel connections</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Try SqlClient&#39;s new connection pool for faster parallel connections</span>
-  <span class="card__summary l l-vi" lang="vi">Microsoft.Data.SqlClient 7.1.0 có Pool V2 tùy chọn mở kết nối đồng thời; benchmark nhanh hơn 5,4x (sync) và 6,6x (async) ở cold start.</span><span class="card__summary l l-en" lang="en">Microsoft.Data.SqlClient 7.1.0 adds opt-in Pool V2 that opens connections concurrently; benchmarks show 5.4x sync and 6.6x async cold-start speedups.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Thử connection pool mới của SqlClient để mở nhiều kết nối song song nhanh hơn</span><span class="l l-en" lang="en">Try SqlClient&#39;s new connection pool for faster parallel connections</span></h3>
+    <span class="card__orig l l-vi" lang="en">Try SqlClient&#39;s new connection pool for faster parallel connections</span>
+    <span class="card__summary l l-vi" lang="vi">Microsoft.Data.SqlClient 7.1.0 có Pool V2 tùy chọn mở kết nối đồng thời; benchmark nhanh hơn 5,4x (sync) và 6,6x (async) ở cold start.</span><span class="card__summary l l-en" lang="en">Microsoft.Data.SqlClient 7.1.0 adds opt-in Pool V2 that opens connections concurrently; benchmarks show 5.4x sync and 6.6x async cold-start speedups.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Microsoft.Data.SqlClient 7.1.0 có Pool V2, bản viết lại connection pool (tùy chọn bật) mở các kết nối mới đồng thời thay vì lần lượt, giúp giảm độ trễ cold start khi nhiều request cần kết nối cùng lúc.</p>
+<ul><li>Vấn đề: pool cũ chỉ mở được một kết nối mới tại một thời điểm trong mỗi pool. Khi khởi động hoặc có đợt traffic sau lúc yên tĩnh, ứng dụng phải chờ pool lớn dần. Trước đây phải né bằng cách tăng Min Pool Size hoặc tắt pooling; nay không cần nữa.</li><li>Thiết kế: dựa trên System.Threading.Channels (cấu trúc producer-consumer hỗ trợ async) thay vì thread nền riêng, có thể giảm chi phí quản lý thread khi app nối nhiều database. Bài cảm ơn team driver Npgsql đã mở đường cho thiết kế này.</li><li>Benchmark: cold start với 100 caller đồng thời trên Linux, Max Pool Size=200, SQL Server cùng máy. Đồng bộ (SqlConnection.Open()): 630.1 ms xuống 117.5 ms, nhanh hơn 5.4x. Bất đồng bộ (OpenAsync()): 604.1 ms xuống 92.0 ms, nhanh hơn 6.6x. Benchmark chỉ đo việc thiết lập kết nối, không đo thực thi truy vấn hay tái sử dụng kết nối trong pool đã ấm; kết quả phụ thuộc workload và độ trễ mạng.</li><li>Hạn chế: OpenAsync() chưa bất đồng bộ hoàn toàn đến từng lời gọi mạng; Pool V2 đưa việc vào thread pool của managed code thực hiện network call đồng bộ. Nếu độ trễ tới SQL Server cao, cần theo dõi áp lực thread pool, tăng kích thước hoặc giới hạn đồng thời. Sẽ sửa sau.</li><li>Bật: từ 7.1.0, gọi AppContext.SetSwitch(&quot;Switch.Microsoft.Data.SqlClient.UseConnectionPoolV2&quot;, true) một lần lúc khởi động, trước khi mở kết nối bất kỳ (trong ASP.NET Core thì trước khi tạo application builder). Connection string và code truy cập không đổi; chạy được với EF Core, Dapper.</li></ul>
+<p>Nên thử với workload thực tế, nhất là lúc khởi động và khi traffic tăng đột biến.</p>
+
+  <p class="card__source"><a class="card__go" href="https://devblogs.microsoft.com/azure-sql/try-sqlclients-new-connection-pool-for-faster-parallel-connections" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Microsoft.Data.SqlClient 7.1.0 introduces Pool V2, an opt-in rewrite of the connection pool that opens new connections concurrently instead of one at a time, cutting cold-start latency when many requests need connections at once.</p>
+<ul><li>The problem: the legacy pool opens only one new connection at a time within a pool. At startup or in a burst after a quiet period, requests wait for the pool to grow. Workarounds were raising Min Pool Size or disabling pooling; these are no longer needed.</li><li>Design: built on System.Threading.Channels (producer-consumer structures with async support) rather than dedicated background threads, which can reduce thread management overhead for apps connecting to many databases. The post thanks the Npgsql driver team for paving the way.</li><li>Benchmarks: cold start with 100 concurrent callers on Linux, Max Pool Size=200, SQL Server on the same machine. Synchronous (SqlConnection.Open()): 630.1 ms to 117.5 ms, 5.4x faster. Asynchronous (OpenAsync()): 604.1 ms to 92.0 ms, 6.6x faster. They measure only connection establishment, not query execution or reuse in a warm pool, and results vary with workload and network latency.</li><li>Limitation: OpenAsync() is not yet fully asynchronous down to each network call; Pool V2 queues work on managed thread-pool threads that perform synchronous network calls. With high latency to SQL Server, watch thread-pool pressure, raise its size or cap database concurrency. A future fix is planned.</li><li>Enabling it: from 7.1.0, call AppContext.SetSwitch(&quot;Switch.Microsoft.Data.SqlClient.UseConnectionPoolV2&quot;, true) once at startup before any connection opens (in ASP.NET Core, before creating the application builder). Connection strings and data-access code stay unchanged; it works with EF Core and Dapper.</li></ul>
+<p>Evaluate it with a representative workload, especially at startup and during traffic bursts.</p>
+
+  <p class="card__source"><a class="card__go" href="https://devblogs.microsoft.com/azure-sql/try-sqlclients-new-connection-pool-for-faster-parallel-connections" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">sqlclient</span><span class="tag">dotnet</span><span class="tag">database</span></span>
@@ -3187,6 +3253,44 @@
   </div>
   <div class="hot" style="--hot: 1%"></div>
 </article>
+<article class="card" data-group="it" data-id="19faa179f05c63b7d8c7972294293c540ce37051" data-url="https://beaksec.github.io/posts/telegram-desktop-one-click-account-takeover" data-category="it-general" data-added="2026-10-10">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Lobsters · Hacker News</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 2/5">●●○○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Telegram Desktop: chiếm tài khoản chỉ bằng một cú nhấp qua IPC injection</span><span class="l l-en" lang="en">Telegram Desktop: one-click account takeover via IPC injection</span></h3>
+    <span class="card__orig l l-vi" lang="en">Telegram Desktop: one-click account takeover via IPC injection</span>
+    <span class="card__summary l l-vi" lang="vi">Bài phân tích lỗ hổng chiếm tài khoản Telegram Desktop chỉ bằng một cú nhấp thông qua IPC injection.</span><span class="card__summary l l-en" lang="en">A write-up of a one-click account takeover in Telegram Desktop via IPC injection.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một link độc trong group chat có thể khiến Telegram Desktop đọc file cục bộ của nạn nhân và gửi vào chat do kẻ tấn công kiểm soát, dẫn đến chiếm tài khoản. Lỗi ảnh hưởng Telegram Desktop đến 7.2.8 (xác nhận trên Windows 6.9.3), được sửa ở 7.2.9, mức 8.1 High.</p>
+<p>Chuỗi gồm hai lỗi:<br>- Injection: khi Telegram đã chạy, tiến trình mới gửi link cho instance đang chạy qua local socket dưới dạng text, mỗi lệnh là keyword, argument rồi dấu chấm phẩy. Dấu chấm phẩy không được escape, nên link dạng tg://x?a=1;CMD:quit thành hai lệnh OPEN: và CMD: ở phía nhận.<br>- Lệnh OPEN: nhận URL với bất kỳ scheme nào. Trong code có scheme nội bộ interpret:, đọc một file được nêu trong instruction file rồi gửi vào chat, không kiểm tra ai yêu cầu và không xác nhận.</p>
+<p>Ghép lại, một cú nhấp thành đọc file tùy ý; bài dùng nó để lấy các file đăng nhập của nạn nhân. CMD: chỉ nhận show và quit nên tự nó chỉ đóng được app.</p>
+<p>Với người làm security testing: đây là ví dụ kinh điển của việc serialize mà không escape ký tự phân tách.</p>
+
+  <p class="card__source"><a class="card__go" href="https://beaksec.github.io/posts/telegram-desktop-one-click-account-takeover" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A malicious link in a group chat can make Telegram Desktop read local files of the victim and send them to an attacker-controlled chat, leading to account takeover. Affected: Telegram Desktop through 7.2.8 (confirmed on Windows 6.9.3), fixed in 7.2.9, severity 8.1 High.</p>
+<p>The chain has two defects:<br>- Injection: when Telegram is already running, the new process hands the link to the running instance over a local socket as text, where each command is a keyword, its argument, then a semicolon. The semicolon is never escaped, so a link like tg://x?a=1;CMD:quit arrives as two commands, OPEN: and CMD:.<br>- The OPEN: command accepts a URL with any scheme. Inside the code is an internal scheme, interpret:, that reads a file named in an instruction file and sends it to a chat, without checking who asked and without confirmation.</p>
+<p>Together, one click becomes arbitrary file read; the post uses it to steal the files that make up the victim&#39;s login. CMD: itself accepts only show and quit, so alone it can only close the app.</p>
+<p>For anyone doing security testing, this is a textbook case of serializing data without escaping the separator character.</p>
+
+  <p class="card__source"><a class="card__go" href="https://beaksec.github.io/posts/telegram-desktop-one-click-account-takeover" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">security</span><span class="tag">telegram</span></span>
+    <span class="links"><a class="card__link" href="https://lobste.rs/s/vq6ly4/telegram_desktop_one_click_account" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://news.ycombinator.com/item?id=50029123" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 1%"></div>
+</article>
 <article class="card" data-group="testing" data-id="4e2964caf0cfbc848e1bfda638d49ced956acc25" data-url="https://dev.to/howard_hua_7aaf46f9755a5b/an-image-api-acceptance-test-should-check-pixels-not-only-task-success-1p1e" data-category="test-api" data-added="2026-10-10">
   <div class="card__meta">
     <span class="chip chip--testing">API testing</span>
@@ -3228,44 +3332,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 0%"></div>
-</article>
-<article class="card" data-group="it" data-id="19faa179f05c63b7d8c7972294293c540ce37051" data-url="https://beaksec.github.io/posts/telegram-desktop-one-click-account-takeover" data-category="it-general" data-added="2026-10-10">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">Lobsters</span>
-    <span class="card__fit" title="fit 2/5">●●○○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Telegram Desktop: chiếm tài khoản chỉ bằng một cú nhấp qua IPC injection</span><span class="l l-en" lang="en">Telegram Desktop: one-click account takeover via IPC injection</span></h3>
-    <span class="card__orig l l-vi" lang="en">Telegram Desktop: one-click account takeover via IPC injection</span>
-    <span class="card__summary l l-vi" lang="vi">Bài phân tích lỗ hổng chiếm tài khoản Telegram Desktop chỉ bằng một cú nhấp thông qua IPC injection.</span><span class="card__summary l l-en" lang="en">A write-up of a one-click account takeover in Telegram Desktop via IPC injection.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Một link độc trong group chat có thể khiến Telegram Desktop đọc file cục bộ của nạn nhân và gửi vào chat do kẻ tấn công kiểm soát, dẫn đến chiếm tài khoản. Lỗi ảnh hưởng Telegram Desktop đến 7.2.8 (xác nhận trên Windows 6.9.3), được sửa ở 7.2.9, mức 8.1 High.</p>
-<p>Chuỗi gồm hai lỗi:<br>- Injection: khi Telegram đã chạy, tiến trình mới gửi link cho instance đang chạy qua local socket dưới dạng text, mỗi lệnh là keyword, argument rồi dấu chấm phẩy. Dấu chấm phẩy không được escape, nên link dạng tg://x?a=1;CMD:quit thành hai lệnh OPEN: và CMD: ở phía nhận.<br>- Lệnh OPEN: nhận URL với bất kỳ scheme nào. Trong code có scheme nội bộ interpret:, đọc một file được nêu trong instruction file rồi gửi vào chat, không kiểm tra ai yêu cầu và không xác nhận.</p>
-<p>Ghép lại, một cú nhấp thành đọc file tùy ý; bài dùng nó để lấy các file đăng nhập của nạn nhân. CMD: chỉ nhận show và quit nên tự nó chỉ đóng được app.</p>
-<p>Với người làm security testing: đây là ví dụ kinh điển của việc serialize mà không escape ký tự phân tách.</p>
-
-  <p class="card__source"><a class="card__go" href="https://beaksec.github.io/posts/telegram-desktop-one-click-account-takeover" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>A malicious link in a group chat can make Telegram Desktop read local files of the victim and send them to an attacker-controlled chat, leading to account takeover. Affected: Telegram Desktop through 7.2.8 (confirmed on Windows 6.9.3), fixed in 7.2.9, severity 8.1 High.</p>
-<p>The chain has two defects:<br>- Injection: when Telegram is already running, the new process hands the link to the running instance over a local socket as text, where each command is a keyword, its argument, then a semicolon. The semicolon is never escaped, so a link like tg://x?a=1;CMD:quit arrives as two commands, OPEN: and CMD:.<br>- The OPEN: command accepts a URL with any scheme. Inside the code is an internal scheme, interpret:, that reads a file named in an instruction file and sends it to a chat, without checking who asked and without confirmation.</p>
-<p>Together, one click becomes arbitrary file read; the post uses it to steal the files that make up the victim&#39;s login. CMD: itself accepts only show and quit, so alone it can only close the app.</p>
-<p>For anyone doing security testing, this is a textbook case of serializing data without escaping the separator character.</p>
-
-  <p class="card__source"><a class="card__go" href="https://beaksec.github.io/posts/telegram-desktop-one-click-account-takeover" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">security</span><span class="tag">telegram</span></span>
-    <span class="links"><a class="card__link" href="https://lobste.rs/s/vq6ly4/telegram_desktop_one_click_account" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 1%"></div>
 </article>
 <article class="card" data-group="ai" data-id="91584ee117880c02500952d7146f93777f09b786" data-url="https://dev.to/alina_poluykova/from-jira-ticket-to-feature-environment-how-we-built-a-multi-agent-ai-developer-1lhd" data-category="ai-tip" data-added="2026-10-10">
   <div class="card__meta">
@@ -3498,11 +3564,31 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/jsmanifest/tc39-float16array-is-baseline-2026-what-javascript-developers-need-for-ml-and-graphics-workloads-44k4" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Float16Array của TC39 đã vào Baseline 2026: lập trình viên JavaScript cần biết gì</span><span class="l l-en" lang="en">TC39 Float16Array Is Baseline 2026: What JavaScript Developers Need to Know</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">TC39 Float16Array Is Baseline 2026: What JavaScript Developers Need to Know</span>
-  <span class="card__summary l l-vi" lang="vi">Float16Array đã đạt Stage 4 và Baseline 2026; bài nói khi nào float 16-bit hữu ích cho WebGPU ML, đồ họa HDR và khi nào gây mất độ chính xác âm thầm.</span><span class="card__summary l l-en" lang="en">Float16Array reached Stage 4 and Baseline 2026; the post covers when 16-bit floats help WebGPU ML and HDR graphics, and when they cause silent precision loss.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Float16Array đạt Baseline 2026: lập trình viên JavaScript cần biết gì</span><span class="l l-en" lang="en">TC39 Float16Array Is Baseline 2026: What JavaScript Developers Need to Know</span></h3>
+    <span class="card__orig l l-vi" lang="en">TC39 Float16Array Is Baseline 2026: What JavaScript Developers Need to Know</span>
+    <span class="card__summary l l-vi" lang="vi">Float16Array đã đạt Stage 4 và Baseline 2026; bài nói khi nào float 16-bit hữu ích cho WebGPU ML, đồ họa HDR và khi nào gây mất độ chính xác âm thầm.</span><span class="card__summary l l-en" lang="en">Float16Array reached Stage 4 and Baseline 2026; the post covers when 16-bit floats help WebGPU ML and HDR graphics, and when they cause silent precision loss.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Float16Array đã đạt TC39 Stage 4 và Baseline 2026, cho phép dùng số thực 16-bit IEEE 754 (half-precision) ngay trong JavaScript với TypedArray và DataView. Bài viết cho biết khi nào nó đáng dùng (ML trên WebGPU, đồ họa HDR) và khi nào gây mất độ chính xác âm thầm. Bài có ghi được viết với sự hỗ trợ của AI.</p>
+<p>Điểm chính:<br>- Mỗi giá trị có 1 bit dấu, 5 bit exponent, 10 bit mantissa; phạm vi khoảng ±65504, độ chính xác 3-4 chữ số thập phân.<br>- Bộ nhớ và băng thông giảm một nửa: mảng 1 triệu phần tử là 4 MB với Float32Array nhưng 2 MB với Float16Array.<br>- Shader WebGPU, quantization ONNX runtime và buffer màu HDR vốn chạy half-precision, nên khớp định dạng giúp bỏ chi phí chuyển đổi Float32 sang Float16.<br>- DataView có thêm getFloat16 và setFloat16, thay cho việc tự đóng gói bit.<br>- Float32Array vẫn là mặc định cho tính toán số thông thường.<br>- Môi trường cũ cần polyfill dựa trên Uint16Array, chậm hơn.</p>
+<p>Mất độ chính xác là ngay lập tức: 3.14159265 thành 3.140625; 100000 vượt phạm vi thành Infinity. Tính toán tài chính, biến đổi tọa độ cần độ chính xác dưới pixel, hay bộ giải lặp tích lũy sai số đều không hợp với Float16.</p>
+<p>Với người xây sản phẩm AI chạy suy luận trong trình duyệt, đây là một công cụ giảm băng thông; với QA, nên có test kiểm tra sai số khi dữ liệu đi qua Float16.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/jsmanifest/tc39-float16array-is-baseline-2026-what-javascript-developers-need-for-ml-and-graphics-workloads-44k4" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>TC39 Float16Array is Baseline 2026: what JavaScript developers need to know</p>
+<p>Float16Array has reached TC39 Stage 4 and Baseline 2026, bringing native 16-bit IEEE 754 half-precision floats to JavaScript through TypedArray and DataView. The article explains when it helps (WebGPU machine learning, HDR graphics) and when it causes silent precision loss. It states that it was written with AI assistance under human review.</p>
+<p>Key points:<br>- Each value has 1 sign bit, 5 exponent bits and 10 mantissa bits; range is about ±65504 with 3-4 decimal digits of precision.<br>- Memory and bandwidth are halved: a 1-million-element array is 4 MB as Float32Array and 2 MB as Float16Array.<br>- WebGPU shaders, ONNX runtime quantization and HDR color buffers work in half-precision natively, so matching the format removes the Float32 to Float16 conversion overhead.<br>- DataView gained getFloat16 and setFloat16, replacing manual bit-packing.<br>- Float32Array remains the default for general numeric work.<br>- Legacy environments need polyfills built on Uint16Array, with a performance penalty.</p>
+<p>Precision loss is immediate: 3.14159265 becomes 3.140625, and 100000 exceeds the range and becomes Infinity. Financial calculations, sub-pixel coordinate transforms and iterative solvers that accumulate error do not suit Float16.</p>
+<p>For anyone building AI products that run inference in the browser this is a bandwidth lever; for QA, add tests that check error tolerance when data passes through Float16.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/jsmanifest/tc39-float16array-is-baseline-2026-what-javascript-developers-need-for-ml-and-graphics-workloads-44k4" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">javascript</span><span class="tag">tc39</span></span>
@@ -4299,7 +4385,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
