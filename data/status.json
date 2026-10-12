@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "174 candidates, 111 sightings from 45/62 sources",
+    "message": "170 candidates, 106 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -13,7 +13,7 @@
       },
       {
         "id": "r-claudeai",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-qualityassurance",
@@ -45,7 +45,7 @@
       },
       {
         "id": "r-experienceddevs",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-sysadmin",
@@ -57,7 +57,7 @@
       },
       {
         "id": "r-techhumor",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/techhumor/top.json?t=week&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/techhumor/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-technology",
@@ -72,42 +72,42 @@
         "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
       }
     ],
-    "candidates": 174,
-    "at": "2026-10-11T03:40:35.617Z"
+    "candidates": 170,
+    "at": "2026-10-12T01:32:18.631Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 106, dropped 65, invalid 1",
-    "at": "2026-10-11T03:46:43.525Z"
+    "message": "kept 71, dropped 99, invalid 1",
+    "at": "2026-10-12T01:36:50.533Z"
   },
   "merge": {
     "ok": true,
-    "message": "935 items retained, 1 re-sighted",
+    "message": "1006 items retained, 3 re-sighted",
     "counts": {
-      "candidates": 174,
-      "kept": 106,
-      "dropped": 65,
+      "candidates": 170,
+      "kept": 71,
+      "dropped": 99,
       "invalid": 1,
-      "sighted": 1
+      "sighted": 3
     },
-    "at": "2026-10-11T03:46:43.525Z"
+    "at": "2026-10-12T01:36:50.533Z"
   },
   "build": {
     "ok": true,
-    "message": "731 items on index, 8 archive pages",
-    "at": "2026-10-11T04:10:11.207Z"
+    "message": "744 items on index, 9 archive pages",
+    "at": "2026-10-12T01:53:25.416Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-11",
-    "message": "103 details written today",
+    "day": "2026-10-12",
+    "message": "72 details written today",
     "counts": {
-      "written": 103,
-      "missing": 4,
-      "invalid": 7,
-      "ungrounded": 7,
-      "discussed": 15
+      "written": 72,
+      "missing": 2,
+      "invalid": 5,
+      "ungrounded": 5,
+      "discussed": 7
     },
-    "at": "2026-10-11T04:10:10.957Z"
+    "at": "2026-10-12T01:53:25.152Z"
   }
 }

@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-11</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-11</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-12</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -24,7 +24,47 @@
 
 
 <section id="feed"><h2 class="divider" id="d-2026-10-11">2026-10-11</h2>
-<div class="list"><article class="card" data-group="ai" data-id="84524699655c8d9d3311bb87cc771179a1a2426f" data-url="https://tech.lgbt/@Lydie/117418552486856534" data-category="ai-tip" data-added="2026-10-11">
+<div class="list"><article class="card" data-group="ai" data-id="6b75dae75d979d91c259738ca89e27c989bbc7bf" data-url="https://github.com/rociiu/talorys" data-category="ai-product-idea" data-added="2026-10-11">
+  <div class="card__meta">
+    <span class="chip chip--ai">Product idea</span>
+    <span class="card__src">Hacker News · daily.dev</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Talorys: agent AI cá nhân tự host trên gói miễn phí của Cloudflare</span><span class="l l-en" lang="en">Talorys: a self-hosted personal AI agent on Cloudflare&#39;s free tier</span></h3>
+    <span class="card__orig l l-vi" lang="en">Talorys: a self-hosted personal AI agent on Cloudflare&#39;s free tier</span>
+    <span class="card__summary l l-vi" lang="vi">Talorys là agent AI cá nhân tự host chạy trên gói miễn phí của Cloudflare. Hợp để tham khảo khi làm sản phẩm AI nhỏ.</span><span class="card__summary l l-en" lang="en">Talorys is a self-hosted personal AI agent that runs on Cloudflare&#39;s free tier, a handy reference for small AI side projects.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Talorys là trợ lý AI cá nhân mã nguồn mở, miễn phí, chạy hoàn toàn trong tài khoản Cloudflare của chính bạn, cài bằng một lệnh <code>npx create-talorys@latest</code>, không cần server, database hay tài khoản do nhà phát triển vận hành.</p>
+<ul><li>Chat có streaming, nhớ thông tin quan trọng (bạn xem, sửa, xóa được); mỗi lượt chỉ gửi các memory liên quan nhất cho model.</li><li>Quản lý task, note, project, cả từ giao diện lẫn từ chat.</li><li>Automation: nhắc việc một lần hoặc định kỳ, digest task hằng ngày, routine AI tùy chọn; chạy bằng Durable Object alarms nên không cần giữ máy online.</li><li>Dùng một người, không có đăng ký; installer đặt mật khẩu chủ sở hữu.</li><li>Task, note, memory và reminder vẫn chạy khi Workers AI không khả dụng hoặc hết quota.</li></ul>
+<p>Kiến trúc: trình duyệt gọi Cloudflare Pages (React + Pages Function), chuyển qua service binding tới Worker riêng (Hono) không có URL công khai, rồi tới Durable Object TalorysAgent dùng Agents SDK. Dữ liệu nằm trong SQLite; model chat là <code>@cf/zai-org/glm-4.7-flash</code> trên Workers AI. Dự án không dùng R2, D1, KV, Vectorize hay dịch vụ trả phí nào.</p>
+<p>Installer kiểm tra Node.js (20.18+), đăng nhập Cloudflare, hash mật khẩu bằng PBKDF2-SHA256 cục bộ, deploy Worker và Pages, rồi kiểm tra bản deploy. Chạy lại lệnh khi bị gián đoạn sẽ không xóa dữ liệu.</p>
+<p>Với người làm sản phẩm AI nhỏ, đây là mẫu agent chạy trọn trên free tier của Cloudflare.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn bình luận trên HN bàn về chữ &quot;self-hosted&quot;: nhiều người cho rằng chạy hoàn toàn trên Cloudflare thì không phải tự host, một người giải thích là ý tác giả chỉ muốn nói không cần thêm bên thứ ba nào ngoài tài khoản Cloudflare. Một người khác nhận xét Workers AI chậm khi dùng tương tác.</p><ul class="quotes"><li><q>Chẳng có gì là self-hosted khi phụ thuộc vào Cloudflare cho _tất cả_ mọi thứ.</q> <span class="quote__by">@StrLght, Hacker News</span></li><li><q>...Tôi đoán đây là cách diễn đạt vụng về, ý là không cần bên thứ ba nào (ví dụ repo không thuộc Cloudflare) ngoài tài khoản cloudflare của chính bạn...</q> <span class="quote__by">@mellosouls, Hacker News</span></li><li><q>Cloudflare worker AI chậm kinh khủng khi dùng cho tương tác với người dùng. Ổn cho job nền hoặc eval.</q> <span class="quote__by">@scosman, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://github.com/rociiu/talorys" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Talorys is a free, open-source personal AI assistant that runs entirely inside your own Cloudflare account, installed with one command, <code>npx create-talorys@latest</code>, with no server, database or account run by the developers.</p>
+<ul><li>Streaming chat with memory you can view, edit and delete; only the most relevant memories are sent to the model each turn.</li><li>Tasks, notes and projects, from the UI or from chat.</li><li>Automations: one-time and recurring reminders, daily task digests and optional AI routines, run on Durable Object alarms so nothing has to stay online.</li><li>Single-user, no signup; the installer sets the owner password.</li><li>Tasks, notes, memories and reminders keep working if Workers AI is unavailable or the quota runs out.</li></ul>
+<p>Architecture: the browser talks to Cloudflare Pages (React plus a Pages Function), which forwards over a service binding to a private Hono Worker with no public URL, then to a TalorysAgent Durable Object built on the Agents SDK. Data lives in SQLite; the chat model is <code>@cf/zai-org/glm-4.7-flash</code> on Workers AI. It uses no R2, D1, KV, Vectorize or any paid service.</p>
+<p>The installer checks Node.js (20.18+), verifies the Cloudflare login, hashes the password locally with PBKDF2-SHA256, deploys the Worker and Pages, then verifies the deployment. Re-running after an interruption never deletes data.</p>
+<p>For people building small AI products, it is a reference for an agent that fits entirely in Cloudflare&#39;s free tier.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most HN comments argue over the term &quot;self-hosted&quot;: several say running entirely on Cloudflare is not self-hosting, while one reads the author as only meaning no third party is needed beyond your own Cloudflare account. Another points out Workers AI is slow for interactive use.</p><ul class="quotes"><li><q>There&#39;s nothing self-hosted about relying on Cloudflare for _literally_ everything.</q> <span class="quote__by">@StrLght, Hacker News</span></li><li><q>...I suspect its a poorly-worded attempt to clarify there is no third-party requirement (eg. the repo is not cloudflare-owned) beyond your own cloudflare account...</q> <span class="quote__by">@mellosouls, Hacker News</span></li><li><q>Cloudflare worker AI is verrrrry slow for user interactive use cases. Fine for background jobs or evals.</q> <span class="quote__by">@scosman, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://github.com/rociiu/talorys" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">ai-agent</span><span class="tag">cloudflare</span><span class="tag">self-hosted</span></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50031614" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://daily.dev/posts/talorys-a-self-hosted-personal-ai-agent-on-cloudflare-s-free-tier-avuspdhdb" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 53%"></div>
+</article>
+<article class="card" data-group="ai" data-id="84524699655c8d9d3311bb87cc771179a1a2426f" data-url="https://tech.lgbt/@Lydie/117418552486856534" data-category="ai-tip" data-added="2026-10-11">
   <div class="card__meta">
     <span class="chip chip--ai">AI tip</span>
     <span class="card__src">Mastodon</span>
@@ -59,46 +99,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 82%"></div>
-</article>
-<article class="card" data-group="ai" data-id="6b75dae75d979d91c259738ca89e27c989bbc7bf" data-url="https://github.com/rociiu/talorys" data-category="ai-product-idea" data-added="2026-10-11">
-  <div class="card__meta">
-    <span class="chip chip--ai">Product idea</span>
-    <span class="card__src">Hacker News</span>
-    <span class="card__fit" title="fit 4/5">●●●●○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Talorys: agent AI cá nhân tự host trên gói miễn phí của Cloudflare</span><span class="l l-en" lang="en">Talorys: a self-hosted personal AI agent on Cloudflare&#39;s free tier</span></h3>
-    <span class="card__orig l l-vi" lang="en">Talorys: a self-hosted personal AI agent on Cloudflare&#39;s free tier</span>
-    <span class="card__summary l l-vi" lang="vi">Talorys là agent AI cá nhân tự host chạy trên gói miễn phí của Cloudflare. Hợp để tham khảo khi làm sản phẩm AI nhỏ.</span><span class="card__summary l l-en" lang="en">Talorys is a self-hosted personal AI agent that runs on Cloudflare&#39;s free tier, a handy reference for small AI side projects.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Talorys là trợ lý AI cá nhân mã nguồn mở, miễn phí, chạy hoàn toàn trong tài khoản Cloudflare của chính bạn, cài bằng một lệnh <code>npx create-talorys@latest</code>, không cần server, database hay tài khoản do nhà phát triển vận hành.</p>
-<ul><li>Chat có streaming, nhớ thông tin quan trọng (bạn xem, sửa, xóa được); mỗi lượt chỉ gửi các memory liên quan nhất cho model.</li><li>Quản lý task, note, project, cả từ giao diện lẫn từ chat.</li><li>Automation: nhắc việc một lần hoặc định kỳ, digest task hằng ngày, routine AI tùy chọn; chạy bằng Durable Object alarms nên không cần giữ máy online.</li><li>Dùng một người, không có đăng ký; installer đặt mật khẩu chủ sở hữu.</li><li>Task, note, memory và reminder vẫn chạy khi Workers AI không khả dụng hoặc hết quota.</li></ul>
-<p>Kiến trúc: trình duyệt gọi Cloudflare Pages (React + Pages Function), chuyển qua service binding tới Worker riêng (Hono) không có URL công khai, rồi tới Durable Object TalorysAgent dùng Agents SDK. Dữ liệu nằm trong SQLite; model chat là <code>@cf/zai-org/glm-4.7-flash</code> trên Workers AI. Dự án không dùng R2, D1, KV, Vectorize hay dịch vụ trả phí nào.</p>
-<p>Installer kiểm tra Node.js (20.18+), đăng nhập Cloudflare, hash mật khẩu bằng PBKDF2-SHA256 cục bộ, deploy Worker và Pages, rồi kiểm tra bản deploy. Chạy lại lệnh khi bị gián đoạn sẽ không xóa dữ liệu.</p>
-<p>Với người làm sản phẩm AI nhỏ, đây là mẫu agent chạy trọn trên free tier của Cloudflare.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn bình luận trên HN bàn về chữ &quot;self-hosted&quot;: nhiều người cho rằng chạy hoàn toàn trên Cloudflare thì không phải tự host, một người giải thích là ý tác giả chỉ muốn nói không cần thêm bên thứ ba nào ngoài tài khoản Cloudflare. Một người khác nhận xét Workers AI chậm khi dùng tương tác.</p><ul class="quotes"><li><q>Chẳng có gì là self-hosted khi phụ thuộc vào Cloudflare cho _tất cả_ mọi thứ.</q> <span class="quote__by">@StrLght, Hacker News</span></li><li><q>...Tôi đoán đây là cách diễn đạt vụng về, ý là không cần bên thứ ba nào (ví dụ repo không thuộc Cloudflare) ngoài tài khoản cloudflare của chính bạn...</q> <span class="quote__by">@mellosouls, Hacker News</span></li><li><q>Cloudflare worker AI chậm kinh khủng khi dùng cho tương tác với người dùng. Ổn cho job nền hoặc eval.</q> <span class="quote__by">@scosman, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://github.com/rociiu/talorys" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>Talorys is a free, open-source personal AI assistant that runs entirely inside your own Cloudflare account, installed with one command, <code>npx create-talorys@latest</code>, with no server, database or account run by the developers.</p>
-<ul><li>Streaming chat with memory you can view, edit and delete; only the most relevant memories are sent to the model each turn.</li><li>Tasks, notes and projects, from the UI or from chat.</li><li>Automations: one-time and recurring reminders, daily task digests and optional AI routines, run on Durable Object alarms so nothing has to stay online.</li><li>Single-user, no signup; the installer sets the owner password.</li><li>Tasks, notes, memories and reminders keep working if Workers AI is unavailable or the quota runs out.</li></ul>
-<p>Architecture: the browser talks to Cloudflare Pages (React plus a Pages Function), which forwards over a service binding to a private Hono Worker with no public URL, then to a TalorysAgent Durable Object built on the Agents SDK. Data lives in SQLite; the chat model is <code>@cf/zai-org/glm-4.7-flash</code> on Workers AI. It uses no R2, D1, KV, Vectorize or any paid service.</p>
-<p>The installer checks Node.js (20.18+), verifies the Cloudflare login, hashes the password locally with PBKDF2-SHA256, deploys the Worker and Pages, then verifies the deployment. Re-running after an interruption never deletes data.</p>
-<p>For people building small AI products, it is a reference for an agent that fits entirely in Cloudflare&#39;s free tier.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most HN comments argue over the term &quot;self-hosted&quot;: several say running entirely on Cloudflare is not self-hosting, while one reads the author as only meaning no third party is needed beyond your own Cloudflare account. Another points out Workers AI is slow for interactive use.</p><ul class="quotes"><li><q>There&#39;s nothing self-hosted about relying on Cloudflare for _literally_ everything.</q> <span class="quote__by">@StrLght, Hacker News</span></li><li><q>...I suspect its a poorly-worded attempt to clarify there is no third-party requirement (eg. the repo is not cloudflare-owned) beyond your own cloudflare account...</q> <span class="quote__by">@mellosouls, Hacker News</span></li><li><q>Cloudflare worker AI is verrrrry slow for user interactive use cases. Fine for background jobs or evals.</q> <span class="quote__by">@scosman, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://github.com/rociiu/talorys" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">ai-agent</span><span class="tag">cloudflare</span><span class="tag">self-hosted</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50031614" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 53%"></div>
 </article>
 <article class="card" data-group="ai" data-id="c6c7c71450237436a99e742b651a2c2328041bac" data-url="https://github.com/Bizuayeu/Plugins-Weave/tree/main/EpisodicRAG" data-category="ai-tip" data-added="2026-10-11">
   <div class="card__meta">
@@ -532,11 +532,28 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://nishtahir.com/build-your-own-decision-model" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Tự xây mô hình quyết định</span><span class="l l-en" lang="en">Build your own decision model</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Build your own decision model</span>
-  <span class="card__summary l l-vi" lang="vi">Bài hướng dẫn tự xây mô hình quyết định, đang được bàn nhiều trên Hacker News.</span><span class="card__summary l l-en" lang="en">A walkthrough on building your own decision model, drawing heavy discussion on Hacker News.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Tự xây một mô hình decision</span><span class="l l-en" lang="en">Build your own decision model</span></h3>
+    <span class="card__orig l l-vi" lang="en">Build your own decision model</span>
+    <span class="card__summary l l-vi" lang="vi">Bài hướng dẫn tự xây mô hình quyết định, đang được bàn nhiều trên Hacker News.</span><span class="card__summary l l-en" lang="en">A walkthrough on building your own decision model, drawing heavy discussion on Hacker News.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bài hướng dẫn giải thích mô hình decision &quot;System one&quot; là mô hình trả về xác suất đã calibrate cho từng đáp án cho phép, rồi tự dựng một mô hình như vậy bằng cách ràng buộc token đầu ra của một LLM.</p>
+<ul><li>LLM thông thường, kể cả khi dùng Structured Output để ép JSON hợp lệ, vẫn phải chạy một pass cho mỗi token sinh ra (ví dụ cần 11 pass). Mô hình decision giả định tập lựa chọn cố định (A, B, C, D, E), che các token khác trong từ vựng và chọn xác suất cao nhất chỉ trong một pass.</li><li>Ràng buộc đầu ra không đảm bảo câu trả lời đúng. Xác suất token thường bị coi là độ tự tin, nhưng nếu không huấn luyện thêm, nó phản ánh độ tự tin về token kế tiếp chứ không phải xác suất câu trả lời đúng.</li><li>Bản tự xây dùng Qwen/Qwen3-1.7B với transformers: lấy logits của token cuối, chỉ giữ các token đáp án, softmax. Ví dụ &quot;What color is the sky?&quot; cho B (Blue) 0.9988.</li><li>Đánh giá trên mẫu holdout của CommonsenseQA: accuracy 725/1221 = 0.5938, macro f1 0.5844. Finetune nhanh lên 762/1221 = 0.6241, macro f1 0.6234.</li><li>Về calibration: với câu mơ hồ &quot;Where would you most likely find a bat?&quot;, model vẫn cho Cave 0.9978, quá tự tin. Chia bin theo độ tự tin cho thấy độ tự tin không khớp độ chính xác, tức là model chưa được calibrate. Phần calibration chi tiết bị cắt trong bản lưu.</li></ul>
+<p>Với QA và người làm sản phẩm AI: đây là cách rẻ để làm bộ phân loại hoặc chấm điểm, nhưng cần kiểm tra calibration trước khi tin vào con số xác suất.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Bình luận chia giữa người thấy bài hay, dễ hiểu và người hoài nghi cơn sốt Jev; phe hoài nghi nói LLM thường vốn đã làm zero-shot classifier rẻ và đủ dùng, và muốn thấy ví dụ thực tế.</p><ul class="quotes"><li><q>Hiểu ý tưởng về Jev/mô hình decision dễ hơn hẳn nhờ bài này.</q> <span class="quote__by">@ursaguild, Hacker News</span></li><li><q>LLM thường đã làm zero-shot classifier rẻ và dùng tốt từ khá lâu rồi.</q> <span class="quote__by">@howunfortunate, Hacker News</span></li><li><q>Có ai có ví dụ về thứ thú vị đã được xây bằng Jev/mô hình decision không?</q> <span class="quote__by">@sva_, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://nishtahir.com/build-your-own-decision-model" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The tutorial explains that &quot;System one&quot; decision models infer calibrated probabilities for every allowed answer, then builds one by constraining the output tokens of an LLM.</p>
+<ul><li>An everyday language model, even with Structured Output forcing valid JSON, still needs a pass for every generated token (11 passes in the example). Decision models assume a fixed set of options (A, B, C, D, E), mask the other vocabulary items and pick the highest probability in a single pass.</li><li>Constraining the output does not guarantee a correct answer. Token probabilities are often treated as confidence, but without additional training they reflect confidence in the next token rather than the true probability the answer is correct.</li><li>The homemade version uses Qwen/Qwen3-1.7B with transformers: take the last-token logits, keep only the option tokens, apply softmax. For &quot;What color is the sky?&quot; it gives B (Blue) at 0.9988.</li><li>Evaluated on a random holdout of CommonsenseQA: accuracy 725/1221 = 0.5938, macro f1 0.5844. A quick finetune gives 762/1221 = 0.6241, macro f1 0.6234.</li><li>On calibration: for the ambiguous &quot;Where would you most likely find a bat?&quot; the model still gives Cave 0.9978, overconfident. Binning confidence in the eval shows it does not match accuracy, so the model is not calibrated. The detailed calibration part is cut off in the captured text.</li></ul>
+<p>For QA and AI builders: a cheap way to build a classifier or scorer, but check calibration before trusting the probabilities.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Comments split between those who find the post clear and helpful and those skeptical of the Jev hype; the skeptics say plain LLMs have long been cheap, serviceable zero-shot classifiers and ask for real-world examples.</p><ul class="quotes"><li><q>This made the idea of Jev/decision models really easy to grasp for me.</q> <span class="quote__by">@ursaguild, Hacker News</span></li><li><q>plain LLMs have been perfectly cheap and serviceable as zero-shot classifiers for quite some time now</q> <span class="quote__by">@howunfortunate, Hacker News</span></li><li><q>Does someone have examples of interesting stuff that has been built utilizing Jev/decision models?</q> <span class="quote__by">@sva_, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://nishtahir.com/build-your-own-decision-model" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">llm</span><span class="tag">classification</span></span>
@@ -729,11 +746,24 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://businessinsider.com/personal-ai-agent-grok-bot-posted-bank-details-company-slack-2026-10" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Agent AI cá nhân của tôi đã đăng thông tin ngân hàng lên Slack công ty</span><span class="l l-en" lang="en">My personal AI agent posted my bank details on company Slack</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">My personal AI agent posted my bank details on company Slack</span>
-  <span class="card__summary l l-vi" lang="vi">Một người kể agent AI cá nhân đã đăng thông tin ngân hàng của họ lên Slack công ty, một cảnh báo về rủi ro khi dùng agent.</span><span class="card__summary l l-en" lang="en">A user recounts their personal AI agent posting their bank details on company Slack, a warning about agent risks.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Agent AI cá nhân của tôi đã đăng thông tin ngân hàng của tôi lên Slack công ty</span><span class="l l-en" lang="en">My personal AI agent posted my bank details on company Slack</span></h3>
+    <span class="card__orig l l-vi" lang="en">My personal AI agent posted my bank details on company Slack</span>
+    <span class="card__summary l l-vi" lang="vi">Một người kể agent AI cá nhân đã đăng thông tin ngân hàng của họ lên Slack công ty, một cảnh báo về rủi ro khi dùng agent.</span><span class="card__summary l l-en" lang="en">A user recounts their personal AI agent posting their bank details on company Slack, a warning about agent risks.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một người kể rằng agent AI cá nhân của họ đã đăng thông tin ngân hàng của họ lên Slack của công ty. Bài gốc trên Business Insider bị paywall nên không có nội dung chi tiết để tóm tắt; xem chi tiết ở bài gốc.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn bình luận chê việc trao cho agent quyền đọc dữ liệu tài chính cá nhân lẫn quyền ghi vào ứng dụng nhắn tin công ty, coi đó là lỗi tự gây ra; một vài người nhấn mạnh kỹ năng kỹ thuật vẫn quan trọng.</p><ul class="quotes"><li><q>Điên thật, tôi đã 30 năm soi từng quyền thư mục, user, group, iam role...vậy mà giờ người ta chỉ cần trò chuyện là giao cho agent AI quyền truy cập dữ liệu nhạy cảm nhất của mình</q> <span class="quote__by">@BorisMelnik, Hacker News</span></li><li><q>Vậy là ông ta cho agent AI quyền đọc toàn bộ tài chính cá nhân rồi cho nó quyền đọc/ghi vào ứng dụng nhắn tin công ty. Ông ta nghĩ chuyện gì sẽ xảy ra chứ?</q> <span class="quote__by">@sherburt3, Hacker News</span></li><li><q>Đây là lý do developer vẫn thống trị ngay cả thời AI. Tụi mình sẽ tìm cách triển khai bớt lố bịch hơn. Kỹ năng kỹ thuật vẫn cực kỳ quan trọng.</q> <span class="quote__by">@65, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://businessinsider.com/personal-ai-agent-grok-bot-posted-bank-details-company-slack-2026-10" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Someone says their personal AI agent posted their bank details on their company Slack. The original Business Insider article is paywalled, so no article text was available to summarise; see the original for the details of what happened.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most commenters fault giving the agent read access to personal finances plus write access to the company messaging app, calling it self-inflicted; a few stress that technical skills still matter.</p><ul class="quotes"><li><q>its crazy I spent 30 years scrutinizing directory permissions, users, groups, iam roles...now people just use conversation to hand an AI agents access to their most sensitive data</q> <span class="quote__by">@BorisMelnik, Hacker News</span></li><li><q>So he gave an AI agent read access to all his personal financials and then gave read/write access to his company messaging app. WHAT DID YOU THINK WAS GOING TO HAPPEN?</q> <span class="quote__by">@sherburt3, Hacker News</span></li><li><q>This is why developers reign supreme even in the age of AI. We&#39;d find less ridiculous ways to implement something like this. Technical skills are still extremely inportant.</q> <span class="quote__by">@65, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://businessinsider.com/personal-ai-agent-grok-bot-posted-bank-details-company-slack-2026-10" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">ai-agent</span><span class="tag">security</span></span>
@@ -858,11 +888,34 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://roberthopman.com/scrap4rb-find-the-messy-tests" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">scrap4rb: tìm các test lộn xộn trong dự án Ruby</span><span class="l l-en" lang="en">scrap4rb: find the messy tests in a Ruby project</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">scrap4rb: find the messy tests in a Ruby project</span>
-  <span class="card__summary l l-vi" lang="vi">scrap4rb quét bộ Minitest để cờ các test không kiểm tra gì, mock quá nhiều hoặc setup quá nặng, dựa trên luật SCRAP của Robert C. Martin.</span><span class="card__summary l l-en" lang="en">scrap4rb scans Minitest suites for tests that check nothing, mock excessively or carry heavy setup, adapting Robert C. Martin&#39;s SCRAP rules.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">scrap4rb: tìm các test &quot;bẩn&quot; trong dự án Ruby</span><span class="l l-en" lang="en">scrap4rb: find the messy tests in a Ruby project</span></h3>
+    <span class="card__orig l l-vi" lang="en">scrap4rb: find the messy tests in a Ruby project</span>
+    <span class="card__summary l l-vi" lang="vi">scrap4rb quét bộ Minitest để cờ các test không kiểm tra gì, mock quá nhiều hoặc setup quá nặng, dựa trên luật SCRAP của Robert C. Martin.</span><span class="card__summary l l-en" lang="en">scrap4rb scans Minitest suites for tests that check nothing, mock excessively or carry heavy setup, adapting Robert C. Martin&#39;s SCRAP rules.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Robert Hopman viết gem scrap4rb, quét bộ test Minitest và gắn cờ các test có vấn đề, dựa trên luật của SCRAP, công cụ cho test Clojure của Robert C. Martin (Uncle Bob).</p>
+<p>Lý do: flog, flay, reek, rubycritic coi test như code thường nên cho kết quả lạ. reek không thấy block test &quot;...&quot; do vì nó không phải method; rubycritic chấm D cho test dài vì kiểm tra nhiều thứ; còn test bấm &quot;Save&quot; lần hai khi lần đầu không được lại được điểm A dù có thể che một lỗi thật.</p>
+<p>scrap4rb hỏi: test có kiểm tra gì không, có làm một việc không, có giả lập nhiều không, có giấu việc trong helper không. Các smell gồm:<br>- no-assertions: test không kiểm tra gì<br>- low-assertion-density: test dài nhưng chỉ kiểm tra một thứ<br>- multiple-phases: làm, kiểm tra, làm tiếp, kiểm tra lại<br>- high-mocking: giả lập hơn 3 thứ<br>- large-example: dài hơn 20 lines<br>- helper-hidden-complexity: helper giấu hơn 8 lines việc<br>- temp-resource-work: tạo file hoặc thư mục tạm<br>- literal-heavy-setup: khối dữ liệu lớn</p>
+<p>if, vòng lặp hoặc rescue trong test cũng làm điểm xấu đi. Công cụ còn tìm các test gần giống nhau và gợi ý gom thành một bảng, rồi đưa một lời khuyên mỗi file: để yên, sửa vài test, làm bảng, hoặc tách file.</p>
+<p>Dùng: gem install scrap4rb, chạy scrap4rb trong dự án. Có thể lưu baseline bằng --write-baseline tmp/scrap.json rồi so sánh bằng --compare tmp/scrap.json. Tác giả nhấn mạnh lời khuyên chỉ là chỗ để xem, không phải mệnh lệnh.</p>
+<p>Cách làm: bắt đầu từ một script, lưu output trên bộ test mẫu làm lưới an toàn, nhờ Claude Code viết test nhỏ cho từng luật ngay tại ngưỡng (20 lines ổn, 21 lines quá dài), rồi để nó tách script thành các phần nhỏ như SCRAP. Cuối cùng phát hành lên RubyGems.</p>
+
+  <p class="card__source"><a class="card__go" href="https://roberthopman.com/scrap4rb-find-the-messy-tests" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Robert Hopman wrote a small gem, scrap4rb, that scans Minitest suites and flags messy tests. It copies the rules of SCRAP, Robert C. Martin&#39;s (Uncle Bob) tool for Clojure tests.</p>
+<p>Why: flog, flay, reek and rubycritic treat tests like ordinary code, which gives odd results. reek does not see a test &quot;...&quot; do block at all because it is not a method; rubycritic gives a D to a test that is long because it checks many things; and a test that clicks &quot;Save&quot; a second time when the first click failed gets an A, though it may hide a real bug.</p>
+<p>scrap4rb asks other questions: does the test check anything, does it do one thing, does it fake a lot, does it hide work in helpers. The smells:<br>- no-assertions: the test checks nothing<br>- low-assertion-density: long but checks only one thing<br>- multiple-phases: acts, checks, acts again, checks again<br>- high-mocking: fakes more than 3 things<br>- large-example: longer than 20 lines<br>- helper-hidden-complexity: helpers hide more than 8 lines of work<br>- temp-resource-work: makes temp files or folders<br>- literal-heavy-setup: a big block of data</p>
+<p>An if, loop or rescue inside a test also worsens its score. It also finds near-identical tests and suggests one table with several rows, then gives one piece of advice per file: leave it, fix some tests, make a table, or split the file.</p>
+<p>Usage: gem install scrap4rb, then run scrap4rb in the project. Save a baseline with --write-baseline tmp/scrap.json and compare with --compare tmp/scrap.json. The author stresses the advice is a place to look, not an order.</p>
+<p>How it was built: one script first, its output saved on sample tests as a safety net, Claude Code writing a small test per rule right at its limit (20 lines fine, 21 too long), then splitting the script into small parts like SCRAP, and finally a release to RubyGems.</p>
+
+  <p class="card__source"><a class="card__go" href="https://roberthopman.com/scrap4rb-find-the-messy-tests" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">ruby</span><span class="tag">minitest</span><span class="tag">test-smells</span></span>
@@ -1353,11 +1406,32 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://buysellram.com/blog/128gb-ai-pc-gpu-memory" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">PC AI 128GB: GPU thực sự dùng được bao nhiêu bộ nhớ?</span><span class="l l-en" lang="en">128GB AI PCs: How Much Memory Can the GPU Actually Use?</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">128GB AI PCs: How Much Memory Can the GPU Actually Use?</span>
-  <span class="card__summary l l-vi" lang="vi">PC AI 128GB không bao giờ cấp đủ 128GB cho GPU; bài so từng nền tảng và xem mô hình 65GB như gpt-oss-120b có vừa không.</span><span class="card__summary l l-en" lang="en">A 128GB AI PC never gives its GPU the full 128GB; the post compares platforms and whether a 65GB model like gpt-oss-120b fits.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">PC AI 128GB: GPU thực sự dùng được bao nhiêu bộ nhớ?</span><span class="l l-en" lang="en">128GB AI PCs: How Much Memory Can the GPU Actually Use?</span></h3>
+    <span class="card__orig l l-vi" lang="en">128GB AI PCs: How Much Memory Can the GPU Actually Use?</span>
+    <span class="card__summary l l-vi" lang="vi">PC AI 128GB không bao giờ cấp đủ 128GB cho GPU; bài so từng nền tảng và xem mô hình 65GB như gpt-oss-120b có vừa không.</span><span class="card__summary l l-en" lang="en">A 128GB AI PC never gives its GPU the full 128GB; the post compares platforms and whether a 65GB model like gpt-oss-120b fits.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một PC AI 128GB dùng chung một vùng bộ nhớ cho CPU và GPU, nên mô hình AI không bao giờ có đủ 128GB; phần GPU được dùng do hệ điều hành hoặc cài đặt của hãng chip quyết định.</p>
+<p>Bộ nhớ của máy chia làm ba phần, đều lấy từ cùng 128GB:<br>- Phần hệ điều hành và các chương trình khác giữ lại. Bộ nhớ cấp cho GPU sẽ không còn dùng làm RAM hệ thống.<br>- Bản thân mô hình. Mô hình chạy local thường lưu ở khoảng 4 bit mỗi tham số, nên mô hình 120B xấp xỉ 60GB và 70B xấp xỉ 35GB. File tải thực tế lớn hơn một chút: bản 4-bit Llama 3.3 70B ở định dạng Q4_K_M là 42.5GB.<br>- Bộ nhớ khi chạy, chủ yếu là KV cache, tăng theo từng token. Cuộc trò chuyện ngắn tốn ít, nhưng một tài liệu dài dán vào prompt có thể tốn gần bằng cả mô hình.</p>
+<p>Giới hạn theo nền tảng:<br>- Windows thông thường giới hạn bộ nhớ chia sẻ ở một nửa bộ nhớ hệ thống, theo trang hỗ trợ của Intel.<br>- Microsoft cho biết sẽ có giới hạn mới cao hơn cho máy RTX Spark như Surface Laptop Ultra, nhưng chưa nói mức cụ thể.<br>- Variable Graphics Memory của AMD dành sẵn tới 96GB cho GPU, có thể mượn thêm để lên 112GB; AMD khuyên giữ workload trong 96GB để đạt hiệu năng cao nhất.</p>
+<p>Con số cụ thể: gpt-oss-120b cần khoảng 65GB với cuộc trò chuyện 32K token và khoảng 68.5GB ở độ dài tối đa, nên nằm đúng ngay vạch một nửa của Windows (khoảng 64GB), không còn dư cho tài liệu dài hơn. Dưới mức 96GB của AMD thì mọi cấu hình trong bảng đều vừa. Llama 3.3 70B nhỏ hơn nhưng cần nhiều bộ nhớ hơn ở độ dài đầy đủ vì kiến trúc ghi nhớ chi tiết hơn: khoảng 330KB mỗi token so với khoảng 37KB của gpt-oss.</p>
+<p>Microsoft quảng cáo máy chạy được &quot;up to 120B parameter models locally&quot;, nhưng chú thích đó nói về tốc độ tính toán, không phải bộ nhớ.</p>
+
+  <p class="card__source"><a class="card__go" href="https://buysellram.com/blog/128gb-ai-pc-gpu-memory" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A 128GB AI PC shares one pool of memory between the processor and the GPU, so an AI model never gets the full 128GB; how much the GPU may use is set by the operating system, the chip maker&#39;s setting, or both.</p>
+<p>A local AI memory budget has three parts, all taken from the same 128GB:<br>- What the operating system and other programs keep. Memory given to the GPU is no longer available as system RAM.<br>- The model itself. Local models are usually stored at around 4 bits per parameter, so a 120B model is about 60GB and a 70B model about 35GB. Real downloads run larger: the 4-bit Llama 3.3 70B file in Q4_K_M format is 42.5GB.<br>- Memory used while it works, mainly the KV cache, which grows with every token. A short chat adds little, but a long document pasted into the prompt can add nearly as much as the model weighs.</p>
+<p>Limits by platform:<br>- Ordinary Windows caps shared memory at one-half of system memory, per Intel&#39;s support page.<br>- Microsoft announced a higher limit for RTX Spark machines such as the Surface Laptop Ultra, but has not said what it is.<br>- AMD&#39;s Variable Graphics Memory reserves up to 96GB for the GPU, which can borrow more to reach 112GB; AMD says the best performance comes from keeping workloads within 96GB.</p>
+<p>In numbers: gpt-oss-120b needs about 65GB with a 32K-token conversation and about 68.5GB at its longest, so it sits right on Windows&#39; half-of-memory line (about 64GB) with nothing to spare for a longer document. Under AMD&#39;s 96GB setting everything in the table fits. Llama 3.3 70B is smaller but needs more memory at full length because it keeps a more detailed record per token: about 330KB per token against about 37KB for gpt-oss.</p>
+<p>Microsoft claims the laptop can run &quot;up to 120B parameter models locally&quot;, but the footnote on that claim is about computing speed, not memory.</p>
+
+  <p class="card__source"><a class="card__go" href="https://buysellram.com/blog/128gb-ai-pc-gpu-memory" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">local-llm</span><span class="tag">gpu</span><span class="tag">memory</span></span>
@@ -2744,11 +2818,28 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/avneet_bansal_a65b3f31fc4/your-readiness-probe-is-lying-to-you-5e1g" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Readiness probe của bạn đang nói dối</span><span class="l l-en" lang="en">Your Readiness Probe Is Lying to You</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Your Readiness Probe Is Lying to You</span>
-  <span class="card__summary l l-vi" lang="vi">Readiness probe là lời hứa với Kubernetes rằng pod nhận được traffic; bài chỉ ra vì sao nhiều probe không giữ lời.</span><span class="card__summary l l-en" lang="en">A readiness probe promises Kubernetes that a pod can take traffic; the post explains why many probes don&#39;t keep that promise.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Readiness probe của bạn đang nói dối: lỗi KEDA Metrics Server báo Ready khi mất kết nối gRPC</span><span class="l l-en" lang="en">Your Readiness Probe Is Lying to You</span></h3>
+    <span class="card__orig l l-vi" lang="en">Your Readiness Probe Is Lying to You</span>
+    <span class="card__summary l l-vi" lang="vi">Readiness probe là lời hứa với Kubernetes rằng pod nhận được traffic; bài chỉ ra vì sao nhiều probe không giữ lời.</span><span class="card__summary l l-en" lang="en">A readiness probe promises Kubernetes that a pod can take traffic; the post explains why many probes don&#39;t keep that promise.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả sửa lỗi trong KEDA (kedacore/keda #8226): Metrics Server báo Ready dù kết nối gRPC tới keda-operator đã đứt, và bản sửa đầu tiên còn chứa một lỗi thứ hai do maintainer phát hiện khi review.</p>
+<ul><li>Metrics Server không tự tính metric, nó chuyển yêu cầu của HPA tới keda-operator qua gRPC. Mất kết nối này thì nó chỉ còn là cái vỏ.</li><li>Probe cũ chỉ kiểm tra process còn chạy và HTTP server đang listen. Khi gRPC đứt, replica vẫn Ready, vẫn nằm trong APIService endpoints, HPA vẫn gửi query và mọi query đều lỗi hoặc treo. Autoscaler ngừng scale mà pod vẫn xanh, nên rất khó debug.</li><li>Bản sửa v1: dùng grpc.ClientConn.GetState() (Idle, Connecting, Ready, TransientFailure, Shutdown; chỉ quan sát, không tự kết nối) và thêm check readyz báo NotReady nếu kết nối không Ready.</li><li>Lỗi thứ hai: khi replica NotReady thì không còn RPC nào chạy qua client. gRPC mặc định đưa kết nối vào Idle sau một thời gian không có RPC (GRPC_CLIENT_IDLE_TIMEOUT_MS, mặc định 30 phút) và kết nối Idle không tự nối lại. Kết quả là deadlock: cần RPC để Ready, cần Ready để nhận RPC, replica kẹt NotReady cho tới khi restart tay.</li><li>Bản merge: khi accessor thấy kết nối Idle, nó kích hoạt reconnect không chặn ngay trong lúc readiness check.</li></ul>
+<p>Ý nghĩa: probe nên phản ánh dependency thật của component. Nhưng một bản sửa đúng có thể tạo ra kiểu treo mới, nên cần nghĩ tới đường hồi phục. Với QA, đây là ca test đáng nhớ: kiểm tra cả trạng thái &quot;mất dependency&quot; lẫn &quot;hồi phục sau đó&quot;.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/avneet_bansal_a65b3f31fc4/your-readiness-probe-is-lying-to-you-5e1g" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A readiness probe is a promise to Kubernetes that a pod can take traffic. The author hit a case in KEDA (fix merged as kedacore/keda #8226) where the Metrics Server stayed Ready even though its gRPC connection to the keda-operator was down, and the first version of the fix contained a second bug that a maintainer caught in review.</p>
+<ul><li>The Metrics Server does not compute metrics itself. It forwards HPA queries to the keda-operator over gRPC, so without that connection it is an empty shell.</li><li>The old probe only checked that the process was up and the HTTP server was listening. When gRPC dropped, the replica stayed Ready, stayed in the APIService endpoints, and the HPA kept sending queries that all failed or hung. Scaling stopped while pod readiness stayed green, which makes it very hard to debug.</li><li>Fix v1: use grpc.ClientConn.GetState() (Idle, Connecting, Ready, TransientFailure or Shutdown; a pure observer that never starts a connection) and add a readyz check that reports NotReady unless the connection is Ready.</li><li>The second bug: once a replica is NotReady, no RPCs reach that client. By default gRPC parks a connection in Idle after a period without RPCs (GRPC_CLIENT_IDLE_TIMEOUT_MS, 30 minutes by default), and an Idle connection does not reconnect by itself. So recovery deadlocks: an RPC is needed to become Ready, Ready is needed to receive RPCs, and the replica stays NotReady until someone restarts it.</li><li>The merged fix triggers a non-blocking reconnect from inside the readiness check when it sees an Idle connection.</li></ul>
+<p>Why it matters: a probe should reflect the component&#39;s real dependency, but even a correct fix can create a new hang if the recovery path is not thought through. For QA, test both &quot;dependency lost&quot; and &quot;recovery afterwards&quot;.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/avneet_bansal_a65b3f31fc4/your-readiness-probe-is-lying-to-you-5e1g" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">kubernetes</span><span class="tag">probes</span></span>
@@ -3922,7 +4013,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
