@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-12</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-12</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-13</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -107,11 +107,28 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://nonfunctional.substack.com/p/passkeys-are-a-trap-do-not-use-them" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Passkeys là cái bẫy, đừng dùng</span><span class="l l-en" lang="en">Passkeys are a trap. Do not use them</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Passkeys are a trap. Do not use them</span>
-  <span class="card__summary l l-vi" lang="vi">Một bài viết trên Substack lập luận rằng không nên dùng passkeys. Bài đang được bàn luận sôi nổi trên Hacker News với hơn 500 điểm.</span><span class="card__summary l l-en" lang="en">A Substack post argues against using passkeys. It is being debated on Hacker News with over 500 points.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Passkeys là cái bẫy, đừng dùng</span><span class="l l-en" lang="en">Passkeys are a trap. Do not use them</span></h3>
+    <span class="card__orig l l-vi" lang="en">Passkeys are a trap. Do not use them</span>
+    <span class="card__summary l l-vi" lang="vi">Một bài viết trên Substack lập luận rằng không nên dùng passkeys. Bài đang được bàn luận sôi nổi trên Hacker News với hơn 500 điểm.</span><span class="card__summary l l-en" lang="en">A Substack post argues against using passkeys. It is being debated on Hacker News with over 500 points.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một bài viết trên Substack (viết cho người dùng web không chuyên kỹ thuật) lập luận rằng passkeys có thể an toàn và tiện hơn mật khẩu, nhưng bạn không thực sự kiểm soát chúng, và các website có thể dần hạn chế quyền tự do của bạn với passkeys.</p>
+<ul><li>Tác giả so passkeys với Trojan Horse: bề ngoài thanh lịch, bên trong có vấn đề.</li><li>Passkeys do FIDO Alliance tạo ra, gồm Big Tech, chính phủ, cơ quan tình báo, ngân hàng và vài tổ chức phi lợi nhuận như Mozilla. Theo tác giả, không có nhóm bảo vệ người tiêu dùng nào trong đó, nên không ai bảo vệ lợi ích của người dùng.</li><li>Tác giả đồng ý mật khẩu không an toàn (ví dụ solarwinds123 ở SolarWinds), nhưng cho rằng vấn đề đó đã được giải bằng 2FA và TOTP (RFC 6238), vốn là chuẩn mở, không cần ứng dụng cụ thể nào, không cần internet.</li><li>Mật khẩu thì trực quan, và bạn tự chọn nơi lưu và người chia sẻ.</li></ul>
+<p>Bài viết bị cắt ở phần giải thích cơ chế; nội dung còn lại nằm ở bản gốc. Ngày đăng: Oct 10, 2026.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn người bình luận không đồng ý với kết luận &quot;đừng dùng&quot;, nhưng nhiều người cũng lo về việc bị ép dùng và mất khả năng mang theo. Một nhóm cho rằng passkeys ổn nếu lưu trong password manager.</p><ul class="quotes"><li><q>Dùng password manager đàng hoàng, như keepassxc. Thế là bạn có quyền kiểm soát.</q> <span class="quote__by">@shmerl, Hacker News</span></li><li><q>Lý tưởng thì passkeys nên là bầy gia súc, không phải thú cưng. Bạn nên có nhiều hơn một cái cho mỗi tài khoản, lưu ở nhiều hơn một password manager.</q> <span class="quote__by">@skybrian, Hacker News</span></li><li><q>Thành thật mà nói, tôi không nghĩ bài này đã đưa ra được lập luận thuyết phục.</q> <span class="quote__by">@danpalmer, Hacker News</span></li><li><q>Tôi thử dùng passkey để đăng nhập vào một thứ, nó báo lỗi và tôi chẳng buồn sửa. Thế nên tôi dùng mật khẩu.</q> <span class="quote__by">@Starlevel004, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://nonfunctional.substack.com/p/passkeys-are-a-trap-do-not-use-them" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A Substack post aimed at non-technical web users argues that passkeys can be far more secure and convenient than passwords, but you do not have ultimate control over them, and websites can gradually remove your ability to do as you please with them.</p>
+<ul><li>The author compares passkeys to the Trojan Horse: elegant on the surface, with something troubling inside.</li><li>Passkeys come from the FIDO Alliance, a consortium of Big Tech, governments, intelligence agencies, banks and a few nonprofits such as Mozilla. The author notes that no consumer advocacy groups are members, so nobody makes the case for the user&#39;s own interests.</li><li>The author agrees passwords are insecure (for example solarwinds123 at SolarWinds), but says that problem was already solved by two-factor authentication and TOTP (RFC 6238), an open standard that needs no specific app and no internet.</li><li>Passwords are intuitive, and you choose where to store them and who to share them with.</li></ul>
+<p>The available text cuts off while explaining the mechanism; the rest is in the original. Published Oct 10, 2026.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most commenters disagree with the &quot;do not use them&quot; conclusion, though several also worry about being forced onto passkeys and losing portability. One camp says passkeys are fine when stored in a password manager.</p><ul class="quotes"><li><q>Use proper password managers, like keepassxc. Then you have control.</q> <span class="quote__by">@shmerl, Hacker News</span></li><li><q>Ideally, passkeys should be cattle, not pets. You should have more than one per account, saved to more than one password manager.</q> <span class="quote__by">@skybrian, Hacker News</span></li><li><q>Honestly I don&#39;t think this post did make a compelling case.</q> <span class="quote__by">@danpalmer, Hacker News</span></li><li><q>I tried using a passkey to log in to something and it gave me an error and I simply didn&#39;t care about trying to fix it. So passwords it is for me.</q> <span class="quote__by">@Starlevel004, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://nonfunctional.substack.com/p/passkeys-are-a-trap-do-not-use-them" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">passkeys</span><span class="tag">security</span></span>
@@ -936,11 +953,26 @@
     <span class="card__fit" title="fit 5/5">●●●●●</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/ivermin1123/testing-mcp-agents-offline-the-recording-is-the-server-47kp" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Test MCP agent offline: bản ghi chính là server</span><span class="l l-en" lang="en">Testing MCP agents offline: the recording is the server</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Testing MCP agents offline: the recording is the server</span>
-  <span class="card__summary l l-vi" lang="vi">mcp-cassette ghi một phiên MCP thật vào tệp JSONL rồi phát lại tệp đó như một MCP server, giúp test agent offline.</span><span class="card__summary l l-en" lang="en">mcp-cassette records one real MCP session into a JSONL file, then serves that file as an MCP server so agents can be tested offline.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Test agent MCP offline: bản ghi chính là server</span><span class="l l-en" lang="en">Testing MCP agents offline: the recording is the server</span></h3>
+    <span class="card__orig l l-vi" lang="en">Testing MCP agents offline: the recording is the server</span>
+    <span class="card__summary l l-vi" lang="vi">mcp-cassette ghi một phiên MCP thật vào tệp JSONL rồi phát lại tệp đó như một MCP server, giúp test agent offline.</span><span class="card__summary l l-en" lang="en">mcp-cassette records one real MCP session into a JSONL file, then serves that file as an MCP server so agents can be tested offline.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>mcp-cassette ghi một phiên MCP thật vào tệp JSONL rồi phát lại tệp đó như một MCP server, nên client ở bất kỳ ngôn ngữ nào cũng chạy test offline: không credential, không rate limit, không mạng.</p>
+<ul><li>Vấn đề: test agent gọi tool qua Model Context Protocol phụ thuộc server thật. Mock client library thì gắn test vào một SDK; tự viết recorder thì nhiều dự án làm lặp lại.</li><li>Ghi: <code>npx mcp-cassette record -o session.cassette.jsonl -- npx -y @modelcontextprotocol/server-github</code>. Recorder là proxy trong suốt, ghi mọi frame hai chiều và mặc định che các secret nó nhận ra; tác giả khuyên xem lại cassette trước khi commit vì pattern matching không bắt hết.</li><li>Phát lại: <code>check --stdio &quot;npx mcp-cassette replay ...&quot;</code>. Replay nói MCP qua stdio hoặc Streamable HTTP và phát lại notification đúng vị trí; hỗ trợ bản 2025-11-25 và bản stateless 2026-07-28; <code>--mode append</code> ghi hai kết nối vào một tệp.</li><li>Trong test runner: <code>useCassette</code> cho vitest và jest. Request không có trong bản ghi sẽ làm test fail kèm lý do.</li><li>Contract: <code>snapshot</code> ghi hợp đồng tool; <code>snapshot --check</code> fail CI khi có thay đổi BREAKING (ví dụ tool bị xóa, tham số thành bắt buộc).</li><li>Lint: mười sáu luật xác định, mỗi luật gắn rủi ro OWASP MCP Top 10, bắt tool poisoning và indirect prompt injection; xuất text, JSON hoặc SARIF. Tác giả nói đây là heuristic, chỉ là tripwire nhanh.</li><li>GitHub Action <code>ivermin1123/mcp-cassette@v0.10</code> chạy kiểm tra và comment lên PR.</li></ul>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/ivermin1123/testing-mcp-agents-offline-the-recording-is-the-server-47kp" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>mcp-cassette records one real MCP session into a JSONL file, then serves that file as an MCP server, so any client in any language can run its tests offline: no credentials, no rate limits, no network.</p>
+<ul><li>The problem: agent tests that call tools over the Model Context Protocol depend on a live server. Mocking the client library ties tests to one SDK, and writing your own recorder has been repeated across several projects.</li><li>Record: <code>npx mcp-cassette record -o session.cassette.jsonl -- npx -y @modelcontextprotocol/server-github</code>. The recorder is a transparent proxy that writes every frame in both directions and redacts recognised secrets by default; the author advises reviewing a cassette before committing since pattern matching can&#39;t catch everything.</li><li>Replay: <code>check --stdio &quot;npx mcp-cassette replay ...&quot;</code>. Replay speaks MCP over stdio or Streamable HTTP and replays server-pushed notifications at the right point; it supports the 2025-11-25 revision and the stateless 2026-07-28 revision, and <code>--mode append</code> records two connections into one file.</li><li>In test runners: <code>useCassette</code> for vitest, with a jest twin. A request the recording does not hold fails the test and says why.</li><li>Contract gate: <code>snapshot</code> writes the tool contract, and <code>snapshot --check</code> fails CI on BREAKING changes such as a removed tool or a newly required parameter.</li><li>Lint: sixteen deterministic rules, each citing an OWASP MCP Top 10 risk, covering tool poisoning and indirect prompt injection; output as text, JSON or SARIF. The author says these are heuristics, a fast tripwire.</li><li>The GitHub Action <code>ivermin1123/mcp-cassette@v0.10</code> runs the checks and comments on the PR.</li></ul>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/ivermin1123/testing-mcp-agents-offline-the-recording-is-the-server-47kp" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">mcp</span><span class="tag">testing</span></span>
@@ -1073,11 +1105,26 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://bleepingcomputer.com/news/security/hackers-abuse-google-ads-bing-redirects-to-push-claude-clickfix-attacks" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Hacker lạm dụng Google Ads và chuyển hướng Bing để phát tán tấn công ClickFix giả Claude</span><span class="l l-en" lang="en">Hackers abuse Google Ads, Bing redirects to push Claude ClickFix attacks</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Hackers abuse Google Ads, Bing redirects to push Claude ClickFix attacks</span>
-  <span class="card__summary l l-vi" lang="vi">BleepingComputer báo cáo hacker lạm dụng Google Ads và chuyển hướng Bing để đẩy các cuộc tấn công ClickFix liên quan đến Claude.</span><span class="card__summary l l-en" lang="en">BleepingComputer reports attackers abusing Google Ads and Bing redirects to push Claude-themed ClickFix attacks.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Hacker lạm dụng Google Ads và chuyển hướng Bing để đẩy các cuộc tấn công ClickFix nhắm vào Claude</span><span class="l l-en" lang="en">Hackers abuse Google Ads, Bing redirects to push Claude ClickFix attacks</span></h3>
+    <span class="card__orig l l-vi" lang="en">Hackers abuse Google Ads, Bing redirects to push Claude ClickFix attacks</span>
+    <span class="card__summary l l-vi" lang="vi">BleepingComputer báo cáo hacker lạm dụng Google Ads và chuyển hướng Bing để đẩy các cuộc tấn công ClickFix liên quan đến Claude.</span><span class="card__summary l l-en" lang="en">BleepingComputer reports attackers abusing Google Ads and Bing redirects to push Claude-themed ClickFix attacks.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Hacker đang lạm dụng Google Ads và các chuyển hướng của Bing để đẩy các cuộc tấn công ClickFix liên quan đến Claude.</p>
+<p>Không lấy được nội dung bài gốc, nên chỉ có tiêu đề để dựa vào. Chi tiết về cách tấn công diễn ra, nạn nhân bị dụ làm gì và quy mô thiệt hại nằm trong bài gốc.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần bình luận chủ yếu chĩa vào Google: nhiều người cho rằng họ không kiểm duyệt quảng cáo hoặc cố tình làm ngơ trước quảng cáo lừa đảo, kèm lời khuyên cài adblocker cho người thân; một số ít chỉ mỉa mai.</p><ul class="quotes"><li><q>Google dường như hoặc không kiểm duyệt quảng cáo chút nào, hoặc cố ý để quảng cáo gây hiểu lầm và lừa đảo tới được người dùng...</q> <span class="quote__by">@7373737373, Hacker News</span></li><li><q>...Quảng cáo đã trở thành rủi ro an toàn và chuyện đó sẽ không sớm thay đổi.</q> <span class="quote__by">@beloch, Hacker News</span></li><li><q>Họ đâu có lạm dụng Google Ads, lừa đảo là trường hợp sử dụng quen thuộc của họ.</q> <span class="quote__by">@zb3, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://bleepingcomputer.com/news/security/hackers-abuse-google-ads-bing-redirects-to-push-claude-clickfix-attacks" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Hackers are abusing Google Ads and Bing redirects to push ClickFix attacks that involve Claude.</p>
+<p>The article text could not be retrieved, so only the title is available as a source. How the attack works, what victims are tricked into doing and how far it has spread are covered in the original article.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">The comments mostly aim at Google: several argue it either does not screen ads or knowingly lets scam ads through, with advice to install an adblocker for relatives; a few only offer sarcasm.</p><ul class="quotes"><li><q>Google appears to either not screen ads at all or willingly allows misleading and lying ads and scams to reach its users...</q> <span class="quote__by">@7373737373, Hacker News</span></li><li><q>...Ads have become a safety risk and that&#39;s not going to change anytime soon.</q> <span class="quote__by">@beloch, Hacker News</span></li><li><q>They don&#39;t abuse Google Ads, scams are their casual use case.</q> <span class="quote__by">@zb3, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://bleepingcomputer.com/news/security/hackers-abuse-google-ads-bing-redirects-to-push-claude-clickfix-attacks" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">security</span><span class="tag">clickfix</span></span>
@@ -1376,11 +1423,32 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/reigen/slashing-llm-bills-by-58-building-an-opentelemetry-semantic-cache-proxy-in-fastapi-59j4" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Giảm 58% hóa đơn LLM: xây proxy semantic cache OpenTelemetry bằng FastAPI</span><span class="l l-en" lang="en">Slashing LLM Bills by 58%: Building an OpenTelemetry Semantic Cache Proxy in FastAPI</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Slashing LLM Bills by 58%: Building an OpenTelemetry Semantic Cache Proxy in FastAPI</span>
-  <span class="card__summary l l-vi" lang="vi">Hướng dẫn dựng reverse proxy LLM bằng FastAPI với semantic cache Redis, OpenTelemetry và circuit breaker để giảm chi phí token.</span><span class="card__summary l l-en" lang="en">A guide to building a FastAPI LLM reverse proxy with Redis semantic caching, OpenTelemetry and circuit breaking to cut token costs.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Giảm hóa đơn LLM 58%: dựng proxy semantic cache với OpenTelemetry bằng FastAPI</span><span class="l l-en" lang="en">Slashing LLM Bills by 58%: Building an OpenTelemetry Semantic Cache Proxy in FastAPI</span></h3>
+    <span class="card__orig l l-vi" lang="en">Slashing LLM Bills by 58%: Building an OpenTelemetry Semantic Cache Proxy in FastAPI</span>
+    <span class="card__summary l l-vi" lang="vi">Hướng dẫn dựng reverse proxy LLM bằng FastAPI với semantic cache Redis, OpenTelemetry và circuit breaker để giảm chi phí token.</span><span class="card__summary l l-en" lang="en">A guide to building a FastAPI LLM reverse proxy with Redis semantic caching, OpenTelemetry and circuit breaking to cut token costs.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bài hướng dẫn dựng một reverse proxy tương thích OpenAI (chỉ cần đổi base_url) bằng FastAPI, dùng Redis Vector Search làm semantic cache và OpenTelemetry (OTel) để đo span và token metrics. Tác giả cho rằng khoảng 30% đến 60% query LLM trong SaaS doanh nghiệp là trùng lặp hoặc diễn đạt lại.</p>
+<p>Vấn đề: gateway thương mại tính phí theo seat hoặc markup theo token, và gửi prompt chưa che của tenant sang bên thứ ba gây rủi ro riêng tư. Cache khớp chính xác (hash SHA256 của prompt) có hit rate rất thấp (dưới 4%) vì chỉ cần thừa khoảng trắng là miss.</p>
+<p>Pipeline gồm năm bước:<br>- Chặn request và xác thực tenant (header Authorization, X-Tenant-ID), kiểm tra quota token.<br>- Tạo embedding cho prompt bằng model nhẹ (ví dụ text-embedding-3-small hoặc SentenceTransformer on-premise).<br>- Truy vấn KNN trong Redis theo cosine similarity; nếu similarity &gt;= ngưỡng (ví dụ 0.92) thì trả completion đã cache ngay.<br>- Khi miss, kiểm tra ngân sách token theo cửa sổ trượt; vượt thì trả HTTP 429 mà không gọi upstream (circuit breaking).<br>- Phát OTLP metrics (prompt tokens, completion tokens, latency, trạng thái cache) tới Grafana, Jaeger hoặc Prometheus.</p>
+<p>Bài có code mẫu: tạo index HNSW với VECTOR_DIM 1536 và DISTANCE_METRIC COSINE, hàm check_semantic_cache, và route proxy có OTel counter.</p>
+<p>Lưu ý với QA: ngưỡng similarity quyết định rủi ro trả nhầm câu trả lời cho prompt khác nghĩa; bản trích không cho thấy phần đo con số 58%, chi tiết nằm ở bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/reigen/slashing-llm-bills-by-58-building-an-opentelemetry-semantic-cache-proxy-in-fastapi-59j4" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>This tutorial builds a drop-in OpenAI-compatible reverse proxy (just change base_url) in FastAPI, using Redis Vector Search as a semantic cache and OpenTelemetry (OTel) for spans and token metrics. The author claims 30% to 60% of LLM queries in enterprise SaaS are duplicates or slight paraphrases.</p>
+<p>The problem: commercial gateways charge per-seat fees or per-token markups, and sending unredacted tenant prompts to a third party creates privacy liabilities. Exact-match caching (a SHA256 hash of the prompt) gets a very low hit rate (under 4%) because a single extra space causes a miss.</p>
+<p>The pipeline has five phases:<br>- Intercept and authenticate the tenant (Authorization and X-Tenant-ID headers), checking token quotas.<br>- Embed the prompt with a lightweight model (for example text-embedding-3-small or an on-premise SentenceTransformer).<br>- Run a KNN query in Redis by cosine similarity; if similarity &gt;= a threshold (for example 0.92), return the cached completion immediately.<br>- On a miss, check the tenant&#39;s sliding-window token budget; if exceeded, return HTTP 429 without calling upstream (circuit breaking).<br>- Emit OTLP metrics (prompt tokens, completion tokens, latency, cache status) to Grafana, Jaeger or Prometheus.</p>
+<p>The post includes sample code: an HNSW index with VECTOR_DIM 1536 and DISTANCE_METRIC COSINE, a check_semantic_cache function, and a proxy route with an OTel counter.</p>
+<p>For QA: the similarity threshold decides the risk of returning a wrong answer to a prompt with a different meaning. The excerpt does not show how the 58% figure was measured; see the original for that.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/reigen/slashing-llm-bills-by-58-building-an-opentelemetry-semantic-cache-proxy-in-fastapi-59j4" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">llm</span><span class="tag">fastapi</span><span class="tag">cache</span></span>
@@ -2702,7 +2770,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>

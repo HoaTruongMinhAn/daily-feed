@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "170 candidates, 106 sightings from 45/62 sources",
+    "message": "200 candidates, 77 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -72,42 +72,42 @@
         "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
       }
     ],
-    "candidates": 170,
-    "at": "2026-10-12T01:32:18.631Z"
+    "candidates": 200,
+    "at": "2026-10-13T01:25:11.559Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 71, dropped 99, invalid 1",
-    "at": "2026-10-12T01:36:50.533Z"
+    "message": "kept 109, dropped 91, invalid 0",
+    "at": "2026-10-13T01:31:17.004Z"
   },
   "merge": {
     "ok": true,
-    "message": "1006 items retained, 3 re-sighted",
+    "message": "1115 items retained, 0 re-sighted",
     "counts": {
-      "candidates": 170,
-      "kept": 71,
-      "dropped": 99,
-      "invalid": 1,
-      "sighted": 3
+      "candidates": 200,
+      "kept": 109,
+      "dropped": 91,
+      "invalid": 0,
+      "sighted": 0
     },
-    "at": "2026-10-12T01:36:50.533Z"
+    "at": "2026-10-13T01:31:17.004Z"
   },
   "build": {
     "ok": true,
-    "message": "744 items on index, 9 archive pages",
-    "at": "2026-10-12T01:53:25.416Z"
+    "message": "748 items on index, 10 archive pages",
+    "at": "2026-10-13T01:53:34.479Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-12",
-    "message": "72 details written today",
+    "day": "2026-10-13",
+    "message": "107 details written today",
     "counts": {
-      "written": 72,
-      "missing": 2,
+      "written": 107,
+      "missing": 1,
       "invalid": 5,
-      "ungrounded": 5,
-      "discussed": 7
+      "ungrounded": 4,
+      "discussed": 17
     },
-    "at": "2026-10-12T01:53:25.152Z"
+    "at": "2026-10-13T01:53:33.630Z"
   }
 }
