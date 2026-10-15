@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-14</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-14</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-15</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -244,6 +244,42 @@
   </div>
   <div class="hot" style="--hot: 78%"></div>
 </article>
+<article class="card" data-group="ai" data-id="09f3d187d085f31f850715764a04c2ab13fcbc07" data-url="https://thenewstack.io/gemini-4-argon-live" data-category="ai-trend" data-added="2026-10-14">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI trend</span>
+    <span class="card__src">The New Stack · daily.dev</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Gemini 4 Argon ra mắt với giới hạn 1M token chung cho đầu vào và đầu ra</span><span class="l l-en" lang="en">Gemini 4 Argon debuts with a unified 1M input/output token limit</span></h3>
+    <span class="card__orig l l-vi" lang="en">Gemini 4 Argon debuts with a unified 1M input/output token limit</span>
+    <span class="card__summary l l-vi" lang="vi">Google đưa Gemini 4 Argon, mô hình flagship mới, đến developer ở gói trả phí của Gemini API qua Google AI Studio. Mô hình có giới hạn 1M token cho cả đầu vào và đầu ra.</span><span class="card__summary l l-en" lang="en">Google made flagship Gemini 4 Argon available to developers on the paid Gemini API tier via Google AI Studio, with a unified 1M input/output token limit.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Google đã đưa Gemini 4 Argon, mô hình flagship mới, đến developer ở gói trả phí của Gemini API qua Google AI Studio và nhiều công cụ khác. Điểm đáng chú ý: giới hạn 1 million token giờ là ngân sách chung cho cả đầu vào lẫn đầu ra.</p>
+<ul><li>Lịch trình: Google công bố mô hình ngày September 30; ban đầu chỉ cho một số cyber defender trong Fairwind Program và trusted tester, cùng nhân viên Google dùng nội bộ.</li><li>Giá: giới thiệu $2 mỗi million token đầu vào và $10 mỗi million token đầu ra đến hết November 30, bằng giá của GPT-6.1 Sol. Sau đó là $4 và $20, bằng Claude Opus 5.5. Cached input giảm 95 phần trăm trong giai đoạn giới thiệu. Giai đoạn này rẻ bằng một phần năm Claude Fable 5.1 và GPT-6 Astra (cùng $10 và $50).</li><li>Cách gọi: <code>gemini-4-argon</code> qua Interactions API, hỗ trợ trong google-genai SDK; Android dùng qua Firebase AI Logic.</li><li>Ngân sách chung: lúc công bố Google nói giới hạn là 1 million token đầu ra (tăng từ 64,000), nay là ngân sách chung. Prompt dài ăn vào phần trả lời: nạp 800,000 token code thì còn 200,000 cho phản hồi. Claude Opus 5.5 thì có context 1 million token và giới hạn đầu ra riêng 128,000.</li><li>Benchmark: Google nói Argon đứng đầu Vals Index; ERQA 87 phần trăm so với Claude Opus 5.5 82.3, GPT-6 Astra 81 và Claude Fable 5.1 74. Artificial Analysis (September 30) cho 53 điểm Intelligence Index, ngang GPT-6 Astra. Bloomberg đưa tin một số nhân viên Google thấy mô hình chật vật với vài tác vụ code, nhất là front-end; Google phản bác. Bài lưu ý chưa có bộ benchmark đầy đủ.</li><li>Antigravity: Argon có trong ứng dụng desktop và CLI của Antigravity, chỉ cho Google AI Ultra và gói Gemini Enterprise phù hợp; Pro chỉ có trong Gemini app.</li></ul>
+<p>Với người xây sản phẩm AI: cần tính lại ngân sách token vì đầu vào và đầu ra dùng chung. Bài gốc còn phần về Android Studio Canary (bị cắt).</p>
+
+  <p class="card__source"><a class="card__go" href="https://thenewstack.io/gemini-4-argon-live" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Google made Gemini 4 Argon, its new flagship model, available to developers on the paid tier of the Gemini API through Google AI Studio and several other tools. The notable change: the 1 million-token limit is now a single budget for input and output combined.</p>
+<ul><li>Timeline: Google announced the model on September 30; initial external access was limited to selected cyber defenders in its Fairwind Program and other trusted testers, plus internal Google use.</li><li>Pricing: an introductory $2 per million input tokens and $10 per million output tokens through November 30, the same as GPT-6.1 Sol. After that, $4 and $20, matching Claude Opus 5.5. Cached input is 95 percent off during the introductory period, when Argon costs a fifth of Claude Fable 5.1 and GPT-6 Astra (both $10 and $50).</li><li>Access: <code>gemini-4-argon</code> through the Interactions API, with google-genai SDK support; Android developers can use it via Firebase AI Logic.</li><li>Shared budget: at announcement Google called it an output cap of 1 million tokens (up from 64,000); it is now a shared budget, so a long prompt eats into the response: 800,000 tokens of code leaves 200,000 for the answer. Claude Opus 5.5 has a 1 million-token context window with a separate 128,000 output cap.</li><li>Benchmarks: Google says Argon ranks first on the Vals Index; on ERQA it scored 87 percent versus Claude Opus 5.5 at 82.3, GPT-6 Astra at 81 and Claude Fable 5.1 at 74. Artificial Analysis (September 30) gave it 53 on its Intelligence Index, matching GPT-6 Astra. Bloomberg reported some Google employees saw it struggle with certain coding tasks, particularly front-end design; Google disputed this. The article notes there is no full set of benchmarks yet.</li><li>Antigravity: Argon is in the Antigravity desktop app and CLI only for Google AI Ultra subscribers and eligible Gemini Enterprise plans; AI Pro subscribers get it in the Gemini app only.</li></ul>
+<p>Why it matters for AI product builders: token budgets need recomputing because input and output share one limit. The captured article is cut off in the Android Studio Canary part.</p>
+
+  <p class="card__source"><a class="card__go" href="https://thenewstack.io/gemini-4-argon-live" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">gemini</span><span class="tag">llm</span></span>
+    <span class="links"><a class="card__link" href="https://daily.dev/posts/gemini-4-argon-debuts-with-a-unified-1m-input-output-token-limit-uqdxppv6j" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 39%"></div>
+</article>
 <article class="card" data-group="it" data-id="32150729e08b0007c717336882980a13ae34754a" data-url="https://natemeyvis.com/where-is-all-the-new-good-software" data-category="it-general" data-added="2026-10-14">
   <div class="card__meta">
     <span class="chip chip--it">IT</span>
@@ -352,42 +388,6 @@
   </div>
   <div class="hot" style="--hot: 55%"></div>
 </article>
-<article class="card" data-group="ai" data-id="09f3d187d085f31f850715764a04c2ab13fcbc07" data-url="https://thenewstack.io/gemini-4-argon-live" data-category="ai-trend" data-added="2026-10-14">
-  <div class="card__meta">
-    <span class="chip chip--ai">AI trend</span>
-    <span class="card__src">The New Stack</span>
-    <span class="card__fit" title="fit 4/5">●●●●○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Gemini 4 Argon ra mắt với giới hạn 1M token chung cho đầu vào và đầu ra</span><span class="l l-en" lang="en">Gemini 4 Argon debuts with a unified 1M input/output token limit</span></h3>
-    <span class="card__orig l l-vi" lang="en">Gemini 4 Argon debuts with a unified 1M input/output token limit</span>
-    <span class="card__summary l l-vi" lang="vi">Google đưa Gemini 4 Argon, mô hình flagship mới, đến developer ở gói trả phí của Gemini API qua Google AI Studio. Mô hình có giới hạn 1M token cho cả đầu vào và đầu ra.</span><span class="card__summary l l-en" lang="en">Google made flagship Gemini 4 Argon available to developers on the paid Gemini API tier via Google AI Studio, with a unified 1M input/output token limit.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Google đã đưa Gemini 4 Argon, mô hình flagship mới, đến developer ở gói trả phí của Gemini API qua Google AI Studio và nhiều công cụ khác. Điểm đáng chú ý: giới hạn 1 million token giờ là ngân sách chung cho cả đầu vào lẫn đầu ra.</p>
-<ul><li>Lịch trình: Google công bố mô hình ngày September 30; ban đầu chỉ cho một số cyber defender trong Fairwind Program và trusted tester, cùng nhân viên Google dùng nội bộ.</li><li>Giá: giới thiệu $2 mỗi million token đầu vào và $10 mỗi million token đầu ra đến hết November 30, bằng giá của GPT-6.1 Sol. Sau đó là $4 và $20, bằng Claude Opus 5.5. Cached input giảm 95 phần trăm trong giai đoạn giới thiệu. Giai đoạn này rẻ bằng một phần năm Claude Fable 5.1 và GPT-6 Astra (cùng $10 và $50).</li><li>Cách gọi: <code>gemini-4-argon</code> qua Interactions API, hỗ trợ trong google-genai SDK; Android dùng qua Firebase AI Logic.</li><li>Ngân sách chung: lúc công bố Google nói giới hạn là 1 million token đầu ra (tăng từ 64,000), nay là ngân sách chung. Prompt dài ăn vào phần trả lời: nạp 800,000 token code thì còn 200,000 cho phản hồi. Claude Opus 5.5 thì có context 1 million token và giới hạn đầu ra riêng 128,000.</li><li>Benchmark: Google nói Argon đứng đầu Vals Index; ERQA 87 phần trăm so với Claude Opus 5.5 82.3, GPT-6 Astra 81 và Claude Fable 5.1 74. Artificial Analysis (September 30) cho 53 điểm Intelligence Index, ngang GPT-6 Astra. Bloomberg đưa tin một số nhân viên Google thấy mô hình chật vật với vài tác vụ code, nhất là front-end; Google phản bác. Bài lưu ý chưa có bộ benchmark đầy đủ.</li><li>Antigravity: Argon có trong ứng dụng desktop và CLI của Antigravity, chỉ cho Google AI Ultra và gói Gemini Enterprise phù hợp; Pro chỉ có trong Gemini app.</li></ul>
-<p>Với người xây sản phẩm AI: cần tính lại ngân sách token vì đầu vào và đầu ra dùng chung. Bài gốc còn phần về Android Studio Canary (bị cắt).</p>
-
-  <p class="card__source"><a class="card__go" href="https://thenewstack.io/gemini-4-argon-live" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>Google made Gemini 4 Argon, its new flagship model, available to developers on the paid tier of the Gemini API through Google AI Studio and several other tools. The notable change: the 1 million-token limit is now a single budget for input and output combined.</p>
-<ul><li>Timeline: Google announced the model on September 30; initial external access was limited to selected cyber defenders in its Fairwind Program and other trusted testers, plus internal Google use.</li><li>Pricing: an introductory $2 per million input tokens and $10 per million output tokens through November 30, the same as GPT-6.1 Sol. After that, $4 and $20, matching Claude Opus 5.5. Cached input is 95 percent off during the introductory period, when Argon costs a fifth of Claude Fable 5.1 and GPT-6 Astra (both $10 and $50).</li><li>Access: <code>gemini-4-argon</code> through the Interactions API, with google-genai SDK support; Android developers can use it via Firebase AI Logic.</li><li>Shared budget: at announcement Google called it an output cap of 1 million tokens (up from 64,000); it is now a shared budget, so a long prompt eats into the response: 800,000 tokens of code leaves 200,000 for the answer. Claude Opus 5.5 has a 1 million-token context window with a separate 128,000 output cap.</li><li>Benchmarks: Google says Argon ranks first on the Vals Index; on ERQA it scored 87 percent versus Claude Opus 5.5 at 82.3, GPT-6 Astra at 81 and Claude Fable 5.1 at 74. Artificial Analysis (September 30) gave it 53 on its Intelligence Index, matching GPT-6 Astra. Bloomberg reported some Google employees saw it struggle with certain coding tasks, particularly front-end design; Google disputed this. The article notes there is no full set of benchmarks yet.</li><li>Antigravity: Argon is in the Antigravity desktop app and CLI only for Google AI Ultra subscribers and eligible Gemini Enterprise plans; AI Pro subscribers get it in the Gemini app only.</li></ul>
-<p>Why it matters for AI product builders: token budgets need recomputing because input and output share one limit. The captured article is cut off in the Android Studio Canary part.</p>
-
-  <p class="card__source"><a class="card__go" href="https://thenewstack.io/gemini-4-argon-live" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">gemini</span><span class="tag">llm</span></span>
-    <span class="links"></span>
-  </div>
-  <div class="hot" style="--hot: 39%"></div>
-</article>
 <article class="card" data-group="humor" data-id="e98cd888a431a5365c72f0c98cc50e8a770da428" data-url="https://bsky.app/profile/anotarian.bsky.social/post/3mxsblwkzss2c" data-category="humor" data-added="2026-10-14">
   <div class="card__meta">
     <span class="chip chip--humor">Humor</span>
@@ -421,6 +421,42 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 50%"></div>
+</article>
+<article class="card" data-group="humor" data-id="1fd5bfdab565229fa6cf19aca7ea15cfcac90d2e" data-url="https://workchronicles.com/p/comic-compensation-916" data-category="humor" data-added="2026-10-14">
+  <div class="card__meta">
+    <span class="chip chip--humor">Humor</span>
+    <span class="card__src">Work Chronicles · daily.dev</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">(Truyện tranh) Compensation</span><span class="l l-en" lang="en">(comic) Compensation</span></h3>
+    <span class="card__orig l l-vi" lang="en">(comic) Compensation</span>
+    <span class="card__summary l l-vi" lang="vi">Truyện tranh mới của Work Chronicles về chuyện lương thưởng nơi công sở.</span><span class="card__summary l l-en" lang="en">A new Work Chronicles comic about compensation in office life.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Đây là truyện tranh Compensation của Work Chronicles, đăng ngày Oct 13, 2026. Bản trích chỉ có tiêu đề và phần bình luận, không có nội dung của chính bức tranh, nên không mô tả được câu đùa; hãy xem bản gốc.</p>
+<p>Từ phần bình luận có thể thấy chủ đề là chuyện lương thưởng nơi công sở:<br>- Rich: Bigcorp không phải lúc nào cũng trả lương cao như bạn nghĩ.<br>- John: cỏ gần như không bao giờ xanh hơn, chỉ là một sắc nâu khác.</p>
+<p>Nếu bạn quan tâm, mở link gốc để xem bức tranh đầy đủ.</p>
+
+  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-compensation-916" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>This is the Work Chronicles comic Compensation, posted Oct 13, 2026. The captured text contains only the title and the comments, not the comic itself, so the joke cannot be described here; see the original.</p>
+<p>From the comments, the topic appears to be pay and compensation at work:<br>- Rich: Bigcorp doesn&#39;t always pay as well as you think they do.<br>- John: the grass is almost never greener, it&#39;s just a different shade of brown.</p>
+<p>Open the original link to see the full comic.</p>
+
+  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-compensation-916" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  <a href="https://workchronicles.com/p/comic-compensation-916" target="_blank" rel="noopener"><img class="card__img" loading="lazy" src="https://substackcdn.com/image/fetch/$s_!vWvR!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fae84c5b2-2449-4aad-b4df-44aca388613d_4800x4800.png" alt=""></a>
+  <div class="card__foot">
+    <span class="tags"><span class="tag">comic</span><span class="tag">workplace</span></span>
+    <span class="links"><a class="card__link" href="https://daily.dev/posts/comic-compensation-urxqnacy7" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 40%"></div>
 </article>
 <article class="card" data-group="ai" data-id="858ce7e14d9130e534eadb21c6c881825f088b27" data-url="https://simonwillison.net/2026/Oct/13/geoffrey-huntley" data-category="ai-tip" data-added="2026-10-14">
   <div class="card__meta">
@@ -638,6 +674,44 @@
   </div>
   <div class="hot" style="--hot: 45%"></div>
 </article>
+<article class="card" data-group="it" data-id="858da31b8a2b34b65c6faab01289b058adce82b2" data-url="https://bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts" data-category="it-general" data-added="2026-10-14">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Hacker News · Lobsters</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Ledger xác nhận thiết bị bị cấy chip gián điệp phần cứng, gây mất tiền mã hóa</span><span class="l l-en" lang="en">Ledger confirms spy chip implant behind wallet crypto thefts</span></h3>
+    <span class="card__orig l l-vi" lang="en">Ledger confirms spy chip implant behind wallet crypto thefts</span>
+    <span class="card__summary l l-vi" lang="vi">BleepingComputer đưa tin Ledger xác nhận một con chip gián điệp cấy vào ví phần cứng là nguồn gốc các vụ mất tiền mã hóa.</span><span class="card__summary l l-en" lang="en">BleepingComputer reports that Ledger confirmed a spy chip implant in its hardware wallets was behind crypto thefts.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Ledger xác nhận một số thiết bị bán qua CryptoBilis, nhà bán lẻ ví phần cứng ở Malaysia hoạt động khắp Đông Nam Á, đã bị gắn thiết bị cấy phần cứng làm rút sạch ví tiền mã hóa của người dùng.</p>
+<p>Diễn biến:<br>- Ngày 9 tháng 10, Ledger mở điều tra các báo cáo mất tiền và yêu cầu CryptoBilis ngừng bán và giao hàng.<br>- Hôm sau, Ledger xác nhận ít nhất một thiết bị bị can thiệp phần cứng, nhưng chưa rõ bị can thiệp bằng cách nào và khi nào.<br>- Ledger sau đó cho biết mọi báo cáo bị rút tiền đều gắn với thiết bị bán qua CryptoBilis và mô tả quy mô là &quot;limited&quot;.<br>- Khuyến nghị: ai mua từ nhà bán này mà chưa setup thì đừng setup; ai đã setup nên chuyển tài sản sang một Ledger signer mới (seed mới). Nên tránh mua từ reseller không chính thức.</p>
+<p>Về con chip: theo cựu CEO Mt. Gox, thiết bị cấy giấu sau màn hình, ghi lại hình ảnh hiển thị và thao tác bấm nút để lấy seed phrase, rồi gửi cho kẻ tấn công qua kết nối LTE dùng eSIM. Tibane Labs xác nhận và tìm thấy hai biến thể Ledger X, mua trên Amazon Japan và Yahoo! Auctions, từ người bán bên Trung Quốc gửi từ Malaysia. Biến thể đầu thay pin bằng pin nhỏ hơn để nhường chỗ; biến thể thứ hai tinh vi hơn, dùng pin gốc và nằm ở chỗ miếng xốp dưới màn hình OLED. Bên trong có MCU ST STM32G431KBU6, một eSIM 2x2 mm và module LTE có chắn nhiễu; ở biến thể thứ hai ký hiệu trên MCU và eSIM bị cạo mất. Dấu hiệu nhận biết là dây ăng-ten. Tibane Labs nhận xét mạch là flex PCB thiết kế bài bản, đặt từ nhà máy bo mạch, không phải làm tay.</p>
+<p>Ý nghĩa: đây là tấn công chuỗi cung ứng; ví phần cứng mua ngoài kênh chính thức không đáng tin dù secure element không bị đụng tới.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Bình luận chia thành phe hoài nghi crypto và ví phần cứng (chiếm nhiều) và vài người bàn cách tự lưu ký an toàn hơn; một người chê bài viết gốc.</p><ul class="quotes"><li><q>Dù bạn thích, ghét hay mặc kệ tiền mã hóa thì chuyện này vẫn khó tin... Ở đây là một con implant eSIM bé tí và một con CPU nhỏ làm OCR trên font chữ hiện ra trên màn hình ví phần cứng để đọc bí mật lúc setup.</q> <span class="quote__by">@TacticalCoder, Hacker News</span></li><li><q>Ví phần cứng không phải giải pháp cho tự lưu ký.</q> <span class="quote__by">@ArtTimeInvestor, Hacker News</span></li><li><q>Tôi đoán cách tốt nhất để tự lưu ký hiện nay là dùng ví multi sig, dựa trên nhiều ví phần cứng của các hãng khác nhau.</q> <span class="quote__by">@Freeaqingme, Hacker News</span></li><li><q>Cái tweet không nói là ledger lắp con chip.</q> <span class="quote__by">@buckle8017, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Ledger has confirmed that some of its devices sold through CryptoBilis, a Malaysia-based hardware wallet retailer operating across Southeast Asia, were compromised with a hardware implant that drained users&#39; cryptocurrency wallets.</p>
+<p>Timeline:<br>- On October 9, Ledger opened an investigation into user reports of losses and asked CryptoBilis to stop selling and shipping Ledger devices.<br>- The next day it confirmed hardware tampering on at least one device, though how and when the tampering happened is still unclear.<br>- Ledger later said all reports of unexpected fund drains were linked to devices sold through CryptoBilis and described the volume as &quot;limited&quot;.<br>- Advice: if you bought from this reseller and have not set up the device, do not set it up; if you have, consider moving assets to a new Ledger signer (with a new seed). Avoid unauthorized resellers.</p>
+<p>The implant: according to the former CEO of Mt. Gox, it sits behind the screen, captures the display output and button presses to identify the seed phrase and sends it to the attacker over LTE using an eSIM. Tibane Labs confirmed this and found two variants in Ledger X devices, bought on Amazon Japan and Yahoo! Auctions from China-based sellers shipping from Malaysia. The first replaced the battery with a smaller one to make room; the second is more advanced, runs on the original battery and fits where the foam padding under the OLED display normally sits. Inside was an ST STM32G431KBU6 MCU, a 2x2 mm eSIM and a shielded LTE module; in the second device the markings on the MCU and eSIM were scraped off. The tell-tale is the antenna wire. Tibane Labs noted a designed, panelised flex PCB from a board house, not a hand-built one-off.</p>
+<p>Why it matters: this is a supply-chain attack, and hardware wallets bought outside official channels cannot be trusted.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Comments split between skeptics of crypto and hardware wallets (the larger group), a few suggesting safer self-custody setups, and one person criticizing the writing of the source.</p><ul class="quotes"><li><q>We&#39;re talking here about a tiny eSIM implant and a little CPU doing OCR on the fonts appearing on the hardware wallet&#39;s screen to read the secrets during set up.</q> <span class="quote__by">@TacticalCoder, Hacker News</span></li><li><q>Hardware wallets are not a solution to self-custody.</q> <span class="quote__by">@ArtTimeInvestor, Hacker News</span></li><li><q>I&#39;m guessing the best way to go about self custody these days is to have a multi sig wallet, based on multiple hardware wallets from different vendors.</q> <span class="quote__by">@Freeaqingme, Hacker News</span></li><li><q>The tweet doesn&#39;t say that ledger installed the chip.</q> <span class="quote__by">@buckle8017, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">security</span><span class="tag">hardware</span><span class="tag">ledger</span></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50054092" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://lobste.rs/s/cwota8/ledger_confirms_spy_chip_implant_behind" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 34%"></div>
+</article>
 <article class="card" data-group="ai" data-id="994797c2417fc3f8475b41fc55f2acdf7fe3697a" data-url="https://eg2.haku.sh" data-category="ai-trend" data-added="2026-10-14">
   <div class="card__meta">
     <span class="chip chip--ai">AI trend</span>
@@ -715,33 +789,33 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://thenewstack.io/self-replicating-ai-worms" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Red team của Anthropic chạy AI trên 15 TV box giá rẻ</span><span class="l l-en" lang="en">Anthropic&#39;s red team ran AI on 15 cheap TV boxes</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Anthropic&#39;s red team ran AI on 15 cheap TV boxes</span>
-  <span class="card__summary l l-vi" lang="vi">Frontier Red Team của Anthropic dựng cụm 15 TV box Android giá khoảng 825 USD chạy mô hình ở 0,39 token/giây, làm nền cho nghiên cứu mới về các mô hình open-weight nhỏ.</span><span class="card__summary l l-en" lang="en">Anthropic&#39;s Frontier Red Team built a roughly $825 cluster of 15 Android TV boxes running a model at 0.39 tokens/sec, anchoring new research on small open-weight models.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Red team của Anthropic chạy AI trên 15 TV box giá rẻ</span><span class="l l-en" lang="en">Anthropic&#39;s red team ran AI on 15 cheap TV boxes</span></h3>
+    <span class="card__orig l l-vi" lang="en">Anthropic&#39;s red team ran AI on 15 cheap TV boxes</span>
+    <span class="card__summary l l-vi" lang="vi">Frontier Red Team của Anthropic dựng cụm 15 TV box Android giá khoảng 825 USD chạy mô hình ở 0,39 token/giây, làm nền cho nghiên cứu mới về các mô hình open-weight nhỏ.</span><span class="card__summary l l-en" lang="en">Anthropic&#39;s Frontier Red Team built a roughly $825 cluster of 15 Android TV boxes running a model at 0.39 tokens/sec, anchoring new research on small open-weight models.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Frontier Red Team của Anthropic dựng cụm 15 Android TV box không thương hiệu, tổng khoảng 825 USD, chạy một mô hình ở 0.39 token/giây. Quá chậm cho chatbot nhưng đủ cho phần mềm không cần ai chờ. Thí nghiệm này là nền cho nghiên cứu của William Zhou và Daniel Freeman: các mô hình open-weight nhỏ có thể chỉ còn vài tháng nữa là tự sao chép được trên phần cứng rẻ, nối mạng, không cần datacenter.</p>
+<p>Nhóm chưa xây được AI worm tự lây lan trên internet công cộng; thí nghiệm diễn ra trong môi trường kiểm soát, có nhiều lối tắt. Họ nêu bốn bước để AI tự nhân bản: tìm mục tiêu, chiếm quyền truy cập, chạy inference, rồi chuyển sang máy kế tiếp. Rào cản lớn nhất là chạy được mô hình trên phần cứng lạ.</p>
+<ul><li>Qwen3.5-9B triển khai được server inference Llama3.1-8B trên tám trong chín loại phần cứng (gồm Jetson Nano, Mac, RTX 4090); GLM-5.2 làm ổn định và nhanh hơn.</li><li>Trong môi trường Google Cloud có tường lửa, tám node chạy Android emulator: GLM-5.2 chạm đủ tám node trong bốn trên năm lần thử, lần còn lại bảy node. Nhóm cố ý để mở cổng Android Debug Bridge không xác thực.</li><li>Worm đọc ghi chú của các lần thử trước thì tỷ lệ thành công tăng: Qwen3.5-9B qua 20 dòng, mỗi dòng sáu thế hệ, từ 45% lên 61%-84%. Nhóm gọi đó là Lamarckian inheritance.</li><li>Cho Qwen3.5-9B hỏi ý kiến Opus 4.8 không cải thiện đáng kể.</li></ul>
+<p>Dự báo: theo Epoch Capabilities Index, đến cuối 2026 mô hình open-weight từ 30 billion tham số trở xuống mạnh nhất sẽ đạt mức năng lực của GLM-5.2.</p>
+
+  <p class="card__source"><a class="card__go" href="https://thenewstack.io/self-replicating-ai-worms" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>For roughly $825, Anthropic&#39;s Frontier Red Team built a cluster of 15 off-brand Android TV boxes that runs an AI model at 0.39 tokens per second, painfully slow for a chatbot but fine for software with nobody waiting on it. The experiment anchors research by William Zhou and Daniel Freeman suggesting small open-weight models may be only months away from copying themselves across cheap internet-connected hardware without a datacenter.</p>
+<p>They have not built an AI worm that spreads across the public internet; experiments ran in controlled environments with shortcuts. They list four steps for self-replication: finding a target, gaining access, getting inference running, and moving on. The real hurdle is getting a model running on unfamiliar hardware.</p>
+<ul><li>Qwen3.5-9B deployed a working Llama3.1-8B inference server on eight of nine hardware types, including Jetson Nanos, Macs and RTX 4090 machines; GLM-5.2 was more reliable and faster.</li><li>In a firewalled Google Cloud setup with eight Android-emulator nodes, GLM-5.2 reached all eight nodes in four of five trials and seven in the fifth. The team left an unauthenticated Android Debug Bridge port open.</li><li>Agents that read notes from earlier attempts did better: across 20 lineages of six generations, Qwen3.5-9B success rose from 45% to between 61% and 84%. The researchers call it Lamarckian inheritance.</li><li>Giving Qwen3.5-9B access to Opus 4.8 for advice produced no statistically significant improvement.</li></ul>
+<p>Forecast: using the Epoch Capabilities Index, the trend puts the strongest open-weight model of 30 billion parameters or fewer at GLM-5.2&#39;s capability level by the end of 2026.</p>
+
+  <p class="card__source"><a class="card__go" href="https://thenewstack.io/self-replicating-ai-worms" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">anthropic</span><span class="tag">open-weight</span></span>
-    <span class="links"></span>
-  </div>
-  <div class="hot" style="--hot: 40%"></div>
-</article>
-<article class="card" data-group="humor" data-id="1fd5bfdab565229fa6cf19aca7ea15cfcac90d2e" data-url="https://workchronicles.com/p/comic-compensation-916" data-category="humor" data-added="2026-10-14">
-  <div class="card__meta">
-    <span class="chip chip--humor">Humor</span>
-    <span class="card__src">Work Chronicles</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://workchronicles.com/p/comic-compensation-916" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">(truyện tranh) Lương thưởng</span><span class="l l-en" lang="en">(comic) Compensation</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">(comic) Compensation</span>
-  <span class="card__summary l l-vi" lang="vi">Truyện tranh mới của Work Chronicles về chuyện lương thưởng nơi công sở.</span><span class="card__summary l l-en" lang="en">A new Work Chronicles comic about compensation in office life.</span>
-</div>
-  <a href="https://workchronicles.com/p/comic-compensation-916" target="_blank" rel="noopener"><img class="card__img" loading="lazy" src="https://substackcdn.com/image/fetch/$s_!vWvR!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fae84c5b2-2449-4aad-b4df-44aca388613d_4800x4800.png" alt=""></a>
-  <div class="card__foot">
-    <span class="tags"><span class="tag">comic</span><span class="tag">workplace</span></span>
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 40%"></div>
@@ -817,44 +891,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 38%"></div>
-</article>
-<article class="card" data-group="it" data-id="858da31b8a2b34b65c6faab01289b058adce82b2" data-url="https://bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts" data-category="it-general" data-added="2026-10-14">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">Hacker News</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Ledger xác nhận thiết bị bị cấy chip gián điệp phần cứng, gây mất tiền mã hóa</span><span class="l l-en" lang="en">Ledger confirms spy chip implant behind wallet crypto thefts</span></h3>
-    <span class="card__orig l l-vi" lang="en">Ledger confirms spy chip implant behind wallet crypto thefts</span>
-    <span class="card__summary l l-vi" lang="vi">BleepingComputer đưa tin Ledger xác nhận một con chip gián điệp cấy vào ví phần cứng là nguồn gốc các vụ mất tiền mã hóa.</span><span class="card__summary l l-en" lang="en">BleepingComputer reports that Ledger confirmed a spy chip implant in its hardware wallets was behind crypto thefts.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Ledger xác nhận một số thiết bị bán qua CryptoBilis, nhà bán lẻ ví phần cứng ở Malaysia hoạt động khắp Đông Nam Á, đã bị gắn thiết bị cấy phần cứng làm rút sạch ví tiền mã hóa của người dùng.</p>
-<p>Diễn biến:<br>- Ngày 9 tháng 10, Ledger mở điều tra các báo cáo mất tiền và yêu cầu CryptoBilis ngừng bán và giao hàng.<br>- Hôm sau, Ledger xác nhận ít nhất một thiết bị bị can thiệp phần cứng, nhưng chưa rõ bị can thiệp bằng cách nào và khi nào.<br>- Ledger sau đó cho biết mọi báo cáo bị rút tiền đều gắn với thiết bị bán qua CryptoBilis và mô tả quy mô là &quot;limited&quot;.<br>- Khuyến nghị: ai mua từ nhà bán này mà chưa setup thì đừng setup; ai đã setup nên chuyển tài sản sang một Ledger signer mới (seed mới). Nên tránh mua từ reseller không chính thức.</p>
-<p>Về con chip: theo cựu CEO Mt. Gox, thiết bị cấy giấu sau màn hình, ghi lại hình ảnh hiển thị và thao tác bấm nút để lấy seed phrase, rồi gửi cho kẻ tấn công qua kết nối LTE dùng eSIM. Tibane Labs xác nhận và tìm thấy hai biến thể Ledger X, mua trên Amazon Japan và Yahoo! Auctions, từ người bán bên Trung Quốc gửi từ Malaysia. Biến thể đầu thay pin bằng pin nhỏ hơn để nhường chỗ; biến thể thứ hai tinh vi hơn, dùng pin gốc và nằm ở chỗ miếng xốp dưới màn hình OLED. Bên trong có MCU ST STM32G431KBU6, một eSIM 2x2 mm và module LTE có chắn nhiễu; ở biến thể thứ hai ký hiệu trên MCU và eSIM bị cạo mất. Dấu hiệu nhận biết là dây ăng-ten. Tibane Labs nhận xét mạch là flex PCB thiết kế bài bản, đặt từ nhà máy bo mạch, không phải làm tay.</p>
-<p>Ý nghĩa: đây là tấn công chuỗi cung ứng; ví phần cứng mua ngoài kênh chính thức không đáng tin dù secure element không bị đụng tới.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Bình luận chia thành phe hoài nghi crypto và ví phần cứng (chiếm nhiều) và vài người bàn cách tự lưu ký an toàn hơn; một người chê bài viết gốc.</p><ul class="quotes"><li><q>Dù bạn thích, ghét hay mặc kệ tiền mã hóa thì chuyện này vẫn khó tin... Ở đây là một con implant eSIM bé tí và một con CPU nhỏ làm OCR trên font chữ hiện ra trên màn hình ví phần cứng để đọc bí mật lúc setup.</q> <span class="quote__by">@TacticalCoder, Hacker News</span></li><li><q>Ví phần cứng không phải giải pháp cho tự lưu ký.</q> <span class="quote__by">@ArtTimeInvestor, Hacker News</span></li><li><q>Tôi đoán cách tốt nhất để tự lưu ký hiện nay là dùng ví multi sig, dựa trên nhiều ví phần cứng của các hãng khác nhau.</q> <span class="quote__by">@Freeaqingme, Hacker News</span></li><li><q>Cái tweet không nói là ledger lắp con chip.</q> <span class="quote__by">@buckle8017, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>Ledger has confirmed that some of its devices sold through CryptoBilis, a Malaysia-based hardware wallet retailer operating across Southeast Asia, were compromised with a hardware implant that drained users&#39; cryptocurrency wallets.</p>
-<p>Timeline:<br>- On October 9, Ledger opened an investigation into user reports of losses and asked CryptoBilis to stop selling and shipping Ledger devices.<br>- The next day it confirmed hardware tampering on at least one device, though how and when the tampering happened is still unclear.<br>- Ledger later said all reports of unexpected fund drains were linked to devices sold through CryptoBilis and described the volume as &quot;limited&quot;.<br>- Advice: if you bought from this reseller and have not set up the device, do not set it up; if you have, consider moving assets to a new Ledger signer (with a new seed). Avoid unauthorized resellers.</p>
-<p>The implant: according to the former CEO of Mt. Gox, it sits behind the screen, captures the display output and button presses to identify the seed phrase and sends it to the attacker over LTE using an eSIM. Tibane Labs confirmed this and found two variants in Ledger X devices, bought on Amazon Japan and Yahoo! Auctions from China-based sellers shipping from Malaysia. The first replaced the battery with a smaller one to make room; the second is more advanced, runs on the original battery and fits where the foam padding under the OLED display normally sits. Inside was an ST STM32G431KBU6 MCU, a 2x2 mm eSIM and a shielded LTE module; in the second device the markings on the MCU and eSIM were scraped off. The tell-tale is the antenna wire. Tibane Labs noted a designed, panelised flex PCB from a board house, not a hand-built one-off.</p>
-<p>Why it matters: this is a supply-chain attack, and hardware wallets bought outside official channels cannot be trusted.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Comments split between skeptics of crypto and hardware wallets (the larger group), a few suggesting safer self-custody setups, and one person criticizing the writing of the source.</p><ul class="quotes"><li><q>We&#39;re talking here about a tiny eSIM implant and a little CPU doing OCR on the fonts appearing on the hardware wallet&#39;s screen to read the secrets during set up.</q> <span class="quote__by">@TacticalCoder, Hacker News</span></li><li><q>Hardware wallets are not a solution to self-custody.</q> <span class="quote__by">@ArtTimeInvestor, Hacker News</span></li><li><q>I&#39;m guessing the best way to go about self custody these days is to have a multi sig wallet, based on multiple hardware wallets from different vendors.</q> <span class="quote__by">@Freeaqingme, Hacker News</span></li><li><q>The tweet doesn&#39;t say that ledger installed the chip.</q> <span class="quote__by">@buckle8017, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://bleepingcomputer.com/news/security/ledger-confirms-hardware-wallet-spy-implant-behind-crypto-thefts" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">security</span><span class="tag">hardware</span><span class="tag">ledger</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50054092" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 34%"></div>
 </article>
 <article class="card" data-group="hot" data-id="2f666443dc29f4233865fdc1138fd5a21b6c81fe" data-url="https://blog.thunderbird.net/2026/10/thunderbird-for-ios-a-first-look-at-the-native-iphone-email-app-in-development" data-category="hot-opensource" data-category-label="Mã nguồn mở" data-added="2026-10-14">
   <div class="card__meta">
@@ -1342,6 +1378,50 @@
   </div>
   <div class="hot" style="--hot: 36%"></div>
 </article>
+<article class="card" data-group="testing" data-id="67207925022e096fb2830b086f14835576508517" data-url="https://qawolf.com/blog/how-we-solved-windows-desktop-automation" data-category="test-automation" data-added="2026-10-14">
+  <div class="card__meta">
+    <span class="chip chip--testing">Automation</span>
+    <span class="card__src">daily.dev · Mastodon</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">E2exe: QA Wolf giải bài toán tự động hóa test app Windows desktop ở quy mô doanh nghiệp</span><span class="l l-en" lang="en">E2exe: How we solved Windows desktop automation for enterprise scale</span></h3>
+    <span class="card__orig l l-vi" lang="en">E2exe: How we solved Windows desktop automation for enterprise scale</span>
+    <span class="card__summary l l-vi" lang="vi">QA Wolf mô tả hạ tầng test app Windows: mỗi test nhận một VM dùng một lần từ warm pool trên Google Compute Engine, tránh 2-3 phút khởi động nguội.</span><span class="card__summary l l-en" lang="en">QA Wolf describes its Windows desktop test infrastructure: each test claims a single-use VM from a warm pool on Google Compute Engine, skipping a 2-3 minute cold boot.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>QA Wolf coi mỗi máy Windows như một thiết bị di động dùng một lần: mỗi test nhận một VM Windows riêng từ pool đã khởi động sẵn trên Google Compute Engine (GCE), chạy xong thì hủy và pool tạo VM mới.</p>
+<p>Vì sao khó hơn web:<br>- Mỗi test cần một VM đầy đủ vì Windows container không có desktop đồ họa.<br>- VM Windows nguội mất 2 đến 3 phút để boot, container trình duyệt chỉ vài giây.<br>- Windows UI Automation (UIA) chỉ chạy trong phiên desktop đang đăng nhập.<br>- Máy giữ trạng thái giữa các lần chạy (file cài đặt, registry, profile, tiến trình sót).<br>- Mỗi app có installer, prompt admin, dependency có bản quyền, dialog lần đầu, đăng nhập riêng.<br>- Không có sẵn trace, log, screenshot như trình duyệt.<br>- Kubernetes, CI runner và phần lớn hạ tầng test mặc định là Linux.</p>
+<p>Kiến trúc mượn từ hạ tầng test mobile, gồm ba phần:<br>- Controller chạy trong Kubernetes, giữ pool VM Windows trên GCE và cấp cho test.<br>- Runner là một Linux pod chạy code test.<br>- VM Windows chạy app cần test, công cụ automation và một desktop agent nhỏ (viết bằng Go).</p>
+<p>Runner nói chuyện với VM qua ba kết nối: Playwright qua CDP cho phần trong trình duyệt, Appium (cùng WinAppDriver, qua UIA) cho app Windows native, và luồng WebRTC để xem trực tiếp và quay lại màn hình. Test gửi DeviceClaim tới device scheduler, nhận địa chỉ kết nối, điều khiển bằng WebdriverIO và Appium rồi release.</p>
+<p>Luồng chạy: test khởi động trong runner pod và xin thiết bị Windows; scheduler gán VM đã boot và đăng nhập sẵn; runner nhận địa chỉ CDP, Appium, streaming; app được đưa vào VM và chạy; test chạy trong lúc màn hình được stream và ghi lại; xong thì release claim và hủy VM.</p>
+<p>Windows cần hai mở rộng so với mô hình thiết bị: thiết bị không còn phải nằm trong cluster Kubernetes, và claim có thể trả về địa chỉ kết nối desktop gồm cả CDP. Pool Windows riêng hoạt động giống iOS device riêng.</p>
+<p>Với QA: đáng tham khảo nếu cần song song hóa test desktop; bài gốc còn phần sau mà nguồn ở đây bị cắt.</p>
+
+  <p class="card__source"><a class="card__go" href="https://qawolf.com/blog/how-we-solved-windows-desktop-automation" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>QA Wolf treats a Windows machine like a phone: a device that one test claims, uses once and throws away. Each test gets a single-use Windows VM from a warm pool on Google Compute Engine (GCE); when the test ends the VM is destroyed and a fresh one takes its place.</p>
+<p>Why it is harder than web:<br>- Every test needs a full VM because Windows containers have no graphical desktop.<br>- A cold Windows VM takes 2 to 3 minutes to boot; a browser container takes seconds.<br>- Windows UI Automation (UIA) only works inside an active, logged-in desktop session.<br>- Machines remember things between runs: files, registry keys, profiles, stray processes.<br>- Every app brings installers, admin prompts, licensed dependencies, first-run dialogs and sign-ins.<br>- There are no built-in traces, logs or screenshots.<br>- Kubernetes, CI runners and most test infrastructure assume Linux.</p>
+<p>The architecture borrows from their mobile testing infrastructure and has three parts:<br>- A controller in Kubernetes that keeps the pool of Windows VMs on GCE and hands them out.<br>- A runner, a Linux pod that runs the test code.<br>- A Windows VM running the app under test, the automation tools and a small Go desktop agent.</p>
+<p>The runner talks to the VM over three connections: Playwright over CDP for anything in a browser, Appium (with WinAppDriver, driving apps through UIA) for native Windows apps, and a WebRTC stream so people can watch live and review a recording. A test sends a DeviceClaim to the device scheduler, gets connection details back, controls the device through WebdriverIO and Appium, and releases it when done.</p>
+<p>The flow: the test starts in a Linux runner pod and asks for a Windows device; the scheduler assigns a VM that is already booted and logged in; the runner gets the addresses for CDP, Appium and streaming; the app is delivered and launched; the test runs while the screen streams and is recorded; the claim is released and the VM destroyed.</p>
+<p>Windows needed two extensions to the device model: a device no longer has to live inside the Kubernetes cluster, and a claim can return desktop connection addresses including CDP. Private Windows pools work the way private iOS devices do.</p>
+<p>Relevant if you need to parallelize desktop tests; the source text here is cut off, so the rest is in the original.</p>
+
+  <p class="card__source"><a class="card__go" href="https://qawolf.com/blog/how-we-solved-windows-desktop-automation" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">qa-wolf</span><span class="tag">windows</span><span class="tag">e2e</span></span>
+    <span class="links"><a class="card__link" href="https://daily.dev/posts/e2exe-how-we-solved-windows-desktop-automation-for-enterprise-scale-4wxrj6zi4" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://mastodon.social/@h4ckernews/117440002806200917" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 14%"></div>
+</article>
 <article class="card" data-group="ai" data-id="10539994fed00ba51984da42d0a454a182146708" data-url="https://dev.to/james_anderson_h/people-are-vibe-coding-clones-of-every-paid-app-what-actually-survives-38ak" data-category="ai-trend" data-added="2026-10-14">
   <div class="card__meta">
     <span class="chip chip--ai">AI trend</span>
@@ -1415,50 +1495,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 21%"></div>
-</article>
-<article class="card" data-group="testing" data-id="67207925022e096fb2830b086f14835576508517" data-url="https://qawolf.com/blog/how-we-solved-windows-desktop-automation" data-category="test-automation" data-added="2026-10-14">
-  <div class="card__meta">
-    <span class="chip chip--testing">Automation</span>
-    <span class="card__src">daily.dev</span>
-    <span class="card__fit" title="fit 4/5">●●●●○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">E2exe: QA Wolf giải bài toán tự động hóa test app Windows desktop ở quy mô doanh nghiệp</span><span class="l l-en" lang="en">E2exe: How we solved Windows desktop automation for enterprise scale</span></h3>
-    <span class="card__orig l l-vi" lang="en">E2exe: How we solved Windows desktop automation for enterprise scale</span>
-    <span class="card__summary l l-vi" lang="vi">QA Wolf mô tả hạ tầng test app Windows: mỗi test nhận một VM dùng một lần từ warm pool trên Google Compute Engine, tránh 2-3 phút khởi động nguội.</span><span class="card__summary l l-en" lang="en">QA Wolf describes its Windows desktop test infrastructure: each test claims a single-use VM from a warm pool on Google Compute Engine, skipping a 2-3 minute cold boot.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>QA Wolf coi mỗi máy Windows như một thiết bị di động dùng một lần: mỗi test nhận một VM Windows riêng từ pool đã khởi động sẵn trên Google Compute Engine (GCE), chạy xong thì hủy và pool tạo VM mới.</p>
-<p>Vì sao khó hơn web:<br>- Mỗi test cần một VM đầy đủ vì Windows container không có desktop đồ họa.<br>- VM Windows nguội mất 2 đến 3 phút để boot, container trình duyệt chỉ vài giây.<br>- Windows UI Automation (UIA) chỉ chạy trong phiên desktop đang đăng nhập.<br>- Máy giữ trạng thái giữa các lần chạy (file cài đặt, registry, profile, tiến trình sót).<br>- Mỗi app có installer, prompt admin, dependency có bản quyền, dialog lần đầu, đăng nhập riêng.<br>- Không có sẵn trace, log, screenshot như trình duyệt.<br>- Kubernetes, CI runner và phần lớn hạ tầng test mặc định là Linux.</p>
-<p>Kiến trúc mượn từ hạ tầng test mobile, gồm ba phần:<br>- Controller chạy trong Kubernetes, giữ pool VM Windows trên GCE và cấp cho test.<br>- Runner là một Linux pod chạy code test.<br>- VM Windows chạy app cần test, công cụ automation và một desktop agent nhỏ (viết bằng Go).</p>
-<p>Runner nói chuyện với VM qua ba kết nối: Playwright qua CDP cho phần trong trình duyệt, Appium (cùng WinAppDriver, qua UIA) cho app Windows native, và luồng WebRTC để xem trực tiếp và quay lại màn hình. Test gửi DeviceClaim tới device scheduler, nhận địa chỉ kết nối, điều khiển bằng WebdriverIO và Appium rồi release.</p>
-<p>Luồng chạy: test khởi động trong runner pod và xin thiết bị Windows; scheduler gán VM đã boot và đăng nhập sẵn; runner nhận địa chỉ CDP, Appium, streaming; app được đưa vào VM và chạy; test chạy trong lúc màn hình được stream và ghi lại; xong thì release claim và hủy VM.</p>
-<p>Windows cần hai mở rộng so với mô hình thiết bị: thiết bị không còn phải nằm trong cluster Kubernetes, và claim có thể trả về địa chỉ kết nối desktop gồm cả CDP. Pool Windows riêng hoạt động giống iOS device riêng.</p>
-<p>Với QA: đáng tham khảo nếu cần song song hóa test desktop; bài gốc còn phần sau mà nguồn ở đây bị cắt.</p>
-
-  <p class="card__source"><a class="card__go" href="https://qawolf.com/blog/how-we-solved-windows-desktop-automation" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>QA Wolf treats a Windows machine like a phone: a device that one test claims, uses once and throws away. Each test gets a single-use Windows VM from a warm pool on Google Compute Engine (GCE); when the test ends the VM is destroyed and a fresh one takes its place.</p>
-<p>Why it is harder than web:<br>- Every test needs a full VM because Windows containers have no graphical desktop.<br>- A cold Windows VM takes 2 to 3 minutes to boot; a browser container takes seconds.<br>- Windows UI Automation (UIA) only works inside an active, logged-in desktop session.<br>- Machines remember things between runs: files, registry keys, profiles, stray processes.<br>- Every app brings installers, admin prompts, licensed dependencies, first-run dialogs and sign-ins.<br>- There are no built-in traces, logs or screenshots.<br>- Kubernetes, CI runners and most test infrastructure assume Linux.</p>
-<p>The architecture borrows from their mobile testing infrastructure and has three parts:<br>- A controller in Kubernetes that keeps the pool of Windows VMs on GCE and hands them out.<br>- A runner, a Linux pod that runs the test code.<br>- A Windows VM running the app under test, the automation tools and a small Go desktop agent.</p>
-<p>The runner talks to the VM over three connections: Playwright over CDP for anything in a browser, Appium (with WinAppDriver, driving apps through UIA) for native Windows apps, and a WebRTC stream so people can watch live and review a recording. A test sends a DeviceClaim to the device scheduler, gets connection details back, controls the device through WebdriverIO and Appium, and releases it when done.</p>
-<p>The flow: the test starts in a Linux runner pod and asks for a Windows device; the scheduler assigns a VM that is already booted and logged in; the runner gets the addresses for CDP, Appium and streaming; the app is delivered and launched; the test runs while the screen streams and is recorded; the claim is released and the VM destroyed.</p>
-<p>Windows needed two extensions to the device model: a device no longer has to live inside the Kubernetes cluster, and a claim can return desktop connection addresses including CDP. Private Windows pools work the way private iOS devices do.</p>
-<p>Relevant if you need to parallelize desktop tests; the source text here is cut off, so the rest is in the original.</p>
-
-  <p class="card__source"><a class="card__go" href="https://qawolf.com/blog/how-we-solved-windows-desktop-automation" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">qa-wolf</span><span class="tag">windows</span><span class="tag">e2e</span></span>
-    <span class="links"><a class="card__link" href="https://daily.dev/posts/e2exe-how-we-solved-windows-desktop-automation-for-enterprise-scale-4wxrj6zi4" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 14%"></div>
 </article>
 <article class="card" data-group="testing" data-id="cf23e16af3efc69979904337e8cf10ce0a2b06f7" data-url="https://callstack.com/blog/agentic-mobile-testing-with-e2e-and-agent-device" data-category="test-automation" data-added="2026-10-14">
   <div class="card__meta">
@@ -3684,11 +3720,32 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/swd_eagle/why-exact-arguments-matter-in-mockito-tests-f1l" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Vì sao cần dùng đúng tham số trong test Mockito</span><span class="l l-en" lang="en">Why Exact Arguments Matter in Mockito Tests</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Why Exact Arguments Matter in Mockito Tests</span>
-  <span class="card__summary l l-vi" lang="vi">Stubbing và verification với tham số chính xác trong Mockito là kỹ thuật test mạnh. Bài giải thích vì sao nên dùng đúng tham số.</span><span class="card__summary l l-en" lang="en">Mockito stubbing and verification with exact arguments are powerful testing techniques. The post explains why exact arguments matter.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Vì sao nên dùng tham số chính xác trong test Mockito</span><span class="l l-en" lang="en">Why Exact Arguments Matter in Mockito Tests</span></h3>
+    <span class="card__orig l l-vi" lang="en">Why Exact Arguments Matter in Mockito Tests</span>
+    <span class="card__summary l l-vi" lang="vi">Stubbing và verification với tham số chính xác trong Mockito là kỹ thuật test mạnh. Bài giải thích vì sao nên dùng đúng tham số.</span><span class="card__summary l l-en" lang="en">Mockito stubbing and verification with exact arguments are powerful testing techniques. The post explains why exact arguments matter.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Dùng argument matcher chung như anyString() trong stubbing và verification của Mockito khiến test để lọt bug khi tham số cụ thể mới là điều quan trọng. Nên dùng đúng giá trị tham số.</p>
+<p>Ví dụ 1, chuyển tiền: transferMoney gọi debit(toAccount, amount) và credit(fromAccount, amount), tức đảo ngược hai tài khoản. Test dùng verify(moneyService).debit(anyString(), 10.00) và credit(anyString(), 10.00) vẫn pass. Nếu verify với đúng giá trị, debit(&quot;IBAN1&quot;, 10.00) và credit(&quot;IBAN2&quot;, 10.00), test sẽ fail ngay và lộ bug.</p>
+<p>Ví dụ 2, getByEmployee: test stub findById(anyString()). Giả sử spec đổi thành chuyển ID sang chữ thường trước khi gọi repository, nhưng dev lỡ chuyển thành chữ hoa; test cũ không phát hiện. Test đúng là stub findById(&quot;userwithid&quot;) rồi gọi getByEmployee(&quot;UserWithId&quot;).</p>
+<p>Các điểm chính:<br>- Strict-stubbing của Mockito giúp phát hiện một số stub thừa hoặc không khớp, nhưng không thay thế việc verify đúng tương tác với đúng tham số.<br>- Điều này đặc biệt quan trọng với TDD, khi test viết trước implementation.<br>- any() và anyString() vẫn hữu ích, đôi khi là lựa chọn tốt nhất; chỉ nên tránh khi tham số cụ thể quyết định hành vi đang test.</p>
+<p>Đáng chú ý với QA: test dùng matcher quá rộng có thể xanh dù code sai.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/swd_eagle/why-exact-arguments-matter-in-mockito-tests-f1l" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Using general argument matchers such as anyString() in Mockito stubbing and verification lets bugs slip through when the specific arguments matter. Prefer exact argument values.</p>
+<p>Example 1, money transfer: transferMoney calls debit(toAccount, amount) and credit(fromAccount, amount), so the accounts are reversed. A test using verify(moneyService).debit(anyString(), 10.00) and credit(anyString(), 10.00) still passes. Verifying exact values, debit(&quot;IBAN1&quot;, 10.00) and credit(&quot;IBAN2&quot;, 10.00), would fail immediately and expose the bug.</p>
+<p>Example 2, getByEmployee: the test stubs findById(anyString()). Suppose the spec changes to lowercase all IDs before they reach the repository, and a developer accidentally uppercases them instead; the existing test misses it. The correct test stubs findById(&quot;userwithid&quot;) and then calls getByEmployee(&quot;UserWithId&quot;).</p>
+<p>Key points:<br>- Mockito&#39;s strict-stubbing features can detect some unnecessary or mismatched stubs, but they are not a substitute for verifying the right interactions with the expected arguments.<br>- This matters especially in test-driven development, where tests are written before the implementation.<br>- any() and anyString() are still useful and sometimes the best choice; avoid them when the specific arguments matter to the behaviour under test.</p>
+<p>Relevant for QA: tests with overly broad matchers can stay green while the code is wrong.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/swd_eagle/why-exact-arguments-matter-in-mockito-tests-f1l" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">mockito</span><span class="tag">java</span><span class="tag">unit-testing</span></span>
@@ -4549,7 +4606,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>

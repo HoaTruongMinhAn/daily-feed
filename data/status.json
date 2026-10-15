@@ -1,15 +1,15 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 92 sightings from 45/62 sources",
+    "message": "200 candidates, 118 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-localllama",
-        "error": "HTTP 403 for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-claudeai",
@@ -17,7 +17,7 @@
       },
       {
         "id": "r-qualityassurance",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-softwaretesting",
@@ -33,11 +33,11 @@
       },
       {
         "id": "r-playwright",
-        "error": "HTTP 403 for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-selenium",
-        "error": "HTTP 403 for https://www.reddit.com/r/selenium/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/selenium/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-devops",
@@ -45,11 +45,11 @@
       },
       {
         "id": "r-experienceddevs",
-        "error": "HTTP 403 for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-sysadmin",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmingmemes",
@@ -65,49 +65,49 @@
       },
       {
         "id": "r-openai",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/OpenAI/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/OpenAI/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-singularity",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
       }
     ],
     "candidates": 200,
-    "at": "2026-10-14T00:41:58.018Z"
+    "at": "2026-10-15T00:05:15.990Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 121, dropped 79, invalid 1",
-    "at": "2026-10-14T00:48:00.393Z"
+    "message": "kept 112, dropped 88, invalid 1",
+    "at": "2026-10-15T00:11:04.146Z"
   },
   "merge": {
     "ok": true,
-    "message": "1236 items retained, 1 re-sighted",
+    "message": "1348 items retained, 5 re-sighted",
     "counts": {
       "candidates": 200,
-      "kept": 121,
-      "dropped": 79,
+      "kept": 112,
+      "dropped": 88,
       "invalid": 1,
-      "sighted": 1
+      "sighted": 5
     },
-    "at": "2026-10-14T00:48:00.393Z"
+    "at": "2026-10-15T00:11:04.146Z"
   },
   "build": {
     "ok": true,
-    "message": "754 items on index, 11 archive pages",
-    "at": "2026-10-14T01:14:09.886Z"
+    "message": "744 items on index, 12 archive pages",
+    "at": "2026-10-15T00:35:41.577Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-14",
-    "message": "119 details written today",
+    "day": "2026-10-15",
+    "message": "104 details written today",
     "counts": {
-      "written": 119,
-      "missing": 5,
-      "invalid": 3,
-      "ungrounded": 3,
-      "discussed": 15
+      "written": 104,
+      "missing": 6,
+      "invalid": 7,
+      "ungrounded": 7,
+      "discussed": 18
     },
-    "at": "2026-10-14T01:14:09.600Z"
+    "at": "2026-10-15T00:35:41.298Z"
   }
 }
