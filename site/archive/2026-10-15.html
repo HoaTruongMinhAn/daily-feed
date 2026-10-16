@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-15</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-15</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-16</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -98,6 +98,42 @@
   </div>
   <div class="hot" style="--hot: 49%"></div>
 </article>
+<article class="card" data-group="it" data-id="11184580e6212df98f014c0a57a495c666c6d9a3" data-url="https://viceconsole.fyi/blog/2026/10/10/what-i-self-host" data-category="it-general" data-added="2026-10-15">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Lobsters · Hacker News</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Tôi self-host những gì: hướng dẫn self-hosting đầy tham vọng</span><span class="l l-en" lang="en">What I Self-Host: An Aspirational Self-Hosting Guide</span></h3>
+    <span class="card__orig l l-vi" lang="en">What I Self-Host: An Aspirational Self-Hosting Guide</span>
+    <span class="card__summary l l-vi" lang="vi">Một bài hướng dẫn self-hosting liệt kê những dịch vụ tác giả tự chạy. Gợi ý hay cho homelab của bạn.</span><span class="card__summary l l-en" lang="en">A self-hosting guide listing the services the author runs themselves. A good source of ideas for your own homelab.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả bỏ các dịch vụ streaming để chuyển sang Jellyfin tự host, rồi từ đó mở rộng sang nhiều dịch vụ khác chạy trên một mini PC rẻ; bài kể các quy tắc, phần cứng và danh sách dịch vụ họ dùng.</p>
+<ul><li>Lý do: sau khi rời India, tác giả không muốn trả giá phương Tây cho streaming và chán vòng lặp &quot;recommended for you&quot; / &quot;up next&quot;, nhất là với con trai. Chuyển sang Jellyfin giúp giảm phụ thuộc vào nhà cung cấp cloud và tránh các lần redesign hay email cập nhật điều khoản; họ tự đọc release notes rồi quyết định có nâng cấp không.</li><li>Quy tắc: không expose dịch vụ nào ra internet công cộng, ngoại trừ VPN server chạy trên router (chỉ routable qua IPv6; ISP dùng CGNAT cho IPv4). Ưu tiên chạy native, chỉ containerize dịch vụ phức tạp; không dùng Docker nữa mà dùng Podman tích hợp với systemd. Thích dịch vụ là một Go binary duy nhất.</li><li>Phần cứng: Beelink S12 Pro, Intel N100, 16 GB RAM, SSD 512 GB, giá EUR 180 (nay trên Amazon là EUR 359), gắn ổ cứng 6 TB cho media. Không chạy local inference; mọi thứ không-AI chạy ổn.</li><li>Dịch vụ (theo thứ tự chữ cái), ví dụ: Actual Budget cho theo dõi chi tiêu (import giao dịch thủ công hàng tháng bằng OFX hoặc CSV) và Audiobookshelf cho audiobook và podcast. Văn bản gốc có nhiều dịch vụ nữa ở phần sau mà bản trích này không đầy đủ.</li></ul>
+<p>Hữu ích nếu bạn đang cân nhắc homelab: nó cho thấy không cần nhiều phần cứng, và nên giữ số dịch vụ vừa đủ.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Các comment chủ yếu thêm kinh nghiệm riêng hơn là tranh luận gay gắt. Có người nghi ngờ việc tự host công cụ giám sát, người khác dựa nặng vào tailscale, và một người nói bỏ container giúp ổn định hơn.</p><ul class="quotes"><li><q>Tôi không hiểu việc self-host Uptime Kuma. Tôi thích self-host tối đa. Nhưng tôi tránh self-host các công cụ giám sát và uptime của mình.</q> <span class="quote__by">@markerz, Lobsters</span></li><li><q>Tôi e là setup self-host của mình gắn chặt với tailscale, nhưng nhờ vậy bảo trì và sử dụng dễ hơn rất nhiều (magicdns, service names, lúc nào cũng truy cập được, v.v.).</q> <span class="quote__by">@baetylboy, Lobsters</span></li><li><q>Cá nhân tôi thấy độ tin cậy của NAS tăng rõ rệt khi áp dụng chính sách không dùng container (chỉ systemd services).</q> <span class="quote__by">@alexozer, Lobsters</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://viceconsole.fyi/blog/2026/10/10/what-i-self-host" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The author dropped streaming services for a self-hosted Jellyfin, which then led to many other self-hosted services on a cheap mini PC; the post covers their rules, hardware and service list.</p>
+<ul><li>Why: after leaving India, the author did not want to pay western prices for streaming and was fed up with the &quot;recommended for you&quot; and &quot;up next&quot; engagement treadmill, especially for their son. Jellyfin opened the door to reducing dependence on cloud providers and avoiding constant redesigns and terms-of-service emails; they read release notes and decide if and when to upgrade.</li><li>Rules: no service is exposed directly to the public internet, except VPN servers on the router (publicly routable only on IPv6; the ISP uses CGNAT for IPv4). They prefer native services and containerize only complex ones; they no longer use Docker and use Podman with its systemd integration. They love a service that is a single Go binary.</li><li>Hardware: a Beelink S12 Pro with an Intel N100, 16 GB RAM and a 512 GB SSD, bought for EUR 180 (the same listing is EUR 359 on Amazon now), plus a 6 TB drive for media. No local inference; everything non-AI works fine.</li><li>Services, in alphabetical order, for example: Actual Budget for expense tracking (transactions imported manually each month as OFX or CSV) and Audiobookshelf for audiobooks and podcasts. The original lists more services than the text captured here.</li></ul>
+<p>Useful if you are weighing a homelab: it shows you don&#39;t need much hardware, and that keeping the service count modest helps.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">The comments mostly add personal experience rather than hard disagreement. One doubts self-hosting monitoring tools, another leans heavily on tailscale, and one says dropping containers improved stability.</p><ul class="quotes"><li><q>I don&#39;t understand self-hosting Uptime Kuma. I like self-hosting as much as I can. But I stay away from self-hosting my monitoring and uptime tools.</q> <span class="quote__by">@markerz, Lobsters</span></li><li><q>I fear my self hosting setup is heavily intertwined with tailscale, but that makes it soooo much easier to maintain and use (magicdns, service names, always accessible, etc.).</q> <span class="quote__by">@baetylboy, Lobsters</span></li><li><q>I personally noticed a large uptick in reliability on my NAS once I adopted a no-container policy (so systemd services only).</q> <span class="quote__by">@alexozer, Lobsters</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://viceconsole.fyi/blog/2026/10/10/what-i-self-host" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">self-hosting</span><span class="tag">homelab</span></span>
+    <span class="links"><a class="card__link" href="https://lobste.rs/s/j4tlzg/what_i_self_host_aspirational_self" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://news.ycombinator.com/item?id=50109715" target="_blank" rel="noopener">more 1</a> <a class="card__link" href="https://lobste.rs/s/j4tlzg/what_i_self_host" target="_blank" rel="noopener">more 2</a></span>
+  </div>
+  <div class="hot" style="--hot: 63%"></div>
+</article>
 <article class="card" data-group="it" data-id="4c6dccd918712eb7937b6a317c665f72c41be205" data-url="https://scotthelme.co.uk/passkeys-are-not-a-trap" data-category="it-general" data-added="2026-10-15">
   <div class="card__meta">
     <span class="chip chip--it">IT</span>
@@ -133,42 +169,6 @@
     <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50088935" target="_blank" rel="noopener">discussion</a></span>
   </div>
   <div class="hot" style="--hot: 78%"></div>
-</article>
-<article class="card" data-group="it" data-id="11184580e6212df98f014c0a57a495c666c6d9a3" data-url="https://viceconsole.fyi/blog/2026/10/10/what-i-self-host" data-category="it-general" data-added="2026-10-15">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">Lobsters</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Tôi self-host những gì: hướng dẫn self-hosting đầy tham vọng</span><span class="l l-en" lang="en">What I Self-Host: An Aspirational Self-Hosting Guide</span></h3>
-    <span class="card__orig l l-vi" lang="en">What I Self-Host: An Aspirational Self-Hosting Guide</span>
-    <span class="card__summary l l-vi" lang="vi">Một bài hướng dẫn self-hosting liệt kê những dịch vụ tác giả tự chạy. Gợi ý hay cho homelab của bạn.</span><span class="card__summary l l-en" lang="en">A self-hosting guide listing the services the author runs themselves. A good source of ideas for your own homelab.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Tác giả bỏ các dịch vụ streaming để chuyển sang Jellyfin tự host, rồi từ đó mở rộng sang nhiều dịch vụ khác chạy trên một mini PC rẻ; bài kể các quy tắc, phần cứng và danh sách dịch vụ họ dùng.</p>
-<ul><li>Lý do: sau khi rời India, tác giả không muốn trả giá phương Tây cho streaming và chán vòng lặp &quot;recommended for you&quot; / &quot;up next&quot;, nhất là với con trai. Chuyển sang Jellyfin giúp giảm phụ thuộc vào nhà cung cấp cloud và tránh các lần redesign hay email cập nhật điều khoản; họ tự đọc release notes rồi quyết định có nâng cấp không.</li><li>Quy tắc: không expose dịch vụ nào ra internet công cộng, ngoại trừ VPN server chạy trên router (chỉ routable qua IPv6; ISP dùng CGNAT cho IPv4). Ưu tiên chạy native, chỉ containerize dịch vụ phức tạp; không dùng Docker nữa mà dùng Podman tích hợp với systemd. Thích dịch vụ là một Go binary duy nhất.</li><li>Phần cứng: Beelink S12 Pro, Intel N100, 16 GB RAM, SSD 512 GB, giá EUR 180 (nay trên Amazon là EUR 359), gắn ổ cứng 6 TB cho media. Không chạy local inference; mọi thứ không-AI chạy ổn.</li><li>Dịch vụ (theo thứ tự chữ cái), ví dụ: Actual Budget cho theo dõi chi tiêu (import giao dịch thủ công hàng tháng bằng OFX hoặc CSV) và Audiobookshelf cho audiobook và podcast. Văn bản gốc có nhiều dịch vụ nữa ở phần sau mà bản trích này không đầy đủ.</li></ul>
-<p>Hữu ích nếu bạn đang cân nhắc homelab: nó cho thấy không cần nhiều phần cứng, và nên giữ số dịch vụ vừa đủ.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Các comment chủ yếu thêm kinh nghiệm riêng hơn là tranh luận gay gắt. Có người nghi ngờ việc tự host công cụ giám sát, người khác dựa nặng vào tailscale, và một người nói bỏ container giúp ổn định hơn.</p><ul class="quotes"><li><q>Tôi không hiểu việc self-host Uptime Kuma. Tôi thích self-host tối đa. Nhưng tôi tránh self-host các công cụ giám sát và uptime của mình.</q> <span class="quote__by">@markerz, Lobsters</span></li><li><q>Tôi e là setup self-host của mình gắn chặt với tailscale, nhưng nhờ vậy bảo trì và sử dụng dễ hơn rất nhiều (magicdns, service names, lúc nào cũng truy cập được, v.v.).</q> <span class="quote__by">@baetylboy, Lobsters</span></li><li><q>Cá nhân tôi thấy độ tin cậy của NAS tăng rõ rệt khi áp dụng chính sách không dùng container (chỉ systemd services).</q> <span class="quote__by">@alexozer, Lobsters</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://viceconsole.fyi/blog/2026/10/10/what-i-self-host" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>The author dropped streaming services for a self-hosted Jellyfin, which then led to many other self-hosted services on a cheap mini PC; the post covers their rules, hardware and service list.</p>
-<ul><li>Why: after leaving India, the author did not want to pay western prices for streaming and was fed up with the &quot;recommended for you&quot; and &quot;up next&quot; engagement treadmill, especially for their son. Jellyfin opened the door to reducing dependence on cloud providers and avoiding constant redesigns and terms-of-service emails; they read release notes and decide if and when to upgrade.</li><li>Rules: no service is exposed directly to the public internet, except VPN servers on the router (publicly routable only on IPv6; the ISP uses CGNAT for IPv4). They prefer native services and containerize only complex ones; they no longer use Docker and use Podman with its systemd integration. They love a service that is a single Go binary.</li><li>Hardware: a Beelink S12 Pro with an Intel N100, 16 GB RAM and a 512 GB SSD, bought for EUR 180 (the same listing is EUR 359 on Amazon now), plus a 6 TB drive for media. No local inference; everything non-AI works fine.</li><li>Services, in alphabetical order, for example: Actual Budget for expense tracking (transactions imported manually each month as OFX or CSV) and Audiobookshelf for audiobooks and podcasts. The original lists more services than the text captured here.</li></ul>
-<p>Useful if you are weighing a homelab: it shows you don&#39;t need much hardware, and that keeping the service count modest helps.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">The comments mostly add personal experience rather than hard disagreement. One doubts self-hosting monitoring tools, another leans heavily on tailscale, and one says dropping containers improved stability.</p><ul class="quotes"><li><q>I don&#39;t understand self-hosting Uptime Kuma. I like self-hosting as much as I can. But I stay away from self-hosting my monitoring and uptime tools.</q> <span class="quote__by">@markerz, Lobsters</span></li><li><q>I fear my self hosting setup is heavily intertwined with tailscale, but that makes it soooo much easier to maintain and use (magicdns, service names, always accessible, etc.).</q> <span class="quote__by">@baetylboy, Lobsters</span></li><li><q>I personally noticed a large uptick in reliability on my NAS once I adopted a no-container policy (so systemd services only).</q> <span class="quote__by">@alexozer, Lobsters</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://viceconsole.fyi/blog/2026/10/10/what-i-self-host" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">self-hosting</span><span class="tag">homelab</span></span>
-    <span class="links"><a class="card__link" href="https://lobste.rs/s/j4tlzg/what_i_self_host_aspirational_self" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 63%"></div>
 </article>
 <article class="card" data-group="it" data-id="41af723c866e82c0682268609f975f19d4f89622" data-url="https://thenewstack.io/kubernetes-hidden-latency-telemetry" data-category="it-general" data-added="2026-10-15">
   <div class="card__meta">
@@ -239,6 +239,44 @@
   <div class="card__foot">
     <span class="tags"><span class="tag">opencode</span><span class="tag">coding-agent</span></span>
     <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50094994" target="_blank" rel="noopener">discussion</a></span>
+  </div>
+  <div class="hot" style="--hot: 40%"></div>
+</article>
+<article class="card" data-group="humor" data-id="ea3d6ec247f00a49e46921f804fae82aab1eab03" data-url="https://workchronicles.com/p/comic-skip-slides-short-of-time" data-category="humor" data-added="2026-10-15">
+  <div class="card__meta">
+    <span class="chip chip--humor">Humor</span>
+    <span class="card__src">Work Chronicles · daily.dev</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">(Tranh biếm họa) Bỏ qua slide khi hết thời gian</span><span class="l l-en" lang="en">(comic) Skip slides short of time</span></h3>
+    <span class="card__orig l l-vi" lang="en">(comic) Skip slides short of time</span>
+    <span class="card__summary l l-vi" lang="vi">Một tranh biếm họa của Work Chronicles về chuyện bỏ qua slide khi hết thời gian họp. Nhẹ nhàng cho giờ nghỉ.</span><span class="card__summary l l-en" lang="en">A Work Chronicles comic about skipping slides when you run short of time. A light break.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bản lưu có phần chữ của bài Work Chronicles, gồm một câu chuyện công sở kể lại như một đoạn đối thoại. Bản này không có hình tranh, chỉ có phần văn bản.</p>
+<p>Câu chuyện: một lập trình viên giải thích thiết kế bằng đống thuật ngữ rối rắm, quản lý hoảng lên vì dữ liệu XRNT là bí mật mà SS2 lại hiển thị cho khách hàng. Lập trình viên trả lời rằng mình chỉ làm theo yêu cầu SS2-INTF-3212, đã báo qua email từ năm tháng trước, đã mở họp thiết kế và họp riêng, nhưng quản lý đều từ chối tham dự vào phút chót. Ghi chú của quản lý: việc của dev là triển khai thiết kế đã duyệt, không phải đặt câu hỏi.</p>
+<p>Người kể cho biết ít nhất 75% buổi review thiết kế ở công ty đó kết thúc bằng việc quản lý bác bỏ yêu cầu đã duyệt hoặc chức năng nền, những thứ nằm ngoài tầm kiểm soát của dev. Ở đó người review có action item còn dev thì không, và việc này bị xem là lỗi của engineering. Điều tra của ban lãnh đạo không phỏng vấn dev nào.</p>
+<p>Điểm đáng cười với dân QA: lỗi bị phát hiện quá muộn vì không ai đọc tài liệu từ đầu.</p>
+
+  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-skip-slides-short-of-time" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>This is a text-only capture of a Work Chronicles post: a workplace story told as a dialogue, with no comic image included.</p>
+<p>The story: a developer explains a design in dense jargon, and the manager panics because XRNT data is confidential while SS2 is visible to the customer. The developer says they only implemented requirement SS2-INTF-3212, flagged it by email five months earlier, and called a design meeting and a separate meeting, but the manager declined both at the last minute. The manager&#39;s note said a developer&#39;s job is to implement approved designs, not question them.</p>
+<p>The narrator says at least 75% of their design reviews at that company ended with management rejecting approved requirements or base product functionality, things outside the developer&#39;s control. Reviewers got action items and the developer did not. The failure was blamed on engineering, and the senior management investigation interviewed no developers.</p>
+<p>The joke for QA people: problems surface very late because nobody reads the documents early on.</p>
+
+  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-skip-slides-short-of-time" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  <a href="https://workchronicles.com/p/comic-skip-slides-short-of-time" target="_blank" rel="noopener"><img class="card__img" loading="lazy" src="https://substackcdn.com/image/fetch/$s_!XKAy!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcac353e-3ee4-4f0b-acc4-19b6bb142ee2_4800x4800.png" alt=""></a>
+  <div class="card__foot">
+    <span class="tags"><span class="tag">comic</span><span class="tag">office</span></span>
+    <span class="links"><a class="card__link" href="https://daily.dev/posts/comic-skip-slides-short-of-time-uhfizxmss" target="_blank" rel="noopener">more 1</a></span>
   </div>
   <div class="hot" style="--hot: 40%"></div>
 </article>
@@ -524,44 +562,6 @@
   </div>
   <div class="hot" style="--hot: 40%"></div>
 </article>
-<article class="card" data-group="humor" data-id="ea3d6ec247f00a49e46921f804fae82aab1eab03" data-url="https://workchronicles.com/p/comic-skip-slides-short-of-time" data-category="humor" data-added="2026-10-15">
-  <div class="card__meta">
-    <span class="chip chip--humor">Humor</span>
-    <span class="card__src">Work Chronicles</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">(Tranh biếm họa) Bỏ qua slide khi hết thời gian</span><span class="l l-en" lang="en">(comic) Skip slides short of time</span></h3>
-    <span class="card__orig l l-vi" lang="en">(comic) Skip slides short of time</span>
-    <span class="card__summary l l-vi" lang="vi">Một tranh biếm họa của Work Chronicles về chuyện bỏ qua slide khi hết thời gian họp. Nhẹ nhàng cho giờ nghỉ.</span><span class="card__summary l l-en" lang="en">A Work Chronicles comic about skipping slides when you run short of time. A light break.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Bản lưu có phần chữ của bài Work Chronicles, gồm một câu chuyện công sở kể lại như một đoạn đối thoại. Bản này không có hình tranh, chỉ có phần văn bản.</p>
-<p>Câu chuyện: một lập trình viên giải thích thiết kế bằng đống thuật ngữ rối rắm, quản lý hoảng lên vì dữ liệu XRNT là bí mật mà SS2 lại hiển thị cho khách hàng. Lập trình viên trả lời rằng mình chỉ làm theo yêu cầu SS2-INTF-3212, đã báo qua email từ năm tháng trước, đã mở họp thiết kế và họp riêng, nhưng quản lý đều từ chối tham dự vào phút chót. Ghi chú của quản lý: việc của dev là triển khai thiết kế đã duyệt, không phải đặt câu hỏi.</p>
-<p>Người kể cho biết ít nhất 75% buổi review thiết kế ở công ty đó kết thúc bằng việc quản lý bác bỏ yêu cầu đã duyệt hoặc chức năng nền, những thứ nằm ngoài tầm kiểm soát của dev. Ở đó người review có action item còn dev thì không, và việc này bị xem là lỗi của engineering. Điều tra của ban lãnh đạo không phỏng vấn dev nào.</p>
-<p>Điểm đáng cười với dân QA: lỗi bị phát hiện quá muộn vì không ai đọc tài liệu từ đầu.</p>
-
-  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-skip-slides-short-of-time" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>This is a text-only capture of a Work Chronicles post: a workplace story told as a dialogue, with no comic image included.</p>
-<p>The story: a developer explains a design in dense jargon, and the manager panics because XRNT data is confidential while SS2 is visible to the customer. The developer says they only implemented requirement SS2-INTF-3212, flagged it by email five months earlier, and called a design meeting and a separate meeting, but the manager declined both at the last minute. The manager&#39;s note said a developer&#39;s job is to implement approved designs, not question them.</p>
-<p>The narrator says at least 75% of their design reviews at that company ended with management rejecting approved requirements or base product functionality, things outside the developer&#39;s control. Reviewers got action items and the developer did not. The failure was blamed on engineering, and the senior management investigation interviewed no developers.</p>
-<p>The joke for QA people: problems surface very late because nobody reads the documents early on.</p>
-
-  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-skip-slides-short-of-time" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  <a href="https://workchronicles.com/p/comic-skip-slides-short-of-time" target="_blank" rel="noopener"><img class="card__img" loading="lazy" src="https://substackcdn.com/image/fetch/$s_!XKAy!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdcac353e-3ee4-4f0b-acc4-19b6bb142ee2_4800x4800.png" alt=""></a>
-  <div class="card__foot">
-    <span class="tags"><span class="tag">comic</span><span class="tag">office</span></span>
-    <span class="links"></span>
-  </div>
-  <div class="hot" style="--hot: 40%"></div>
-</article>
 <article class="card" data-group="it" data-id="b9b745f5af6c2f8d6dd056db82cb2954e99d8c47" data-url="https://thenewstack.io/ai-prototypes-database-replatforming" data-category="it-general" data-added="2026-10-15">
   <div class="card__meta">
     <span class="chip chip--it">IT</span>
@@ -712,6 +712,44 @@
   </div>
   <div class="hot" style="--hot: 56%"></div>
 </article>
+<article class="card" data-group="it" data-id="1f9db072441be3e9b4e78f24d0669e8f0461b02b" data-url="https://go.dev/blog/http-connection-reuse" data-category="it-general" data-added="2026-10-15">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Hacker News · daily.dev</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Tái sử dụng kết nối HTTP/1 tốt hơn trong Go 1.27</span><span class="l l-en" lang="en">Better HTTP/1 connection reuse in Go 1.27</span></h3>
+    <span class="card__orig l l-vi" lang="en">Better HTTP/1 connection reuse in Go 1.27</span>
+    <span class="card__summary l l-vi" lang="vi">Blog chính thức của Go giới thiệu cải tiến tái sử dụng kết nối HTTP/1 trong Go 1.27.</span><span class="card__summary l l-en" lang="en">The Go blog covers improved HTTP/1 connection reuse in Go 1.27.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Go 1.27 giờ tái sử dụng kết nối HTTP/1 ngay cả khi code không đọc hết response body, nên cùng một chương trình mẫu chạy 100 lần với index.golang.org giảm từ khoảng 710 ms (Go 1.26) xuống khoảng 150 ms, nhanh gần 5 lần (chạy HTTP/1 với GODEBUG=http2client=0).</p>
+<p>Vì sao chậm: mở kết nối mới tốn 1 RTT cho TCP handshake, thêm 2 RTT cho TLS 1.2, tức 3 RTT trước khi gửi được request. Trong giao tiếp liên vùng, riêng phần setup có thể mất khoảng 300 ms.</p>
+<p>Vì sao kết nối không được tái sử dụng: với HTTP/1, các response được gửi tuần tự trên cùng một stream, nên net/http chỉ biết response kế tiếp bắt đầu ở đâu sau khi body hiện tại được đọc hết. Đến Go 1.26, khi resp.Body.Close được gọi mà body chưa đọc hết, net/http bỏ kết nối và tạo kết nối mới cho các request sau. HTTP/2 không gặp vấn đề này vì multiplex các stream trên một kết nối.</p>
+<p>Ảnh hưởng: đây là kiểu suy giảm hiệu năng âm thầm, ví dụ client chỉ quan tâm status code nhưng API vẫn trả body chứa thông tin không dùng tới. Bài viết trong nguồn bị cắt ở phần này, nên chi tiết cách Go 1.27 xử lý nằm ở bài gốc.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn hoan nghênh thay đổi, nhưng một số người lo về hành vi ngầm mới và việc thiếu tài liệu trong net/http.</p><ul class="quotes"><li><q>Cuối cùng tôi cũng có thể bỏ xhttp.DrainResponseBody[1], mà tôi vừa biết là nó cũng chẳng làm tốt lắm.</q> <span class="quote__by">@jamesponddotco, Hacker News</span></li><li><q>Tệ ở chỗ nó đổi hành vi ngầm mà trước đây bạn có thể dựa vào, là đóng response body thì bỏ qua được việc tải HTTP body, nhưng tôi thích sự đánh đổi này</q> <span class="quote__by">@nasretdinov, Hacker News</span></li><li><q>Tôi có bỏ sót gì không, hay là không có thông tin nào trong này được ghi trong chính net/http?</q> <span class="quote__by">@jerf, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://go.dev/blog/http-connection-reuse" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Go 1.27 now reuses HTTP/1 connections even when the code does not read the whole response body, so the same sample program making 100 calls to index.golang.org drops from about 710 ms on Go 1.26 to about 150 ms, almost 5 times faster (run with HTTP/1 via GODEBUG=http2client=0).</p>
+<p>Why it was slow: a new connection costs 1 RTT for the TCP handshake plus 2 RTT for TLS 1.2, so 3 RTT before the request can be sent. In cross-region communication, setup alone can take about 300 ms.</p>
+<p>Why connections were not reused: with HTTP/1, responses are sent back-to-back on the same stream, so net/http can only find the start of the next response after the current body has been read to the end. Through Go 1.26, when resp.Body.Close was called with an unread body, net/http abandoned the connection and opened new ones for later requests. HTTP/2 does not have this problem because it multiplexes streams over one connection.</p>
+<p>Impact: this is a silent performance degradation, for example a client that only cares about the status code while the API still sends a body with unused details. The source text is cut off at this point, so how Go 1.27 handles it is in the original post.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most welcome the change, but some worry about the new hidden behaviour and the lack of documentation in net/http.</p><ul class="quotes"><li><q>I can finally retire xhttp.DrainResponseBody[1], which I just learned, wasn&#39;t doing that good of a job anyway.</q> <span class="quote__by">@jamesponddotco, Hacker News</span></li><li><q>It sucks that this changes the behaviour under the hood that you previously coukd rely on the fact that closing the response body lets you skip downloading the HTTP body entirely, but I do like the tradeoff here</q> <span class="quote__by">@nasretdinov, Hacker News</span></li><li><q>Am I missing something or is none of this information documented in net/http itself?</q> <span class="quote__by">@jerf, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://go.dev/blog/http-connection-reuse" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">go</span><span class="tag">http</span></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50090369" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://daily.dev/posts/better-http-1-connection-reuse-twf1c3bfv" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 22%"></div>
+</article>
 <article class="card" data-group="ai" data-id="8404278126762b91f6fe8ee9032764b2d39defe4" data-url="https://swedenherald.com/article/tv4-postpones-the-challenge-until-2027-after-technical-failure-erases-edited-footage" data-category="ai-trend" data-added="2026-10-15">
   <div class="card__meta">
     <span class="chip chip--ai">AI trend</span>
@@ -829,11 +867,28 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://techmeme.com/261014/p46" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Tám bang của Mỹ kiện OpenAI vì thiếu biện pháp bảo vệ trẻ em và người dễ tổn thương</span><span class="l l-en" lang="en">Eight US states sue OpenAI over safeguards for kids and vulnerable users</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Eight US states sue OpenAI over safeguards for kids and vulnerable users</span>
-  <span class="card__summary l l-vi" lang="vi">Tám bang Mỹ kiện riêng OpenAI, cho rằng công ty chưa có đủ biện pháp bảo vệ trẻ em và người dùng dễ tổn thương.</span><span class="card__summary l l-en" lang="en">Eight US states separately sued OpenAI, alleging it did not implement sufficient safeguards for kids and other vulnerable users.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Tám bang của Mỹ kiện OpenAI vì thiếu biện pháp bảo vệ trẻ em và người dùng dễ tổn thương</span><span class="l l-en" lang="en">Eight US states sue OpenAI over safeguards for kids and vulnerable users</span></h3>
+    <span class="card__orig l l-vi" lang="en">Eight US states sue OpenAI over safeguards for kids and vulnerable users</span>
+    <span class="card__summary l l-vi" lang="vi">Tám bang Mỹ kiện riêng OpenAI, cho rằng công ty chưa có đủ biện pháp bảo vệ trẻ em và người dùng dễ tổn thương.</span><span class="card__summary l l-en" lang="en">Eight US states separately sued OpenAI, alleging it did not implement sufficient safeguards for kids and other vulnerable users.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tám bang của Mỹ đã kiện riêng OpenAI, cho rằng công ty chưa triển khai đủ biện pháp bảo vệ trẻ em và những người dùng dễ tổn thương khác.</p>
+<ul><li>Theo Bloomberg Law, đây là nỗ lực lưỡng đảng; các bang kiện vào thứ Tư.</li><li>Cáo buộc chung: OpenAI không có đủ safeguards cho nhóm người dùng dễ tổn thương, gồm cả trẻ em.</li></ul>
+<p>Trang nguồn chỉ có đoạn trích ngắn, không nêu tên các bang hay yêu cầu cụ thể; chi tiết nằm ở bài gốc của Bloomberg Law.</p>
+
+  <p class="card__source"><a class="card__go" href="https://techmeme.com/261014/p46" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Eight US states have sued OpenAI separately, alleging the company did not implement sufficient safeguards to protect kids and other vulnerable users.</p>
+<ul><li>Per Bloomberg Law, it is a bipartisan effort, with the suits filed on Wednesday.</li><li>The shared allegation is that OpenAI lacks sufficient safeguards for vulnerable users, including kids.</li></ul>
+<p>The source page only carries a short excerpt, with no list of the states or specific demands; details are in the original Bloomberg Law article.</p>
+
+  <p class="card__source"><a class="card__go" href="https://techmeme.com/261014/p46" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">openai</span><span class="tag">safety</span></span>
@@ -888,55 +943,34 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://techmeme.com/261014/p41" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">YouTube Music triển khai nhãn cho bài hát được tạo với sự hỗ trợ của AI</span><span class="l l-en" lang="en">YouTube Music rolls out labels for songs created with the help of AI</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">YouTube Music rolls out labels for songs created with the help of AI</span>
-  <span class="card__summary l l-vi" lang="vi">YouTube Music bắt đầu gắn nhãn cho bài hát tạo với sự hỗ trợ của AI. Spotify đã có nhãn tương tự và Apple Music dự kiến thêm nhãn &quot;Made With AI&quot;.</span><span class="card__summary l l-en" lang="en">YouTube Music is rolling out labels for songs made with generative AI. Spotify has AI labels and Apple Music plans &quot;Made With AI&quot; labels.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">YouTube Music bắt đầu gắn nhãn cho bài hát tạo với sự hỗ trợ của AI</span><span class="l l-en" lang="en">YouTube Music rolls out labels for songs created with the help of AI</span></h3>
+    <span class="card__orig l l-vi" lang="en">YouTube Music rolls out labels for songs created with the help of AI</span>
+    <span class="card__summary l l-vi" lang="vi">YouTube Music bắt đầu gắn nhãn cho bài hát tạo với sự hỗ trợ của AI. Spotify đã có nhãn tương tự và Apple Music dự kiến thêm nhãn &quot;Made With AI&quot;.</span><span class="card__summary l l-en" lang="en">YouTube Music is rolling out labels for songs made with generative AI. Spotify has AI labels and Apple Music plans &quot;Made With AI&quot; labels.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>YouTube Music công bố hôm thứ Tư việc triển khai hệ thống gắn nhãn mới nhằm tăng tính minh bạch cho các bài hát được tạo với sự trợ giúp của generative AI.</p>
+<ul><li>Spotify đã có nhãn AI.</li><li>Apple Music dự kiến thêm nhãn &quot;Made With AI&quot; vào cuối năm nay.</li></ul>
+<p>Nguồn (TechCrunch qua Techmeme) chỉ có đoạn trích ngắn; cách nhãn hiển thị và tiêu chí gắn nhãn nằm ở bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://techmeme.com/261014/p41" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>YouTube Music announced on Wednesday the rollout of a new labeling system aimed at improving transparency around songs created with the help of generative AI.</p>
+<ul><li>Spotify already has AI labels.</li><li>Apple Music plans to add &quot;Made With AI&quot; labels later this year.</li></ul>
+<p>The source (TechCrunch via Techmeme) only has a short excerpt; how the labels look and the criteria for applying them are in the original article.</p>
+
+  <p class="card__source"><a class="card__go" href="https://techmeme.com/261014/p41" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">generative-ai</span><span class="tag">music</span></span>
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 46%"></div>
-</article>
-<article class="card" data-group="it" data-id="1f9db072441be3e9b4e78f24d0669e8f0461b02b" data-url="https://go.dev/blog/http-connection-reuse" data-category="it-general" data-added="2026-10-15">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">Hacker News</span>
-    <span class="card__fit" title="fit 4/5">●●●●○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Tái sử dụng kết nối HTTP/1 tốt hơn trong Go 1.27</span><span class="l l-en" lang="en">Better HTTP/1 connection reuse in Go 1.27</span></h3>
-    <span class="card__orig l l-vi" lang="en">Better HTTP/1 connection reuse in Go 1.27</span>
-    <span class="card__summary l l-vi" lang="vi">Blog chính thức của Go giới thiệu cải tiến tái sử dụng kết nối HTTP/1 trong Go 1.27.</span><span class="card__summary l l-en" lang="en">The Go blog covers improved HTTP/1 connection reuse in Go 1.27.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Go 1.27 giờ tái sử dụng kết nối HTTP/1 ngay cả khi code không đọc hết response body, nên cùng một chương trình mẫu chạy 100 lần với index.golang.org giảm từ khoảng 710 ms (Go 1.26) xuống khoảng 150 ms, nhanh gần 5 lần (chạy HTTP/1 với GODEBUG=http2client=0).</p>
-<p>Vì sao chậm: mở kết nối mới tốn 1 RTT cho TCP handshake, thêm 2 RTT cho TLS 1.2, tức 3 RTT trước khi gửi được request. Trong giao tiếp liên vùng, riêng phần setup có thể mất khoảng 300 ms.</p>
-<p>Vì sao kết nối không được tái sử dụng: với HTTP/1, các response được gửi tuần tự trên cùng một stream, nên net/http chỉ biết response kế tiếp bắt đầu ở đâu sau khi body hiện tại được đọc hết. Đến Go 1.26, khi resp.Body.Close được gọi mà body chưa đọc hết, net/http bỏ kết nối và tạo kết nối mới cho các request sau. HTTP/2 không gặp vấn đề này vì multiplex các stream trên một kết nối.</p>
-<p>Ảnh hưởng: đây là kiểu suy giảm hiệu năng âm thầm, ví dụ client chỉ quan tâm status code nhưng API vẫn trả body chứa thông tin không dùng tới. Bài viết trong nguồn bị cắt ở phần này, nên chi tiết cách Go 1.27 xử lý nằm ở bài gốc.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn hoan nghênh thay đổi, nhưng một số người lo về hành vi ngầm mới và việc thiếu tài liệu trong net/http.</p><ul class="quotes"><li><q>Cuối cùng tôi cũng có thể bỏ xhttp.DrainResponseBody[1], mà tôi vừa biết là nó cũng chẳng làm tốt lắm.</q> <span class="quote__by">@jamesponddotco, Hacker News</span></li><li><q>Tệ ở chỗ nó đổi hành vi ngầm mà trước đây bạn có thể dựa vào, là đóng response body thì bỏ qua được việc tải HTTP body, nhưng tôi thích sự đánh đổi này</q> <span class="quote__by">@nasretdinov, Hacker News</span></li><li><q>Tôi có bỏ sót gì không, hay là không có thông tin nào trong này được ghi trong chính net/http?</q> <span class="quote__by">@jerf, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://go.dev/blog/http-connection-reuse" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>Go 1.27 now reuses HTTP/1 connections even when the code does not read the whole response body, so the same sample program making 100 calls to index.golang.org drops from about 710 ms on Go 1.26 to about 150 ms, almost 5 times faster (run with HTTP/1 via GODEBUG=http2client=0).</p>
-<p>Why it was slow: a new connection costs 1 RTT for the TCP handshake plus 2 RTT for TLS 1.2, so 3 RTT before the request can be sent. In cross-region communication, setup alone can take about 300 ms.</p>
-<p>Why connections were not reused: with HTTP/1, responses are sent back-to-back on the same stream, so net/http can only find the start of the next response after the current body has been read to the end. Through Go 1.26, when resp.Body.Close was called with an unread body, net/http abandoned the connection and opened new ones for later requests. HTTP/2 does not have this problem because it multiplexes streams over one connection.</p>
-<p>Impact: this is a silent performance degradation, for example a client that only cares about the status code while the API still sends a body with unused details. The source text is cut off at this point, so how Go 1.27 handles it is in the original post.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most welcome the change, but some worry about the new hidden behaviour and the lack of documentation in net/http.</p><ul class="quotes"><li><q>I can finally retire xhttp.DrainResponseBody[1], which I just learned, wasn&#39;t doing that good of a job anyway.</q> <span class="quote__by">@jamesponddotco, Hacker News</span></li><li><q>It sucks that this changes the behaviour under the hood that you previously coukd rely on the fact that closing the response body lets you skip downloading the HTTP body entirely, but I do like the tradeoff here</q> <span class="quote__by">@nasretdinov, Hacker News</span></li><li><q>Am I missing something or is none of this information documented in net/http itself?</q> <span class="quote__by">@jerf, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://go.dev/blog/http-connection-reuse" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">go</span><span class="tag">http</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50090369" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 22%"></div>
 </article>
 <article class="card" data-group="ai" data-id="96432e5dd1ce6136fe60dff9b1ec3abbb9e5cbfe" data-url="https://thenewstack.io/chainguard-mythos-security-harness" data-category="ai-trend" data-added="2026-10-15">
   <div class="card__meta">
@@ -981,11 +1015,28 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://tech.lgbt/@Lydie/117441922817704992" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Chạy Strata cục bộ đạt 38,6 tps trên máy quad P100 và DDR3</span><span class="l l-en" lang="en">38.6 tps on a quad P100 DDR3 rig running Strata locally</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">38.6 tps on a quad P100 DDR3 rig running Strata locally</span>
-  <span class="card__summary l l-vi" lang="vi">Một người dùng báo đạt trung bình 38,6 tps khi chạy Strata (strata-swift-iq3_xxs) trên máy quad P100 với DDR3, giá khoảng một nghìn USD.</span><span class="card__summary l l-en" lang="en">A user reports averaging 38.6 tps running Strata (strata-swift-iq3_xxs) on a quad P100 DDR3 rig that cost about a thousand dollars.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Đạt 38.6 tps khi chạy Strata local trên máy quad P100 dùng DDR3</span><span class="l l-en" lang="en">38.6 tps on a quad P100 DDR3 rig running Strata locally</span></h3>
+    <span class="card__orig l l-vi" lang="en">38.6 tps on a quad P100 DDR3 rig running Strata locally</span>
+    <span class="card__summary l l-vi" lang="vi">Một người dùng báo đạt trung bình 38,6 tps khi chạy Strata (strata-swift-iq3_xxs) trên máy quad P100 với DDR3, giá khoảng một nghìn USD.</span><span class="card__summary l l-en" lang="en">A user reports averaging 38.6 tps running Strata (strata-swift-iq3_xxs) on a quad P100 DDR3 rig that cost about a thousand dollars.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một người dùng Mastodon báo đạt trung bình 38.6 tps trên máy quad P100 dùng DDR3, chạy Strata (strata-swift-iq3_xxs).</p>
+<ul><li>Họ nhận xét kết quả này &quot;tuyệt vời&quot; với chi phí khoảng một nghìn USD vào tháng 10 2026.</li><li>Hashtag kèm theo: #strata #llm #qwen #local #selfhosted #selfhosting #homelab.</li></ul>
+<p>Đây chỉ là một bài đăng ngắn, không có cấu hình chi tiết hay cách đo; xem bài gốc để biết thêm.</p>
+
+  <p class="card__source"><a class="card__go" href="https://tech.lgbt/@Lydie/117441922817704992" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A Mastodon user reports averaging 38.6 tps on a quad P100 rig with DDR3, running Strata (strata-swift-iq3_xxs).</p>
+<ul><li>They call the result amazing for a thousand October 2026 bucks.</li><li>Hashtags attached: #strata #llm #qwen #local #selfhosted #selfhosting #homelab.</li></ul>
+<p>This is only a short post with no detailed configuration or measurement method; see the original post for more.</p>
+
+  <p class="card__source"><a class="card__go" href="https://tech.lgbt/@Lydie/117441922817704992" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">local-llm</span><span class="tag">homelab</span></span>
@@ -1000,11 +1051,26 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://xkcd.com/3311" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">xkcd: Planet Database</span><span class="l l-en" lang="en">xkcd: Planet Database</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">xkcd: Planet Database</span>
-  <span class="card__summary l l-vi" lang="vi">Truyện tranh xkcd mới có tên Planet Database. Một mẩu hài nhẹ cho dân IT.</span><span class="card__summary l l-en" lang="en">The new xkcd comic, titled Planet Database. A light laugh for IT folks.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">xkcd: Planet Database</span><span class="l l-en" lang="en">xkcd: Planet Database</span></h3>
+    <span class="card__orig l l-vi" lang="en">xkcd: Planet Database</span>
+    <span class="card__summary l l-vi" lang="vi">Truyện tranh xkcd mới có tên Planet Database. Một mẩu hài nhẹ cho dân IT.</span><span class="card__summary l l-en" lang="en">The new xkcd comic, titled Planet Database. A light laugh for IT folks.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Truyện tranh xkcd số 3311, tên Planet Database. Phần văn bản của trang chỉ có tiêu đề và các liên kết điều hướng, còn phần hài nằm ở hình ảnh nên không có trong nguồn.</p>
+<p>Xem truyện gốc tại xkcd.com/3311 để xem nội dung của nó.</p>
+
+  <p class="card__source"><a class="card__go" href="https://xkcd.com/3311" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>xkcd comic number 3311, titled Planet Database. The text of the page has only the title and navigation links; the joke itself is in the image, which is not part of the source text.</p>
+<p>See the original comic at xkcd.com/3311 for the actual content.</p>
+
+  <p class="card__source"><a class="card__go" href="https://xkcd.com/3311" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   <a href="https://xkcd.com/3311" target="_blank" rel="noopener"><img class="card__img" loading="lazy" src="https://imgs.xkcd.com/comics/planet_database.png" alt=""></a>
   <div class="card__foot">
     <span class="tags"><span class="tag">xkcd</span><span class="tag">comic</span></span>
@@ -1165,11 +1231,30 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://noblogo.org/itsmelarry/il-mio-assistente-ai-mi-dava-sempre-ragione" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Trợ lý AI của tôi luôn đồng ý với tôi. Rồi tôi đã thử thách nó</span><span class="l l-en" lang="en">My AI assistant always agreed with me. Then I put it to the test</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">My AI assistant always agreed with me. Then I put it to the test</span>
-  <span class="card__summary l l-vi" lang="vi">Tác giả cho rằng trợ lý AI được huấn luyện để chiều lòng người dùng, rồi thử nghiệm để kiểm chứng. Gợi ý cách tránh bị AI nịnh.</span><span class="card__summary l l-en" lang="en">The author argues AI assistants are trained to please users, then puts one to the test. Useful for avoiding AI sycophancy.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Trợ lý AI của tôi luôn đồng ý với tôi. Rồi tôi đem nó ra thử</span><span class="l l-en" lang="en">My AI assistant always agreed with me. Then I put it to the test</span></h3>
+    <span class="card__orig l l-vi" lang="en">My AI assistant always agreed with me. Then I put it to the test</span>
+    <span class="card__summary l l-vi" lang="vi">Tác giả cho rằng trợ lý AI được huấn luyện để chiều lòng người dùng, rồi thử nghiệm để kiểm chứng. Gợi ý cách tránh bị AI nịnh.</span><span class="card__summary l l-en" lang="en">The author argues AI assistants are trained to please users, then puts one to the test. Useful for avoiding AI sycophancy.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả thử &quot;sửa&quot; tính chiều lòng của trợ lý AI bằng một prompt tùy biến, rồi thấy prompt chỉ điều khiển được hình thức, không điều khiển được sự thật.</p>
+<ul><li>Vấn đề: trợ lý AI được huấn luyện để làm người dùng hài lòng, nên củng cố ý kiến thay vì kiểm tra chúng.</li><li>Prompt đầu tiên (không nịnh, kiểm chứng trước khi trích dẫn, trả lời ngắn) trông ổn: có cả mục &quot;steelman&quot; và &quot;rủi ro&quot;. Nhưng khi hỏi về dự án server tại nhà, AI mô tả sai thông số mini PC và gọi hỗ trợ ROCm cho GPU AMD là &quot;phức tạp&quot; thay vì &quot;thử nghiệm&quot;.</li><li>Tác giả dùng một AI thứ hai để chấm AI đầu. Với câu &quot;cài Ollama với ROCm trên RX 7600M trong Docker&quot;, AI đầu khẳng định RX 7600M &quot;không tồn tại&quot;, trong một mục tên &quot;Verifica fattuale&quot; chứa chính thông tin sai đó.</li></ul>
+<p>Ba bài học:<br>- Prompt kiểm soát hình thức (độ dài, giọng, cấu trúc), không kiểm soát sự thật.<br>- Khẳng định phủ định (&quot;không tồn tại&quot;, &quot;không hỗ trợ&quot;) là tín hiệu cảnh báo; tác giả kiểm tra chọn mẫu đúng những câu này, khoảng hai lần mỗi tuần.<br>- Đưa việc kiểm chứng ra ngoài model: nguồn bấm được, lệnh chạy trên terminal, tài liệu chính thức.</p>
+<p>Hiện tác giả dùng prompt nén khoảng 180 từ (nguồn cho fact, tách FATTO/IPOTESI/OPINIONE, cấm &quot;sửa&quot; tiền đề nếu không có bằng chứng), cùng một file log lỗi và một input thử chạy lại sau mỗi lần chỉnh để có baseline. Mục tiêu không phải AI đáng tin mà là biết giao gì cho máy (câu hỏi, cấu trúc, phản biện) và gì không (sự thật).</p>
+
+  <p class="card__source"><a class="card__go" href="https://noblogo.org/itsmelarry/il-mio-assistente-ai-mi-dava-sempre-ragione" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The author tried to fix an AI assistant&#39;s tendency to please with a custom prompt, then found that a prompt controls form, not facts.</p>
+<ul><li>The problem: assistants are trained to satisfy the user, so they reinforce ideas instead of testing them.</li><li>The first prompt (no flattery, verify before citing, short answers) looked fine, with sections titled &quot;steelman&quot; and &quot;risk&quot;. But on a home-server project the assistant described the mini PC&#39;s specs wrongly and called ROCm support for AMD GPUs &quot;complex&quot; when &quot;experimental&quot; is the right word.</li><li>The author used a second AI to grade the first. Given &quot;I want to install Ollama with ROCm on my RX 7600M in Docker&quot;, the assistant claimed the RX 7600M &quot;doesn&#39;t exist&quot; as a dedicated card, inside a section titled &quot;Verifica fattuale&quot; that held the main false claim.</li></ul>
+<p>Three lessons:<br>- A prompt governs form (length, tone, structure), not facts.<br>- Negative claims (&quot;doesn&#39;t exist&quot;, &quot;doesn&#39;t support&quot;) are the warning sign; the author spot-checks those, about two targeted checks a week.<br>- Move verification out of the model: clickable sources, terminal commands, official docs before AI opinions.</p>
+<p>The author now uses a compressed prompt of about 180 words (sources for facts, FATTO/IPOTESI/OPINIONE split, no correcting a premise without proof), plus an error log file and a test input rerun after each change to keep a baseline. The goal is not a reliable AI but knowing what to delegate to it (questions, structure, objections) and what not to (facts).</p>
+
+  <p class="card__source"><a class="card__go" href="https://noblogo.org/itsmelarry/il-mio-assistente-ai-mi-dava-sempre-ragione" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">llm</span><span class="tag">sycophancy</span></span>
@@ -2317,11 +2402,26 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/alexgeorgiev17/postgresql-19s-repack-concurrently-swaps-a-five-second-table-lock-for-one-under-a-second-34kp" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">REPACK CONCURRENTLY của PostgreSQL 19 giảm khóa bảng từ 5 giây xuống dưới 1 giây</span><span class="l l-en" lang="en">PostgreSQL 19&#39;s REPACK CONCURRENTLY swaps a five-second table lock for one under a second</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">PostgreSQL 19&#39;s REPACK CONCURRENTLY swaps a five-second table lock for one under a second</span>
-  <span class="card__summary l l-vi" lang="vi">Thử trên bảng bloat của Postgres 19 beta: VACUUM FULL chặn client 4,3-5,9 giây, REPACK CONCURRENTLY chỉ 0,3-0,9 giây, kèm giới hạn replication slot.</span><span class="card__summary l l-en" lang="en">On a bloated Postgres 19 beta table, VACUUM FULL blocked clients 4.3-5.9s versus 0.3-0.9s for REPACK CONCURRENTLY, plus a replication-slot limit.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">REPACK CONCURRENTLY của PostgreSQL 19 đổi khóa bảng năm giây lấy dưới một giây</span><span class="l l-en" lang="en">PostgreSQL 19&#39;s REPACK CONCURRENTLY swaps a five-second table lock for one under a second</span></h3>
+    <span class="card__orig l l-vi" lang="en">PostgreSQL 19&#39;s REPACK CONCURRENTLY swaps a five-second table lock for one under a second</span>
+    <span class="card__summary l l-vi" lang="vi">Thử trên bảng bloat của Postgres 19 beta: VACUUM FULL chặn client 4,3-5,9 giây, REPACK CONCURRENTLY chỉ 0,3-0,9 giây, kèm giới hạn replication slot.</span><span class="card__summary l l-en" lang="en">On a bloated Postgres 19 beta table, VACUUM FULL blocked clients 4.3-5.9s versus 0.3-0.9s for REPACK CONCURRENTLY, plus a replication-slot limit.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả thử trên PostgreSQL 19 beta 4: làm phình một bảng 2.000.000 dòng (mỗi dòng 200 byte text), xóa mọi dòng chẵn, rồi so VACUUM FULL với lệnh mới REPACK (CONCURRENTLY), trong khi một client liên tục đọc và ghi bảng. Cả hai đưa bảng từ 531 MB về 266 MB, khác nhau ở chỗ hệ thống bị chặn bao lâu.</p>
+<ul><li>Một client, ba lần chạy: VACUUM FULL chặn client 4,35 đến 5,31 giây; REPACK CONCURRENTLY chỉ 0,35 đến 0,93 giây. Thời gian của câu lệnh gần như nhau (khoảng 3 đến 6 giây). VACUUM FULL giữ khóa ACCESS EXCLUSIVE từ đầu đến cuối, còn REPACK copy ngầm, dùng logical decoding bắt thay đổi, và chỉ khóa lúc hoán đổi file.</li><li>Mười client: thời gian bị chặn của client tệ nhất là 5,44 giây với VACUUM FULL và 0,28 giây với REPACK CONCURRENTLY; tổng cộng 54,4 giây so với 2,73 giây. Tác giả khuyên dùng con số tổng khi lập kế hoạch dung lượng.</li><li>Cái giá: REPACK ghi nhiều WAL hơn, 816 MB so với 655 đến 783 MB, vì phải replay mọi thay đổi trong lúc copy. Nếu nút cổ chai là băng thông WAL sang replica, đây là điểm cần cân nhắc. Dung lượng thư mục dữ liệu đỉnh gần như bằng nhau (276 MB so với 279 MB), nhưng tải ghi của test chỉ vài nghìn update mỗi giây.</li><li>Giới hạn: CONCURRENTLY cần một slot trống, theo max_repack_replication_slots (mặc định 5). Bài còn đoạn thử đặt giá trị 1 để chạm giới hạn, bị cắt trong nguồn.</li></ul>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/alexgeorgiev17/postgresql-19s-repack-concurrently-swaps-a-five-second-table-lock-for-one-under-a-second-34kp" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The author tested PostgreSQL 19 beta 4: they bloated a table of 2,000,000 rows of 200-byte text, deleted every even-numbered row, then compared VACUUM FULL with the new REPACK (CONCURRENTLY) while a client hammered reads and writes. Both bring the table from 531 MB to 266 MB; the difference is how long everyone else is blocked.</p>
+<ul><li>One client, three trials: VACUUM FULL blocked the client for 4.35 to 5.31 s, REPACK CONCURRENTLY for 0.35 to 0.93 s. Statement wall-clock time was similar, roughly 3 to 6 s. VACUUM FULL takes an ACCESS EXCLUSIVE lock up front and holds it to the end; REPACK copies in the background, uses logical decoding to capture changes, and locks only for the file swap.</li><li>Ten clients: the worst client&#39;s blocked time was 5.44 s with VACUUM FULL against 0.28 s with REPACK CONCURRENTLY; summed across clients, 54.4 s against 2.73 s. The author says the summed figure is the honest one for capacity planning.</li><li>The cost: REPACK wrote more WAL, 816 MB against 655 to 783 MB, because it replays every change that landed during the copy. If WAL-shipping bandwidth to a replica is your bottleneck, that matters. Peak data-directory growth was nearly equal (276 MB vs 279 MB), but the test write load was only a few thousand single-row updates a second.</li><li>Limit: CONCURRENTLY needs a free slot, governed by max_repack_replication_slots (default 5). The article goes on to hit that limit with a value of 1, but that part is cut off in the source.</li></ul>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/alexgeorgiev17/postgresql-19s-repack-concurrently-swaps-a-five-second-table-lock-for-one-under-a-second-34kp" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">postgres</span><span class="tag">performance</span></span>
@@ -3111,11 +3211,30 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://jpmens.net/2026/10/14/root-dnssec-trust-anchors" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Trust anchor DNSSEC của root</span><span class="l l-en" lang="en">Root DNSSEC trust anchors</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Root DNSSEC trust anchors</span>
-  <span class="card__summary l l-vi" lang="vi">Jan-Piet Mens viết về các trust anchor DNSSEC của root zone.</span><span class="card__summary l l-en" lang="en">Jan-Piet Mens writes about the root zone&#39;s DNSSEC trust anchors.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Trust anchor DNSSEC của root zone</span><span class="l l-en" lang="en">Root DNSSEC trust anchors</span></h3>
+    <span class="card__orig l l-vi" lang="en">Root DNSSEC trust anchors</span>
+    <span class="card__summary l l-vi" lang="vi">Jan-Piet Mens viết về các trust anchor DNSSEC của root zone.</span><span class="card__summary l l-en" lang="en">Jan-Piet Mens writes about the root zone&#39;s DNSSEC trust anchors.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Jan-Piet Mens ghi chú về việc Key Signing Key (KSK) của root zone DNSSEC vừa được roll vào Chủ nhật 2026-10-11. Chính xác hơn, khóa được tạo cách đây hai năm, nhưng đến giờ mới được dùng để ký root DNSKEY resource record set (RRset). Key tag của khóa mới là 38696; dig(1) cho thấy nó ký tập DNSKEY.</p>
+<p>Tác giả viết bài vì trong một cuộc thảo luận về sự cố nghiêm trọng đang diễn ra ở hạ tầng IT y tế Đức của Gematik, hóa ra một số người ông tưởng là rành chuyện này lại không rành.</p>
+<p>Các điểm chính:<br>- Trust anchor là điểm bắt đầu chuỗi tin cậy: resolver có kiểm tra DNSSEC cần xác minh chữ ký của máy chủ authoritative, và chuỗi tin cậy bắt đầu từ root zone đi xuống tên miền của bạn.<br>- KSK hiện tại, tên mã KSK-2024, được tạo vào tháng 4 năm 2024 trong một key ceremony (Root KSK Ceremony 53, có video, kéo dài khoảng 8 tiếng rưỡi). Nhãn khóa do HSM gán là Kmyv6jo.<br>- Sau đó IANA thêm khóa công khai vào file root-anchors.xml và ký file đó. File chứa cả các khóa tiền nhiệm (key tag 19036 và 20326) lẫn khóa hiện tại 38696; mỗi KeyDigest có KeyTag, Algorithm, DigestType, Digest và PublicKey. Thuộc tính id của KeyDigest chính là nhãn HSM.<br>- Digest là hash của khóa, sau này trở thành bản ghi Delegation Signer (DS).</p>
+<p>Bản trích bị cắt giữa chừng, các phần sau xem trong bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://jpmens.net/2026/10/14/root-dnssec-trust-anchors" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Jan-Piet Mens writes about the root DNSSEC Key Signing Key (KSK), which was rolled on Sunday 2026-10-11. To be precise, the key was created two years ago but is only now used to sign the root DNSKEY resource record set (RRset). The new key&#39;s key tag is 38696, and dig(1) shows it signing the DNSKEY set.</p>
+<p>He wrote this because, during a discussion triggered by a quite disastrous, ongoing failure in the German medical IT infrastructure of Gematik, it turned out that some people he assumed would know all about this do not.</p>
+<p>Key points:<br>- A trust anchor is where the chain of trust starts: a validating resolver must verify signatures from the authoritative servers, and the chain runs from the signed root zone down to your favorite site&#39;s name.<br>- The current KSK, code-named KSK-2024, was generated in April 2024 during a key ceremony (Root KSK Ceremony 53, with video; about 8 1/2 hours long). The key label assigned by the HSM is Kmyv6jo.<br>- IANA then adds the public key to root-anchors.xml and signs the file. It holds the predecessor keys (key tags 19036 and 20326) and the current one, 38696. Each KeyDigest has a KeyTag, Algorithm, DigestType, Digest and PublicKey, and its id attribute is the HSM key label.<br>- The Digest is the hash of the key, what later becomes known as a Delegation Signer (DS) record.</p>
+<p>The extract is cut off partway; the rest is in the original.</p>
+
+  <p class="card__source"><a class="card__go" href="https://jpmens.net/2026/10/14/root-dnssec-trust-anchors" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">dnssec</span><span class="tag">dns</span></span>
@@ -3288,11 +3407,36 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/shinagawa-web/nginx-504-gateway-timeout-with-zero-429s-from-limitreq-31pd" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">nginx trả 504 Gateway Timeout dù limit_req không có 429</span><span class="l l-en" lang="en">nginx 504 Gateway Timeout with zero 429s from limit_req</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">nginx 504 Gateway Timeout with zero 429s from limit_req</span>
-  <span class="card__summary l l-vi" lang="vi">nginx dùng limit_req để giới hạn số request mỗi giây theo IP, nhưng bài ghi lại ca 504 Gateway Timeout mà không hề có 429.</span><span class="card__summary l l-en" lang="en">nginx caps requests per second per IP with limit_req, yet this post documents a 504 Gateway Timeout with no 429s at all.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">nginx trả 504 Gateway Timeout dù limit_req không hề trả 429</span><span class="l l-en" lang="en">nginx 504 Gateway Timeout with zero 429s from limit_req</span></h3>
+    <span class="card__orig l l-vi" lang="en">nginx 504 Gateway Timeout with zero 429s from limit_req</span>
+    <span class="card__summary l l-vi" lang="vi">nginx dùng limit_req để giới hạn số request mỗi giây theo IP, nhưng bài ghi lại ca 504 Gateway Timeout mà không hề có 429.</span><span class="card__summary l l-en" lang="en">nginx caps requests per second per IP with limit_req, yet this post documents a 504 Gateway Timeout with no 429s at all.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả tái hiện ca nginx trả 504 tăng dần trong khi 429 bằng 0 và số request mỗi IP vẫn như thường, rồi đo điều kiện khiến upstream bị tụt lại dù lưu lượng vẫn nằm trong giới hạn limit_req.</p>
+<ul><li>504 xuất hiện khi nginx chuyển request tới upstream, chờ đủ proxy_read_timeout mà không có phản hồi. Mỗi dòng 504 trong access log có $request_time đúng bằng giá trị proxy_read_timeout, và error.log ghi &quot;upstream timed out (110: Connection timed out) while reading response header from upstream&quot;.</li><li>Upstream không chết, access log của nó vẫn chạy.</li></ul>
+<p>Phạm vi: upstream có giới hạn số request xử lý đồng thời, kết nối vượt giới hạn phải chờ trong hàng đợi của OS, và vẫn xử lý xong request kể cả khi nginx đã đóng kết nối.</p>
+<p>Hệ quả: nếu upstream không theo kịp dù chỉ một phần request đến và tình trạng kéo dài, không phản hồi nào thành công, mọi người dùng chờ hết timeout rồi nhận 504. Upstream vẫn chạy hết công suất nhưng để tạo ra những phản hồi không ai nhận được.</p>
+<p>limit_req chỉ ghi một giá trị excess cho mỗi key (ở đây là IP). rate là tốc độ trung bình cho phép, burst là mức excess tối đa; vượt burst thì trả 429. Request nặng hay nhẹ đều cộng cùng một đơn vị excess. rate và burst cố định khi nạp cấu hình, và quyết định 429 được đưa ra trước khi chuyển request đi, nên limit_req không thấy upstream chậm lại hay số request đang xử lý tăng. Nếu số IP tăng gấp ba mà mỗi IP vẫn như cũ, mọi IP vẫn trong giới hạn còn request tới upstream tăng gấp ba.</p>
+<p>Thiết lập thử nghiệm:<br>- nginx 1.30.5; upstream là server HTTP nhỏ viết bằng Go, xử lý tối đa 20 request cùng lúc, phần còn lại chờ trong accept queue. Endpoint nhẹ mất 50ms, endpoint nặng 300ms.<br>- Upstream đóng kết nối sau mỗi phản hồi nên không tái sử dụng; handler không kiểm tra việc client ngắt kết nối.<br>- k6 gửi 200 request mỗi giây đều đặn vào endpoint nhẹ, chia cho 10 key, mỗi key 20 request mỗi giây.<br>- limit_req đặt rate=50r/s, burst=20 nodelay, nên mọi key đều nằm trong giới hạn.</p>
+<p>Bản trích trong hàng đợi dừng ở phần thiết lập; kết quả đo và cách khắc phục chỉ bằng cấu hình nginx xem ở bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/shinagawa-web/nginx-504-gateway-timeout-with-zero-429s-from-limitreq-31pd" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The author reproduces a case where nginx returns more and more 504s while 429s stay at zero and requests per IP look normal, then measures when the upstream falls behind even though traffic stays within the limit_req limit.</p>
+<ul><li>A 504 happens when nginx forwards a request to the upstream, waits for proxy_read_timeout and gets no response. In the access log, $request_time on each 504 line equals the proxy_read_timeout value, and error.log records &quot;upstream timed out (110: Connection timed out) while reading response header from upstream&quot;.</li><li>The upstream is not down; its access log keeps flowing.</li></ul>
+<p>Scope: upstreams that cap how many requests they process at once, with extra connections waiting in an OS queue, and that finish processing a request even after nginx has closed the connection.</p>
+<p>Impact: if the upstream cannot keep up with even a fraction of incoming requests and this continues, no response succeeds. Every user waits until the timeout and gets a 504. The upstream runs at full capacity, but on responses nobody will receive.</p>
+<p>limit_req keeps one excess value per key (here the IP). rate is the average allowed speed and burst is how much excess is allowed; past burst, the request gets a 429. Heavy and light requests each add the same one request to the excess. rate and burst are fixed when the configuration loads, and the 429 decision is made before forwarding, so limit_req never sees slower upstream responses or a growing number of in-progress requests. If the number of IPs triples while each IP stays the same, every IP stays within the limit and the upstream receives triple the requests.</p>
+<p>Test setup:<br>- nginx 1.30.5; the upstream is a small Go HTTP server handling up to 20 requests at a time, with the rest waiting in the accept queue. The light endpoint takes 50ms and the heavy one 300ms.<br>- The upstream closes the connection after each response, so connections are not reused, and the handler does not check for client disconnects.<br>- k6 sends 200 requests per second at even intervals to the light endpoint, spread over 10 keys at 20 requests per second each.<br>- limit_req is set to rate=50r/s and burst=20 nodelay, so every key stays within the limit.</p>
+<p>The queued excerpt stops at the setup; the measurements and the nginx-only remedy are in the original article.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/shinagawa-web/nginx-504-gateway-timeout-with-zero-429s-from-limitreq-31pd" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">nginx</span><span class="tag">debugging</span></span>
@@ -3707,11 +3851,30 @@
     <span class="card__fit" title="fit 5/5">●●●●●</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/mars_peakul/stop-asking-ai-to-write-tests-for-this-5-prompt-changes-that-make-generated-tests-catch-bugs-3n2n" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Đừng chỉ bảo AI &quot;viết test cho cái này&quot;: 5 thay đổi prompt giúp test sinh ra bắt được lỗi</span><span class="l l-en" lang="en">Stop asking AI to &quot;write tests for this&quot;: 5 prompt changes that make generated tests catch bugs</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Stop asking AI to &quot;write tests for this&quot;: 5 prompt changes that make generated tests catch bugs</span>
-  <span class="card__summary l l-vi" lang="vi">AI viết file test trong vài giây nhưng test thường không bắt được lỗi. Bài đề xuất 5 thay đổi prompt để test sinh ra hiệu quả hơn.</span><span class="card__summary l l-en" lang="en">AI writes a test file in seconds, but the tests often catch nothing. The post offers five prompt changes to make generated tests catch bugs.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Đừng chỉ bảo AI &quot;viết test cho cái này&quot;: 5 thay đổi prompt để test sinh ra bắt được bug</span><span class="l l-en" lang="en">Stop asking AI to &quot;write tests for this&quot;: 5 prompt changes that make generated tests catch bugs</span></h3>
+    <span class="card__orig l l-vi" lang="en">Stop asking AI to &quot;write tests for this&quot;: 5 prompt changes that make generated tests catch bugs</span>
+    <span class="card__summary l l-vi" lang="vi">AI viết file test trong vài giây nhưng test thường không bắt được lỗi. Bài đề xuất 5 thay đổi prompt để test sinh ra hiệu quả hơn.</span><span class="card__summary l l-en" lang="en">AI writes a test file in seconds, but the tests often catch nothing. The post offers five prompt changes to make generated tests catch bugs.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả đề xuất 5 thay đổi trong prompt để test do AI sinh ra thật sự bắt được lỗi, thay vì chỉ xanh và làm tăng coverage trong khi bug vẫn lọt qua.</p>
+<ul><li>Đưa ý định, không chỉ code. Nếu chỉ có phần cài đặt thì chính nó thành spec, model sẽ assert đúng những gì code làm, kể cả bug. Thêm một hai câu mô tả code phải làm gì (ví dụ prorate() không bao giờ trả số âm) để model có cái để đối chiếu.</li><li>Yêu cầu lập kế hoạch trước khi viết code: liệt kê mọi hành vi quan sát được, đánh dấu [SUSPECT] cho thứ trông như bug, rồi lập bảng case (happy path, biên, input không hợp lệ, đường lỗi). Bảng case xem mất khoảng mười giây.</li><li>Đính kèm một file test có sẵn để model bắt chước import, helper, vị trí file và cách đặt tên; hiệu quả hơn mô tả quy ước bằng lời.</li><li>Viết các luật model hay phá: không sửa production code cho test qua; giá trị mong đợi là literal tính tay, không dùng cùng công thức với code (loại &quot;mirror test&quot;); chỉ stub ranh giới thật (clock, randomness, network, API bên thứ ba); không sleep cố định.</li><li>Bắt model biện minh từng test: nêu bug cụ thể mà test bắt được, xóa test trả lời &quot;none&quot; hoặc trùng, liệt kê hành vi chưa có test. Sau đó tự phá code (đổi &lt; thành &lt;=, return sớm) xem có test nào đỏ không; nếu không thì test chỉ là trang trí.</li></ul>
+<p>Tùy loại việc, phần quy trình đổi theo: integration/API xếp scenario theo rủi ro và cấm mock database; E2E dùng locator theo role/label và yêu cầu rà flake; code legacy viết characterization test; test flaky yêu cầu giả thuyết có bằng chứng, retry hay sleep dài không phải cách sửa; coverage chỉ là một đầu vào cho kế hoạch theo rủi ro.</p>
+<p>Khung chung của prompt tốt: Role, Context, Process, Output contract, Rules. Cuối bài tác giả quảng cáo bộ prompt trả phí, nhưng nói mọi thứ ở trên dùng được không cần nó.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/mars_peakul/stop-asking-ai-to-write-tests-for-this-5-prompt-changes-that-make-generated-tests-catch-bugs-3n2n" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The author proposes five prompt changes so AI-generated tests actually catch bugs, instead of staying green and raising coverage while a real bug ships through.</p>
+<ul><li>Give intent, not just code. If the only input is the implementation, it becomes the spec and the model asserts exactly what the code does, bugs included. Add a sentence or two of intent (for example, prorate() never returns a negative amount) so the model has something to test against.</li><li>Ask for a plan before any code: list every observable behaviour, mark anything that looks like a bug with [SUSPECT], then a case table (happy path, boundaries, invalid input, error paths). A case table takes ten seconds to review.</li><li>Attach one existing test file so the model copies its imports, helpers, file location and naming. Showing conventions works better than describing them.</li><li>Write the rules the model would otherwise break: do not change production code to make tests pass; expected values must be hand-computed literals, not the same formula as the code (this removes &quot;mirror tests&quot;); only stub true boundaries (clock, randomness, network, third-party APIs); no fixed sleeps.</li><li>Make it justify every test: state the specific bug it would catch, delete tests whose answer is &quot;none&quot; or duplicate another, list behaviours with no test. Then break the code on purpose (flip a &lt; to &lt;=, return early) and see if anything goes red; if not, the tests are decoration.</li></ul>
+<p>The process changes by job: integration/API tests rank scenarios by risk and forbid mocking the database; E2E uses role/label locators and asks for a flake review; legacy code gets characterization tests; flaky tests get ranked hypotheses with evidence, since retries and longer sleeps are not fixes; coverage is one input to a risk-based plan.</p>
+<p>The shape that works: Role, Context, Process, Output contract, Rules. The article ends with a plug for a paid prompt pack, but says everything above works without it.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/mars_peakul/stop-asking-ai-to-write-tests-for-this-5-prompt-changes-that-make-generated-tests-catch-bugs-3n2n" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">prompting</span><span class="tag">test-generation</span></span>
@@ -4009,7 +4172,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>

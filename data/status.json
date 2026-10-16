@@ -1,15 +1,15 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 118 sightings from 45/62 sources",
+    "message": "200 candidates, 107 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
-        "error": "HTTP 403 for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-localllama",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-claudeai",
@@ -17,7 +17,7 @@
       },
       {
         "id": "r-qualityassurance",
-        "error": "HTTP 403 for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-softwaretesting",
@@ -33,11 +33,11 @@
       },
       {
         "id": "r-playwright",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-selenium",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/selenium/top.json?t=week&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/selenium/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-devops",
@@ -45,11 +45,11 @@
       },
       {
         "id": "r-experienceddevs",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-sysadmin",
-        "error": "HTTP 403 for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmingmemes",
@@ -73,41 +73,41 @@
       }
     ],
     "candidates": 200,
-    "at": "2026-10-15T00:05:15.990Z"
+    "at": "2026-10-16T01:07:47.381Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 112, dropped 88, invalid 1",
-    "at": "2026-10-15T00:11:04.146Z"
+    "message": "kept 93, dropped 106, invalid 2",
+    "at": "2026-10-16T01:24:58.322Z"
   },
   "merge": {
     "ok": true,
-    "message": "1348 items retained, 5 re-sighted",
+    "message": "1441 items retained, 4 re-sighted",
     "counts": {
       "candidates": 200,
-      "kept": 112,
-      "dropped": 88,
-      "invalid": 1,
-      "sighted": 5
+      "kept": 93,
+      "dropped": 106,
+      "invalid": 2,
+      "sighted": 4
     },
-    "at": "2026-10-15T00:11:04.146Z"
+    "at": "2026-10-16T01:24:58.322Z"
   },
   "build": {
     "ok": true,
-    "message": "744 items on index, 12 archive pages",
-    "at": "2026-10-15T00:35:41.577Z"
+    "message": "731 items on index, 13 archive pages",
+    "at": "2026-10-16T01:45:10.167Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-15",
-    "message": "104 details written today",
+    "day": "2026-10-16",
+    "message": "99 details written today",
     "counts": {
-      "written": 104,
-      "missing": 6,
-      "invalid": 7,
-      "ungrounded": 7,
-      "discussed": 18
+      "written": 99,
+      "missing": 1,
+      "invalid": 4,
+      "ungrounded": 4,
+      "discussed": 11
     },
-    "at": "2026-10-15T00:35:41.298Z"
+    "at": "2026-10-16T01:45:09.778Z"
   }
 }

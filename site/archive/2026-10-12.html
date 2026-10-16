@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-12</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-15</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-16</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -504,6 +504,42 @@
   </div>
   <div class="hot" style="--hot: 26%"></div>
 </article>
+<article class="card" data-group="it" data-id="68fd84df0926348891ce3ef7576a3a58b96e364e" data-url="https://blog.frankel.ch/bypass-bot-protection" data-category="it-general" data-added="2026-10-12">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">daily.dev · Mastodon</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Scraping website và bot-protection: các mức bảo vệ và cách vượt từng mức</span><span class="l l-en" lang="en">Scraping websites and bot-protection</span></h3>
+    <span class="card__orig l l-vi" lang="en">Scraping websites and bot-protection</span>
+    <span class="card__summary l l-vi" lang="vi">Tác giả kể các mức bot-protection gặp khi scraping, từ mẹo curl, TLS/JA3 fingerprint tới Anubis, Cloudflare và dùng Playwright headless. Có đối sách cụ thể cho từng mức.</span><span class="card__summary l l-en" lang="en">The author walks through escalating bot-protection levels while scraping, from curl tricks and TLS/JA3 fingerprinting to Anubis, Cloudflare and headless Playwright, with countermeasures for each.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Khi tìm tổ tiên, tác giả phải lấy dữ liệu từ nhiều site tra cứu phả hệ và hồ sơ công cộng, và gặp các mức chống truy cập tự động khác nhau. Ông liệt kê từng mức kèm đối sách, tự nhận dùng cho mục đích cá nhân và dặn &quot;scrape responsibly&quot;.</p>
+<ul><li>Không bảo vệ: robots.txt chỉ là lời đề nghị, không cưỡng chế được. Ở mức này các tùy chọn curl là đủ: User-Agent qua -A, Referer qua -e (một số site chỉ kiểm tra trên request ảnh và trả 403 nếu thiếu), session cookie qua -c và -b.</li><li>Nếu curl vẫn bị từ chối, site có thể đang fingerprint TLS handshake (JA3 hoặc JA4), bất kể User-Agent. curl_cffi có thể giả fingerprint của trình duyệt từ Python, nhưng tác giả chưa cần dùng vì site fingerprint TLS thường cũng đòi JavaScript.</li><li>Đòi JavaScript: có khi là bảo vệ thật, có khi chỉ vì site dựng hoàn toàn bằng JavaScript. Hai guard gặp phải là Anubis (proof of work kiểu Hashcash với SHA-256, client qua được nhận cookie JWT có chữ ký) và Cloudflare JavaScript Detections. Cách vượt: dùng trình duyệt điều khiển bằng Playwright; trên nhiều site headless là đủ.</li><li>Không phải site nào cũng vậy: tài liệu Cloudflare nói JavaScript Detections bắt được headless browser, nên kết quả tùy cấu hình của site. Một số site từ chối headless browser, bài liệt kê lý do bắt đầu bằng client fingerprint.</li></ul>
+<p>Bản đọc được bị cắt ở phần headless browser.</p>
+
+  <p class="card__source"><a class="card__go" href="https://blog.frankel.ch/bypass-bot-protection" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>While searching for his ancestors, the author had to pull data from many genealogy and public-records sites and met different levels of protection against automated access. He lists them with countermeasures, says he uses the data privately, and urges readers to scrape responsibly.</p>
+<ul><li>No protection: robots.txt is purely advisory and cannot enforce anything. Here curl options are enough: User-Agent via -A, Referer via -e (some sites check it on image requests only and return 403 without it), and session cookies via -c and -b.</li><li>If curl is still refused, the site may be fingerprinting the TLS handshake (JA3 or JA4), whatever the User-Agent says. curl_cffi can impersonate a browser fingerprint from Python, but the author never needed it, since a site that fingerprints TLS usually also requires JavaScript.</li><li>Requires JavaScript: sometimes a genuine guard, sometimes just a fully JavaScript-built site. The two guards he met were Anubis (a Hashcash-style SHA-256 proof of work; a passing client gets a signed JWT cookie) and Cloudflare JavaScript Detections. The workaround is a real browser steered with Playwright; on several sites headless was enough.</li><li>Not on all of them: Cloudflare&#39;s docs say JavaScript Detections catches headless browsers, so it depends on site configuration. Some sites do reject headless browsers, and the list of reasons starts with client fingerprinting.</li></ul>
+<p>The available text is cut off in the headless browser section.</p>
+
+  <p class="card__source"><a class="card__go" href="https://blog.frankel.ch/bypass-bot-protection" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">scraping</span><span class="tag">playwright</span><span class="tag">cloudflare</span></span>
+    <span class="links"><a class="card__link" href="https://daily.dev/posts/scraping-websites-and-bot-protection-fnv9adnrq" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://foojay.social/@foojay/117443379717717372" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 13%"></div>
+</article>
 <article class="card" data-group="ai" data-id="21b014af17709818d1e99b25f69dacaa4816e73b" data-url="https://roberthopman.com/from-request-to-e-mail" data-category="ai-tip" data-added="2026-10-12">
   <div class="card__meta">
     <span class="chip chip--ai">AI tip</span>
@@ -611,42 +647,6 @@
     <span class="links"><a class="card__link" href="https://sfba.social/@glassresistor/117423492994379284" target="_blank" rel="noopener">discussion</a></span>
   </div>
   <div class="hot" style="--hot: 15%"></div>
-</article>
-<article class="card" data-group="it" data-id="68fd84df0926348891ce3ef7576a3a58b96e364e" data-url="https://blog.frankel.ch/bypass-bot-protection" data-category="it-general" data-added="2026-10-12">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">daily.dev</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Scraping website và bot-protection: các mức bảo vệ và cách vượt từng mức</span><span class="l l-en" lang="en">Scraping websites and bot-protection</span></h3>
-    <span class="card__orig l l-vi" lang="en">Scraping websites and bot-protection</span>
-    <span class="card__summary l l-vi" lang="vi">Tác giả kể các mức bot-protection gặp khi scraping, từ mẹo curl, TLS/JA3 fingerprint tới Anubis, Cloudflare và dùng Playwright headless. Có đối sách cụ thể cho từng mức.</span><span class="card__summary l l-en" lang="en">The author walks through escalating bot-protection levels while scraping, from curl tricks and TLS/JA3 fingerprinting to Anubis, Cloudflare and headless Playwright, with countermeasures for each.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Khi tìm tổ tiên, tác giả phải lấy dữ liệu từ nhiều site tra cứu phả hệ và hồ sơ công cộng, và gặp các mức chống truy cập tự động khác nhau. Ông liệt kê từng mức kèm đối sách, tự nhận dùng cho mục đích cá nhân và dặn &quot;scrape responsibly&quot;.</p>
-<ul><li>Không bảo vệ: robots.txt chỉ là lời đề nghị, không cưỡng chế được. Ở mức này các tùy chọn curl là đủ: User-Agent qua -A, Referer qua -e (một số site chỉ kiểm tra trên request ảnh và trả 403 nếu thiếu), session cookie qua -c và -b.</li><li>Nếu curl vẫn bị từ chối, site có thể đang fingerprint TLS handshake (JA3 hoặc JA4), bất kể User-Agent. curl_cffi có thể giả fingerprint của trình duyệt từ Python, nhưng tác giả chưa cần dùng vì site fingerprint TLS thường cũng đòi JavaScript.</li><li>Đòi JavaScript: có khi là bảo vệ thật, có khi chỉ vì site dựng hoàn toàn bằng JavaScript. Hai guard gặp phải là Anubis (proof of work kiểu Hashcash với SHA-256, client qua được nhận cookie JWT có chữ ký) và Cloudflare JavaScript Detections. Cách vượt: dùng trình duyệt điều khiển bằng Playwright; trên nhiều site headless là đủ.</li><li>Không phải site nào cũng vậy: tài liệu Cloudflare nói JavaScript Detections bắt được headless browser, nên kết quả tùy cấu hình của site. Một số site từ chối headless browser, bài liệt kê lý do bắt đầu bằng client fingerprint.</li></ul>
-<p>Bản đọc được bị cắt ở phần headless browser.</p>
-
-  <p class="card__source"><a class="card__go" href="https://blog.frankel.ch/bypass-bot-protection" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>While searching for his ancestors, the author had to pull data from many genealogy and public-records sites and met different levels of protection against automated access. He lists them with countermeasures, says he uses the data privately, and urges readers to scrape responsibly.</p>
-<ul><li>No protection: robots.txt is purely advisory and cannot enforce anything. Here curl options are enough: User-Agent via -A, Referer via -e (some sites check it on image requests only and return 403 without it), and session cookies via -c and -b.</li><li>If curl is still refused, the site may be fingerprinting the TLS handshake (JA3 or JA4), whatever the User-Agent says. curl_cffi can impersonate a browser fingerprint from Python, but the author never needed it, since a site that fingerprints TLS usually also requires JavaScript.</li><li>Requires JavaScript: sometimes a genuine guard, sometimes just a fully JavaScript-built site. The two guards he met were Anubis (a Hashcash-style SHA-256 proof of work; a passing client gets a signed JWT cookie) and Cloudflare JavaScript Detections. The workaround is a real browser steered with Playwright; on several sites headless was enough.</li><li>Not on all of them: Cloudflare&#39;s docs say JavaScript Detections catches headless browsers, so it depends on site configuration. Some sites do reject headless browsers, and the list of reasons starts with client fingerprinting.</li></ul>
-<p>The available text is cut off in the headless browser section.</p>
-
-  <p class="card__source"><a class="card__go" href="https://blog.frankel.ch/bypass-bot-protection" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">scraping</span><span class="tag">playwright</span><span class="tag">cloudflare</span></span>
-    <span class="links"><a class="card__link" href="https://daily.dev/posts/scraping-websites-and-bot-protection-fnv9adnrq" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 13%"></div>
 </article>
 <article class="card" data-group="testing" data-id="27298eb8b7fcd18f647d4f5626a4aa08bf3d68f7" data-url="http://matijs.net/blog/2026/10/04/make-capybara-use-html5-with-rack-test" data-category="test-automation" data-added="2026-10-12">
   <div class="card__meta">
@@ -2770,7 +2770,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
