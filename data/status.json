@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 107 sightings from 45/62 sources",
+    "message": "191 candidates, 113 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -17,15 +17,15 @@
       },
       {
         "id": "r-qualityassurance",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-softwaretesting",
-        "error": "HTTP 403 for https://www.reddit.com/r/softwaretesting/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/softwaretesting/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-programming",
-        "error": "HTTP 403 for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmerhumor",
@@ -49,11 +49,11 @@
       },
       {
         "id": "r-sysadmin",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmingmemes",
-        "error": "HTTP 403 for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-techhumor",
@@ -61,7 +61,7 @@
       },
       {
         "id": "r-technology",
-        "error": "HTTP 403 for https://www.reddit.com/r/technology/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/technology/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-openai",
@@ -72,42 +72,42 @@
         "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
       }
     ],
-    "candidates": 200,
-    "at": "2026-10-16T01:07:47.381Z"
+    "candidates": 191,
+    "at": "2026-10-17T01:32:39.849Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 93, dropped 106, invalid 2",
-    "at": "2026-10-16T01:24:58.322Z"
+    "message": "kept 123, dropped 68, invalid 0",
+    "at": "2026-10-17T01:41:27.079Z"
   },
   "merge": {
     "ok": true,
-    "message": "1441 items retained, 4 re-sighted",
+    "message": "1564 items retained, 1 re-sighted",
     "counts": {
-      "candidates": 200,
-      "kept": 93,
-      "dropped": 106,
-      "invalid": 2,
-      "sighted": 4
+      "candidates": 191,
+      "kept": 123,
+      "dropped": 68,
+      "invalid": 0,
+      "sighted": 1
     },
-    "at": "2026-10-16T01:24:58.322Z"
+    "at": "2026-10-17T01:41:27.079Z"
   },
   "build": {
     "ok": true,
-    "message": "731 items on index, 13 archive pages",
-    "at": "2026-10-16T01:45:10.167Z"
+    "message": "735 items on index, 14 archive pages",
+    "at": "2026-10-17T02:07:48.779Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-16",
-    "message": "99 details written today",
+    "day": "2026-10-17",
+    "message": "116 details written today",
     "counts": {
-      "written": 99,
-      "missing": 1,
-      "invalid": 4,
-      "ungrounded": 4,
-      "discussed": 11
+      "written": 116,
+      "missing": 3,
+      "invalid": 7,
+      "ungrounded": 7,
+      "discussed": 17
     },
-    "at": "2026-10-16T01:45:09.778Z"
+    "at": "2026-10-17T02:07:48.483Z"
   }
 }
