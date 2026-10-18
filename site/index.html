@@ -273,6 +273,65 @@
   </div>
   <div class="hot" style="--hot: 38%"></div>
 </article>
+<article class="card" data-group="it" data-id="b399cd4bdd20ea830e3fb3d9a448b916479044f7" data-url="https://github.com/excsn/snapfire/blob/main/fsr/docs/corpus/react-dev.md" data-category="it-general" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Bluesky</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Snapfire: viết app bằng TypeScript, chạy bằng Rust</span><span class="l l-en" lang="en">Snapfire: write apps in TypeScript, run them in Rust</span></h3>
+    <span class="card__orig l l-vi" lang="en">Snapfire: write apps in TypeScript, run them in Rust</span>
+    <span class="card__summary l l-vi" lang="vi">Snapfire cho viết app bằng TypeScript và chạy bằng Rust, có file routes, loaders, actions, client OpenAPI/gRPC có kiểu và island hydration, không cần Node khi build hay xử lý request.</span><span class="card__summary l l-en" lang="en">Snapfire lets you write apps in TypeScript and run them in Rust, with file routes, loaders, actions, typed OpenAPI/gRPC clients and island hydration, with no Node in the build or request path.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Snapfire (FSR) chạy 641 ví dụ code của react.dev qua bản build của nó, mỗi ví dụ là một ứng dụng riêng: 574 ví dụ được &quot;lowered whole&quot; (server render mọi component), 0 bị từ chối.</p>
+<ul><li>574 ví dụ lowered whole: server render toàn bộ component trên trang.</li><li>1 ví dụ client side rendered nhưng có thể lowerable: dùng thứ mà build chưa render được trên server (đặt state trong lúc render).</li><li>59 ví dụ client side rendered by design, vì lý do đúng với mọi server renderer: đồng hồ của người xem quyết định markup, promise mà render phải await, portal.</li><li>0 ví dụ bị Refused (build dừng).</li><li>7 ví dụ bị loại vì react.dev cố ý để hỏng, để trống hoặc không có App.</li></ul>
+<p>Component render ở trình duyệt vẫn chạy như dưới React, chỉ thiếu HTML trong response đầu tiên. Corpus chỉ kiểm tra build lower được gì, không kiểm tra trang đã lower có render đúng hay không.</p>
+<p>Nguyên nhân phổ biến đẩy component về trình duyệt: use của promise (19 ví dụ, dữ liệu nên nằm trong loader của route), Math.random (7), createPortal (6), &#39;use server&#39; action hoặc promise cache (6), async component (4), useSyncExternalStore không có getServerSnapshot (3).</p>
+<p>Đáng chú ý với người build sản phẩm: mỗi lần đổi lowerer, chạy lại corpus bằng cargo test -p corpus để thấy kết quả dịch chuyển; CORPUS_BLESS=1 dùng để chốt số mới. Tài liệu không nói thêm về hiệu năng hay mức độ dùng thực tế.</p>
+
+  <p class="card__source"><a class="card__go" href="https://github.com/excsn/snapfire/blob/main/fsr/docs/corpus/react-dev.md" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Snapfire (FSR) built the 641 code examples from react.dev as one application each, and 574 of them were lowered whole, meaning the server renders every component on the page. None were refused.</p>
+<ul><li>574 examples lowered whole: the server renders every component.</li><li>1 example client side rendered but lowerable: it uses something the build does not render on the server yet (setting state during render).</li><li>59 examples client side rendered by design, for reasons that hold under any server renderer: the viewer&#39;s clock choosing markup, a promise the render awaits, a portal.</li><li>0 examples refused (the build stops).</li><li>7 examples excluded because react.dev shows them broken on purpose, as empty exercises or as pages with no App.</li></ul>
+<p>A component rendered in the browser still works as it would under React; only its HTML is missing from the first response. The corpus checks what the build lowers, not that the lowered page renders.</p>
+<p>Most common causes sending a component to the browser: use of a promise (19 examples, where the data belongs in the route&#39;s loader), Math.random (7), createPortal (6), a &#39;use server&#39; action or promise cache (6), an async component (4), and useSyncExternalStore without getServerSnapshot (3).</p>
+<p>For anyone building products on it: after a change to the lowerer, run cargo test -p corpus to see which outcomes move, and bless the new counts with CORPUS_BLESS=1. The page says nothing about performance or real-world adoption.</p>
+
+  <p class="card__source"><a class="card__go" href="https://github.com/excsn/snapfire/blob/main/fsr/docs/corpus/react-dev.md" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">typescript</span><span class="tag">rust</span></span>
+    <span class="links"><a class="card__link" href="https://bsky.app/profile/excsn.bsky.social/post/3my4iiimud22q" target="_blank" rel="noopener">discussion</a></span>
+  </div>
+  <div class="hot" style="--hot: 50%"></div>
+</article>
+<article class="card" data-group="ai" data-id="e467017220c3d35421c345b812f9c69d62fe49ab" data-url="https://techmeme.com/261017/p20" data-category="ai-trend" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI trend</span>
+    <span class="card__src">Techmeme</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <div class="card__head">
+  <h3 class="card__title"><a class="" href="https://techmeme.com/261017/p20" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Phỏng vấn Satya Nadella: Surface Laptop Ultra và kế hoạch làm Windows an toàn hơn cho AI agent</span><span class="l l-en" lang="en">Satya Nadella interview: Surface Laptop Ultra and making Windows safer for AI agents</span></a></h3>
+  <span class="card__orig l l-vi" lang="en">Satya Nadella interview: Surface Laptop Ultra and making Windows safer for AI agents</span>
+  <span class="card__summary l l-vi" lang="vi">Joanna Stern phỏng vấn Satya Nadella về Surface Laptop Ultra dùng Nvidia RTX Spark và kế hoạch của Microsoft để Windows chạy AI agent an toàn hơn.</span><span class="card__summary l l-en" lang="en">Joanna Stern interviews Satya Nadella on the Nvidia RTX Spark-powered Surface Laptop Ultra and Microsoft&#39;s plan to make Windows safer for running AI agents.</span>
+</div>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">windows</span><span class="tag">ai-agents</span><span class="tag">microsoft</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 49%"></div>
+</article>
 <article class="card" data-group="ai" data-id="8cea63629ced1402d271cbcd42ae079a9fe22be5" data-url="https://thenewstack.io/ai-lowering-building-barrier" data-category="ai-trend" data-added="2026-10-18">
   <div class="card__meta">
     <span class="chip chip--ai">AI trend</span>
@@ -416,6 +475,50 @@
     <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50131189" target="_blank" rel="noopener">discussion</a></span>
   </div>
   <div class="hot" style="--hot: 33%"></div>
+</article>
+<article class="card" data-group="it" data-id="84cbe33dec16a151bb4bb66718b3a00442d403fb" data-url="https://github.com/CyberNative-AI/.github/tree/main/notes/pq-tls-default-images" data-category="it-general" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Bluesky</span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">13 trong 15 image TLS server phổ biến đã thương lượng trao đổi khóa hậu lượng tử</span><span class="l l-en" lang="en">13 of 15 popular TLS server images already negotiate post-quantum key exchange</span></h3>
+    <span class="card__orig l l-vi" lang="en">13 of 15 popular TLS server images already negotiate post-quantum key exchange</span>
+    <span class="card__summary l l-vi" lang="vi">13 trong 15 image TLS server phổ biến đã thương lượng được trao đổi khóa hậu lượng tử; Pomerium và kong:latest thì chưa. Có nguyên nhân khả dĩ và cách kiểm tra server của bạn bằng một dòng lệnh.</span><span class="card__summary l l-en" lang="en">13 of 15 popular TLS server images already negotiate post-quantum key exchange; Pomerium and kong:latest do not. Includes likely causes and a one-line check for your own server.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Ngày 17 October 2026, nhóm tác giả thử các image web server/reverse proxy có từ 250 million lượt pull Docker Hub trở lên: chỉ cấp certificate và key, không cấu hình gì thêm, kết nối bằng client OpenSSL 3.5.7. Kết quả: 13 trong 15 image thương lượng X25519MLKEM768; hai image không làm được là pomerium/pomerium:latest và kong:latest.</p>
+<ul><li>pomerium/pomerium:latest (Pomerium 0.33.4) chỉ đạt X25519. Nó dùng Envoy v1.38.5, trong khi Envoy chỉ thêm X25519MLKEM768 vào default curves từ v1.40.0. Envoy v1.38.5 chạy được PQ khi thêm một setting: ecdh_curves: [X25519MLKEM768, X25519]. Tác giả nói điều này khớp với giả thuyết nhưng chưa chứng minh, vì Pomerium dùng bản Envoy build riêng.</li><li>kong:latest (Docker Official Image, Kong 3.9.4) chỉ đạt X25519. Nginx của nó build với OpenSSL 3.2.3, mà OpenSSL chỉ có ML-KEM từ 3.5. Đặt KONG_NGINX_PROXY_SSL_ECDH_CURVE=X25519MLKEM768:X25519 làm Kong không khởi động được; không có setting nào sửa được image này. Image kong/kong-gateway:latest (OpenSSL 3.5.8) thì đạt X25519MLKEM768.</li></ul>
+<p>Bối cảnh: nghiên cứu tại IMC 2026 (UNSW Sydney và Georgia Tech) thấy 49.22% trong 684,494 domain HTTPS dùng hybrid PQ, gần hết qua CDN và managed hosting; domain tự vận hành TLS dưới 10%. Tác giả đoán khoảng cách này đến từ image/gói cũ hoặc cấu hình ghim danh sách curve, không phải vì mặc định khó bật. Đây chỉ là giả thuyết, họ chưa đo server đang chạy thật.</p>
+<p>Hai dữ kiện đi cùng hướng: server dùng OpenSSL cần 3.5 trở lên (Debian 13 có 3.5, Debian 12 và Ubuntu 24.04 LTS có 3.0), và một dòng ssl_ecdh_curve X25519; trong nginx đủ tắt PQ.</p>
+<p>Cách kiểm tra server của bạn (client OpenSSL 3.5+):</p>
+<ul><li>openssl s_client -connect example.com:443 -groups X25519MLKEM768 &lt;/dev/null</li><li>Thấy &quot;Negotiated TLS1.3 group: X25519MLKEM768&quot; nghĩa là server có hybrid PQ; nếu không, handshake fail với alert handshake failure.</li></ul>
+<p>Hữu ích cho QA/DevOps: đây là một check một dòng có thể đưa vào checklist bảo mật hoặc smoke test hạ tầng.</p>
+
+  <p class="card__source"><a class="card__go" href="https://github.com/CyberNative-AI/.github/tree/main/notes/pq-tls-default-images" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>On 17 October 2026 the authors tested the TLS web server and reverse proxy images with at least 250 million Docker Hub pulls: each got only a certificate and key, and an OpenSSL 3.5.7 client connected. 13 of 15 negotiated X25519MLKEM768 with no configuration; pomerium/pomerium:latest and kong:latest did not.</p>
+<ul><li>pomerium/pomerium:latest (Pomerium 0.33.4) negotiated X25519. It embeds Envoy v1.38.5, and Envoy added X25519MLKEM768 to its default curves only in v1.40.0. Plain Envoy v1.38.5 negotiated it after one setting, ecdh_curves: [X25519MLKEM768, X25519]. The authors say this fits but does not prove the cause, since Pomerium ships its own Envoy build.</li><li>kong:latest (the Docker Official Image, Kong 3.9.4) negotiated X25519. Its nginx is built with OpenSSL 3.2.3, and OpenSSL added ML-KEM only in 3.5. Setting KONG_NGINX_PROXY_SSL_ECDH_CURVE=X25519MLKEM768:X25519 stops Kong from starting, so no setting can fix this image. kong/kong-gateway:latest (OpenSSL 3.5.8) did negotiate X25519MLKEM768.</li></ul>
+<p>Context: an IMC 2026 paper from UNSW Sydney and Georgia Tech found 49.22% of 684,494 HTTPS domains negotiated hybrid PQ key exchange, almost all via CDNs and managed hosting, against under 10% for owner-run TLS. The authors hypothesise that low self-hosted adoption tracks older images, distribution packages or pinned curve lists rather than a default owners must change. They did not measure deployed servers.</p>
+<p>Two facts point the same way: OpenSSL-based servers need 3.5 or newer (Debian 13 ships 3.5; Debian 12 and Ubuntu 24.04 LTS ship 3.0), and a single line, ssl_ecdh_curve X25519; in nginx, turned PQ off in their negative control.</p>
+<p>Check your own server with a client on OpenSSL 3.5 or newer:</p>
+<ul><li>openssl s_client -connect example.com:443 -groups X25519MLKEM768 &lt;/dev/null</li><li>&quot;Negotiated TLS1.3 group: X25519MLKEM768&quot; in the output means hybrid PQ works; otherwise the handshake fails with alert handshake failure.</li></ul>
+<p>Useful for QA and DevOps: it is a one-line check that fits into a security checklist or an infrastructure smoke test.</p>
+
+  <p class="card__source"><a class="card__go" href="https://github.com/CyberNative-AI/.github/tree/main/notes/pq-tls-default-images" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">tls</span><span class="tag">security</span></span>
+    <span class="links"><a class="card__link" href="https://bsky.app/profile/cybernative-ai.bsky.social/post/3my4i3ekbs5ve" target="_blank" rel="noopener">discussion</a></span>
+  </div>
+  <div class="hot" style="--hot: 25%"></div>
 </article>
 <article class="card" data-group="hot" data-id="3c5286df98db0f1e01c2d8c826ad9850d83abf0c" data-url="https://techmeme.com/261017/p19" data-category="hot-science" data-category-label="Khoa học" data-added="2026-10-18">
   <div class="card__meta">
@@ -706,6 +809,44 @@
     <span class="links"><a class="card__link" href="https://bsky.app/profile/juand-r.bsky.social/post/3my4cr7d2422o" target="_blank" rel="noopener">discussion</a></span>
   </div>
   <div class="hot" style="--hot: 25%"></div>
+</article>
+<article class="card" data-group="ai" data-id="1454cb57cf4e50bdc5d099b1368e9376d1e5f336" data-url="https://basis.ai/blog/ship-your-interpreters" data-category="ai-trend" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI trend</span>
+    <span class="card__src">Mastodon</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Ship Your Interpreter: LLM viết quy tắc cho ngôn ngữ lập trình và chứng minh interpreter tuân theo</span><span class="l l-en" lang="en">Ship Your Interpreter</span></h3>
+    <span class="card__orig l l-vi" lang="en">Ship Your Interpreter</span>
+    <span class="card__summary l l-vi" lang="vi">Bài trên basis.ai cho biết LLM có thể viết quy tắc cho một ngôn ngữ lập trình và chứng minh interpreter của nó tuân theo các quy tắc đó.</span><span class="card__summary l l-en" lang="en">A basis.ai post says LLMs can write rules for a programming language and prove that its interpreter follows them.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Nhóm Basis cho LLM viết formal semantics (bộ quy tắc toán học mô tả ngôn ngữ nên chạy thế nào) cho một ngôn ngữ nhỏ, rồi dùng Lean để chứng minh interpreter của ngôn ngữ đó tuân theo các quy tắc ấy, kể cả sau khi được compile xuống lệnh RISC-V.</p>
+<ul><li>Vấn đề: để chứng minh một chương trình đúng, trước hết phải có semantics của ngôn ngữ. Chỉ một số ít ngôn ngữ có (Standard ML, WebAssembly, C qua CompCert), mỗi cái mất nhiều năm của chuyên gia. Phần lớn ngôn ngữ thì không có.</li><li>Rủi ro: LLM viết semantics có thể sai, và semantics sai làm hỏng mọi chứng minh dựa trên nó. Test giúp được, nhưng một semantics vẫn có thể qua mọi test mà vẫn sai.</li><li>Cách làm: coi interpreter thật là ground truth. Compile interpreter sang RISC-V (vốn đã có semantics chính thức), rồi bắt LLM viết quy tắc dễ đọc và chứng minh trong Lean rằng với mọi chương trình, các quy tắc dự đoán đúng đầu ra của interpreter đã compile. Nếu một quy tắc sai, chứng minh sẽ bị kẹt.</li><li>Thí nghiệm dùng một bản mở rộng của WHILE, ngôn ngữ imperative nhỏ trong giáo trình. Toàn bộ semantics và chứng minh có trên GitHub.</li></ul>
+<p>Bối cảnh bài đưa ra: tháng 4 agent của họ build được compiler JavaScript sang WebAssembly nhưng chưa chứng minh được nó giữ nguyên hành vi; sau đó agent verify compiler nftables của Linux; tháng 9 các nhà nghiên cứu MIT dùng AI agent để verify kernel xv6 xuống tới machine code. Theo nhóm, nút thắt đang chuyển từ chứng minh định lý sang đặc tả: làm sao chắc rằng điều ta chứng minh đúng là hành vi ta quan tâm.</p>
+<p>Với QA: ý tưởng &quot;tạo oracle từ chương trình thật rồi bắt chứng minh&quot; gần với kiểm thử so khớp hành vi, nhưng ở mức chứng minh toàn bộ chương trình. Bài còn nói tới cách xử lý memory reasoning và các công cụ xây trên kết quả; phần đó nằm trong bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://basis.ai/blog/ship-your-interpreters" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The Basis team had LLMs write a formal semantics, a precise mathematical description of how a small programming language should behave, and then used Lean to prove that the language&#39;s interpreter follows those rules, even after being compiled to low-level RISC-V instructions.</p>
+<ul><li>The problem: proving anything about a program needs a semantics for its language first. Only a handful of languages have one (Standard ML, WebAssembly, C via CompCert), and each took years of expert effort. Most languages have none.</li><li>The risk: an LLM can write a wrong semantics, and a broken semantics undermines every proof built on it. Testing helps, but a semantics can pass every test and still be wrong.</li><li>The approach: treat the real interpreter as ground truth. Compile it to RISC-V, whose meaning is already formally defined, then have the LLM write readable rules and prove in Lean that, for every possible program, those rules predict exactly what the compiled interpreter prints. If a rule is wrong, the proof gets stuck.</li><li>The experiment used an extended version of WHILE, the small imperative language from textbooks. The whole development, semantics and proof, is on GitHub.</li></ul>
+<p>Context from the post: in April their agents built a JavaScript-to-WebAssembly compiler but could not prove it preserved behaviour; months later they verified Linux&#39;s nftables compiler; in September MIT researchers used AI agents to verify the xv6 kernel down to machine code. The authors say the bottleneck is shifting from theorem proving to specification: how to be sure the statements proved capture the behaviour we care about.</p>
+<p>For QA: using the real program as an oracle resembles behaviour-matching tests, but here the match is proved for all programs rather than sampled. The post also covers how memory reasoning was handled and what tools were built on the result; see the original for that.</p>
+
+  <p class="card__source"><a class="card__go" href="https://basis.ai/blog/ship-your-interpreters" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">llm</span><span class="tag">interpreter</span></span>
+    <span class="links"><a class="card__link" href="https://mastodon.social/@firusvg/117458236912717217" target="_blank" rel="noopener">discussion</a></span>
+  </div>
+  <div class="hot" style="--hot: 16%"></div>
 </article>
 <article class="card" data-group="ai" data-id="fcac4a3d08b8fd47792e2566eb87c7e98c21998d" data-url="https://dev.to/dj29/10-prompting-techniques-my-deep-learning-exam-taught-me-that-i-actually-use-now-43h0" data-category="ai-tip" data-added="2026-10-18">
   <div class="card__meta">
@@ -1019,6 +1160,25 @@
     <span class="links"><a class="card__link" href="https://lobste.rs/s/a0og2j/developing_for_debugging_2025" target="_blank" rel="noopener">discussion</a></span>
   </div>
   <div class="hot" style="--hot: 5%"></div>
+</article>
+<article class="card" data-group="ai" data-id="fcb940b9300cf231f416ce43b7088b21b1fe0c93" data-url="https://researchbuzz.masto.host/@mottg/117459420238682206" data-category="ai-trend" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI trend</span>
+    <span class="card__src">Mastodon</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <div class="card__head">
+  <h3 class="card__title"><a class="" href="https://researchbuzz.masto.host/@mottg/117459420238682206" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">ImpactBench: benchmark mở đánh giá tác động của AI lên con người</span><span class="l l-en" lang="en">ImpactBench: an open benchmark of AI impact on humans</span></a></h3>
+  <span class="card__orig l l-vi" lang="en">ImpactBench: an open benchmark of AI impact on humans</span>
+  <span class="card__summary l l-vi" lang="vi">ImpactBench là benchmark mở đánh giá tác động của AI lên sức khỏe tâm lý, thể chất và xã hội. Nhóm tác giả chạy 10 model hàng đầu qua 48.540 hội thoại mô phỏng với 809 chỉ số.</span><span class="card__summary l l-en" lang="en">ImpactBench is an open benchmark of AI impact on psychological, physical and social well-being. The authors ran 10 frontier models through 48,540 simulated conversations using 809 metrics.</span>
+</div>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">benchmark</span><span class="tag">llm</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 6%"></div>
 </article>
 <article class="card" data-group="ai" data-id="007953b8e8beabe1d30745153dfa8e9b4e990d3d" data-url="https://dev.to/infoinlet1/how-i-built-a-saas-in-a-weekend-with-claude-nextjs-the-honest-breakdown-2le6" data-category="ai-product-idea" data-added="2026-10-18">
   <div class="card__meta">
@@ -1960,6 +2120,46 @@
   </div>
   <div class="hot" style="--hot: 1%"></div>
 </article>
+<article class="card" data-group="testing" data-id="036817223d4a29d1844cab7b7d20f5afe1b05b1b" data-url="https://dev.to/nexus_studioqa/is-this-test-flaky-or-is-it-a-real-bug-25jf" data-category="test-automation" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--testing">Automation</span>
+    <span class="card__src">dev.to</span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Test này flaky hay là bug thật?</span><span class="l l-en" lang="en">Is this test flaky, or is it a real bug?</span></h3>
+    <span class="card__orig l l-vi" lang="en">Is this test flaky, or is it a real bug?</span>
+    <span class="card__summary l l-vi" lang="vi">Bài trên dev.to phân biệt test flaky, tự pass khi retry dù không ai sửa gì, với bug thật vốn fail ổn định. Hữu ích khi phải phân loại test đỏ.</span><span class="card__summary l l-en" lang="en">A dev.to post tells a flaky test, which passes on retry with no fix, from a real bug, which keeps failing. Useful when triaging red tests.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Nhóm Nexus Studio (Verdict System LLC) phân biệt flaky với bug thật bằng cách ghi lại mọi lần retry: FLAKY là test fail rồi pass khi retry mà không ai sửa gì, BREACHED là phát hiện thật, BREACHED_FLAKY là lỗi bản thân nó không nhất quán. Retry không bao giờ biến một defect thành lần chạy xanh.</p>
+<ul><li>FLAKY: fail, retry pass, không có gì được sửa. Exit code 0 nên không làm hỏng build, nhưng hiện trong report và History như &quot;pass có dè dặt&quot;. Evidence gồm screenshot.png, metadata.json, raw-data.json.</li><li>BREACHED: fail ở một lần chạy, không có pattern môi trường hay harness nào giải thích; đây là bug report. Exit 1.</li><li>BREACHED_FLAKY: fail ở lần cuối sau một lần retry trước đó, cũng không có giải thích môi trường. Cần so sánh các attempt trước khi tạo bug. Exit 1.</li><li>Một lỗi cứng xảy ra ở mọi attempt không phải flaky, kể cả khi bước self-healing đã thử sửa selector mà thất bại. Bản engine cũ từng xếp ca này là FLAKY và để một ứng dụng hỏng lọt như nhiễu.</li><li>AUTO_RECOVER là pass mà self-healing đã thay selector; lần đầu fail chỉ vì thời gian rồi retry pass là SECURE.</li></ul>
+<p>Cách đếm: pass với retry number lớn hơn 0 là FLAKY (trừ khi có selector được heal thì là AUTO_RECOVER); fail hoặc timeout với retry number lớn hơn 0 và không có giải thích môi trường là BREACHED_FLAKY; pass sạch cần retry 0. Trước khi gán BREACHED, classifier loại trừ theo thứ tự cố định: harness error, crash, block, host không truy cập được, timeout.</p>
+<p>History giữ một dòng mỗi lần chạy cho mỗi test và browser/thiết bị (verdict, retry_attempt, error signature) và hiển thị xu hướng Regressed, Recovered, Still broken, Slower. Xếp hạng rủi ro dùng logistic regression trên lịch sử, fallback EWMA khi ít dữ liệu; không gọi test nào là flaky dưới năm lần chạy.</p>
+<p>Lưu ý: đây là bài giới thiệu sản phẩm của chính Nexus Studio; đoạn Limits trong nguồn bị cắt nên không tóm tắt được.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/nexus_studioqa/is-this-test-flaky-or-is-it-a-real-bug-25jf" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The Nexus Studio team (Verdict System LLC) tells flaky tests from real bugs by recording every retry: FLAKY is a failure that a retry passed with nothing fixed, BREACHED is a real finding, and BREACHED_FLAKY is a failure that is itself inconsistent. A retry never turns a defect into a green run.</p>
+<ul><li>FLAKY: failed, a retry passed, nothing repaired. It exits 0 so it does not break the build, but it shows in the report and History as a pass with a reservation. Evidence: screenshot.png, metadata.json and raw-data.json.</li><li>BREACHED: failed on a single attempt and no environment or harness pattern explains it. This is the bug report. It exits 1.</li><li>BREACHED_FLAKY: failed on its last attempt after an earlier retry, with no environment explanation. Compare the attempts before filing a bug. It exits 1.</li><li>A hard failure on every attempt is not flaky, even when self-healing tried and failed to repair a selector. An earlier engine version filed that as FLAKY, and a broken application shipped as noise.</li><li>AUTO_RECOVER is a pass where self-healing replaced a selector; a first attempt that failed only on time and passed on retry is SECURE.</li></ul>
+<p>Counting: a passing test with a retry number above zero is FLAKY (AUTO_RECOVER if a selector was healed); a failing or timed-out test with a retry number above zero and no environment explanation is BREACHED_FLAKY; a clean pass needs retry zero. Before BREACHED, the classifier rules out, in fixed order, a harness error, a crash, a block, an unreachable host and a timeout.</p>
+<p>History keeps one row per run for each test and browser or device (verdict, retry_attempt, error signature) and shows Regressed, Recovered, Still broken and Slower trends. Risk ranking uses a logistic regression over history with an EWMA fallback, and nothing is called flaky below five runs.</p>
+<p>Note: this is a product post by Nexus Studio itself, and the Limits section is cut off in the source, so it is not summarised.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/nexus_studioqa/is-this-test-flaky-or-is-it-a-real-bug-25jf" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">flaky-tests</span><span class="tag">automation</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 1%"></div>
+</article>
 <article class="card" data-group="it" data-id="3f53d5bcdef5c63a0806a17c219f46715d4a267a" data-url="https://dev.to/rbonweb/inngests-database-connection-pool-collapsed-twice-in-one-day-and-restarting-made-it-worse-aei" data-category="it-general" data-added="2026-10-18">
   <div class="card__meta">
     <span class="chip chip--it">IT</span>
@@ -2144,6 +2344,48 @@
   </div>
   <div class="hot" style="--hot: 1%"></div>
 </article>
+<article class="card" data-group="testing" data-id="70287e71f1d470b9aaf354f7b01ba55affa8ea2a" data-url="https://dev.to/nagayashion/the-bug-report-your-developers-will-actually-thank-you-for-4kcp" data-category="test-manual" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--testing">Manual testing</span>
+    <span class="card__src">dev.to</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Bug report mà developer sẽ thật sự cảm ơn bạn</span><span class="l l-en" lang="en">The Bug Report Your Developers Will Actually Thank You For</span></h3>
+    <span class="card__orig l l-vi" lang="en">The Bug Report Your Developers Will Actually Thank You For</span>
+    <span class="card__summary l l-vi" lang="vi">Một QA có 5 năm kinh nghiệm, 3 năm tại công ty kiểm thử phần mềm lớn nhất Nhật, chia sẻ cách viết bug report mà developer thấy hữu ích.</span><span class="card__summary l l-en" lang="en">A QA engineer with 5 years of experience, 3 at Japan&#39;s largest software testing firm, shares how to write bug reports developers will appreciate.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một QA director (5 năm kinh nghiệm, 3 năm tại công ty kiểm thử lớn nhất Nhật) cho rằng khoảng 10% bug report hữu ích ngay lần đọc đầu; 90% còn lại dẫn tới &quot;works on my machine&quot; và bug bị đá qua lại giữa QA và dev ba ngày. Tác giả chia sẻ template họ áp dụng cho mọi team.</p>
+<p>Template gồm: Title ([Area] một dòng: cái gì hỏng, trong điều kiện nào), Environment (thiết bị / OS / trình duyệt + version / build hoặc commit, loại tài khoản), Steps to Reproduce (đánh số, chính xác, từ trạng thái sạch), Expected (kèm lý do), Actual (dán nguyên văn thông báo lỗi), Reproduction rate, Severity + lý do, Evidence (screenshot có chú thích, video, log console/network).</p>
+<p>Ba trường hay làm sai:</p>
+<ul><li>Reproduction rate: &quot;sometimes&quot; không phải con số. &quot;4/5 lần khi throttle Slow 3G, 2/5 khi mạng nhanh&quot; báo ngay đó là race condition. Khi gặp bug nghi flaky, tác giả chạy lại năm lần và đếm; 10 phút đó thường tiết kiệm cho dev nửa ngày.</li><li>Expected cần có &quot;because&quot;: ví dụ lần click thứ hai phải bị bỏ qua vì nút phải disable sau lần submit đầu (double POST nghĩa là bị tính tiền hai lần). Lý do vừa cho dev biết chuẩn ở đâu, vừa giúp buổi triage hiểu vì sao bug quan trọng.</li><li>Severity là phát biểu về nghiệp vụ: High là chặn luồng chính, mất dữ liệu hoặc tốn tiền; Medium là luồng chính còn sống nhưng một nhóm người dùng thật bị ảnh hưởng; Low là thẩm mỹ hoặc edge case có workaround. Người bị ảnh hưởng thay đổi severity: layout hỏng ở 717px nghe như Low cho tới khi biết đó là tư thế nửa mở của điện thoại gập.</li></ul>
+<p>&quot;Không tìm thấy bug&quot; cũng phải có báo cáo trung thực: liệt kê đã test gì, thế nào, trên thiết bị nào, cái gì có vẻ vững. Đội chỉ thưởng cho số bug tìm được sẽ có nhiều nhiễu Low và không biết đã cover gì.</p>
+<p>Checklist 30 giây trước khi gửi: dev có repro được mà không hỏi lại không, repro rate là con số, Expected có because, severity nêu tác động nghiệp vụ, có ít nhất một bằng chứng hình ảnh. Cuối bài là quảng cáo dịch vụ QA freelance của tác giả.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/nagayashion/the-bug-report-your-developers-will-actually-thank-you-for-4kcp" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A QA director with 5 years in QA, 3 of them at Japan&#39;s largest software testing firm, says maybe 10% of the bug reports they have read were useful on first read. The other 90% end in &quot;works on my machine&quot; and a bug ping-ponging between QA and dev for three days. The post shares the template they enforce on every team.</p>
+<p>The template: Title ([Area] one line: what breaks, under which condition), Environment (device / OS / browser + version / app build or commit, account type), Steps to Reproduce (numbered, exact, from a clean state), Expected (with why), Actual (paste exact error text), Reproduction rate, Severity + why, and Evidence (annotated screenshot, recording, console/network log).</p>
+<p>Three fields everyone gets wrong:</p>
+<ul><li>Reproduction rate: &quot;sometimes&quot; is not a number. &quot;4/5 attempts on Slow 3G, 2/5 on a fast connection&quot; points to a race condition before anyone opens the code. For flaky-looking bugs the author runs the case five more times and counts; those 10 minutes routinely save a developer half a day.</li><li>Expected needs a &quot;because&quot;: for example, the second click is ignored because the button should disable on first submission (a double POST means a double charge). The reason tells the developer where the bar is and tells triage why the bug matters.</li><li>Severity is a business statement: High blocks a core flow, loses data or costs money; Medium leaves the core flow alive but hurts a real user segment; Low is cosmetic or an edge case with an easy workaround. Who is affected changes severity: a broken layout at 717px sounds Low until you know it is the half-open posture of foldable phones.</li></ul>
+<p>An honest empty report matters too: list what was tested, how, on which devices, and what looks solid. Teams that reward only bug counts end up with inflated Low-severity noise and no idea what is covered.</p>
+<p>A 30-second checklist before sending: could a developer reproduce it without asking anything, is the repro rate a number, does Expected contain a because, does severity state business impact, is there at least one piece of visual evidence. The post ends with an ad for the author&#39;s freelance QA services.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/nagayashion/the-bug-report-your-developers-will-actually-thank-you-for-4kcp" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">bug-report</span><span class="tag">qa</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 1%"></div>
+</article>
 <article class="card" data-group="it" data-id="dad7adcb86201a6d97c9b29dc375c3d00f36eb81" data-url="https://dev.to/aws-builders/what-does-your-cdk-app-cost-when-nobody-is-using-it-jp4" data-category="it-general" data-added="2026-10-18">
   <div class="card__meta">
     <span class="chip chip--it">IT</span>
@@ -2183,6 +2425,48 @@
   
   <div class="card__foot">
     <span class="tags"><span class="tag">aws</span><span class="tag">cdk</span><span class="tag">cost</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 0%"></div>
+</article>
+<article class="card" data-group="ai" data-id="2f253c7775b64f5a51df7dafa4351638f6d6d40e" data-url="https://dev.to/remojansen/sdlc-adlc-asdlc-4057" data-category="ai-trend" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI trend</span>
+    <span class="card__src">dev.to</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">SDLC != ADLC != ASDLC</span><span class="l l-en" lang="en">SDLC != ADLC != ASDLC</span></h3>
+    <span class="card__orig l l-vi" lang="en">SDLC != ADLC != ASDLC</span>
+    <span class="card__summary l l-vi" lang="vi">Bài trên dev.to phân biệt SDLC với Agentic Development Lifecycle (ADLC) và ASDLC, xuất phát từ một định nghĩa tác giả vừa gặp.</span><span class="card__summary l l-en" lang="en">A dev.to post distinguishes SDLC from the Agentic Development Lifecycle (ADLC) and ASDLC, starting from a definition the author recently came across.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả cho rằng ADLC và ASDLC không phải một thứ, dù nhiều người (kể cả họ cho tới gần đây) dùng thay nhau. Ý tưởng bật ra khi họ đọc định nghĩa: ADLC là phương pháp để build, test, deploy và quản trị các hệ thống AI agent, chứ không phải code tất định truyền thống.</p>
+<p>Ba thuật ngữ:</p>
+<ul><li>SDLC (Software Development Lifecycle): phương pháp cổ điển để build phần mềm, tập trung vào hệ thống tất định; con người làm chính, công cụ hỗ trợ.</li><li>ADLC (Agent / Agentic Development Lifecycle): vòng đời chuyên biệt để tạo AI agent, hệ thống xác suất, dùng tool, thích nghi; người và agent cùng làm, nhấn mạnh evaluation và governance.</li><li>ASDLC (Agentic Software Development Lifecycle): SDLC truyền thống nhưng agent là người làm; agent thực thi, con người đặt ý định, guardrail và duyệt. Làm ra được bất cứ thứ gì, kể cả agent.</li></ul>
+<p>Vì sao hay nhầm: cả hai đều chứa &quot;Agentic&quot; và &quot;Development Lifecycle&quot;; một số người dùng &quot;ADLC&quot; để chỉ &quot;cách phát triển phần mềm mới khi có agent&quot;, trong khi IBM, Arthur.ai, Glean, Atlan dùng chính xác hơn là vòng đời để build chính agent.</p>
+<p>Vì sao quan trọng: nếu bạn build agent, tính phi tất định và evaluation harness thành mối quan tâm hàng đầu; observability, containment và giám sát hành vi liên tục quan trọng hơn &quot;green test&quot; cổ điển; trạng thái &quot;done&quot; mờ hơn vì agent tiếp tục chạy và thích nghi sau deploy. Đối xử với việc đó bằng SDLC thường cho ra agent mong manh, đẹp trong demo rồi drift hoặc hỏng ở production. Ngược lại, nếu chỉ muốn ship web app hay tool nội bộ nhanh hơn bằng coding agent, bạn cần một ASDLC được quản trị tốt chứ không cần toàn bộ bộ máy ADLC.</p>
+<p>Mô hình nhanh: SDLC là build phần mềm theo cách cũ; ADLC là build agent; ASDLC là build mọi thứ (kể cả agent) bằng agent. Bài kết bằng câu hỏi xem đồng nghiệp bạn có hay trộn hai thuật ngữ này không.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/remojansen/sdlc-adlc-asdlc-4057" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The author argues that ADLC and ASDLC are not the same thing, even though many people (themselves included until recently) use them interchangeably. It clicked when they read this definition: ADLC is a methodology for building, testing, deploying and governing AI agent systems rather than traditional deterministic code.</p>
+<p>The three terms:</p>
+<ul><li>SDLC (Software Development Lifecycle): the classic methodology for building software, focused on deterministic systems; humans do most of the work, with tool assistance.</li><li>ADLC (Agent / Agentic Development Lifecycle): a specialised lifecycle for creating AI agents, which are probabilistic, tool-using, adaptive systems; humans and agents work together, with heavy emphasis on evaluation and governance.</li><li>ASDLC (Agentic Software Development Lifecycle): the traditional SDLC performed with AI agents as workers; agents execute while humans set intent, guardrails and approve. It can deliver any software, even agents.</li></ul>
+<p>Why the mix-up happens: both contain &quot;Agentic&quot; and &quot;Development Lifecycle&quot;; some writers use &quot;ADLC&quot; loosely for &quot;the new way we develop software now that agents exist&quot;, while IBM, Arthur.ai, Glean, Atlan and others use it precisely for the lifecycle of building agents themselves.</p>
+<p>Why it matters: when building an agent, non-determinism and evaluation harnesses become first-class concerns; observability, containment and continuous behavioural monitoring matter more than classic &quot;green tests&quot;; and &quot;done&quot; is fuzzier because agents keep running and adapting after deployment. Treating that work with a regular SDLC often leads to brittle agents that look good in demos and then drift or fail in production. Conversely, if you are just shipping a web app or internal tool faster with coding agents, you need a well-governed ASDLC, not the full ADLC machinery.</p>
+<p>Quick model: SDLC builds normal software the old way; ADLC builds agents; ASDLC builds anything, including agents, with agents. The post closes by asking whether others see the same mixing of terms in their circles.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/remojansen/sdlc-adlc-asdlc-4057" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">agentic</span><span class="tag">sdlc</span></span>
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 0%"></div>
@@ -3053,6 +3337,179 @@
   
   <div class="card__foot">
     <span class="tags"><span class="tag">kubernetes</span><span class="tag">argo-cd</span><span class="tag">helm</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 0%"></div>
+</article>
+<article class="card" data-group="testing" data-id="acbd402efa9fc022aaa6b0271dd2c4cd783de1d6" data-url="https://dev.to/jacak/us-address-form-test-cases-30-checks-for-qa-with-sample-data-l57" data-category="test-manual" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--testing">Manual testing</span>
+    <span class="card__src">dev.to</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Test case cho form địa chỉ Mỹ: 30 mục kiểm tra cho QA (kèm dữ liệu mẫu)</span><span class="l l-en" lang="en">US Address Form Test Cases: 30 Checks for QA (With Sample Data)</span></h3>
+    <span class="card__orig l l-vi" lang="en">US Address Form Test Cases: 30 Checks for QA (With Sample Data)</span>
+    <span class="card__summary l l-vi" lang="vi">Danh sách 30 mục kiểm tra form địa chỉ Mỹ, gồm trường bắt buộc để trống và số căn hộ, suite ở dòng 2, kèm dữ liệu mẫu.</span><span class="card__summary l l-en" lang="en">A list of 30 checks for US address forms, covering empty required fields and apartment or suite numbers in line 2, with sample data.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bài biến một danh sách thành 30 test case, mỗi case có ID, input và kết quả mong đợi, để dán vào TestRail, Jira hoặc spreadsheet. Form giả định có 5 trường: address line 1 (bắt buộc), line 2 (tùy chọn: apartment, suite, unit), city (bắt buộc), state (bắt buộc), ZIP (5 chữ số hoặc ZIP+4). Dùng địa chỉ giả, không dùng dữ liệu khách thật; bạn có thể đổi kết quả mong đợi theo quy tắc riêng của sản phẩm. Với mỗi case cần kiểm tra ba thứ: người dùng thấy gì, cái gì được lưu, và cái gì gửi sang hệ thống phía sau (shipping, tax, CRM).</p>
+<ul><li>Trường bắt buộc: để trống từng trường một, mỗi trường phải có lỗi riêng cạnh nó; chỉ nhập khoảng trắng vào line 1 (nhiều form quên trim nên lưu địa chỉ trống); giá trị đã nhập phải còn sau khi báo lỗi; line 2 trống phải submit được và không lưu chữ &quot;null&quot; hoặc &quot;undefined&quot;.</li><li>Street line 1 và 2: các dạng unit như &quot;Apt 4B&quot;, &quot;Ste 210&quot;, &quot;Unit 7&quot;, &quot;# 12&quot; phải lưu đúng như nhập; unit gõ vào line 1 không được bị cắt; dấu nháy và gạch nối (&quot;45 O&#39;Brien St&quot;) không bị escape hai lần; chạm đúng giới hạn độ dài và quá một ký tự thì form, cột database và API nhãn vận chuyển phải thống nhất; Unicode như &quot;88 Peña Blvd&quot; phải lưu và hiển thị đúng.</li><li>City và state: giá trị gửi API thường nên là mã hai chữ cái (&quot;CA&quot;) dù nhãn là &quot;California&quot;, hãy xem network request chứ không chỉ màn hình; DC không phải state nhưng là địa chỉ hợp lệ; lãnh thổ Mỹ (PR, GU, VI) phải hỗ trợ hoặc báo rõ ràng; tên city có khoảng trắng hoặc dấu câu (&quot;St. Louis&quot;, &quot;Winston-Salem&quot;) phải lưu đúng.</li><li>ZIP: ZIP có số 0 đứng đầu như &quot;06103&quot; phải giữ nguyên, nếu lưu dạng số sẽ thành &quot;6103&quot;; ZIP+4 &quot;12345-6789&quot; hợp lệ, quyết định có chấp nhận dạng không gạch nối; ký tự sai (&quot;1234A&quot;, &quot;12 345&quot;) và độ dài sai (bốn số, sáu số, &quot;12345-67&quot;) phải bị từ chối; ZIP không khớp state phải quyết định cảnh báo, chặn hay cho qua.</li><li>Địa chỉ đặc biệt: PO Box với nhiều cách viết (&quot;PO Box 1234&quot;, &quot;P.O. Box 1234&quot;, &quot;Post Office Box 1234&quot;) nếu bạn chặn cho một số carrier; địa chỉ quân sự dùng APO, FPO, DPO làm city và AA, AE, AP làm state.</li></ul>
+<p>Nguồn bị cắt giữa mục địa chỉ đặc biệt, nên các case còn lại (ví dụ giới hạn và ký tự đặc biệt cuối cùng) xem trong bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/jacak/us-address-form-test-cases-30-checks-for-qa-with-sample-data-l57" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The post turns a checklist into 30 test cases, each with an ID, an input and an expected result, ready to paste into TestRail, Jira or a spreadsheet. It assumes a form with five fields: address line 1 (required), line 2 (optional: apartment, suite, unit), city (required), state (required) and ZIP (5 digits or ZIP+4). Use fictional addresses, never real customer data, and change the expected results to match your own rules. For each case check three things: what the user sees, what gets saved, and what gets sent to downstream systems (shipping, tax, CRM).</p>
+<ul><li>Required fields: leave each required field empty one at a time, each should show its own error beside it; type spaces only into line 1 (many forms forget to trim and save a blank address); values should be kept after an error; an empty line 2 must submit and must not save the word &quot;null&quot; or &quot;undefined&quot;.</li><li>Street line 1 and 2: formats like &quot;Apt 4B&quot;, &quot;Ste 210&quot;, &quot;Unit 7&quot; and &quot;# 12&quot; should save exactly as entered; a unit typed in line 1 must not be cut off; apostrophes and hyphens (&quot;45 O&#39;Brien St&quot;) must not be escaped twice; at the length limit and one over, the form, the database column and the shipping label API must agree; Unicode such as &quot;88 Peña Blvd&quot; must save and display correctly.</li><li>City and state: the value sent to the API should usually be the two-letter code (&quot;CA&quot;) even when the label says &quot;California&quot;, so check the network request; &quot;DC&quot; is not a state but is a valid address; territories (PR, GU, VI) must be supported or give a clear message; cities with spaces or punctuation (&quot;St. Louis&quot;, &quot;Winston-Salem&quot;) must save as typed.</li><li>ZIP: a ZIP with a leading zero like &quot;06103&quot; must stay &quot;06103&quot;, as a number it becomes &quot;6103&quot;; &quot;12345-6789&quot; is valid, and you decide whether the hyphen-less form is accepted; bad characters (&quot;1234A&quot;, &quot;12 345&quot;) and wrong lengths (four digits, six digits, &quot;12345-67&quot;) should be rejected; a ZIP that does not match the state needs a decision to warn, block or allow.</li><li>Special addresses: PO Box spellings (&quot;PO Box 1234&quot;, &quot;P.O. Box 1234&quot;, &quot;Post Office Box 1234&quot;) if you block them for some carriers; military addresses use APO, FPO or DPO as the city and AA, AE or AP as the state.</li></ul>
+<p>The source is cut off in the special-addresses section, so the remaining cases are in the original post.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/jacak/us-address-form-test-cases-30-checks-for-qa-with-sample-data-l57" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">test-cases</span><span class="tag">forms</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 0%"></div>
+</article>
+<article class="card" data-group="testing" data-id="8848dc298c59bb23d23671b65fefa9b7a55dea10" data-url="https://dev.to/nexus_studioqa/why-do-my-tests-fail-when-the-application-is-fine-5f3c" data-category="test-automation" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--testing">Automation</span>
+    <span class="card__src">dev.to</span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Vì sao test fail trong khi ứng dụng vẫn ổn?</span><span class="l l-en" lang="en">Why do my tests fail when the application is fine?</span></h3>
+    <span class="card__orig l l-vi" lang="en">Why do my tests fail when the application is fine?</span>
+    <span class="card__summary l l-vi" lang="vi">Bài trên dev.to giải thích vì sao test end-to-end chuyển đỏ khi mạng chậm, DNS lỗi hoặc site trả 403 dù ứng dụng không hỏng.</span><span class="card__summary l l-en" lang="en">A dev.to post explains why end-to-end tests go red on slow networks, DNS failures or a 403 response even when the application is fine.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Nexus Studio (Verdict System LLC) cho rằng test end-to-end chuyển đỏ khi mạng chậm, DNS lỗi, site trả 403 hoặc 429, hiện bot challenge hay browser chết, và không cái nào là lỗi của ứng dụng. Họ đặt cho các lỗi này verdict riêng: TIMEOUT, UNREACHABLE, BLOCKED và CRASHED, không cái nào được báo là bug ứng dụng.</p>
+<ul><li>TIMEOUT: test không nhận được phản hồi kịp lúc. Không chứng minh ứng dụng hỏng, cũng không chứng minh nó chạy tốt. Điều hướng hết thời gian là TIMEOUT.</li><li>UNREACHABLE: không kết nối được tới host, ví dụ tên không resolve, kết nối bị từ chối hoặc máy offline. Lỗi certificate không thuộc nhóm này, đó là một phát hiện thật.</li><li>BLOCKED: site tự vệ bằng 403, 429, trang chặn hoặc bot challenge. Điện thoại Android thật đang ngủ hoặc khóa cũng là BLOCKED (thiếu điều kiện tiên quyết).</li><li>CRASHED: browser hoặc process chết (trang đóng, lỗi DevTools protocol, WebDriver session chết). Đây là hạ tầng: xem máy và driver.</li></ul>
+<p>Cách phân loại: engine đọc error message và network log, so với các nhóm pattern theo thứ tự cố định CONFIG_ERROR, CRASHED, BLOCKED, UNREACHABLE, TIMEOUT, rồi mới BREACHED_FLAKY hoặc BREACHED. Nhóm đầu tiên khớp quyết định verdict, nên BREACHED (bug report) chỉ dành cho lỗi không pattern môi trường nào giải thích. Pattern phủ cả cách diễn đạt của Playwright và Selenium WebDriver.</p>
+<p>Với CI: 7 trong 14 verdict exit 0 (SECURE, AUTO_RECOVER, FLAKY, CHAOS_RESILIENT, PERFORMANCE_DEGRADED, A11Y_VIOLATION, SECURITY_VIOLATION); 7 verdict còn lại exit 1, trong đó có bốn verdict trên, nên build vẫn đỏ nhưng report và History nói rõ nguyên nhân. Runner pytest và Selenium exit 2 khi run không khởi động được. Cả bốn giữ report.md, metadata.json, raw-data.json và screenshot khung cuối; video mặc định tắt với TIMEOUT và BLOCKED, và không có với UNREACHABLE và CRASHED. Với Jira bật, chỉ TIMEOUT tạo ticket.</p>
+<p>Giới hạn: phân loại đọc text lỗi, nên message tự viết có chứa 403, Forbidden hoặc Access Denied sẽ bị đọc là BLOCKED; TIMEOUT lặp lại ở mọi run đáng xem lại; tăng timeout không che được element hỏng, nó chỉ fail muộn hơn; verdict gọi tên nguyên nhân nhưng không loại bỏ nguyên nhân.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/nexus_studioqa/why-do-my-tests-fail-when-the-application-is-fine-5f3c" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Nexus Studio (Verdict System LLC) argues that an end-to-end test goes red when the network is slow, the DNS fails, the site answers with a 403 or a 429 or shows a bot challenge, or the browser dies, and none of that is a defect in your application. It gives these failures their own verdicts: TIMEOUT, UNREACHABLE, BLOCKED and CRASHED, and none is reported as a bug in the application.</p>
+<ul><li>TIMEOUT: the test never got an answer in time. That is not proof the application is broken, nor that it works. A navigation that ran out of time is a TIMEOUT.</li><li>UNREACHABLE: the host could not be reached at all, such as a name that did not resolve, a refused connection or an offline machine. A certificate error is not here; that is a finding.</li><li>BLOCKED: the site defended itself with a 403, a 429, a block page or a bot challenge. A real Android phone that fell asleep or is locked is BLOCKED too, as an unmet prerequisite.</li><li>CRASHED: the browser or the process died (a closed page, a DevTools protocol error, a dead WebDriver session). It is infrastructure: look at the machine and the driver.</li></ul>
+<p>How it classifies: the engine reads the error message and network log and tests them against pattern groups in a fixed order, CONFIG_ERROR, CRASHED, BLOCKED, UNREACHABLE, TIMEOUT, and only then BREACHED_FLAKY or BREACHED. The first match decides, so BREACHED, the bug-report verdict, is left for failures no environment or harness pattern explains. The patterns cover both Playwright and Selenium WebDriver wording.</p>
+<p>For CI: 7 of the 14 verdicts exit 0 (SECURE, AUTO_RECOVER, FLAKY, CHAOS_RESILIENT, PERFORMANCE_DEGRADED, A11Y_VIOLATION, SECURITY_VIOLATION); the other 7 exit 1, including the four above, so the build still goes red while the report and History say the cause. The pytest and Selenium runners exit 2 when the run could not start. All four keep report.md, metadata.json, raw-data.json and a screenshot of the final frame; video is off by default for TIMEOUT and BLOCKED, and not offered for UNREACHABLE and CRASHED. With Jira on, only a TIMEOUT files a ticket.</p>
+<p>Limits: classification reads error text, so a custom message containing 403, Forbidden or Access Denied reads as BLOCKED; a TIMEOUT on every run deserves a look; a longer timeout does not hide a broken element, it fails later; and the verdicts name the cause without removing it.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/nexus_studioqa/why-do-my-tests-fail-when-the-application-is-fine-5f3c" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">e2e</span><span class="tag">flaky-tests</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 0%"></div>
+</article>
+<article class="card" data-group="testing" data-id="09810792caa1459a202a4120f6a23ebe26d0d437" data-url="https://dev.to/olly_08beff75f1fe547dcb92/json-translation-qa-checklist-for-release-week-43he" data-category="test-manual" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--testing">Manual testing</span>
+    <span class="card__src">dev.to</span>
+    <span class="card__fit" title="fit 2/5">●●○○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Checklist QA cho file dịch JSON trong tuần release</span><span class="l l-en" lang="en">JSON Translation QA Checklist for Release Week</span></h3>
+    <span class="card__orig l l-vi" lang="en">JSON Translation QA Checklist for Release Week</span>
+    <span class="card__summary l l-vi" lang="vi">Checklist kiểm tra trước release cho file bản dịch JSON, bắt đầu bằng việc xác nhận mọi file đã dịch vẫn parse được thành JSON hợp lệ.</span><span class="card__summary l l-en" lang="en">A pre-release checklist for JSON translation files, starting with confirming every translated file still parses as valid JSON.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Đây là một checklist ngắn, chia thành kiểm tra trước release và sau khi merge, cho các file bản dịch JSON.</p>
+<p>Trước release:</p>
+<ul><li>Xác nhận mọi file đã dịch vẫn parse được thành JSON hợp lệ.</li><li>Kiểm tra placeholder, variable token và dấu định dạng còn nguyên.</li><li>Spot-check các từ được bảo vệ như tên thương hiệu, nhãn SKU và thuật ngữ kỹ thuật.</li><li>Xem lại các màn hình empty state, error state, checkout và authentication ở locale đích.</li><li>Kiểm tra bị cắt chữ (truncation) ở chiều rộng mobile, không chỉ desktop.</li></ul>
+<p>Sau khi merge:</p>
+<ul><li>Chạy một smoke test trên build artifact thật, không chỉ môi trường local.</li><li>Giữ danh sách ngắn các chuỗi đã sửa tay để các đợt dịch sau dùng lại cách diễn đạt tốt hơn.</li><li>Ghi lại các lỗi dịch lặp đi lặp lại và đưa vào danh sách từ được bảo vệ hoặc quy trình review.</li></ul>
+<p>Bài gốc rất ngắn và đăng lại từ blog JSON Translate; không có giải thích hay ví dụ thêm.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/olly_08beff75f1fe547dcb92/json-translation-qa-checklist-for-release-week-43he" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>This is a short checklist for JSON translation files, split into pre-release checks and post-merge checks.</p>
+<p>Pre-release checks:</p>
+<ul><li>Confirm every translated file still parses as valid JSON.</li><li>Verify placeholders, variable tokens and formatting markers survived intact.</li><li>Spot-check protected words such as brand names, SKU labels and technical terms.</li><li>Review empty states, error states, checkout and authentication screens in the target locale.</li><li>Check for truncation on mobile widths, not just desktop.</li></ul>
+<p>Post-merge checks:</p>
+<ul><li>Run one smoke test in the live build artifact, not only in local development.</li><li>Keep a short list of strings that were manually corrected so future batches reuse better wording.</li><li>Capture recurring translation issues and add them to the protected-word or review workflow.</li></ul>
+<p>The original is very short and was republished from the JSON Translate blog; it gives no further explanation or examples.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/olly_08beff75f1fe547dcb92/json-translation-qa-checklist-for-release-week-43he" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">localization</span><span class="tag">checklist</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 0%"></div>
+</article>
+<article class="card" data-group="ai" data-id="575bca3eb47301bfa9ce821dabeab1578c8bcd62" data-url="https://bsky.app/profile/heikkitoivonen.bsky.social/post/3my4iqimtus22" data-category="ai-tip" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI tip</span>
+    <span class="card__src">Bluesky</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <div class="card__head">
+  <h3 class="card__title"><a class="" href="https://bsky.app/profile/heikkitoivonen.bsky.social/post/3my4iqimtus22" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">pythoncomplexity.com 1.0 ra mắt, kèm skill cài được cho agent</span><span class="l l-en" lang="en">pythoncomplexity.com 1.0 released, with an installable agent skill</span></a></h3>
+  <span class="card__orig l l-vi" lang="en">pythoncomplexity.com 1.0 released, with an installable agent skill</span>
+  <span class="card__summary l l-vi" lang="vi">pythoncomplexity.com ra bản 1.0, mọi thứ được kiểm chứng với các model mới nhất và có hơn 16.000 test. Repo GitHub còn có một skill để cài cho agent.</span><span class="card__summary l l-en" lang="en">pythoncomplexity.com reaches 1.0, verified with the latest models and backed by over 16,000 tests. Its GitHub repository also hosts a skill you can install for your agents.</span>
+</div>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">python</span><span class="tag">agent-skill</span></span>
+    <span class="links"></span>
+  </div>
+  <div class="hot" style="--hot: 0%"></div>
+</article>
+<article class="card" data-group="humor" data-id="717029e81fc365411260cf904afffec4015fba0c" data-url="https://bsky.app/profile/db-user.bsky.social/post/3my4imrcyy22s" data-category="humor" data-added="2026-10-18">
+  <div class="card__meta">
+    <span class="chip chip--humor">Humor</span>
+    <span class="card__src">Bluesky</span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Bluesky cần người có hơn 8 năm kinh nghiệm Go để giải quyết bài toán &quot;upload một ảnh&quot;</span><span class="l l-en" lang="en">Bluesky needs 8+ years of Go experience to solve &quot;upload an image&quot;</span></h3>
+    <span class="card__orig l l-vi" lang="en">Bluesky needs 8+ years of Go experience to solve &quot;upload an image&quot;</span>
+    <span class="card__summary l l-vi" lang="vi">Một bài đùa trên Bluesky: nền tảng này cần người có hơn 8 năm kinh nghiệm golang chỉ để giải quyết việc upload một ảnh.</span><span class="card__summary l l-en" lang="en">A Bluesky joke that the platform needs someone with 8+ years of golang experience just to solve uploading an image.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một bài đăng đùa trên Bluesky nói rằng bsky đang cần người có hơn 8 năm kinh nghiệm golang để giải quyết việc &quot;upload an image to our platform&quot;.</p>
+<p>Điểm hài nằm ở sự tương phản: yêu cầu kinh nghiệm rất cao cho một tính năng tưởng như cơ bản là tải ảnh lên.</p>
+<p>Không có nội dung bài viết nào khác ngoài đoạn trích này, nên chi tiết còn lại xem ở bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://bsky.app/profile/db-user.bsky.social/post/3my4imrcyy22s" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A joke post on Bluesky says that bsky needs someone with 8+ years of golang experience so they can solve &quot;upload an image to our platform&quot;.</p>
+<p>The humor comes from the contrast: a very senior experience requirement for what looks like a basic feature, uploading an image.</p>
+<p>The source has no article text beyond this short excerpt, so for anything further, see the original post.</p>
+
+  <p class="card__source"><a class="card__go" href="https://bsky.app/profile/db-user.bsky.social/post/3my4imrcyy22s" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">golang</span><span class="tag">bluesky</span></span>
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 0%"></div>

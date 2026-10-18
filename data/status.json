@@ -1,11 +1,11 @@
 {
   "fetch": {
     "ok": true,
-    "message": "185 candidates, 103 sightings from 40/62 sources",
+    "message": "33 candidates, 177 sightings from 40/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
-        "error": "HTTP 403 for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-localllama",
@@ -25,7 +25,7 @@
       },
       {
         "id": "r-programming",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmerhumor",
@@ -41,15 +41,15 @@
       },
       {
         "id": "r-devops",
-        "error": "HTTP 403 for https://www.reddit.com/r/devops/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/devops/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-experienceddevs",
-        "error": "HTTP 403 for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-sysadmin",
-        "error": "HTTP 403 for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmingmemes",
@@ -61,11 +61,11 @@
       },
       {
         "id": "r-technology",
-        "error": "HTTP 403 for https://www.reddit.com/r/technology/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/technology/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-openai",
-        "error": "HTTP 403 for https://www.reddit.com/r/OpenAI/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/OpenAI/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-singularity",
@@ -92,42 +92,42 @@
         "error": "HTTP 500 for https://lobste.rs/t/devops.json"
       }
     ],
-    "candidates": 185,
-    "at": "2026-10-18T00:26:19.420Z"
+    "candidates": 33,
+    "at": "2026-10-18T02:05:58.895Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 81, dropped 104, invalid 0",
-    "at": "2026-10-18T00:57:38.125Z"
+    "message": "kept 13, dropped 20, invalid 0",
+    "at": "2026-10-18T02:06:40.031Z"
   },
   "merge": {
     "ok": true,
-    "message": "1645 items retained, 1 re-sighted",
+    "message": "1658 items retained, 0 re-sighted",
     "counts": {
-      "candidates": 185,
-      "kept": 81,
-      "dropped": 104,
+      "candidates": 33,
+      "kept": 13,
+      "dropped": 20,
       "invalid": 0,
-      "sighted": 1
+      "sighted": 0
     },
-    "at": "2026-10-18T00:57:38.125Z"
+    "at": "2026-10-18T02:06:40.031Z"
   },
   "build": {
     "ok": true,
-    "message": "710 items on index, 15 archive pages",
-    "at": "2026-10-18T01:48:09.046Z"
+    "message": "723 items on index, 15 archive pages",
+    "at": "2026-10-18T02:08:58.139Z"
   },
   "detail": {
     "ok": true,
     "day": "2026-10-18",
-    "message": "78 details written today",
+    "message": "88 details written today",
     "counts": {
-      "written": 78,
-      "missing": 6,
+      "written": 88,
+      "missing": 9,
       "invalid": 5,
       "ungrounded": 5,
       "discussed": 8
     },
-    "at": "2026-10-18T01:48:08.751Z"
+    "at": "2026-10-18T02:08:57.836Z"
   }
 }

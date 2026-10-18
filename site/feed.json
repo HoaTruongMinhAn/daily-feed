@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T01:48:08.922Z",
+  "generatedAt": "2026-10-18T02:08:58.004Z",
   "items": [
     {
       "id": "7fd7e06ab2f4b840c01c364743d2c0e2fcb3de17",
@@ -4028,6 +4028,41 @@
       "detailEn": "Plugins-Weave is a Claude Code plugin marketplace; the plugin this page covers is EpisodicRAG, a hierarchical long-term memory system. The readable README describes only EpisodicRAG; the other plugins (ContextPreloader, EmailingEssay, VisualExpression, EmotionPulse, TelegramSecretary, ConsiderateCoder) are only named in the short description.\n\nEpisodicRAG turns conversation logs (Loop files) into digests across 8 tiers, from Weekly to Centurial (about 108 years), and manages them automatically.\n- Hierarchical memory: automatic digests per week, month, quarter, year, 3 years, 9 years, 27 years and 108 years.\n- Avoiding patchy memory: unprocessed Loops are detected immediately so memory does not fragment.\n- Carry-over between sessions via GitHub.\n\nInstall:\n- `/plugin marketplace add https://github.com/Bizuayeu/Plugins-Weave`\n- `/plugin install EpisodicRAG@plugins-weave`\n- `@digest-setup` for interactive first-time setup.\n\nWorkflow: add a Loop, run `/digest`, repeat. Other commands: `/digest weekly` finalizes a Weekly Digest, `/dream-defrag` prunes auto-memory (recommended past 50 entries), `@digest-auto` shows status, `@digest-config` changes settings, `@wakeup` loads memory at the start of a claude.ai session.\n\nIt is MIT licensed, but a patent application is listed (特願 2025-198943): personal, non-commercial use is free; commercial use should be discussed beforehand."
     },
     {
+      "id": "b399cd4bdd20ea830e3fb3d9a448b916479044f7",
+      "url": "https://github.com/excsn/snapfire/blob/main/fsr/docs/corpus/react-dev.md",
+      "discussionUrl": "https://bsky.app/profile/excsn.bsky.social/post/3my4iiimud22q",
+      "title": "Snapfire: write apps in TypeScript, run them in Rust",
+      "excerpt": "Write apps in TypeScript, run it in Rust. File routes, loaders, actions, typed OpenAPI and gRPC clients, sessions, streaming and island hydration, with no Node in the build or on the request path. ...",
+      "imageUrl": null,
+      "source": "bluesky",
+      "sourceName": "Bluesky",
+      "sources": [
+        "Bluesky"
+      ],
+      "publishedAt": "2026-10-18T01:49:50.196Z",
+      "engagement": 2,
+      "hotness": 0.9938,
+      "categoryHint": "it",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "it-general",
+      "titleVi": "Snapfire: viết app bằng TypeScript, chạy bằng Rust",
+      "summary": "Snapfire cho viết app bằng TypeScript và chạy bằng Rust, có file routes, loaders, actions, client OpenAPI/gRPC có kiểu và island hydration, không cần Node khi build hay xử lý request.",
+      "summaryEn": "Snapfire lets you write apps in TypeScript and run them in Rust, with file routes, loaders, actions, typed OpenAPI/gRPC clients and island hydration, with no Node in the build or request path.",
+      "tags": [
+        "typescript",
+        "rust"
+      ],
+      "fit": 3,
+      "sourceTitle": "snapfire/fsr/docs/corpus/react-dev.md at main · excsn/snapfire",
+      "rank": 0.5963,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "discussionTriedAt": "2026-10-18",
+      "detail": "Snapfire (FSR) chạy 641 ví dụ code của react.dev qua bản build của nó, mỗi ví dụ là một ứng dụng riêng: 574 ví dụ được \"lowered whole\" (server render mọi component), 0 bị từ chối.\n\n- 574 ví dụ lowered whole: server render toàn bộ component trên trang.\n- 1 ví dụ client side rendered nhưng có thể lowerable: dùng thứ mà build chưa render được trên server (đặt state trong lúc render).\n- 59 ví dụ client side rendered by design, vì lý do đúng với mọi server renderer: đồng hồ của người xem quyết định markup, promise mà render phải await, portal.\n- 0 ví dụ bị Refused (build dừng).\n- 7 ví dụ bị loại vì react.dev cố ý để hỏng, để trống hoặc không có App.\n\nComponent render ở trình duyệt vẫn chạy như dưới React, chỉ thiếu HTML trong response đầu tiên. Corpus chỉ kiểm tra build lower được gì, không kiểm tra trang đã lower có render đúng hay không.\n\nNguyên nhân phổ biến đẩy component về trình duyệt: use của promise (19 ví dụ, dữ liệu nên nằm trong loader của route), Math.random (7), createPortal (6), 'use server' action hoặc promise cache (6), async component (4), useSyncExternalStore không có getServerSnapshot (3).\n\nĐáng chú ý với người build sản phẩm: mỗi lần đổi lowerer, chạy lại corpus bằng cargo test -p corpus để thấy kết quả dịch chuyển; CORPUS_BLESS=1 dùng để chốt số mới. Tài liệu không nói thêm về hiệu năng hay mức độ dùng thực tế.",
+      "detailEn": "Snapfire (FSR) built the 641 code examples from react.dev as one application each, and 574 of them were lowered whole, meaning the server renders every component on the page. None were refused.\n\n- 574 examples lowered whole: the server renders every component.\n- 1 example client side rendered but lowerable: it uses something the build does not render on the server yet (setting state during render).\n- 59 examples client side rendered by design, for reasons that hold under any server renderer: the viewer's clock choosing markup, a promise the render awaits, a portal.\n- 0 examples refused (the build stops).\n- 7 examples excluded because react.dev shows them broken on purpose, as empty exercises or as pages with no App.\n\nA component rendered in the browser still works as it would under React; only its HTML is missing from the first response. The corpus checks what the build lowers, not that the lowered page renders.\n\nMost common causes sending a component to the browser: use of a promise (19 examples, where the data belongs in the route's loader), Math.random (7), createPortal (6), a 'use server' action or promise cache (6), an async component (4), and useSyncExternalStore without getServerSnapshot (3).\n\nFor anyone building products on it: after a change to the lowerer, run cargo test -p corpus to see which outcomes move, and bless the new counts with CORPUS_BLESS=1. The page says nothing about performance or real-world adoption."
+    },
+    {
       "id": "e98cd888a431a5365c72f0c98cc50e8a770da428",
       "url": "https://bsky.app/profile/anotarian.bsky.social/post/3mxsblwkzss2c",
       "discussionUrl": null,
@@ -4273,6 +4308,39 @@
       "discussionTriedAt": "2026-10-08",
       "detail": "Tác giả dùng Claude Code với gói Claude Pro 20€/tháng: Opus 5.5 đưa ra quyết định, còn các subagent Sonnet và Haiku viết code và mở pull request.\n\n- Bài chia sẻ các file agent, file CLAUDE.md của họ, và mức tiết kiệm so với chỉ dùng Opus.\n- Không lấy được nội dung bài, nên chưa rõ cách phân vai cụ thể hay con số tiết kiệm; chi tiết nằm ở bài gốc.",
       "detailEn": "The author uses Claude Code with a 20€/month Claude Pro subscription: Opus 5.5 makes the decisions, while Sonnet and Haiku subagents write the code and open the pull requests.\n\n- The post shares their agent files, their CLAUDE.md, and how much it saves compared to using only Opus.\n- The article text could not be retrieved, so the exact role split and the savings figures are unknown here; details are in the original post."
+    },
+    {
+      "id": "e467017220c3d35421c345b812f9c69d62fe49ab",
+      "url": "https://techmeme.com/261017/p20",
+      "discussionUrl": null,
+      "title": "Satya Nadella interview: Surface Laptop Ultra and making Windows safer for AI agents",
+      "excerpt": "Joanna Stern / The New Things : An interview with Microsoft CEO Satya Nadella on the Nvidia RTX Spark-powered Surface Laptop Ultra, plans to make Windows a safer OS to run AI agents, and more &mdash; My exclusive interview with Satya Nadella on the new Surface Laptop Ultra and Microsoft's plan to make Windows safer for AI agents",
+      "imageUrl": null,
+      "source": "rss:techmeme",
+      "sourceName": "Techmeme",
+      "sources": [
+        "Techmeme"
+      ],
+      "publishedAt": "2026-10-18T01:20:02.000Z",
+      "engagement": 1,
+      "hotness": 0.9801,
+      "categoryHint": "hot",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "ai-trend",
+      "titleVi": "Phỏng vấn Satya Nadella: Surface Laptop Ultra và kế hoạch làm Windows an toàn hơn cho AI agent",
+      "summary": "Joanna Stern phỏng vấn Satya Nadella về Surface Laptop Ultra dùng Nvidia RTX Spark và kế hoạch của Microsoft để Windows chạy AI agent an toàn hơn.",
+      "summaryEn": "Joanna Stern interviews Satya Nadella on the Nvidia RTX Spark-powered Surface Laptop Ultra and Microsoft's plan to make Windows safer for running AI agents.",
+      "tags": [
+        "windows",
+        "ai-agents",
+        "microsoft"
+      ],
+      "fit": 3,
+      "sourceTitle": "An interview with Microsoft CEO Satya Nadella on the Nvidia RTX Spark-powered Surface Laptop Ultra, plans to make Windows a safer OS to run AI agents, and more (Joanna Stern/The New Things)",
+      "rank": 0.5881,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18"
     },
     {
       "id": "a26c61805cba6059f92969c3ae1948b18fa275b7",
@@ -9070,6 +9138,41 @@
       "detailEn": "Esp32sim is an ESP32 emulator in Rust that does instruction-level emulation of four SoCs across both of Espressif's CPU architectures: Xtensa (ESP32, S3) and RISC-V (C3, C6). MIT licensed.\n\n- Each chip boots the real mask ROM, the real 2nd-stage bootloader and an unmodified application image; no patched firmware, no stubs.\n- It runs in the browser (WebAssembly) for the S3, C3 and C6. The S3 has a block interpreter and an AArch64 JIT; the C3 and C6 use a plain interpreter.\n- Virtual WiFi: a virtual access point, WPA2, DHCP/DNS/NTP and NAT to the real network. Boards and displays include ST7735, ST7701S, ST7789 and WS2812.\n- Status: S3 \"mature\", C3 and C6 \"draft\". The hardware comparison counts come from earlier manual runs; CI runs the sampled decoder corpora and golden outputs, excludes the external full-listing tests, and the hardware trace comparison is not uninterrupted cycle-by-cycle agreement.\n\nFor testers: useful for running real firmware in CI instead of a functional simulator.",
       "discussion": "Phản hồi chủ yếu tích cực về ứng dụng thực tế, kèm một câu hỏi so với Wokwi và một lời chê cách trình bày README quá dày đặc.\n\n- \"Cái này khác Wokwi.com thế nào?\" — @turbine401, Hacker News\n- \"những đoạn AI-slop khổng lồ, định dạng tệ này\" — @dofm, Hacker News\n- \"Tôi đã vibe code một trình mô phỏng drone bay bằng cách giả lập ESP32 trong trình duyệt\" — @mrtksn, Hacker News",
       "discussionEn": "Reactions are mostly positive about practical uses, with one question about how it differs from Wokwi and one complaint that the README is too dense.\n\n- \"How is this different from Wokwi.com?\" — @turbine401, Hacker News\n- \"these gigantic, poorly-formatted AI-slop paragraphs\" — @dofm, Hacker News\n- \"I vibe coded a drone simulator that flys drones by simulating ESP32 in the browser\" — @mrtksn, Hacker News"
+    },
+    {
+      "id": "84cbe33dec16a151bb4bb66718b3a00442d403fb",
+      "url": "https://github.com/CyberNative-AI/.github/tree/main/notes/pq-tls-default-images",
+      "discussionUrl": "https://bsky.app/profile/cybernative-ai.bsky.social/post/3my4i3ekbs5ve",
+      "title": "13 of 15 popular TLS server images already negotiate post-quantum key exchange",
+      "excerpt": "Pomerium and kong:latest do not. Likely causes, raw handshakes, and a one-line check for your own server.",
+      "imageUrl": null,
+      "source": "bluesky",
+      "sourceName": "Bluesky",
+      "sources": [
+        "Bluesky"
+      ],
+      "publishedAt": "2026-10-18T01:42:29.709Z",
+      "engagement": 1,
+      "hotness": 0.4952,
+      "categoryHint": "it",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "it-general",
+      "titleVi": "13 trong 15 image TLS server phổ biến đã thương lượng trao đổi khóa hậu lượng tử",
+      "summary": "13 trong 15 image TLS server phổ biến đã thương lượng được trao đổi khóa hậu lượng tử; Pomerium và kong:latest thì chưa. Có nguyên nhân khả dĩ và cách kiểm tra server của bạn bằng một dòng lệnh.",
+      "summaryEn": "13 of 15 popular TLS server images already negotiate post-quantum key exchange; Pomerium and kong:latest do not. Includes likely causes and a one-line check for your own server.",
+      "tags": [
+        "tls",
+        "security"
+      ],
+      "fit": 4,
+      "sourceTitle": "13 of 15 popular TLS server images already negotiate post-quantum key exchange",
+      "rank": 0.3962,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "discussionTriedAt": "2026-10-18",
+      "detail": "Ngày 17 October 2026, nhóm tác giả thử các image web server/reverse proxy có từ 250 million lượt pull Docker Hub trở lên: chỉ cấp certificate và key, không cấu hình gì thêm, kết nối bằng client OpenSSL 3.5.7. Kết quả: 13 trong 15 image thương lượng X25519MLKEM768; hai image không làm được là pomerium/pomerium:latest và kong:latest.\n\n- pomerium/pomerium:latest (Pomerium 0.33.4) chỉ đạt X25519. Nó dùng Envoy v1.38.5, trong khi Envoy chỉ thêm X25519MLKEM768 vào default curves từ v1.40.0. Envoy v1.38.5 chạy được PQ khi thêm một setting: ecdh_curves: [X25519MLKEM768, X25519]. Tác giả nói điều này khớp với giả thuyết nhưng chưa chứng minh, vì Pomerium dùng bản Envoy build riêng.\n- kong:latest (Docker Official Image, Kong 3.9.4) chỉ đạt X25519. Nginx của nó build với OpenSSL 3.2.3, mà OpenSSL chỉ có ML-KEM từ 3.5. Đặt KONG_NGINX_PROXY_SSL_ECDH_CURVE=X25519MLKEM768:X25519 làm Kong không khởi động được; không có setting nào sửa được image này. Image kong/kong-gateway:latest (OpenSSL 3.5.8) thì đạt X25519MLKEM768.\n\nBối cảnh: nghiên cứu tại IMC 2026 (UNSW Sydney và Georgia Tech) thấy 49.22% trong 684,494 domain HTTPS dùng hybrid PQ, gần hết qua CDN và managed hosting; domain tự vận hành TLS dưới 10%. Tác giả đoán khoảng cách này đến từ image/gói cũ hoặc cấu hình ghim danh sách curve, không phải vì mặc định khó bật. Đây chỉ là giả thuyết, họ chưa đo server đang chạy thật.\n\nHai dữ kiện đi cùng hướng: server dùng OpenSSL cần 3.5 trở lên (Debian 13 có 3.5, Debian 12 và Ubuntu 24.04 LTS có 3.0), và một dòng ssl_ecdh_curve X25519; trong nginx đủ tắt PQ.\n\nCách kiểm tra server của bạn (client OpenSSL 3.5+):\n\n- openssl s_client -connect example.com:443 -groups X25519MLKEM768 </dev/null\n- Thấy \"Negotiated TLS1.3 group: X25519MLKEM768\" nghĩa là server có hybrid PQ; nếu không, handshake fail với alert handshake failure.\n\nHữu ích cho QA/DevOps: đây là một check một dòng có thể đưa vào checklist bảo mật hoặc smoke test hạ tầng.",
+      "detailEn": "On 17 October 2026 the authors tested the TLS web server and reverse proxy images with at least 250 million Docker Hub pulls: each got only a certificate and key, and an OpenSSL 3.5.7 client connected. 13 of 15 negotiated X25519MLKEM768 with no configuration; pomerium/pomerium:latest and kong:latest did not.\n\n- pomerium/pomerium:latest (Pomerium 0.33.4) negotiated X25519. It embeds Envoy v1.38.5, and Envoy added X25519MLKEM768 to its default curves only in v1.40.0. Plain Envoy v1.38.5 negotiated it after one setting, ecdh_curves: [X25519MLKEM768, X25519]. The authors say this fits but does not prove the cause, since Pomerium ships its own Envoy build.\n- kong:latest (the Docker Official Image, Kong 3.9.4) negotiated X25519. Its nginx is built with OpenSSL 3.2.3, and OpenSSL added ML-KEM only in 3.5. Setting KONG_NGINX_PROXY_SSL_ECDH_CURVE=X25519MLKEM768:X25519 stops Kong from starting, so no setting can fix this image. kong/kong-gateway:latest (OpenSSL 3.5.8) did negotiate X25519MLKEM768.\n\nContext: an IMC 2026 paper from UNSW Sydney and Georgia Tech found 49.22% of 684,494 HTTPS domains negotiated hybrid PQ key exchange, almost all via CDNs and managed hosting, against under 10% for owner-run TLS. The authors hypothesise that low self-hosted adoption tracks older images, distribution packages or pinned curve lists rather than a default owners must change. They did not measure deployed servers.\n\nTwo facts point the same way: OpenSSL-based servers need 3.5 or newer (Debian 13 ships 3.5; Debian 12 and Ubuntu 24.04 LTS ship 3.0), and a single line, ssl_ecdh_curve X25519; in nginx, turned PQ off in their negative control.\n\nCheck your own server with a client on OpenSSL 3.5 or newer:\n\n- openssl s_client -connect example.com:443 -groups X25519MLKEM768 </dev/null\n- \"Negotiated TLS1.3 group: X25519MLKEM768\" in the output means hybrid PQ works; otherwise the handshake fails with alert handshake failure.\n\nUseful for QA and DevOps: it is a one-line check that fits into a security checklist or an infrastructure smoke test."
     },
     {
       "id": "11e5b2483303985fda9bde17c2edb4fc5b62c16e",
@@ -16573,6 +16676,41 @@
       "detailTriedAt": "2026-10-17",
       "detail": "Trong field test v0.2.0 của HivePlane, mọi lỗi đều là một giá trị chạy tốt trong Python rồi hỏng ở bước sau, tại ranh giới lưu trữ; unit test dừng trước ranh giới đó nên vẫn xanh.\n\n- D-5: secret mã hóa dạng bytes round-trip hoàn hảo trong in-memory store, nhưng cột Postgres là JSON và bytes không serialize được thành JSON. Cách sửa: base64-encode khi ghi, decode khi đọc; model vẫn là bytes.\n- D-7: loader reconcile dùng id làm khóa cho desired_specs. Nguồn thứ hai áp cùng trạng thái mong muốn thì vi phạm primary key. Cách sửa: khóa ghép (source_id, workload_id) và upsert idempotent.\n- D-8: GET /tools/disabled liệt kê cả tool đang bật, vì endpoint báo bản ghi chứ không báo trạng thái. Cách sửa: suy ra trạng thái từ bản ghi và trạng thái tool hiện tại.\n- D-9: xóa workload còn run trả 500 do vi phạm foreign key. Cách sửa: trả 409 kèm lý do; vi phạm ràng buộc là điều kiện phía người dùng, không phải lỗi server.\n- #573: manifest backup ghi alembic_head=0034 trong khi schema thật ở 0035, nên restore có thể chạy trên sai schema. Cách sửa: restore kiểm tra head thật và từ chối khi lệch.\n\nBài học: lần theo từng giá trị qua mọi ranh giới lưu trữ. Các test chạy với Postgres thật trong CI mới bắt được loại lỗi này; test in-memory vẫn qua nhưng không chứng minh gì về điểm nối.",
       "detailEn": "In the v0.2.0 field test of HivePlane, every defect was a value that was fine in Python and broke one step later at a persistence seam; unit tests stopped before that boundary, so they passed.\n\n- D-5: an encrypted secret stored as bytes round-tripped perfectly in the in-memory store, but the Postgres column was JSON and bytes is not JSON-serializable. Fix: base64-encode on the way in and decode on the way back; the model stays bytes.\n- D-7: the reconcile loader keyed desired_specs by id. A second source applying the same desired state hit a primary-key violation. Fix: composite key (source_id, workload_id) and idempotent upserts.\n- D-8: GET /tools/disabled listed enabled tools, because the endpoint reported the record rather than the state. Fix: derive the state from the record and the current tool status.\n- D-9: deleting a workload that had runs returned a 500 from a raw foreign-key violation. Fix: return a 409 with a reason; a constraint violation is a user condition, not a server fault.\n- #573: a backup manifest pinned alembic_head=0034 while the live schema head was 0035, so a restore could run against the wrong schema. Fix: the restore verifies the actual head and refuses a mismatch.\n\nTakeaway: trace each value across every persistence boundary. The Postgres-gated tests that CI runs with a real database are the ones that catch this class of bug; the in-memory tests still pass and prove nothing about the seam."
+    },
+    {
+      "id": "1454cb57cf4e50bdc5d099b1368e9376d1e5f336",
+      "url": "https://basis.ai/blog/ship-your-interpreters",
+      "discussionUrl": "https://mastodon.social/@firusvg/117458236912717217",
+      "title": "Ship Your Interpreter",
+      "excerpt": "LLMs can write rules for a programming language and prove that its interpreter follows them.",
+      "imageUrl": null,
+      "source": "mastodon:fosstodon.org",
+      "sourceName": "Mastodon",
+      "sources": [
+        "Mastodon"
+      ],
+      "publishedAt": "2026-10-17T20:54:20.000Z",
+      "engagement": 3,
+      "hotness": 0.325,
+      "categoryHint": "ai",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "ai-trend",
+      "titleVi": "Ship Your Interpreter: LLM viết quy tắc cho ngôn ngữ lập trình và chứng minh interpreter tuân theo",
+      "summary": "Bài trên basis.ai cho biết LLM có thể viết quy tắc cho một ngôn ngữ lập trình và chứng minh interpreter của nó tuân theo các quy tắc đó.",
+      "summaryEn": "A basis.ai post says LLMs can write rules for a programming language and prove that its interpreter follows them.",
+      "tags": [
+        "llm",
+        "interpreter"
+      ],
+      "fit": 3,
+      "sourceTitle": "Ship Your Interpreter",
+      "rank": 0.195,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "discussionTriedAt": "2026-10-18",
+      "detail": "Nhóm Basis cho LLM viết formal semantics (bộ quy tắc toán học mô tả ngôn ngữ nên chạy thế nào) cho một ngôn ngữ nhỏ, rồi dùng Lean để chứng minh interpreter của ngôn ngữ đó tuân theo các quy tắc ấy, kể cả sau khi được compile xuống lệnh RISC-V.\n\n- Vấn đề: để chứng minh một chương trình đúng, trước hết phải có semantics của ngôn ngữ. Chỉ một số ít ngôn ngữ có (Standard ML, WebAssembly, C qua CompCert), mỗi cái mất nhiều năm của chuyên gia. Phần lớn ngôn ngữ thì không có.\n- Rủi ro: LLM viết semantics có thể sai, và semantics sai làm hỏng mọi chứng minh dựa trên nó. Test giúp được, nhưng một semantics vẫn có thể qua mọi test mà vẫn sai.\n- Cách làm: coi interpreter thật là ground truth. Compile interpreter sang RISC-V (vốn đã có semantics chính thức), rồi bắt LLM viết quy tắc dễ đọc và chứng minh trong Lean rằng với mọi chương trình, các quy tắc dự đoán đúng đầu ra của interpreter đã compile. Nếu một quy tắc sai, chứng minh sẽ bị kẹt.\n- Thí nghiệm dùng một bản mở rộng của WHILE, ngôn ngữ imperative nhỏ trong giáo trình. Toàn bộ semantics và chứng minh có trên GitHub.\n\nBối cảnh bài đưa ra: tháng 4 agent của họ build được compiler JavaScript sang WebAssembly nhưng chưa chứng minh được nó giữ nguyên hành vi; sau đó agent verify compiler nftables của Linux; tháng 9 các nhà nghiên cứu MIT dùng AI agent để verify kernel xv6 xuống tới machine code. Theo nhóm, nút thắt đang chuyển từ chứng minh định lý sang đặc tả: làm sao chắc rằng điều ta chứng minh đúng là hành vi ta quan tâm.\n\nVới QA: ý tưởng \"tạo oracle từ chương trình thật rồi bắt chứng minh\" gần với kiểm thử so khớp hành vi, nhưng ở mức chứng minh toàn bộ chương trình. Bài còn nói tới cách xử lý memory reasoning và các công cụ xây trên kết quả; phần đó nằm trong bài gốc.",
+      "detailEn": "The Basis team had LLMs write a formal semantics, a precise mathematical description of how a small programming language should behave, and then used Lean to prove that the language's interpreter follows those rules, even after being compiled to low-level RISC-V instructions.\n\n- The problem: proving anything about a program needs a semantics for its language first. Only a handful of languages have one (Standard ML, WebAssembly, C via CompCert), and each took years of expert effort. Most languages have none.\n- The risk: an LLM can write a wrong semantics, and a broken semantics undermines every proof built on it. Testing helps, but a semantics can pass every test and still be wrong.\n- The approach: treat the real interpreter as ground truth. Compile it to RISC-V, whose meaning is already formally defined, then have the LLM write readable rules and prove in Lean that, for every possible program, those rules predict exactly what the compiled interpreter prints. If a rule is wrong, the proof gets stuck.\n- The experiment used an extended version of WHILE, the small imperative language from textbooks. The whole development, semantics and proof, is on GitHub.\n\nContext from the post: in April their agents built a JavaScript-to-WebAssembly compiler but could not prove it preserved behaviour; months later they verified Linux's nftables compiler; in September MIT researchers used AI agents to verify the xv6 kernel down to machine code. The authors say the bottleneck is shifting from theorem proving to specification: how to be sure the statements proved capture the behaviour we care about.\n\nFor QA: using the real program as an oracle resembles behaviour-matching tests, but here the match is proved for all programs rather than sampled. The post also covers how memory reasoning was handled and what tools were built on the result; see the original for that."
     },
     {
       "id": "48d3c5f293fc784fae2917415092d9919d3104a5",
@@ -24536,6 +24674,38 @@
       "addedAt": "2026-10-18",
       "detailTriedAt": "2026-10-18",
       "discussionTriedAt": "2026-10-18"
+    },
+    {
+      "id": "fcb940b9300cf231f416ce43b7088b21b1fe0c93",
+      "url": "https://researchbuzz.masto.host/@mottg/117459420238682206",
+      "discussionUrl": null,
+      "title": "ImpactBench: an open benchmark of AI impact on humans",
+      "excerpt": "\"Open Benchmark of AI Impact on Humans (ImpactBench): an expert-guided, open platform for the holistic evaluation of AI impact on humans\" The authors introduce an expert-guided benchmark spanning psychological, physical, and social well-being. They evaluate 10 frontier models across 48,540 simulated conversations using 809 metrics drawn from 26 benchmarks. Paper: https://arxiv.org/abs/2610.20690 h",
+      "imageUrl": null,
+      "source": "mastodon:fosstodon.org",
+      "sourceName": "Mastodon",
+      "sources": [
+        "Mastodon"
+      ],
+      "publishedAt": "2026-10-18T01:55:16.000Z",
+      "engagement": 1,
+      "hotness": 0.1245,
+      "categoryHint": "ai",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "ai-trend",
+      "titleVi": "ImpactBench: benchmark mở đánh giá tác động của AI lên con người",
+      "summary": "ImpactBench là benchmark mở đánh giá tác động của AI lên sức khỏe tâm lý, thể chất và xã hội. Nhóm tác giả chạy 10 model hàng đầu qua 48.540 hội thoại mô phỏng với 809 chỉ số.",
+      "summaryEn": "ImpactBench is an open benchmark of AI impact on psychological, physical and social well-being. The authors ran 10 frontier models through 48,540 simulated conversations using 809 metrics.",
+      "tags": [
+        "benchmark",
+        "llm"
+      ],
+      "fit": 3,
+      "sourceTitle": "\"Open Benchmark of AI Impact on Humans (ImpactBench): an expert-guided, open platform for the holistic evaluation of AI impact on humans\"",
+      "rank": 0.0747,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18"
     },
     {
       "id": "f281a59e29f8be52475fd16014cc4a9fdc35f3cb",
@@ -41917,6 +42087,40 @@
       "detailEn": "Since Go 1.25 the runtime sets GOMAXPROCS from the container's CPU limit instead of the node's core count; GOMEMLIMIT is still on you. The two problems show up as unexplained latency spikes and pods dying with OOMKilled while heap graphs looked fine.\n\nCPU: before Go 1.25 a pod with limits.cpu: \"2\" on a 32-core node ran with GOMAXPROCS=32. Linux enforces CPU limits with CFS bandwidth control: for cpu: 2 that is 200 ms of CPU per 100 ms period. Thirty-two busy threads can burn it in about 6 ms, then the kernel pauses the whole container. The result is a haunted p99 with no log line.\n\nWhat Go 1.25 changed:\n- It reads the limit, not the request.\n- Fractions round up: 0.5 gives GOMAXPROCS=1, 2.5 gives 3.\n- It re-checks about once a second, so in-place resizes are followed.\n- Any manual setting (the GOMAXPROCS env var or runtime.GOMAXPROCS(n)) wins; with no limit you get NumCPU as before.\n- go.uber.org/automaxprocs can most likely be deleted.\n\nThe go.mod trap: new runtime behavior is gated by the language version in go.mod. If it still says go 1.24, a new toolchain does not turn this on. Bump to 1.25 or set the containermaxprocs / updatemaxprocs GODEBUG settings explicitly.\n\nWhat it doesn't fix: cgo calls, threads blocked in syscalls and background work still draw from the same quota, and a bursty service can still hit the quota within one period. Measure the throttled-period ratio (container_cpu_cfs_throttled_periods_total over container_cpu_cfs_periods_total).\n\nMemory: GOMEMLIMIT defaults to effectively unlimited (math.MaxInt64), so the GC has no idea about a 512 MiB cgroup limit. The heap grows, the container crosses the limit and the kernel OOM killer ends the process: no Go panic, just exit code 137 and OOMKilled in kubectl describe pod. GOMEMLIMIT is a soft limit that makes the GC work harder as it approaches; it covers memory the Go runtime manages, not things like cgo allocations. The source is cut off here."
     },
     {
+      "id": "036817223d4a29d1844cab7b7d20f5afe1b05b1b",
+      "url": "https://dev.to/nexus_studioqa/is-this-test-flaky-or-is-it-a-real-bug-25jf",
+      "discussionUrl": null,
+      "title": "Is this test flaky, or is it a real bug?",
+      "excerpt": "A flaky test failed and then passed on a retry without anyone fixing anything, and a real bug fails...",
+      "imageUrl": null,
+      "source": "devto",
+      "sourceName": "dev.to",
+      "sources": [
+        "dev.to"
+      ],
+      "publishedAt": "2026-10-17T15:49:26Z",
+      "engagement": 1,
+      "hotness": 0.0167,
+      "categoryHint": "testing",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "test-automation",
+      "titleVi": "Test này flaky hay là bug thật?",
+      "summary": "Bài trên dev.to phân biệt test flaky, tự pass khi retry dù không ai sửa gì, với bug thật vốn fail ổn định. Hữu ích khi phải phân loại test đỏ.",
+      "summaryEn": "A dev.to post tells a flaky test, which passes on retry with no fix, from a real bug, which keeps failing. Useful when triaging red tests.",
+      "tags": [
+        "flaky-tests",
+        "automation"
+      ],
+      "fit": 4,
+      "sourceTitle": "Is this test flaky, or is it a real bug?",
+      "rank": 0.0134,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "detail": "Nhóm Nexus Studio (Verdict System LLC) phân biệt flaky với bug thật bằng cách ghi lại mọi lần retry: FLAKY là test fail rồi pass khi retry mà không ai sửa gì, BREACHED là phát hiện thật, BREACHED_FLAKY là lỗi bản thân nó không nhất quán. Retry không bao giờ biến một defect thành lần chạy xanh.\n\n- FLAKY: fail, retry pass, không có gì được sửa. Exit code 0 nên không làm hỏng build, nhưng hiện trong report và History như \"pass có dè dặt\". Evidence gồm screenshot.png, metadata.json, raw-data.json.\n- BREACHED: fail ở một lần chạy, không có pattern môi trường hay harness nào giải thích; đây là bug report. Exit 1.\n- BREACHED_FLAKY: fail ở lần cuối sau một lần retry trước đó, cũng không có giải thích môi trường. Cần so sánh các attempt trước khi tạo bug. Exit 1.\n- Một lỗi cứng xảy ra ở mọi attempt không phải flaky, kể cả khi bước self-healing đã thử sửa selector mà thất bại. Bản engine cũ từng xếp ca này là FLAKY và để một ứng dụng hỏng lọt như nhiễu.\n- AUTO_RECOVER là pass mà self-healing đã thay selector; lần đầu fail chỉ vì thời gian rồi retry pass là SECURE.\n\nCách đếm: pass với retry number lớn hơn 0 là FLAKY (trừ khi có selector được heal thì là AUTO_RECOVER); fail hoặc timeout với retry number lớn hơn 0 và không có giải thích môi trường là BREACHED_FLAKY; pass sạch cần retry 0. Trước khi gán BREACHED, classifier loại trừ theo thứ tự cố định: harness error, crash, block, host không truy cập được, timeout.\n\nHistory giữ một dòng mỗi lần chạy cho mỗi test và browser/thiết bị (verdict, retry_attempt, error signature) và hiển thị xu hướng Regressed, Recovered, Still broken, Slower. Xếp hạng rủi ro dùng logistic regression trên lịch sử, fallback EWMA khi ít dữ liệu; không gọi test nào là flaky dưới năm lần chạy.\n\nLưu ý: đây là bài giới thiệu sản phẩm của chính Nexus Studio; đoạn Limits trong nguồn bị cắt nên không tóm tắt được.",
+      "detailEn": "The Nexus Studio team (Verdict System LLC) tells flaky tests from real bugs by recording every retry: FLAKY is a failure that a retry passed with nothing fixed, BREACHED is a real finding, and BREACHED_FLAKY is a failure that is itself inconsistent. A retry never turns a defect into a green run.\n\n- FLAKY: failed, a retry passed, nothing repaired. It exits 0 so it does not break the build, but it shows in the report and History as a pass with a reservation. Evidence: screenshot.png, metadata.json and raw-data.json.\n- BREACHED: failed on a single attempt and no environment or harness pattern explains it. This is the bug report. It exits 1.\n- BREACHED_FLAKY: failed on its last attempt after an earlier retry, with no environment explanation. Compare the attempts before filing a bug. It exits 1.\n- A hard failure on every attempt is not flaky, even when self-healing tried and failed to repair a selector. An earlier engine version filed that as FLAKY, and a broken application shipped as noise.\n- AUTO_RECOVER is a pass where self-healing replaced a selector; a first attempt that failed only on time and passed on retry is SECURE.\n\nCounting: a passing test with a retry number above zero is FLAKY (AUTO_RECOVER if a selector was healed); a failing or timed-out test with a retry number above zero and no environment explanation is BREACHED_FLAKY; a clean pass needs retry zero. Before BREACHED, the classifier rules out, in fixed order, a harness error, a crash, a block, an unreachable host and a timeout.\n\nHistory keeps one row per run for each test and browser or device (verdict, retry_attempt, error signature) and shows Regressed, Recovered, Still broken and Slower trends. Risk ranking uses a logistic regression over history with an EWMA fallback, and nothing is called flaky below five runs.\n\nNote: this is a product post by Nexus Studio itself, and the Limits section is cut off in the source, so it is not summarised."
+    },
+    {
       "id": "1484315a8cfd8930fad813c632e4d078eaa787ad",
       "url": "https://dev.to/lna_stub/your-integrations-real-bugs-are-in-the-events-you-cant-trigger-33n8",
       "discussionUrl": null,
@@ -45754,6 +45958,40 @@
       "detailEn": "The author built a small page that writes appeal letters for UK private parking tickets, and found that when given data that did not support the chosen ground, the page still wrote a false sentence into the letter.\n\n- Old way of testing: fill in good data and check the output. Every combination passed (three parts of the UK, keeper or driver, five grounds). This time the author picked a ground and typed data that contradicted it.\n- The ground concerns a deadline: in England and Wales, if nothing was left on the windscreen, the notice must reach the registered keeper within 14 days (Schedule 4, Protection of Freedoms Act 2012, paragraph 9).\n- The bug: parking date and received date were 7 days apart. The helper text under the field was right (\"may not apply\"), but the letter said \"Your notice is dated 6 October 2026 and I received it on 6 October 2026, which is outside that period.\" That is false, and a stressed user could skim the preview, print and sign it.\n- Cause: the helper text and the letter were built by two different functions; one compared the dates, the other just filled a template.\n- Fix: the letter is not made clever or self-rewriting. Instead a \"Check your dates.\" warning appears above the letter when the ground is keeper, the jurisdiction is EW and the dates are within 14 days.\n- Second bug: the letter's date came from toISOString() (UTC), so in UK summer time between midnight and 1 am the letter was dated yesterday. Fixed with a localIso helper using getFullYear/getMonth/getDate.\n\nTakeaway for QA: if a form generates text a person will sign, test each option with inputs that contradict it. The test is not \"does it render\" but \"can it say something untrue\". The author notes no solicitor has reviewed it and it was tested only in headless Chrome."
     },
     {
+      "id": "70287e71f1d470b9aaf354f7b01ba55affa8ea2a",
+      "url": "https://dev.to/nagayashion/the-bug-report-your-developers-will-actually-thank-you-for-4kcp",
+      "discussionUrl": null,
+      "title": "The Bug Report Your Developers Will Actually Thank You For",
+      "excerpt": "I've spent 5 years in QA — 3 of them at Japan's largest software testing firm, managing test teams...",
+      "imageUrl": null,
+      "source": "devto",
+      "sourceName": "dev.to",
+      "sources": [
+        "dev.to"
+      ],
+      "publishedAt": "2026-10-17T02:06:46Z",
+      "engagement": 1,
+      "hotness": 0.0114,
+      "categoryHint": "testing",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "test-manual",
+      "titleVi": "Bug report mà developer sẽ thật sự cảm ơn bạn",
+      "summary": "Một QA có 5 năm kinh nghiệm, 3 năm tại công ty kiểm thử phần mềm lớn nhất Nhật, chia sẻ cách viết bug report mà developer thấy hữu ích.",
+      "summaryEn": "A QA engineer with 5 years of experience, 3 at Japan's largest software testing firm, shares how to write bug reports developers will appreciate.",
+      "tags": [
+        "bug-report",
+        "qa"
+      ],
+      "fit": 3,
+      "sourceTitle": "The Bug Report Your Developers Will Actually Thank You For",
+      "rank": 0.0068,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "detail": "Một QA director (5 năm kinh nghiệm, 3 năm tại công ty kiểm thử lớn nhất Nhật) cho rằng khoảng 10% bug report hữu ích ngay lần đọc đầu; 90% còn lại dẫn tới \"works on my machine\" và bug bị đá qua lại giữa QA và dev ba ngày. Tác giả chia sẻ template họ áp dụng cho mọi team.\n\nTemplate gồm: Title ([Area] một dòng: cái gì hỏng, trong điều kiện nào), Environment (thiết bị / OS / trình duyệt + version / build hoặc commit, loại tài khoản), Steps to Reproduce (đánh số, chính xác, từ trạng thái sạch), Expected (kèm lý do), Actual (dán nguyên văn thông báo lỗi), Reproduction rate, Severity + lý do, Evidence (screenshot có chú thích, video, log console/network).\n\nBa trường hay làm sai:\n\n- Reproduction rate: \"sometimes\" không phải con số. \"4/5 lần khi throttle Slow 3G, 2/5 khi mạng nhanh\" báo ngay đó là race condition. Khi gặp bug nghi flaky, tác giả chạy lại năm lần và đếm; 10 phút đó thường tiết kiệm cho dev nửa ngày.\n- Expected cần có \"because\": ví dụ lần click thứ hai phải bị bỏ qua vì nút phải disable sau lần submit đầu (double POST nghĩa là bị tính tiền hai lần). Lý do vừa cho dev biết chuẩn ở đâu, vừa giúp buổi triage hiểu vì sao bug quan trọng.\n- Severity là phát biểu về nghiệp vụ: High là chặn luồng chính, mất dữ liệu hoặc tốn tiền; Medium là luồng chính còn sống nhưng một nhóm người dùng thật bị ảnh hưởng; Low là thẩm mỹ hoặc edge case có workaround. Người bị ảnh hưởng thay đổi severity: layout hỏng ở 717px nghe như Low cho tới khi biết đó là tư thế nửa mở của điện thoại gập.\n\n\"Không tìm thấy bug\" cũng phải có báo cáo trung thực: liệt kê đã test gì, thế nào, trên thiết bị nào, cái gì có vẻ vững. Đội chỉ thưởng cho số bug tìm được sẽ có nhiều nhiễu Low và không biết đã cover gì.\n\nChecklist 30 giây trước khi gửi: dev có repro được mà không hỏi lại không, repro rate là con số, Expected có because, severity nêu tác động nghiệp vụ, có ít nhất một bằng chứng hình ảnh. Cuối bài là quảng cáo dịch vụ QA freelance của tác giả.",
+      "detailEn": "A QA director with 5 years in QA, 3 of them at Japan's largest software testing firm, says maybe 10% of the bug reports they have read were useful on first read. The other 90% end in \"works on my machine\" and a bug ping-ponging between QA and dev for three days. The post shares the template they enforce on every team.\n\nThe template: Title ([Area] one line: what breaks, under which condition), Environment (device / OS / browser + version / app build or commit, account type), Steps to Reproduce (numbered, exact, from a clean state), Expected (with why), Actual (paste exact error text), Reproduction rate, Severity + why, and Evidence (annotated screenshot, recording, console/network log).\n\nThree fields everyone gets wrong:\n\n- Reproduction rate: \"sometimes\" is not a number. \"4/5 attempts on Slow 3G, 2/5 on a fast connection\" points to a race condition before anyone opens the code. For flaky-looking bugs the author runs the case five more times and counts; those 10 minutes routinely save a developer half a day.\n- Expected needs a \"because\": for example, the second click is ignored because the button should disable on first submission (a double POST means a double charge). The reason tells the developer where the bar is and tells triage why the bug matters.\n- Severity is a business statement: High blocks a core flow, loses data or costs money; Medium leaves the core flow alive but hurts a real user segment; Low is cosmetic or an edge case with an easy workaround. Who is affected changes severity: a broken layout at 717px sounds Low until you know it is the half-open posture of foldable phones.\n\nAn honest empty report matters too: list what was tested, how, on which devices, and what looks solid. Teams that reward only bug counts end up with inflated Low-severity noise and no idea what is covered.\n\nA 30-second checklist before sending: could a developer reproduce it without asking anything, is the repro rate a number, does Expected contain a because, does severity state business impact, is there at least one piece of visual evidence. The post ends with an ad for the author's freelance QA services."
+    },
+    {
       "id": "1f5ec855707f67d6dd9af2d18af5ca9992e8887e",
       "url": "https://ihatethefuture.com/2026/09/the-normalization-of-inexplicable.html",
       "discussionUrl": "https://lobste.rs/s/wzli60/normalization_inexplicable_failures",
@@ -46672,6 +46910,40 @@
       "detailTriedAt": "2026-10-08",
       "detail": "Twin là công cụ CLI chạy hai bản của cùng một app và báo lại mọi chỗ hành vi của chúng lệch nhau, để bắt lỗi chỉ lộ ra khi chạy nhiều instance (ví dụ session chỉ nằm trong bộ nhớ của một process, hoặc file chỉ nằm trên đĩa của một instance).\n\nCách hoạt động: Twin khởi động một instance làm control, rồi khởi động hai instance A và B sau proxy riêng, chạy cùng một scenario trên cả hai và báo chỗ khác biệt. Nó test qua HTTP nên không quan tâm app viết bằng gì: Node.js, Python, Go, Ruby và PHP được tự nhận diện.\n\n- `twin init` tạo `scenario.yaml` và `twin.config.json`, đoán stack và cách chạy app. Scenario mẫu chỉ là placeholder gọi `GET /health`; nếu app không có route này, bước đó fail và Twin thoát mã 2.\n- `twin run` khởi động app, chạy scenario và báo kết quả.\n- Scenario là YAML: mỗi step có `via: A` hoặc `via: B`, request, `expect`, và có thể gắn `check`.\n- Các check có sẵn: `session-survives-switch`, `data-consistency`, `file-consistency`, `restart-persistence`.\n- Step fail một check sẽ có prompt sửa lỗi sẵn để dán, và tracer cố chỉ ra file/dòng nghi ngờ.\n- Start command có thể dùng placeholder `{{port}}`; repo nhiều stack bị báo `E_AMBIGUOUS_STACK` và phải chỉ rõ bằng `--stack`.\n\nĐáng chú ý với QA: đây là cách tự động hoá test \"hai instance sau load balancer\" mà test một instance thường bỏ sót. Yêu cầu Node.js >= 20, giấy phép MIT.",
       "detailEn": "Twin is a CLI that runs two copies of the same app and reports wherever their behavior diverges, catching bugs that only show up with multiple instances (for example a session that lived only in one process's memory, or a file that landed only on one instance's disk).\n\nHow it works: Twin boots one instance as the control, then boots two (A and B) behind its own proxy, runs the same scenario against both and reports the differences. It tests over HTTP, so the app's language does not matter: Node.js, Python, Go, Ruby and PHP are detected automatically.\n\n- `twin init` scaffolds `scenario.yaml` and `twin.config.json`, and works out the stack and how to start it. The starter scenario is a placeholder hitting `GET /health`; if the app has no such route the step fails and Twin exits with `2`.\n- `twin run` boots the app, runs the scenario and reports what it finds.\n- A scenario is YAML: each step has `via: A` or `via: B`, a request, an `expect`, and optionally a `check`.\n- Built-in checks: `session-survives-switch`, `data-consistency`, `file-consistency`, `restart-persistence`.\n- A step that fails one of these gets a ready-to-paste fix prompt, and the tracer tries to point at the likely file and line.\n- Start commands may use the `{{port}}` placeholder; a repo matching several stacks is reported as `E_AMBIGUOUS_STACK` and needs `--stack`.\n\nWhy it matters for QA: it automates the \"two instances behind a load balancer\" check that single-instance testing misses. It requires Node.js >= 20 and is MIT licensed."
+    },
+    {
+      "id": "2f253c7775b64f5a51df7dafa4351638f6d6d40e",
+      "url": "https://dev.to/remojansen/sdlc-adlc-asdlc-4057",
+      "discussionUrl": null,
+      "title": "SDLC != ADLC != ASDLC",
+      "excerpt": "I recently came across this definition: The Agentic Development Lifecycle (ADLC)—also known as the...",
+      "imageUrl": null,
+      "source": "devto",
+      "sourceName": "dev.to",
+      "sources": [
+        "dev.to"
+      ],
+      "publishedAt": "2026-10-17T23:38:50Z",
+      "engagement": 1,
+      "hotness": 0.0078,
+      "categoryHint": "ai",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "ai-trend",
+      "titleVi": "SDLC != ADLC != ASDLC",
+      "summary": "Bài trên dev.to phân biệt SDLC với Agentic Development Lifecycle (ADLC) và ASDLC, xuất phát từ một định nghĩa tác giả vừa gặp.",
+      "summaryEn": "A dev.to post distinguishes SDLC from the Agentic Development Lifecycle (ADLC) and ASDLC, starting from a definition the author recently came across.",
+      "tags": [
+        "agentic",
+        "sdlc"
+      ],
+      "fit": 3,
+      "sourceTitle": "SDLC != ADLC != ASDLC",
+      "rank": 0.0047,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "detail": "Tác giả cho rằng ADLC và ASDLC không phải một thứ, dù nhiều người (kể cả họ cho tới gần đây) dùng thay nhau. Ý tưởng bật ra khi họ đọc định nghĩa: ADLC là phương pháp để build, test, deploy và quản trị các hệ thống AI agent, chứ không phải code tất định truyền thống.\n\nBa thuật ngữ:\n\n- SDLC (Software Development Lifecycle): phương pháp cổ điển để build phần mềm, tập trung vào hệ thống tất định; con người làm chính, công cụ hỗ trợ.\n- ADLC (Agent / Agentic Development Lifecycle): vòng đời chuyên biệt để tạo AI agent, hệ thống xác suất, dùng tool, thích nghi; người và agent cùng làm, nhấn mạnh evaluation và governance.\n- ASDLC (Agentic Software Development Lifecycle): SDLC truyền thống nhưng agent là người làm; agent thực thi, con người đặt ý định, guardrail và duyệt. Làm ra được bất cứ thứ gì, kể cả agent.\n\nVì sao hay nhầm: cả hai đều chứa \"Agentic\" và \"Development Lifecycle\"; một số người dùng \"ADLC\" để chỉ \"cách phát triển phần mềm mới khi có agent\", trong khi IBM, Arthur.ai, Glean, Atlan dùng chính xác hơn là vòng đời để build chính agent.\n\nVì sao quan trọng: nếu bạn build agent, tính phi tất định và evaluation harness thành mối quan tâm hàng đầu; observability, containment và giám sát hành vi liên tục quan trọng hơn \"green test\" cổ điển; trạng thái \"done\" mờ hơn vì agent tiếp tục chạy và thích nghi sau deploy. Đối xử với việc đó bằng SDLC thường cho ra agent mong manh, đẹp trong demo rồi drift hoặc hỏng ở production. Ngược lại, nếu chỉ muốn ship web app hay tool nội bộ nhanh hơn bằng coding agent, bạn cần một ASDLC được quản trị tốt chứ không cần toàn bộ bộ máy ADLC.\n\nMô hình nhanh: SDLC là build phần mềm theo cách cũ; ADLC là build agent; ASDLC là build mọi thứ (kể cả agent) bằng agent. Bài kết bằng câu hỏi xem đồng nghiệp bạn có hay trộn hai thuật ngữ này không.",
+      "detailEn": "The author argues that ADLC and ASDLC are not the same thing, even though many people (themselves included until recently) use them interchangeably. It clicked when they read this definition: ADLC is a methodology for building, testing, deploying and governing AI agent systems rather than traditional deterministic code.\n\nThe three terms:\n\n- SDLC (Software Development Lifecycle): the classic methodology for building software, focused on deterministic systems; humans do most of the work, with tool assistance.\n- ADLC (Agent / Agentic Development Lifecycle): a specialised lifecycle for creating AI agents, which are probabilistic, tool-using, adaptive systems; humans and agents work together, with heavy emphasis on evaluation and governance.\n- ASDLC (Agentic Software Development Lifecycle): the traditional SDLC performed with AI agents as workers; agents execute while humans set intent, guardrails and approve. It can deliver any software, even agents.\n\nWhy the mix-up happens: both contain \"Agentic\" and \"Development Lifecycle\"; some writers use \"ADLC\" loosely for \"the new way we develop software now that agents exist\", while IBM, Arthur.ai, Glean, Atlan and others use it precisely for the lifecycle of building agents themselves.\n\nWhy it matters: when building an agent, non-determinism and evaluation harnesses become first-class concerns; observability, containment and continuous behavioural monitoring matter more than classic \"green tests\"; and \"done\" is fuzzier because agents keep running and adapting after deployment. Treating that work with a regular SDLC often leads to brittle agents that look good in demos and then drift or fail in production. Conversely, if you are just shipping a web app or internal tool faster with coding agents, you need a well-governed ASDLC, not the full ADLC machinery.\n\nQuick model: SDLC builds normal software the old way; ADLC builds agents; ASDLC builds anything, including agents, with agents. The post closes by asking whether others see the same mixing of terms in their circles."
     },
     {
       "id": "8fb576052f2953be0ccf3b47252a46ad6ddf6ea9",
@@ -56649,6 +56921,174 @@
       "detailTriedAt": "2026-10-18",
       "detail": "Tác giả, một DevOps platform engineer, giới thiệu dự án mã nguồn mở Architecture Rehearsal: trước khi áp dụng thay đổi, dựng mô hình hệ thống, áp thay đổi lên mô hình, chạy các kịch bản lỗi tất định, rồi để policy quyết định cho qua hay không. Ví dụ chính: một Helm upgrade scale hai deployment trong namespace payments (6 lên 18 và 4 lên 12 replica); review dễ, CI xanh, nhưng pod mới kẹt với lỗi FailedCreatePodSandBox vì pool IP của pod gần đầy, điều không ai nghĩ tới khi đọc con số replica.\n\nNguyên tắc cốt lõi: dữ liệu thiếu không bao giờ thành false approve. Cổng có bốn kết quả:\n- approve (exit 0): không khớp mẫu rủi ro cao, đủ dữ liệu bắt buộc.\n- warn (exit 1): có phát hiện mức trung bình.\n- block (exit 3): phát hiện cao/nghiêm trọng có bằng chứng.\n- unknown (exit 4): thiếu dữ liệu bắt buộc, không an toàn để approve; mặc định fail-closed, CI phải coi exit 4 là fail.\n\nCách hoạt động: Collect, Model, Propose, Rehearse, Gate, Observe, Verify, Calibrate. Lệnh rehearsal snapshot k8s biến cluster dump thành baseline (workload, service, PVC, NetworkPolicy, PDB và các cạnh nối). Thay đổi lấy từ manifest đã render, Terraform plan hoặc desired state của Argo CD Application, và mặc định không được xóa node. Các kịch bản viết bằng Go: cni-ip-capacity, pdb-disruption, rwo-node-loss, volume-az, service-routing, prom-zero-match; mỗi kịch bản trả PASS, WARN, BLOCK hoặc UNKNOWN. Không có LLM trong đường đánh giá rủi ro.\n\nPolicy là YAML (RehearsalPolicy) với các biểu thức block/warn và unknownAsBlock mặc định true. Biểu thức không parse được sẽ bị từ chối khi load, hoặc cho ra block nếu lọt tới lúc đánh giá; trước bản sửa, một lỗi gõ có thể âm thầm làm yếu policy. Cũng có operator dùng controller-runtime và CRD RehearsalRun để chạy cổng trong cluster. Bản đầy đủ của bài còn nói về phạm vi đã kiểm thử và hạn chế; nội dung đầy đủ xem bài gốc.",
       "detailEn": "The author, a DevOps platform engineer, presents the open-source project Architecture Rehearsal: before a change is applied, build a model of the system, apply the change to the model, run deterministic failure scenarios, and let a policy decide whether it may proceed. The main example: a Helm upgrade scales two deployments in a payments namespace (6 to 18 and 4 to 12 replicas); review is easy and CI is green, but the new pods get stuck with FailedCreatePodSandBox because the pod IP pool was nearly full, something nobody considers when reading a replica count.\n\nThe core rule: missing data never becomes a false approve. The gate has four outcomes:\n- approve (exit 0): no matched high-risk patterns and required coverage present.\n- warn (exit 1): medium-risk findings.\n- block (exit 3): high or critical findings with evidence.\n- unknown (exit 4): required data missing, not safe to approve; fail-closed by default, and CI must treat exit 4 as a failing gate.\n\nHow it works: Collect, Model, Propose, Rehearse, Gate, Observe, Verify, Calibrate. The rehearsal snapshot k8s command turns a cluster dump into a baseline (workloads, services, PVCs, NetworkPolicies, PDBs and the edges between them). A change is compiled from rendered manifests, Terraform plans or an Argo CD Application's desired state, and by default it cannot remove nodes. The scenarios are plain Go code: cni-ip-capacity, pdb-disruption, rwo-node-loss, volume-az, service-routing and prom-zero-match; each returns PASS, WARN, BLOCK or UNKNOWN. There is no LLM in the risk path.\n\nThe policy is YAML (RehearsalPolicy) with block and warn expressions and unknownAsBlock defaulting to true. An expression that cannot be parsed is rejected at load, or yields block if it reaches evaluation; before that fix, a typo could quietly weaken a policy. There is also an operator built on controller-runtime with a RehearsalRun CRD to run the gate inside the cluster. The full post also covers what was tested and its limits; see the original for those."
+    },
+    {
+      "id": "acbd402efa9fc022aaa6b0271dd2c4cd783de1d6",
+      "url": "https://dev.to/jacak/us-address-form-test-cases-30-checks-for-qa-with-sample-data-l57",
+      "discussionUrl": null,
+      "title": "US Address Form Test Cases: 30 Checks for QA (With Sample Data)",
+      "excerpt": "Good US address form test cases cover empty required fields, apartment and suite numbers in line 2,...",
+      "imageUrl": null,
+      "source": "devto",
+      "sourceName": "dev.to",
+      "sources": [
+        "dev.to"
+      ],
+      "publishedAt": "2026-10-17T08:12:51Z",
+      "engagement": 0,
+      "hotness": 0,
+      "categoryHint": "testing",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "test-manual",
+      "titleVi": "Test case cho form địa chỉ Mỹ: 30 mục kiểm tra cho QA (kèm dữ liệu mẫu)",
+      "summary": "Danh sách 30 mục kiểm tra form địa chỉ Mỹ, gồm trường bắt buộc để trống và số căn hộ, suite ở dòng 2, kèm dữ liệu mẫu.",
+      "summaryEn": "A list of 30 checks for US address forms, covering empty required fields and apartment or suite numbers in line 2, with sample data.",
+      "tags": [
+        "test-cases",
+        "forms"
+      ],
+      "fit": 3,
+      "sourceTitle": "US Address Form Test Cases: 30 Checks for QA (With Sample Data)",
+      "rank": 0,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "detail": "Bài biến một danh sách thành 30 test case, mỗi case có ID, input và kết quả mong đợi, để dán vào TestRail, Jira hoặc spreadsheet. Form giả định có 5 trường: address line 1 (bắt buộc), line 2 (tùy chọn: apartment, suite, unit), city (bắt buộc), state (bắt buộc), ZIP (5 chữ số hoặc ZIP+4). Dùng địa chỉ giả, không dùng dữ liệu khách thật; bạn có thể đổi kết quả mong đợi theo quy tắc riêng của sản phẩm. Với mỗi case cần kiểm tra ba thứ: người dùng thấy gì, cái gì được lưu, và cái gì gửi sang hệ thống phía sau (shipping, tax, CRM).\n\n- Trường bắt buộc: để trống từng trường một, mỗi trường phải có lỗi riêng cạnh nó; chỉ nhập khoảng trắng vào line 1 (nhiều form quên trim nên lưu địa chỉ trống); giá trị đã nhập phải còn sau khi báo lỗi; line 2 trống phải submit được và không lưu chữ \"null\" hoặc \"undefined\".\n- Street line 1 và 2: các dạng unit như \"Apt 4B\", \"Ste 210\", \"Unit 7\", \"# 12\" phải lưu đúng như nhập; unit gõ vào line 1 không được bị cắt; dấu nháy và gạch nối (\"45 O'Brien St\") không bị escape hai lần; chạm đúng giới hạn độ dài và quá một ký tự thì form, cột database và API nhãn vận chuyển phải thống nhất; Unicode như \"88 Peña Blvd\" phải lưu và hiển thị đúng.\n- City và state: giá trị gửi API thường nên là mã hai chữ cái (\"CA\") dù nhãn là \"California\", hãy xem network request chứ không chỉ màn hình; DC không phải state nhưng là địa chỉ hợp lệ; lãnh thổ Mỹ (PR, GU, VI) phải hỗ trợ hoặc báo rõ ràng; tên city có khoảng trắng hoặc dấu câu (\"St. Louis\", \"Winston-Salem\") phải lưu đúng.\n- ZIP: ZIP có số 0 đứng đầu như \"06103\" phải giữ nguyên, nếu lưu dạng số sẽ thành \"6103\"; ZIP+4 \"12345-6789\" hợp lệ, quyết định có chấp nhận dạng không gạch nối; ký tự sai (\"1234A\", \"12 345\") và độ dài sai (bốn số, sáu số, \"12345-67\") phải bị từ chối; ZIP không khớp state phải quyết định cảnh báo, chặn hay cho qua.\n- Địa chỉ đặc biệt: PO Box với nhiều cách viết (\"PO Box 1234\", \"P.O. Box 1234\", \"Post Office Box 1234\") nếu bạn chặn cho một số carrier; địa chỉ quân sự dùng APO, FPO, DPO làm city và AA, AE, AP làm state.\n\nNguồn bị cắt giữa mục địa chỉ đặc biệt, nên các case còn lại (ví dụ giới hạn và ký tự đặc biệt cuối cùng) xem trong bài gốc.",
+      "detailEn": "The post turns a checklist into 30 test cases, each with an ID, an input and an expected result, ready to paste into TestRail, Jira or a spreadsheet. It assumes a form with five fields: address line 1 (required), line 2 (optional: apartment, suite, unit), city (required), state (required) and ZIP (5 digits or ZIP+4). Use fictional addresses, never real customer data, and change the expected results to match your own rules. For each case check three things: what the user sees, what gets saved, and what gets sent to downstream systems (shipping, tax, CRM).\n\n- Required fields: leave each required field empty one at a time, each should show its own error beside it; type spaces only into line 1 (many forms forget to trim and save a blank address); values should be kept after an error; an empty line 2 must submit and must not save the word \"null\" or \"undefined\".\n- Street line 1 and 2: formats like \"Apt 4B\", \"Ste 210\", \"Unit 7\" and \"# 12\" should save exactly as entered; a unit typed in line 1 must not be cut off; apostrophes and hyphens (\"45 O'Brien St\") must not be escaped twice; at the length limit and one over, the form, the database column and the shipping label API must agree; Unicode such as \"88 Peña Blvd\" must save and display correctly.\n- City and state: the value sent to the API should usually be the two-letter code (\"CA\") even when the label says \"California\", so check the network request; \"DC\" is not a state but is a valid address; territories (PR, GU, VI) must be supported or give a clear message; cities with spaces or punctuation (\"St. Louis\", \"Winston-Salem\") must save as typed.\n- ZIP: a ZIP with a leading zero like \"06103\" must stay \"06103\", as a number it becomes \"6103\"; \"12345-6789\" is valid, and you decide whether the hyphen-less form is accepted; bad characters (\"1234A\", \"12 345\") and wrong lengths (four digits, six digits, \"12345-67\") should be rejected; a ZIP that does not match the state needs a decision to warn, block or allow.\n- Special addresses: PO Box spellings (\"PO Box 1234\", \"P.O. Box 1234\", \"Post Office Box 1234\") if you block them for some carriers; military addresses use APO, FPO or DPO as the city and AA, AE or AP as the state.\n\nThe source is cut off in the special-addresses section, so the remaining cases are in the original post."
+    },
+    {
+      "id": "8848dc298c59bb23d23671b65fefa9b7a55dea10",
+      "url": "https://dev.to/nexus_studioqa/why-do-my-tests-fail-when-the-application-is-fine-5f3c",
+      "discussionUrl": null,
+      "title": "Why do my tests fail when the application is fine?",
+      "excerpt": "An end-to-end test goes red when the network is slow, the DNS fails, the site answers with a 403 or a...",
+      "imageUrl": null,
+      "source": "devto",
+      "sourceName": "dev.to",
+      "sources": [
+        "dev.to"
+      ],
+      "publishedAt": "2026-10-17T15:48:28Z",
+      "engagement": 0,
+      "hotness": 0,
+      "categoryHint": "testing",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "test-automation",
+      "titleVi": "Vì sao test fail trong khi ứng dụng vẫn ổn?",
+      "summary": "Bài trên dev.to giải thích vì sao test end-to-end chuyển đỏ khi mạng chậm, DNS lỗi hoặc site trả 403 dù ứng dụng không hỏng.",
+      "summaryEn": "A dev.to post explains why end-to-end tests go red on slow networks, DNS failures or a 403 response even when the application is fine.",
+      "tags": [
+        "e2e",
+        "flaky-tests"
+      ],
+      "fit": 4,
+      "sourceTitle": "Why do my tests fail when the application is fine?",
+      "rank": 0,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "detail": "Nexus Studio (Verdict System LLC) cho rằng test end-to-end chuyển đỏ khi mạng chậm, DNS lỗi, site trả 403 hoặc 429, hiện bot challenge hay browser chết, và không cái nào là lỗi của ứng dụng. Họ đặt cho các lỗi này verdict riêng: TIMEOUT, UNREACHABLE, BLOCKED và CRASHED, không cái nào được báo là bug ứng dụng.\n\n- TIMEOUT: test không nhận được phản hồi kịp lúc. Không chứng minh ứng dụng hỏng, cũng không chứng minh nó chạy tốt. Điều hướng hết thời gian là TIMEOUT.\n- UNREACHABLE: không kết nối được tới host, ví dụ tên không resolve, kết nối bị từ chối hoặc máy offline. Lỗi certificate không thuộc nhóm này, đó là một phát hiện thật.\n- BLOCKED: site tự vệ bằng 403, 429, trang chặn hoặc bot challenge. Điện thoại Android thật đang ngủ hoặc khóa cũng là BLOCKED (thiếu điều kiện tiên quyết).\n- CRASHED: browser hoặc process chết (trang đóng, lỗi DevTools protocol, WebDriver session chết). Đây là hạ tầng: xem máy và driver.\n\nCách phân loại: engine đọc error message và network log, so với các nhóm pattern theo thứ tự cố định CONFIG_ERROR, CRASHED, BLOCKED, UNREACHABLE, TIMEOUT, rồi mới BREACHED_FLAKY hoặc BREACHED. Nhóm đầu tiên khớp quyết định verdict, nên BREACHED (bug report) chỉ dành cho lỗi không pattern môi trường nào giải thích. Pattern phủ cả cách diễn đạt của Playwright và Selenium WebDriver.\n\nVới CI: 7 trong 14 verdict exit 0 (SECURE, AUTO_RECOVER, FLAKY, CHAOS_RESILIENT, PERFORMANCE_DEGRADED, A11Y_VIOLATION, SECURITY_VIOLATION); 7 verdict còn lại exit 1, trong đó có bốn verdict trên, nên build vẫn đỏ nhưng report và History nói rõ nguyên nhân. Runner pytest và Selenium exit 2 khi run không khởi động được. Cả bốn giữ report.md, metadata.json, raw-data.json và screenshot khung cuối; video mặc định tắt với TIMEOUT và BLOCKED, và không có với UNREACHABLE và CRASHED. Với Jira bật, chỉ TIMEOUT tạo ticket.\n\nGiới hạn: phân loại đọc text lỗi, nên message tự viết có chứa 403, Forbidden hoặc Access Denied sẽ bị đọc là BLOCKED; TIMEOUT lặp lại ở mọi run đáng xem lại; tăng timeout không che được element hỏng, nó chỉ fail muộn hơn; verdict gọi tên nguyên nhân nhưng không loại bỏ nguyên nhân.",
+      "detailEn": "Nexus Studio (Verdict System LLC) argues that an end-to-end test goes red when the network is slow, the DNS fails, the site answers with a 403 or a 429 or shows a bot challenge, or the browser dies, and none of that is a defect in your application. It gives these failures their own verdicts: TIMEOUT, UNREACHABLE, BLOCKED and CRASHED, and none is reported as a bug in the application.\n\n- TIMEOUT: the test never got an answer in time. That is not proof the application is broken, nor that it works. A navigation that ran out of time is a TIMEOUT.\n- UNREACHABLE: the host could not be reached at all, such as a name that did not resolve, a refused connection or an offline machine. A certificate error is not here; that is a finding.\n- BLOCKED: the site defended itself with a 403, a 429, a block page or a bot challenge. A real Android phone that fell asleep or is locked is BLOCKED too, as an unmet prerequisite.\n- CRASHED: the browser or the process died (a closed page, a DevTools protocol error, a dead WebDriver session). It is infrastructure: look at the machine and the driver.\n\nHow it classifies: the engine reads the error message and network log and tests them against pattern groups in a fixed order, CONFIG_ERROR, CRASHED, BLOCKED, UNREACHABLE, TIMEOUT, and only then BREACHED_FLAKY or BREACHED. The first match decides, so BREACHED, the bug-report verdict, is left for failures no environment or harness pattern explains. The patterns cover both Playwright and Selenium WebDriver wording.\n\nFor CI: 7 of the 14 verdicts exit 0 (SECURE, AUTO_RECOVER, FLAKY, CHAOS_RESILIENT, PERFORMANCE_DEGRADED, A11Y_VIOLATION, SECURITY_VIOLATION); the other 7 exit 1, including the four above, so the build still goes red while the report and History say the cause. The pytest and Selenium runners exit 2 when the run could not start. All four keep report.md, metadata.json, raw-data.json and a screenshot of the final frame; video is off by default for TIMEOUT and BLOCKED, and not offered for UNREACHABLE and CRASHED. With Jira on, only a TIMEOUT files a ticket.\n\nLimits: classification reads error text, so a custom message containing 403, Forbidden or Access Denied reads as BLOCKED; a TIMEOUT on every run deserves a look; a longer timeout does not hide a broken element, it fails later; and the verdicts name the cause without removing it."
+    },
+    {
+      "id": "09810792caa1459a202a4120f6a23ebe26d0d437",
+      "url": "https://dev.to/olly_08beff75f1fe547dcb92/json-translation-qa-checklist-for-release-week-43he",
+      "discussionUrl": null,
+      "title": "JSON Translation QA Checklist for Release Week",
+      "excerpt": "Pre-release checks Confirm every translated file still parses as valid JSON. Verify...",
+      "imageUrl": null,
+      "source": "devto",
+      "sourceName": "dev.to",
+      "sources": [
+        "dev.to"
+      ],
+      "publishedAt": "2026-10-17T09:32:08Z",
+      "engagement": 0,
+      "hotness": 0,
+      "categoryHint": "testing",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "test-manual",
+      "titleVi": "Checklist QA cho file dịch JSON trong tuần release",
+      "summary": "Checklist kiểm tra trước release cho file bản dịch JSON, bắt đầu bằng việc xác nhận mọi file đã dịch vẫn parse được thành JSON hợp lệ.",
+      "summaryEn": "A pre-release checklist for JSON translation files, starting with confirming every translated file still parses as valid JSON.",
+      "tags": [
+        "localization",
+        "checklist"
+      ],
+      "fit": 2,
+      "sourceTitle": "JSON Translation QA Checklist for Release Week",
+      "rank": 0,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "detail": "Đây là một checklist ngắn, chia thành kiểm tra trước release và sau khi merge, cho các file bản dịch JSON.\n\nTrước release:\n\n- Xác nhận mọi file đã dịch vẫn parse được thành JSON hợp lệ.\n- Kiểm tra placeholder, variable token và dấu định dạng còn nguyên.\n- Spot-check các từ được bảo vệ như tên thương hiệu, nhãn SKU và thuật ngữ kỹ thuật.\n- Xem lại các màn hình empty state, error state, checkout và authentication ở locale đích.\n- Kiểm tra bị cắt chữ (truncation) ở chiều rộng mobile, không chỉ desktop.\n\nSau khi merge:\n\n- Chạy một smoke test trên build artifact thật, không chỉ môi trường local.\n- Giữ danh sách ngắn các chuỗi đã sửa tay để các đợt dịch sau dùng lại cách diễn đạt tốt hơn.\n- Ghi lại các lỗi dịch lặp đi lặp lại và đưa vào danh sách từ được bảo vệ hoặc quy trình review.\n\nBài gốc rất ngắn và đăng lại từ blog JSON Translate; không có giải thích hay ví dụ thêm.",
+      "detailEn": "This is a short checklist for JSON translation files, split into pre-release checks and post-merge checks.\n\nPre-release checks:\n\n- Confirm every translated file still parses as valid JSON.\n- Verify placeholders, variable tokens and formatting markers survived intact.\n- Spot-check protected words such as brand names, SKU labels and technical terms.\n- Review empty states, error states, checkout and authentication screens in the target locale.\n- Check for truncation on mobile widths, not just desktop.\n\nPost-merge checks:\n\n- Run one smoke test in the live build artifact, not only in local development.\n- Keep a short list of strings that were manually corrected so future batches reuse better wording.\n- Capture recurring translation issues and add them to the protected-word or review workflow.\n\nThe original is very short and was republished from the JSON Translate blog; it gives no further explanation or examples."
+    },
+    {
+      "id": "575bca3eb47301bfa9ce821dabeab1578c8bcd62",
+      "url": "https://bsky.app/profile/heikkitoivonen.bsky.social/post/3my4iqimtus22",
+      "discussionUrl": null,
+      "title": "pythoncomplexity.com 1.0 released, with an installable agent skill",
+      "excerpt": "pythoncomplexity.com 1.0! Everything verified with latest models and backed by over 16,000 tests. The GitHub repository also hosts a skill you can install for your agents.",
+      "imageUrl": null,
+      "source": "bluesky",
+      "sourceName": "Bluesky",
+      "sources": [
+        "Bluesky"
+      ],
+      "publishedAt": "2026-10-18T01:54:18.631Z",
+      "engagement": 0,
+      "hotness": 0,
+      "categoryHint": "it",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "ai-tip",
+      "titleVi": "pythoncomplexity.com 1.0 ra mắt, kèm skill cài được cho agent",
+      "summary": "pythoncomplexity.com ra bản 1.0, mọi thứ được kiểm chứng với các model mới nhất và có hơn 16.000 test. Repo GitHub còn có một skill để cài cho agent.",
+      "summaryEn": "pythoncomplexity.com reaches 1.0, verified with the latest models and backed by over 16,000 tests. Its GitHub repository also hosts a skill you can install for your agents.",
+      "tags": [
+        "python",
+        "agent-skill"
+      ],
+      "fit": 3,
+      "sourceTitle": "pythoncomplexity.com 1.0! Everything verified with latest models and backed by over 16,000 tests. The GitHub repository also hosts a skill you can install for your agents.",
+      "rank": 0,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18"
+    },
+    {
+      "id": "717029e81fc365411260cf904afffec4015fba0c",
+      "url": "https://bsky.app/profile/db-user.bsky.social/post/3my4imrcyy22s",
+      "discussionUrl": null,
+      "title": "Bluesky needs 8+ years of Go experience to solve \"upload an image\"",
+      "excerpt": "bsky is in need of someone with 8+ years of golang experience so they can solve \"upload an image to our platform\"",
+      "imageUrl": null,
+      "source": "bluesky",
+      "sourceName": "Bluesky",
+      "sources": [
+        "Bluesky"
+      ],
+      "publishedAt": "2026-10-18T01:52:13.529Z",
+      "engagement": 0,
+      "hotness": 0,
+      "categoryHint": "it",
+      "isMeme": false,
+      "extraLinks": [],
+      "category": "humor",
+      "titleVi": "Bluesky cần người có hơn 8 năm kinh nghiệm Go để giải quyết bài toán \"upload một ảnh\"",
+      "summary": "Một bài đùa trên Bluesky: nền tảng này cần người có hơn 8 năm kinh nghiệm golang chỉ để giải quyết việc upload một ảnh.",
+      "summaryEn": "A Bluesky joke that the platform needs someone with 8+ years of golang experience just to solve uploading an image.",
+      "tags": [
+        "golang",
+        "bluesky"
+      ],
+      "fit": 3,
+      "sourceTitle": "bsky is in need of someone with 8+ years of golang experience so they can solve \"upload an image to our platform\"",
+      "rank": 0,
+      "addedAt": "2026-10-18",
+      "detailTriedAt": "2026-10-18",
+      "detail": "Một bài đăng đùa trên Bluesky nói rằng bsky đang cần người có hơn 8 năm kinh nghiệm golang để giải quyết việc \"upload an image to our platform\".\n\nĐiểm hài nằm ở sự tương phản: yêu cầu kinh nghiệm rất cao cho một tính năng tưởng như cơ bản là tải ảnh lên.\n\nKhông có nội dung bài viết nào khác ngoài đoạn trích này, nên chi tiết còn lại xem ở bài gốc.",
+      "detailEn": "A joke post on Bluesky says that bsky needs someone with 8+ years of golang experience so they can solve \"upload an image to our platform\".\n\nThe humor comes from the contrast: a very senior experience requirement for what looks like a basic feature, uploading an image.\n\nThe source has no article text beyond this short excerpt, so for anything further, see the original post."
     }
   ]
 }
