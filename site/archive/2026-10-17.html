@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-17</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-17</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-18</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -27,7 +27,7 @@
 <div class="list"><article class="card" data-group="ai" data-id="7fd7e06ab2f4b840c01c364743d2c0e2fcb3de17" data-url="https://claude.dev/blog/solving-code-review-at-anthropic" data-category="ai-tip" data-added="2026-10-17">
   <div class="card__meta">
     <span class="chip chip--ai">AI tip</span>
-    <span class="card__src">Hacker News</span>
+    <span class="card__src">Hacker News · Lobsters</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
     <span class="card__fit" title="fit 5/5">●●●●●</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
@@ -56,7 +56,7 @@
   
   <div class="card__foot">
     <span class="tags"><span class="tag">claude-code</span><span class="tag">code-review</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50122951" target="_blank" rel="noopener">discussion</a></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50122951" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://lobste.rs/s/kufmuy/how_claude_code_team_does_code_review" target="_blank" rel="noopener">more 1</a></span>
   </div>
   <div class="hot" style="--hot: 84%"></div>
 </article>
@@ -624,11 +624,28 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://machinelearning.apple.com/research/mlx-distributed-inference" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Apple ML Research: Muse Spark Open với MLX trên Mac Studio</span><span class="l l-en" lang="en">Apple ML Research: Muse Spark Open with MLX on Mac Studio</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Apple ML Research: Muse Spark Open with MLX on Mac Studio</span>
-  <span class="card__summary l l-vi" lang="vi">Bài của Apple ML Research về chạy Muse Spark Open với MLX trên Mac Studio; nhận hơn 500 lượt tương tác trên Hacker News.</span><span class="card__summary l l-en" lang="en">An Apple ML Research post on running Muse Spark Open with MLX on Mac Studio; it drew over 500 engagement on Hacker News.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Apple ML Research: chạy LLM lớn cục bộ và phân tán với MLX và RDMA trên Mac Studio</span><span class="l l-en" lang="en">Apple ML Research: Muse Spark Open with MLX on Mac Studio</span></h3>
+    <span class="card__orig l l-vi" lang="en">Apple ML Research: Muse Spark Open with MLX on Mac Studio</span>
+    <span class="card__summary l l-vi" lang="vi">Bài của Apple ML Research về chạy Muse Spark Open với MLX trên Mac Studio; nhận hơn 500 lượt tương tác trên Hacker News.</span><span class="card__summary l l-en" lang="en">An Apple ML Research post on running Muse Spark Open with MLX on Mac Studio; it drew over 500 engagement on Hacker News.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Apple ML Research cho biết, với bản MLX mới, cụm bốn Mac Studio chạy Muse Spark Open (816B tham số, 42B hoạt động) đạt hơn 36 token/giây.</p>
+<ul><li>Muse Spark Open là MoE, chạy ở độ chính xác NVFP4. Hai mô hình còn lại: Mistral Medium 3.5 (128B, FP8) và Qwen 3.8 (27B, BF16).</li><li>Cách đo: mlx_lm.benchmark, ba chỉ số là TTFT, throughput sinh token và công suất đỉnh, ở context 8.192 và 65.536 token.</li><li>Một Mac Studio 512GB chạy thoải mái Qwen 3.8 và Mistral Medium 3.5, tốn tối đa 68GB và 158GB RAM ở context lớn.</li><li>M5 Ultra nhanh hơn M3 Ultra: TTFT tới 4,6 lần (nhờ GPU Neural Accelerator), sinh token nhanh hơn 1,6 lần (băng thông bộ nhớ 1,2 TB/s so với 819 GB/s).</li><li>Mở rộng bằng driver RDMA over Thunderbolt, thử pipeline parallelization trên hai máy và tensor parallelization trên hai và bốn máy.</li></ul>
+<p>Thread Hacker News phàn nàn về cách so sánh (Muse Spark ở 4-bit, Qwen ở BF16) và giá máy, dù một số người hào hứng với hướng chạy mô hình lớn tại chỗ, cho agent coding riêng tư.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn bình luận hoài nghi: chê cách benchmark và giá máy, trong khi một số ít vẫn hào hứng với việc chạy mô hình lớn trên phần cứng thông thường về sau.</p><ul class="quotes"><li><q>Tôi nghĩ họ đang làm Qwen thiệt thòi khá nặng khi benchmark mô hình của Meta ở 4-bit, còn Qwen chỉ ở BF16 gốc (và không có gì khác được hiển thị).</q> <span class="quote__by">@peri-cl, Hacker News</span></li><li><q>Vậy là Meta sẽ chi hàng triệu/hàng tỷ để xây mô hình open-weight rồi người ta sẽ gửi Apple 20.000 đô để chạy chúng.</q> <span class="quote__by">@ks2048, Hacker News</span></li><li><q>Giờ chưa thể chạy tại nhà với giá rẻ, nhưng lời hứa rằng một ngày nào đó chạy được các mô hình này trên phần cứng phổ thông thì đáng mong chờ.</q> <span class="quote__by">@_pdp_, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://machinelearning.apple.com/research/mlx-distributed-inference" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Apple ML Research says that with the latest MLX, a cluster of four Mac Studios runs Muse Spark Open (816B parameters, 42B active) at over 36 tokens per second.</p>
+<ul><li>Muse Spark Open is a MoE model evaluated in NVFP4. The other two models are Mistral Medium 3.5 (128B, FP8) and Qwen 3.8 (27B, BF16).</li><li>Method: mlx_lm.benchmark, measuring TTFT, generation throughput and peak power at 8,192 and 65,536 context sizes.</li><li>A single 512GB Mac Studio fits Qwen 3.8 and Mistral Medium 3.5 comfortably, using up to 68GB and 158GB of RAM at the large context size.</li><li>M5 Ultra versus M3 Ultra: TTFT up to 4.6× faster (thanks to the GPU Neural Accelerator) and 1.6× faster token generation (1.2 TB/s memory bandwidth versus 819 GB/s).</li><li>Scaling out uses the RDMA over Thunderbolt driver, testing pipeline parallelization over two machines and tensor parallelization over two and four.</li></ul>
+<p>The Hacker News thread complains about the comparison (Muse Spark at 4-bit versus Qwen at BF16) and the price of the machines, though some are excited about running big models locally for private agentic coding.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most comments are skeptical, criticizing the benchmark setup and the price, while a few are still excited about running big models on commodity hardware someday.</p><ul class="quotes"><li><q>I think they&#39;re sandbagging Qwen pretty heavily by benchmarking Meta&#39;s model at 4-bit, against Qwen only at native BF16 (and nothing else shown).</q> <span class="quote__by">@peri-cl, Hacker News</span></li><li><q>So, Meta will spend millions/billions on building open-weight models and then people will send Apple $20,000 to run them.</q> <span class="quote__by">@ks2048, Hacker News</span></li><li><q>the promise that one day we can run these models on commodity hardware is exciting.</q> <span class="quote__by">@_pdp_, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://machinelearning.apple.com/research/mlx-distributed-inference" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">mlx</span><span class="tag">apple</span><span class="tag">inference</span></span>
@@ -1164,11 +1181,28 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://alexwang.ai/posts/associative-memory" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Bạn cũng có thể tự nghĩ ra transformer từ ý tưởng bộ nhớ</span><span class="l l-en" lang="en">You could have invented transformers from memory</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">You could have invented transformers from memory</span>
-  <span class="card__summary l l-vi" lang="vi">Bài giải thích transformer đi từ ý tưởng associative memory; nhận hơn 200 lượt tương tác trên Hacker News.</span><span class="card__summary l l-en" lang="en">An explainer that derives transformers from the idea of associative memory; it drew over 200 engagement on Hacker News.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Bạn hoàn toàn có thể tự phát minh ra transformer từ ý tưởng bộ nhớ</span><span class="l l-en" lang="en">You could have invented transformers from memory</span></h3>
+    <span class="card__orig l l-vi" lang="en">You could have invented transformers from memory</span>
+    <span class="card__summary l l-vi" lang="vi">Bài giải thích transformer đi từ ý tưởng associative memory; nhận hơn 200 lượt tương tác trên Hacker News.</span><span class="card__summary l l-en" lang="en">An explainer that derives transformers from the idea of associative memory; it drew over 200 engagement on Hacker News.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bài viết dẫn dắt từ bộ nhớ liên kết (associative memory) tới các lớp của transformer: mỗi lớp là một kho nhớ, và MLP chính là kho nhớ phi tuyến.</p>
+<ul><li>Kho nhớ outer-product tuyến tính đạt dung lượng ở M ≈ d_k = 64. Vượt mức đó, nhiễu tăng như √(M/d_k − 1).</li><li>Hạn chế: kho tuyến tính nhân độ tương tự nhỏ và lớn với cùng một hệ số. Cho độ tương tự qua hàm phi tuyến σ trước khi lấy tổng có trọng số các value thì ta &quot;tái phát minh&quot; MLP hai lớp: hàng của ma trận trọng số thứ nhất là key, cột của ma trận thứ hai là value.</li><li>ReLU triệt các độ tương tự âm, nâng dung lượng lên M ≈ 2d_k = 128. Squared ReLU nén độ tương tự gần 0 mạnh hơn (0.1 thành 0.01, 1 vẫn là 1) và đưa dung lượng lên khoảng 2700, gấp khoảng 40 lần kho tuyến tính. Với ReLU(s)^p, dung lượng khoảng d_k^p.</li><li>Squared ReLU MLP là GLU MLP có gate và input projection dùng chung trọng số; SwiGLU trong các mô hình ngôn ngữ ngày nay cho gate trọng số riêng và dùng Swish thay ReLU.</li><li>Bài nhắc rằng bài báo transformer gốc (v2 và v3 trên arXiv) từng mô tả lớp feedforward là &quot;a kind of attention&quot;, rồi đoạn đó biến mất ở các bản sau.</li></ul>
+<p>Nguồn bị cắt, phần nói về self-attention nằm ở bài gốc. Đáng đọc nếu bạn muốn hiểu vì sao các lớp trong LLM hoạt động như bộ nhớ.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn tranh luận là về độ dễ tiếp cận: một người phàn nàn bài dùng ký hiệu toán thay vì pseudo code, trong khi người khác bảo đi từ đại số tuyến tính là cách đúng để hình thành trực giác; có người vẫn chưa hiểu key và value trong LLM là gì.</p><ul class="quotes"><li><q>Bài dùng ký hiệu toán. Đây là trang về phát triển phần mềm, viết bằng pseudo code chẳng phải rõ hơn nhiều cho đối tượng này sao</q> <span class="quote__by">@craftkiller, Hacker News</span></li><li><q>Bắt đầu từ đại số tuyến tính là cách đúng để hình thành trực giác về các không gian ngữ nghĩa nhiều chiều mà ta đang xử lý.</q> <span class="quote__by">@kooi, Hacker News</span></li><li><q>Với một LLM, key là các token trong context, còn value là … chính xác thì là gì?</q> <span class="quote__by">@dullcrisp, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://alexwang.ai/posts/associative-memory" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The post builds from associative memory to the layers of a transformer: every layer is a memory store, and the MLP is a nonlinear memory store.</p>
+<ul><li>A linear outer-product store reaches its capacity at M ≈ d_k = 64. Past that, interference rises like √(M/d_k − 1).</li><li>The limit: a linear store scales small and large similarities by the same factor. Pass each similarity through a nonlinearity σ before the weighted sum of values and you have rediscovered a two-layer MLP: rows of the first weight matrix are the keys, columns of the second are the values.</li><li>ReLU zeroes negative similarities and raises capacity to M ≈ 2d_k = 128. Squared ReLU suppresses similarities near zero harder (0.1 becomes 0.01, 1 stays 1) and lifts capacity to about 2700, roughly 40 times the linear store. With ReLU(s)^p, capacity is about d_k^p.</li><li>A squared ReLU MLP is a GLU MLP whose gate and input projection share weights; the SwiGLU MLPs in today&#39;s language models give the gate its own weights and use Swish instead of ReLU.</li><li>The post notes that the original transformer paper (v2 and v3 on arXiv) described the feedforward layer as &quot;a kind of attention&quot;, a passage gone from every later version.</li></ul>
+<p>The source text is cut off, so the self-attention part is in the original post. Worth reading if you want to see why layers in LLMs behave like memory stores.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most of the argument is about accessibility: one commenter complains the post uses math notation instead of pseudo code, another says starting from linear algebra is the right way to build intuition; one reader is still unsure what the keys and values are in an LLM.</p><ul class="quotes"><li><q>It uses math notation. This is a software development site, wouldn&#39;t this be much more clear to this audience written as psuedo code</q> <span class="quote__by">@craftkiller, Hacker News</span></li><li><q>starting from linear algebra is the correct way to form an intuition of the higher dimensional semantic spaces we&#39;re dealing with.</q> <span class="quote__by">@kooi, Hacker News</span></li><li><q>For an LLM, the keys are the tokens in your context, and the values are … what exactly?</q> <span class="quote__by">@dullcrisp, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://alexwang.ai/posts/associative-memory" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">transformers</span><span class="tag">llm</span></span>
@@ -3122,11 +3156,26 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/aloknecessary/deploying-mcp-servers-on-kubernetes-3435" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Triển khai MCP server trên Kubernetes</span><span class="l l-en" lang="en">Deploying MCP Servers on Kubernetes</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Deploying MCP Servers on Kubernetes</span>
-  <span class="card__summary l l-vi" lang="vi">Phần lớn MCP server khởi đầu là tiến trình stdio cục bộ do client spawn; bài nói về cách triển khai chúng lên Kubernetes.</span><span class="card__summary l l-en" lang="en">Most MCP servers start as local stdio processes spawned by the client; the post covers deploying them on Kubernetes.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Triển khai MCP Server trên Kubernetes</span><span class="l l-en" lang="en">Deploying MCP Servers on Kubernetes</span></h3>
+    <span class="card__orig l l-vi" lang="en">Deploying MCP Servers on Kubernetes</span>
+    <span class="card__summary l l-vi" lang="vi">Phần lớn MCP server khởi đầu là tiến trình stdio cục bộ do client spawn; bài nói về cách triển khai chúng lên Kubernetes.</span><span class="card__summary l l-en" lang="en">Most MCP servers start as local stdio processes spawned by the client; the post covers deploying them on Kubernetes.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Phần lớn MCP server bắt đầu là tiến trình stdio cục bộ do client spawn. Khi cần phục vụ nhiều client, phản xạ là đóng container và mở một port, nhưng kết quả là container chạy, qua health check sơ sài rồi không làm được gì: tiến trình đọc stdin/ghi stdout trong container không có listener hay port để Service route tới. Cách sửa không phải đổi mạng mà là đổi transport của chính server, từ stdio sang Streamable HTTP, trước khi nghĩ tới Kubernetes.</p>
+<p>Các điểm chính:<br>- Image: Dockerfile bình thường, quan trọng là entrypoint bind HTTP transport. Ba biến MCP_TRANSPORT, MCP_HTTP_ADDR, MCP_HTTP_ENDPOINT cần tường minh lúc deploy.<br>- Probe: /health chỉ xác nhận event loop còn chạy, không chặn theo tool call đang xử lý; /ready phản ánh năng lực nhận việc mới, pod đang xử lý có thể báo chưa ready mà không bị coi là chết. terminationGracePeriodSeconds: 45 phù hợp hơn mặc định 30s vì pod có thể đang giữa một tool call khi rolling update. Request nên khiêm tốn so với limit vì MCP server chủ yếu chờ I/O.<br>- Service: không cần session affinity hay cookie stickiness, nhờ spec MCP tháng 7/2026 bỏ session ở mức giao thức nên request vào pod nào cũng được.<br>- EKS: dùng IRSA (ServiceAccount gắn IAM role qua OIDC) thay vì credential tĩnh dài hạn, và phân quyền hẹp vì bề mặt tool của MCP server dễ lớn dần.<br>- AKS: Workload Identity; nhãn azure.workload.identity/use: &quot;true&quot; phải có trên cả ServiceAccount và pod template, thiếu thì pod âm thầm không có identity thay vì lỗi rõ ràng.<br>- Autoscaling: CPU là sàn an toàn chứ không phải tín hiệu lý tưởng cho concurrency I/O-bound; ví dụ minReplicas 3, maxReplicas 10, target 70%, scale up nhanh (30s), scale down chậm (300s). Phần còn lại bị cắt trong nguồn.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/aloknecessary/deploying-mcp-servers-on-kubernetes-3435" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Most MCP servers start life as a local stdio process the client spawns. When the server must serve more than one client, the instinct is to containerize it and expose a port, which yields a container that starts, passes a naive health check, and does nothing useful: a process reading stdin and writing stdout has no listener or port for a Kubernetes Service to route to. The fix is not a networking change but a transport change in the server itself, from stdio to Streamable HTTP, before Kubernetes enters the picture.</p>
+<p>Key points:<br>- Image: an unremarkable Dockerfile; what matters is that the entrypoint binds HTTP transport. MCP_TRANSPORT, MCP_HTTP_ADDR and MCP_HTTP_ENDPOINT should be explicit at deploy time.<br>- Probes: /health only confirms the event loop is running and never blocks on an in-progress tool call; /ready reflects capacity, so a pod mid-work can report not-ready without being treated as dead. terminationGracePeriodSeconds: 45 fits better than the default 30s because a pod may be mid-tool-call during a rolling update. Resource requests stay modest relative to limits since MCP servers mostly wait on outbound I/O.<br>- Service: no session affinity or cookie stickiness, thanks to the July 2026 MCP spec removing the protocol-level session, so any request can land on any pod.<br>- EKS: use IRSA (a ServiceAccount bound to an IAM role via OIDC) rather than long-lived static credentials, and scope the role narrowly because an MCP server&#39;s tool surface tends to grow.<br>- AKS: Workload Identity; the azure.workload.identity/use: &quot;true&quot; label must be on both the ServiceAccount and the pod template, or the pod silently falls back to no identity instead of failing loudly.<br>- Autoscaling: CPU is a safe floor, not the ideal signal for I/O-bound concurrency; the example uses minReplicas 3, maxReplicas 10, a 70% target, fast scale-up (30s) and slow scale-down (300s). The rest is cut off in the source.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/aloknecessary/deploying-mcp-servers-on-kubernetes-3435" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">mcp</span><span class="tag">kubernetes</span></span>
@@ -4022,11 +4071,37 @@
     <span class="card__fit" title="fit 5/5">●●●●●</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/goqa_ai_c97f712237a7383a5/the-flaky-test-that-was-a-tenant-isolation-bug-1g4a" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Flaky test hóa ra là lỗi cách ly tenant</span><span class="l l-en" lang="en">The flaky test that was a tenant-isolation bug</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">The flaky test that was a tenant-isolation bug</span>
-  <span class="card__summary l l-vi" lang="vi">Một test database fail khoảng một lần trong tám lần chạy; bài đi hết đường từ triệu chứng đến nguyên nhân là lỗi cách ly tenant.</span><span class="card__summary l l-en" lang="en">A database test failed about one run in eight; the post follows the full path from symptom to a tenant-isolation bug.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Test flaky hóa ra là lỗi cách ly tenant</span><span class="l l-en" lang="en">The flaky test that was a tenant-isolation bug</span></h3>
+    <span class="card__orig l l-vi" lang="en">The flaky test that was a tenant-isolation bug</span>
+    <span class="card__summary l l-vi" lang="vi">Một test database fail khoảng một lần trong tám lần chạy; bài đi hết đường từ triệu chứng đến nguyên nhân là lỗi cách ly tenant.</span><span class="card__summary l l-en" lang="en">A database test failed about one run in eight; the post follows the full path from symptom to a tenant-isolation bug.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Một test database fail khoảng một lần trong tám lần chạy, và nguyên nhân không phải flaky mà là lỗi thật: hai lần đọc chồng nhau làm transaction bị kết thúc giữa chừng nên row-level security không thấy tenant.</p>
+<p>Triệu chứng: cùng một test, hai kiểu fail khác nhau (AssertionError: 0 !== 1, và đôi khi &#39;—&#39; !== &#39;gmail&#39;). Theo tác giả, một bug sinh hai dạng lỗi thường nghĩa là lỗi nằm phía trước cả hai assertion.</p>
+<p>Ba giả thuyết sai:<br>- Tranh chấp tài nguyên test: test dùng database khác, connection 7 trên 100, round trip 0.07s, ba lần chạy liên tiếp pass khi dashboard bật.<br>- Race của CREATE DATABASE: mỗi suite đã dùng tên database riêng.<br>- Thứ tự test: các test chạy tuần tự và seed nằm trong hook before.</p>
+<p>Nguyên nhân thật: repository bọc mỗi lần đọc theo tenant bằng begin, select set_config(&#39;app.tenant_id&#39;, $1, true), chạy work, commit. Connection là một session psql sống lâu, không phải pool. Khi hai lần như vậy chồng nhau: A begin; B begin (no-op, B nằm trong transaction của A); A commit (kết thúc transaction B còn dùng); B select chạy không có transaction. set_config(..., true) chỉ có hiệu lực trong transaction, nên setting biến mất, mọi policy RLS thấy tenant rỗng và không khớp gì.</p>
+<p>Vì sao không phải flaky: retry sẽ làm test xanh nhưng vẫn giữ một đường mà query của người này có thể chạy dưới tenant context của người khác, tức vi phạm ranh giới cách ly của cả hệ thống.</p>
+<p>Cách sửa: tuần tự hóa các caller theo từng connection (hàng đợi bằng WeakMap). Ba chi tiết: chiếm slot trước await đầu tiên; nuốt lỗi của predecessor để không làm hỏng caller khác; release() trong finally để tránh deadlock.</p>
+<p>Bài học: reproduce trước. Tác giả đã khẳng định &quot;test contention&quot; hai lần trước khi chạy vòng lặp sáu dòng, và vòng lặp đó phải kiểm tra rằng lần chạy hoàn tất, vì test run bị kill nửa chừng báo &quot;sạch&quot; và trông như pass.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/goqa_ai_c97f712237a7383a5/the-flaky-test-that-was-a-tenant-isolation-bug-1g4a" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The flaky test that was a tenant-isolation bug</p>
+<p>A database test failed about one run in eight, and the cause was not flakiness but a real defect: two overlapping reads ended a transaction underneath one caller, so row-level security saw no tenant.</p>
+<p>The symptom: the same test failed in two shapes (AssertionError: 0 !== 1, and sometimes &#39;—&#39; !== &#39;gmail&#39;). The author notes that one bug producing two shapes usually means the failure is upstream of both assertions.</p>
+<p>Three wrong hypotheses:<br>- Test contention: the tests use a different database, connections were 7 of 100, round trips were 0.07s, and three consecutive runs passed with the dashboard up.<br>- A CREATE DATABASE race: each suite already uses its own database name.<br>- Test ordering: the tests are sequential and the seed happens in a before hook.</p>
+<p>The actual cause: the repository wraps every tenant-scoped read as begin, select set_config(&#39;app.tenant_id&#39;, $1, true), run the work, commit. The connection is a single long-lived psql session, not a pool. When two overlap: A begins; B begins (a no-op, B is now inside A&#39;s transaction); A commits (ending the transaction B still uses); B&#39;s select runs with no transaction. set_config(..., true) is transaction-local, so the setting disappears and every row-level security policy sees an empty tenant and matches nothing.</p>
+<p>Why it is not a flaky test: a retry would have made it green while shipping a path where one caller&#39;s query can run under another caller&#39;s tenant context, which is the isolation boundary the system rests on.</p>
+<p>The fix: serialise callers per connection with a queue (a WeakMap). Three details: claim the queue slot before the first await; swallow the predecessor&#39;s rejection so an unrelated caller does not inherit its error; call release() in a finally so a deadlock cannot occur.</p>
+<p>Lesson: reproduce first. The author asserted &quot;test contention&quot; twice before running a six-line loop, and that loop must assert the run completed, because a half-killed test run reports as clean and looks like a pass.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/goqa_ai_c97f712237a7383a5/the-flaky-test-that-was-a-tenant-isolation-bug-1g4a" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">flaky-test</span><span class="tag">database</span></span>
@@ -4495,7 +4570,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
