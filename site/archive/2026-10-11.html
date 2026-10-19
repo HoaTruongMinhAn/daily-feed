@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-11</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-18</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-19</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -1133,6 +1133,42 @@
   </div>
   <div class="hot" style="--hot: 22%"></div>
 </article>
+<article class="card" data-group="testing" data-id="a574e70fcf784a5ec494462ed68cdcf61045812c" data-url="https://shkspr.mobi/blog/2026/10/some-thoughts-on-unit-testing-activitypub" data-category="test-automation" data-added="2026-10-11">
+  <div class="card__meta">
+    <span class="chip chip--testing">Automation</span>
+    <span class="card__src">daily.dev · Lobsters</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Vài suy nghĩ nhanh về unit test cho ActivityPub</span><span class="l l-en" lang="en">Some quick thoughts on Unit Testing ActivityPub</span></h3>
+    <span class="card__orig l l-vi" lang="en">Some quick thoughts on Unit Testing ActivityPub</span>
+    <span class="card__summary l l-vi" lang="vi">Viết unit test cho bot framework ActivityPub gặp bốn nhóm khó khăn: kiểm tra văn bản cơ bản, thông điệp WebFinger, HTTP Signatures (RFC 9421) và giao tiếp với server ngoài như Mastodon.</span><span class="card__summary l l-en" lang="en">Unit testing an ActivityPub bot framework raises four challenge types: basic text, WebFinger messages, HTTP Signatures (RFC 9421) and talking to external servers like Mastodon.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả đang viết test cho bot framework ActivityBot (công việc do NLnet tài trợ) và chỉ ra bốn nhóm khó khăn khi test ActivityPub. Ông hy vọng một phần test sẽ hữu ích cho dự án khác.</p>
+<ul><li>Kiểm tra văn bản cơ bản: ví dụ username dạng @edent@mastodon.social. Phần server phải là domain hợp lệ, gồm cả IDN không phải ASCII và domain emoji. Phần user có chỉ gồm A-Z, 0-9 không, có dấu chấm hay dấu nháy không? Đặc tả của các thành phần nằm rải rác, khó tìm.</li><li>Kiểm tra thông điệp: một WebFinger response trông thế nào, trường nào bắt buộc? Làm sao chắc server khác hiểu thông điệp mình gửi, và một follow message nhận được phải có dạng gì? Có vài JSON Schema cho một số loại, nhưng đặc tả vẫn rải rác.</li><li>Xác thực chữ ký: HTTP Signatures khó. Để verify cần gom nhiều chữ ký rồi replay vào test, nên tác giả đang lưu lại để chia sẻ. Tạo chữ ký thì chạy test được nhưng chỉ có một cách thật sự để biết server khác có chấp nhận.</li><li>Giao tiếp với server ngoài: gửi request đã ký thì dễ lặp lại; nhận message thì khó tự động hóa vì cần điều khiển một server bên ngoài. Mastodon API cho phép tạo tương tác tới server của bạn, nhưng chỉ khi nó là server công khai.</li></ul>
+<p>Tác giả đưa các test lên mạng cùng bộ message và chữ ký mẫu để người khác dùng. Một bình luận cho biết có người chỉ nối laptop dev với reverse proxy và debugger.</p>
+
+  <p class="card__source"><a class="card__go" href="https://shkspr.mobi/blog/2026/10/some-thoughts-on-unit-testing-activitypub" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The author is writing tests for his ActivityBot bot framework (NLnet funded work) and describes four classes of testing problems with ActivityPub. He hopes some of the tests will be useful to other projects.</p>
+<ul><li>Basic text validation: for example an ActivityPub username like @edent@mastodon.social. The server part must be a valid domain, which can include non-ASCII Internationalised Domain Names and Emoji domains. For the user part: only A-Z and 0-9? Dots? Apostrophes? The specifications for the component parts are scattered and hard to find.</li><li>Message validation: what does a WebFinger response look like, and which parts are mandatory? How can you be sure other servers understand what your project generates, and what should a received follow message look like? Some JSON Schemas exist for some message types, but the specifications are still scattered.</li><li>Signature verification: HTTP Signatures are difficult. Verifying needs a collection of signatures replayed into the test, so he is saving signatures to share. Generating them can be tested, but there is only one real way to know whether other servers accept them.</li><li>Communicating with others: sending a signed request should be easy and repeatable; receiving messages is hard to automate because it needs control of an external server. The Mastodon API can send requests that interact with your server, but only if it is a public server.</li></ul>
+<p>He is putting the tests online with a collection of messages and signatures others can reuse. One commenter says they simply connect a dev laptop to a reverse proxy and a debugger.</p>
+
+  <p class="card__source"><a class="card__go" href="https://shkspr.mobi/blog/2026/10/some-thoughts-on-unit-testing-activitypub" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">unit-testing</span><span class="tag">activitypub</span></span>
+    <span class="links"><a class="card__link" href="https://daily.dev/posts/some-quick-thoughts-on-unit-testing-activitypub-thjiaxg7j" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://lobste.rs/s/gwuebx/some_quick_thoughts_on_unit_testing" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 11%"></div>
+</article>
 <article class="card" data-group="ai" data-id="bb5bd7d76ea708cd402401629f30bfe7c3295416" data-url="https://dev.to/apples_one_cd174284bffb/12-of-13-ai-models-knew-the-new-name-and-still-wrote-the-old-one-2jla" data-category="ai-tip" data-added="2026-10-11">
   <div class="card__meta">
     <span class="chip chip--ai">AI tip</span>
@@ -1284,42 +1320,6 @@
   <div class="card__foot">
     <span class="tags"><span class="tag">ai-agent</span><span class="tag">automation</span></span>
     <span class="links"></span>
-  </div>
-  <div class="hot" style="--hot: 11%"></div>
-</article>
-<article class="card" data-group="testing" data-id="a574e70fcf784a5ec494462ed68cdcf61045812c" data-url="https://shkspr.mobi/blog/2026/10/some-thoughts-on-unit-testing-activitypub" data-category="test-automation" data-added="2026-10-11">
-  <div class="card__meta">
-    <span class="chip chip--testing">Automation</span>
-    <span class="card__src">daily.dev</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Vài suy nghĩ nhanh về unit test cho ActivityPub</span><span class="l l-en" lang="en">Some quick thoughts on Unit Testing ActivityPub</span></h3>
-    <span class="card__orig l l-vi" lang="en">Some quick thoughts on Unit Testing ActivityPub</span>
-    <span class="card__summary l l-vi" lang="vi">Viết unit test cho bot framework ActivityPub gặp bốn nhóm khó khăn: kiểm tra văn bản cơ bản, thông điệp WebFinger, HTTP Signatures (RFC 9421) và giao tiếp với server ngoài như Mastodon.</span><span class="card__summary l l-en" lang="en">Unit testing an ActivityPub bot framework raises four challenge types: basic text, WebFinger messages, HTTP Signatures (RFC 9421) and talking to external servers like Mastodon.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Tác giả đang viết test cho bot framework ActivityBot (công việc do NLnet tài trợ) và chỉ ra bốn nhóm khó khăn khi test ActivityPub. Ông hy vọng một phần test sẽ hữu ích cho dự án khác.</p>
-<ul><li>Kiểm tra văn bản cơ bản: ví dụ username dạng @edent@mastodon.social. Phần server phải là domain hợp lệ, gồm cả IDN không phải ASCII và domain emoji. Phần user có chỉ gồm A-Z, 0-9 không, có dấu chấm hay dấu nháy không? Đặc tả của các thành phần nằm rải rác, khó tìm.</li><li>Kiểm tra thông điệp: một WebFinger response trông thế nào, trường nào bắt buộc? Làm sao chắc server khác hiểu thông điệp mình gửi, và một follow message nhận được phải có dạng gì? Có vài JSON Schema cho một số loại, nhưng đặc tả vẫn rải rác.</li><li>Xác thực chữ ký: HTTP Signatures khó. Để verify cần gom nhiều chữ ký rồi replay vào test, nên tác giả đang lưu lại để chia sẻ. Tạo chữ ký thì chạy test được nhưng chỉ có một cách thật sự để biết server khác có chấp nhận.</li><li>Giao tiếp với server ngoài: gửi request đã ký thì dễ lặp lại; nhận message thì khó tự động hóa vì cần điều khiển một server bên ngoài. Mastodon API cho phép tạo tương tác tới server của bạn, nhưng chỉ khi nó là server công khai.</li></ul>
-<p>Tác giả đưa các test lên mạng cùng bộ message và chữ ký mẫu để người khác dùng. Một bình luận cho biết có người chỉ nối laptop dev với reverse proxy và debugger.</p>
-
-  <p class="card__source"><a class="card__go" href="https://shkspr.mobi/blog/2026/10/some-thoughts-on-unit-testing-activitypub" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>The author is writing tests for his ActivityBot bot framework (NLnet funded work) and describes four classes of testing problems with ActivityPub. He hopes some of the tests will be useful to other projects.</p>
-<ul><li>Basic text validation: for example an ActivityPub username like @edent@mastodon.social. The server part must be a valid domain, which can include non-ASCII Internationalised Domain Names and Emoji domains. For the user part: only A-Z and 0-9? Dots? Apostrophes? The specifications for the component parts are scattered and hard to find.</li><li>Message validation: what does a WebFinger response look like, and which parts are mandatory? How can you be sure other servers understand what your project generates, and what should a received follow message look like? Some JSON Schemas exist for some message types, but the specifications are still scattered.</li><li>Signature verification: HTTP Signatures are difficult. Verifying needs a collection of signatures replayed into the test, so he is saving signatures to share. Generating them can be tested, but there is only one real way to know whether other servers accept them.</li><li>Communicating with others: sending a signed request should be easy and repeatable; receiving messages is hard to automate because it needs control of an external server. The Mastodon API can send requests that interact with your server, but only if it is a public server.</li></ul>
-<p>He is putting the tests online with a collection of messages and signatures others can reuse. One commenter says they simply connect a dev laptop to a reverse proxy and a debugger.</p>
-
-  <p class="card__source"><a class="card__go" href="https://shkspr.mobi/blog/2026/10/some-thoughts-on-unit-testing-activitypub" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">unit-testing</span><span class="tag">activitypub</span></span>
-    <span class="links"><a class="card__link" href="https://daily.dev/posts/some-quick-thoughts-on-unit-testing-activitypub-thjiaxg7j" target="_blank" rel="noopener">discussion</a></span>
   </div>
   <div class="hot" style="--hot: 11%"></div>
 </article>
@@ -4013,7 +4013,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a> · <a href="../archive/2026-10-04.html">2026-10-04</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a> · <a href="../archive/2026-10-05.html">2026-10-05</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>

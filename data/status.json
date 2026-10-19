@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "33 candidates, 177 sightings from 40/62 sources",
+    "message": "187 candidates, 116 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -21,7 +21,7 @@
       },
       {
         "id": "r-softwaretesting",
-        "error": "HTTP 403 for https://www.reddit.com/r/softwaretesting/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/softwaretesting/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-programming",
@@ -29,7 +29,7 @@
       },
       {
         "id": "r-programmerhumor",
-        "error": "HTTP 403 for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-playwright",
@@ -49,11 +49,11 @@
       },
       {
         "id": "r-sysadmin",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/sysadmin/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmingmemes",
-        "error": "HTTP 403 for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-techhumor",
@@ -70,64 +70,44 @@
       {
         "id": "r-singularity",
         "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
-      },
-      {
-        "id": "lobsters-ai",
-        "error": "HTTP 500 for https://lobste.rs/t/ai.json"
-      },
-      {
-        "id": "lobsters-testing",
-        "error": "HTTP 500 for https://lobste.rs/t/testing.json"
-      },
-      {
-        "id": "lobsters-programming",
-        "error": "HTTP 500 for https://lobste.rs/t/programming.json"
-      },
-      {
-        "id": "lobsters-security",
-        "error": "HTTP 500 for https://lobste.rs/t/security.json"
-      },
-      {
-        "id": "lobsters-devops",
-        "error": "HTTP 500 for https://lobste.rs/t/devops.json"
       }
     ],
-    "candidates": 33,
-    "at": "2026-10-18T02:05:58.895Z"
+    "candidates": 187,
+    "at": "2026-10-19T01:02:10.621Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 13, dropped 20, invalid 0",
-    "at": "2026-10-18T02:06:40.031Z"
+    "message": "kept 90, dropped 96, invalid 0",
+    "at": "2026-10-19T01:09:54.981Z"
   },
   "merge": {
     "ok": true,
-    "message": "1658 items retained, 0 re-sighted",
+    "message": "1544 items retained, 6 re-sighted",
     "counts": {
-      "candidates": 33,
-      "kept": 13,
-      "dropped": 20,
+      "candidates": 187,
+      "kept": 90,
+      "dropped": 96,
       "invalid": 0,
-      "sighted": 0
+      "sighted": 6
     },
-    "at": "2026-10-18T02:06:40.031Z"
+    "at": "2026-10-19T01:09:54.982Z"
   },
   "build": {
     "ok": true,
-    "message": "723 items on index, 15 archive pages",
-    "at": "2026-10-18T02:08:58.139Z"
+    "message": "742 items on index, 15 archive pages",
+    "at": "2026-10-19T01:28:12.575Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-18",
-    "message": "88 details written today",
+    "day": "2026-10-19",
+    "message": "89 details written today",
     "counts": {
-      "written": 88,
-      "missing": 9,
-      "invalid": 5,
-      "ungrounded": 5,
-      "discussed": 8
+      "written": 89,
+      "missing": 5,
+      "invalid": 6,
+      "ungrounded": 6,
+      "discussed": 11
     },
-    "at": "2026-10-18T02:08:57.836Z"
+    "at": "2026-10-19T01:28:12.254Z"
   }
 }
