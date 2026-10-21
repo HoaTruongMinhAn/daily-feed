@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-20</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-20</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-21</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -204,6 +204,42 @@
   </div>
   <div class="hot" style="--hot: 47%"></div>
 </article>
+<article class="card" data-group="ai" data-id="41797b9f96f946fbf26225095e3de372c28db3cd" data-url="https://crystl.dev/guides/tmux-for-ai-agents" data-category="ai-tip" data-added="2026-10-20">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI tip</span>
+    <span class="card__src">Hacker News · daily.dev</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Tmux và Claude Code: session, send-keys và giới hạn của cách làm này</span><span class="l l-en" lang="en">Tmux and Claude Code: Sessions, Send-Keys, and the Ceiling</span></h3>
+    <span class="card__orig l l-vi" lang="en">Tmux and Claude Code: Sessions, Send-Keys, and the Ceiling</span>
+    <span class="card__summary l l-vi" lang="vi">Hướng dẫn dùng tmux để điều khiển Claude Code qua session và send-keys, kèm phần bàn về giới hạn của cách làm này.</span><span class="card__summary l l-en" lang="en">A guide to driving Claude Code from tmux via sessions and send-keys, including where the approach hits its ceiling.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Hướng dẫn này nói tmux chạy các coding agent trong session có tên, tách rời được, vẫn sống khi đóng terminal hoặc rớt kết nối SSH. Bạn có một cửa sổ chứa nhiều agent, dùng send-keys để gõ vào agent từ script và capture-pane để đọc lại màn hình.</p>
+<ul><li>Lý do hợp nhau: tmux sống sót khi mất kết nối, giữ nhiều session trong một cửa sổ, và điều khiển được từ bên ngoài bằng shell mà không cần IPC hay API.</li><li>Trước khi tự dựng, dùng cờ có sẵn: claude --worktree --tmux tạo git worktree và session tmux cho một agent trên một branch. --tmux cần đi kèm --worktree; trên iTerm2 nó dùng pane gốc thay vì tmux, nên muốn viết script thì thêm --tmux=classic.</li><li>Cách đặt tên: một session mỗi repo, đặt theo tên repo. Dùng new-session -A để gắn hoặc tạo. Tên session không được chứa . hoặc :.</li><li>Bố cục: mỗi agent một window; pane cho hai ba agent muốn xem cạnh nhau. Nhớ #{pane_current_path} để pane mới mở đúng thư mục. Layout tiled và main-vertical.</li><li>Cờ có sẵn không làm được: nhiều agent trong một session, bố cục pane, gõ vào agent đang chạy từ script, biết agent nào đang chờ bạn, hay cài trên máy remote qua SSH.</li></ul>
+<p>Bài còn phần bàn về điểm mà tmux tự nó dừng lại, nhưng đoạn đó nằm ngoài phần văn bản có sẵn.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Nhiều người đề xuất công cụ thay tmux cho việc chạy agent, một người cho rằng kiến trúc gắn CLI vào tmux là sai hướng, và một người vẫn thấy tmux đáng giá khi cần bền vững trên server remote.</p><ul class="quotes"><li><q>...Herdr làm tất cả tốt hơn hẳn ngay từ đầu khi dùng cho agentic coding.</q> <span class="quote__by">@thomas_witt, Hacker News</span></li><li><q>Đây chẳng phải là kiến trúc sai sao?</q> <span class="quote__by">@teiferer, Hacker News</span></li><li><q>tmux rất tuyệt, nhất là khi cần giữ phiên bền vững trên server remote mà bạn không muốn hoặc không thể cài phần mềm nào khác</q> <span class="quote__by">@frangonf, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://crystl.dev/guides/tmux-for-ai-agents" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>This guide says tmux runs AI coding agents in named, detachable sessions that survive a closed terminal or a dropped SSH connection. You get one window holding many agents, send-keys to type into any of them from a script, and capture-pane to read one back.</p>
+<ul><li>Why they fit: tmux survives disconnection, holds many sessions in one window, and is scriptable from any shell with no IPC or API to build.</li><li>Before building by hand, use the built-in flag: claude --worktree --tmux creates the git worktree and the tmux session for a single agent on a branch. --tmux requires --worktree; on iTerm2 it uses native panes instead of tmux, so pass --tmux=classic if you plan to script against the session.</li><li>Naming: one session per repo, named after the repo. Use new-session -A to attach or create. Session names can&#39;t contain . or :.</li><li>Layout: one window per agent; panes for the two or three you want side by side. Include #{pane_current_path} so new panes open in the right directory. Layouts: tiled and main-vertical.</li><li>What the built-in flag doesn&#39;t do: several agents in one session, pane layouts, typing into a running agent from a script, telling which agent is waiting on you, or setup on a remote box over SSH.</li></ul>
+<p>The guide also covers the point where tmux itself stops, but that part is outside the text available here.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Many suggest tools to replace tmux for running agents, one argues that stuffing a CLI into tmux is the wrong architecture, and one still finds tmux valuable for persistence on remote servers.</p><ul class="quotes"><li><q>...Herdr does it all so much better out of the box when it comes to agentic coding.</q> <span class="quote__by">@thomas_witt, Hacker News</span></li><li><q>Isn&#39;t this the wrong architecture?</q> <span class="quote__by">@teiferer, Hacker News</span></li><li><q>tmux is great, specially when you need persistence in a remote server where you don&#39;t want or can&#39;t install any other software</q> <span class="quote__by">@frangonf, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://crystl.dev/guides/tmux-for-ai-agents" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">claude-code</span><span class="tag">tmux</span></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50148855" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://daily.dev/posts/tmux-and-claude-code-sessions-send-keys-and-the-ceiling-rkt0iclqe" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 37%"></div>
+</article>
 <article class="card" data-group="ai" data-id="e58477e70e23222f70eabc4feadf885770e703ed" data-url="https://thenewstack.io/coding-agents-overstep-scope" data-category="ai-tip" data-added="2026-10-20">
   <div class="card__meta">
     <span class="chip chip--ai">AI tip</span>
@@ -239,42 +275,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 43%"></div>
-</article>
-<article class="card" data-group="ai" data-id="41797b9f96f946fbf26225095e3de372c28db3cd" data-url="https://crystl.dev/guides/tmux-for-ai-agents" data-category="ai-tip" data-added="2026-10-20">
-  <div class="card__meta">
-    <span class="chip chip--ai">AI tip</span>
-    <span class="card__src">Hacker News</span>
-    <span class="card__fit" title="fit 4/5">●●●●○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Tmux và Claude Code: session, send-keys và giới hạn của cách làm này</span><span class="l l-en" lang="en">Tmux and Claude Code: Sessions, Send-Keys, and the Ceiling</span></h3>
-    <span class="card__orig l l-vi" lang="en">Tmux and Claude Code: Sessions, Send-Keys, and the Ceiling</span>
-    <span class="card__summary l l-vi" lang="vi">Hướng dẫn dùng tmux để điều khiển Claude Code qua session và send-keys, kèm phần bàn về giới hạn của cách làm này.</span><span class="card__summary l l-en" lang="en">A guide to driving Claude Code from tmux via sessions and send-keys, including where the approach hits its ceiling.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Hướng dẫn này nói tmux chạy các coding agent trong session có tên, tách rời được, vẫn sống khi đóng terminal hoặc rớt kết nối SSH. Bạn có một cửa sổ chứa nhiều agent, dùng send-keys để gõ vào agent từ script và capture-pane để đọc lại màn hình.</p>
-<ul><li>Lý do hợp nhau: tmux sống sót khi mất kết nối, giữ nhiều session trong một cửa sổ, và điều khiển được từ bên ngoài bằng shell mà không cần IPC hay API.</li><li>Trước khi tự dựng, dùng cờ có sẵn: claude --worktree --tmux tạo git worktree và session tmux cho một agent trên một branch. --tmux cần đi kèm --worktree; trên iTerm2 nó dùng pane gốc thay vì tmux, nên muốn viết script thì thêm --tmux=classic.</li><li>Cách đặt tên: một session mỗi repo, đặt theo tên repo. Dùng new-session -A để gắn hoặc tạo. Tên session không được chứa . hoặc :.</li><li>Bố cục: mỗi agent một window; pane cho hai ba agent muốn xem cạnh nhau. Nhớ #{pane_current_path} để pane mới mở đúng thư mục. Layout tiled và main-vertical.</li><li>Cờ có sẵn không làm được: nhiều agent trong một session, bố cục pane, gõ vào agent đang chạy từ script, biết agent nào đang chờ bạn, hay cài trên máy remote qua SSH.</li></ul>
-<p>Bài còn phần bàn về điểm mà tmux tự nó dừng lại, nhưng đoạn đó nằm ngoài phần văn bản có sẵn.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Nhiều người đề xuất công cụ thay tmux cho việc chạy agent, một người cho rằng kiến trúc gắn CLI vào tmux là sai hướng, và một người vẫn thấy tmux đáng giá khi cần bền vững trên server remote.</p><ul class="quotes"><li><q>...Herdr làm tất cả tốt hơn hẳn ngay từ đầu khi dùng cho agentic coding.</q> <span class="quote__by">@thomas_witt, Hacker News</span></li><li><q>Đây chẳng phải là kiến trúc sai sao?</q> <span class="quote__by">@teiferer, Hacker News</span></li><li><q>tmux rất tuyệt, nhất là khi cần giữ phiên bền vững trên server remote mà bạn không muốn hoặc không thể cài phần mềm nào khác</q> <span class="quote__by">@frangonf, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://crystl.dev/guides/tmux-for-ai-agents" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>This guide says tmux runs AI coding agents in named, detachable sessions that survive a closed terminal or a dropped SSH connection. You get one window holding many agents, send-keys to type into any of them from a script, and capture-pane to read one back.</p>
-<ul><li>Why they fit: tmux survives disconnection, holds many sessions in one window, and is scriptable from any shell with no IPC or API to build.</li><li>Before building by hand, use the built-in flag: claude --worktree --tmux creates the git worktree and the tmux session for a single agent on a branch. --tmux requires --worktree; on iTerm2 it uses native panes instead of tmux, so pass --tmux=classic if you plan to script against the session.</li><li>Naming: one session per repo, named after the repo. Use new-session -A to attach or create. Session names can&#39;t contain . or :.</li><li>Layout: one window per agent; panes for the two or three you want side by side. Include #{pane_current_path} so new panes open in the right directory. Layouts: tiled and main-vertical.</li><li>What the built-in flag doesn&#39;t do: several agents in one session, pane layouts, typing into a running agent from a script, telling which agent is waiting on you, or setup on a remote box over SSH.</li></ul>
-<p>The guide also covers the point where tmux itself stops, but that part is outside the text available here.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Many suggest tools to replace tmux for running agents, one argues that stuffing a CLI into tmux is the wrong architecture, and one still finds tmux valuable for persistence on remote servers.</p><ul class="quotes"><li><q>...Herdr does it all so much better out of the box when it comes to agentic coding.</q> <span class="quote__by">@thomas_witt, Hacker News</span></li><li><q>Isn&#39;t this the wrong architecture?</q> <span class="quote__by">@teiferer, Hacker News</span></li><li><q>tmux is great, specially when you need persistence in a remote server where you don&#39;t want or can&#39;t install any other software</q> <span class="quote__by">@frangonf, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://crystl.dev/guides/tmux-for-ai-agents" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">claude-code</span><span class="tag">tmux</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50148855" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 37%"></div>
 </article>
 <article class="card" data-group="ai" data-id="c259d52b2625e13cbaa466e64ad83eaedf9be390" data-url="https://techmeme.com/261019/p49" data-category="ai-trend" data-added="2026-10-20">
   <div class="card__meta">
@@ -1139,11 +1139,26 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="http://boredhackerblog.info/2026/10/plex-vulnerabilities-being-exploited-in.html" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Lỗ hổng Plex bị khai thác ngoài thực tế để cài cryptominer</span><span class="l l-en" lang="en">Plex vulnerabilities exploited in the wild to drop a cryptominer</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Plex vulnerabilities exploited in the wild to drop a cryptominer</span>
-  <span class="card__summary l l-vi" lang="vi">Các lỗ hổng của Plex đang bị khai thác để cài cryptominer, theo một blog bảo mật. Ai tự host Plex nên kiểm tra bản vá.</span><span class="card__summary l l-en" lang="en">Plex vulnerabilities are being exploited in the wild to drop a cryptominer, per a security blog. Self-hosters should check their patches.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Lỗ hổng Plex bị khai thác ngoài thực tế để cài cryptominer</span><span class="l l-en" lang="en">Plex vulnerabilities exploited in the wild to drop a cryptominer</span></h3>
+    <span class="card__orig l l-vi" lang="en">Plex vulnerabilities exploited in the wild to drop a cryptominer</span>
+    <span class="card__summary l l-vi" lang="vi">Các lỗ hổng của Plex đang bị khai thác để cài cryptominer, theo một blog bảo mật. Ai tự host Plex nên kiểm tra bản vá.</span><span class="card__summary l l-en" lang="en">Plex vulnerabilities are being exploited in the wild to drop a cryptominer, per a security blog. Self-hosters should check their patches.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Các lỗ hổng của Plex đang bị khai thác ngoài thực tế để cài cryptominer lên máy chủ bị tấn công, theo một bài trên một blog bảo mật.</p>
+<p>Nội dung bài viết gốc không tải được, nên chưa có chi tiết kỹ thuật như phiên bản bị ảnh hưởng hay cách khai thác. Ai tự host Plex nên kiểm tra bản vá và xem chi tiết trong bài gốc.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần bình luận chủ yếu xoay quanh việc lỗ hổng đã được vá từ tháng 8 và chuyện nhiều người vẫn để Plex mở ra internet, kèm giọng chê cryptominer là quá nghèo nàn.</p><ul class="quotes"><li><q>Ảnh hưởng một phiên bản Plex cũ hơn và đã được vá hồi tháng 8.</q> <span class="quote__by">@2OEH8eoCRo0, Hacker News</span></li><li><q>&gt; máy chủ Plex hướng ra internet. Đáng sợ thật. Ai lại để thứ này mở ra bên ngoài vậy?</q> <span class="quote__by">@foobarian, Hacker News</span></li><li><q>Tôi cứ ngạc nhiên mãi vì kẻ tấn công lúc nào cũng thiếu sáng tạo. Cryptominer vào năm 2026 á?</q> <span class="quote__by">@basilikum, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="http://boredhackerblog.info/2026/10/plex-vulnerabilities-being-exploited-in.html" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Vulnerabilities in Plex are being exploited in the wild to drop a cryptominer on compromised servers, according to a security blog post.</p>
+<p>The text of the original article could not be retrieved, so details such as affected versions or the exploit method are not available here. Anyone who self-hosts Plex should check their patch level and read the original post for specifics.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">The comments mostly revolve around the flaw having been patched in August and people still exposing Plex to the internet, plus a jab that a cryptominer is an uncreative payload.</p><ul class="quotes"><li><q>Affects an older version of Plex and was patched in August.</q> <span class="quote__by">@2OEH8eoCRo0, Hacker News</span></li><li><q>&gt; internet-facing Plex servers This is terrifying. Who runs things like this open to the outside?</q> <span class="quote__by">@foobarian, Hacker News</span></li><li><q>It doesn&#39;t cease to amaze me how uncreative attackers are time and time again. A cryptominer in 2026?</q> <span class="quote__by">@basilikum, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="http://boredhackerblog.info/2026/10/plex-vulnerabilities-being-exploited-in.html" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">plex</span><span class="tag">security</span></span>
@@ -2576,11 +2591,32 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/gabrielanhaia/an-instant-add-column-waiting-on-one-slow-select-blocks-every-query-behind-it-367h" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">ADD COLUMN tức thì chờ một SELECT chậm sẽ chặn mọi truy vấn phía sau</span><span class="l l-en" lang="en">An Instant ADD COLUMN Waiting on One Slow SELECT Blocks Every Query Behind It</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">An Instant ADD COLUMN Waiting on One Slow SELECT Blocks Every Query Behind It</span>
-  <span class="card__summary l l-vi" lang="vi">ADD COLUMN nhanh nhưng vẫn cần khóa ACCESS EXCLUSIVE; xếp sau một SELECT chậm thì mọi truy vấn khác phải chờ. Bài hướng dẫn tái hiện và cách sửa.</span><span class="card__summary l l-en" lang="en">ADD COLUMN is instant but still needs an ACCESS EXCLUSIVE lock; queued behind one slow SELECT, every query waits. Shows how to reproduce and fix it.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">ADD COLUMN tức thì nhưng chờ một SELECT chậm sẽ chặn mọi truy vấn phía sau</span><span class="l l-en" lang="en">An Instant ADD COLUMN Waiting on One Slow SELECT Blocks Every Query Behind It</span></h3>
+    <span class="card__orig l l-vi" lang="en">An Instant ADD COLUMN Waiting on One Slow SELECT Blocks Every Query Behind It</span>
+    <span class="card__summary l l-vi" lang="vi">ADD COLUMN nhanh nhưng vẫn cần khóa ACCESS EXCLUSIVE; xếp sau một SELECT chậm thì mọi truy vấn khác phải chờ. Bài hướng dẫn tái hiện và cách sửa.</span><span class="card__summary l l-en" lang="en">ADD COLUMN is instant but still needs an ACCESS EXCLUSIVE lock; queued behind one slow SELECT, every query waits. Shows how to reproduce and fix it.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>ADD COLUMN trong PostgreSQL không rewrite bảng, nhưng vẫn cần khóa ACCESS EXCLUSIVE; nếu nó phải xếp hàng sau một SELECT chậm thì mọi truy vấn đến sau đều phải chờ, và API ngừng trả lời.</p>
+<p>Thêm cột nullable luôn chỉ là đổi catalog, và từ PostgreSQL 11 cả cột có default hằng số cũng không rewrite. Tài liệu ALTER TABLE nói &quot;In neither case is a rewrite of the table required.&quot; Vậy mà khi deploy, API vẫn dừng trả lời truy vấn trên bảng đó. GoCardless từng mô tả cùng kiểu xếp hàng khóa với DDL khác: khoảng 15 giây API ngừng hoạt động ngoài dự kiến khi thêm foreign key, vì câu ALTER nhanh nhưng phải chờ khóa sau một lệnh đọc chạy lâu, còn các query của API dồn lại phía sau và client timeout.</p>
+<p>Vì sao ALTER nhanh vẫn phải chờ, từ hai sự thật trong tài liệu Postgres:<br>- Khóa: ALTER TABLE lấy ACCESS EXCLUSIVE trừ khi có ghi chú khác, ADD COLUMN không có ghi chú, nên lấy khóa mạnh nhất. Khóa này xung đột với mọi chế độ, kể cả ACCESS SHARE mà mọi SELECT thường đều giữ. Chỉ cần một transaction giữ khóa đọc là ALTER không bắt đầu được.<br>- Hàng đợi: yêu cầu khóa xếp hàng. pg_blocking_pids() phân biệt &quot;hard block&quot; (phiên giữ khóa xung đột) và &quot;soft block&quot; (phiên đang chờ một khóa xung đột và đứng trước trong hàng). Một SELECT mới cần ACCESS SHARE, tương thích với SELECT chậm đang chạy, nhưng vẫn phải chờ vì ALTER đứng trước nó. INSERT, UPDATE và DELETE đến sau cũng vậy, và ALTER sẽ chờ vô hạn trừ khi phát hiện deadlock.</p>
+<p>Tái hiện bằng bốn phiên psql trên Postgres 18 trong Docker:<br>- Terminal 1: tạo bảng orders với 100000 dòng, rồi chạy SELECT pg_sleep(300) FROM orders LIMIT 1; để giữ ACCESS SHARE năm phút.<br>- Terminal 2: ALTER TABLE orders ADD COLUMN note text; sẽ treo.<br>- Terminal 3: SELECT count(*) FROM orders; cũng treo dù không xung đột với terminal 1.<br>- Terminal 4: truy vấn pg_stat_activity với pg_blocking_pids() cho hai dòng: ALTER bị hard block bởi terminal 1, còn count(*) bị soft block bởi ALTER. Cũng xem pg_locks (cột waitstart có từ Postgres 14).</p>
+<p>Bài cũng hứa cách giới hạn cú treo xuống hai giây, nhưng phần sửa bị cắt trong nguồn nên xem bài gốc. Với QA/dev, đây là ca cần thử trong staging trước khi chạy migration trên bảng nóng.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/gabrielanhaia/an-instant-add-column-waiting-on-one-slow-select-blocks-every-query-behind-it-367h" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>In PostgreSQL, ADD COLUMN does not rewrite the table but still needs an ACCESS EXCLUSIVE lock; if it queues behind one slow SELECT, every query that arrives afterwards waits too and the API stops answering.</p>
+<p>Adding a nullable column has always been a catalog change, and since PostgreSQL 11 even a column with a constant default skips the rewrite. The ALTER TABLE docs say &quot;In neither case is a rewrite of the table required.&quot; Yet on deploy, your API stops answering queries on that table. GoCardless described the same lock queue with a different DDL: around 15 seconds of unexpected API downtime while adding foreign keys, because the ALTER was fast but had to wait for a lock behind a long-running read, and API queries piled up behind it until clients timed out.</p>
+<p>Why an instant ALTER still waits, from two facts in the Postgres docs:<br>- The lock: ALTER TABLE takes ACCESS EXCLUSIVE unless explicitly noted, and ADD COLUMN has no note, so it takes the strongest lock. It conflicts with all lock modes, including the ACCESS SHARE that every plain SELECT takes. Even one transaction holding a read lock stops the ALTER from starting.<br>- The queue: lock requests wait in line. pg_blocking_pids() defines a &quot;hard block&quot; (a session holding a conflicting lock) and a &quot;soft block&quot; (a session waiting for a conflicting lock and ahead in the queue). A new SELECT needs ACCESS SHARE, which is compatible with the slow SELECT already running, yet it waits because the ALTER is ahead of it. So does every INSERT, UPDATE and DELETE that arrives later, and the ALTER waits indefinitely unless a deadlock is detected.</p>
+<p>Reproduce it with four psql sessions on Postgres 18 in Docker:<br>- Terminal 1: create an orders table with 100000 rows, then run SELECT pg_sleep(300) FROM orders LIMIT 1; to hold ACCESS SHARE for five minutes.<br>- Terminal 2: ALTER TABLE orders ADD COLUMN note text; hangs.<br>- Terminal 3: SELECT count(*) FROM orders; also hangs, despite not conflicting with terminal 1.<br>- Terminal 4: query pg_stat_activity with pg_blocking_pids(), which returns two rows: the ALTER is hard-blocked by terminal 1, and count(*) is soft-blocked by the ALTER. Also inspect pg_locks (the waitstart column exists since Postgres 14).</p>
+<p>The post also promises a way to cap the stall at two seconds, but the fix is cut off in the source text, so see the original. For QA and devs, this is a case worth trying in staging before running a migration on a hot table.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/gabrielanhaia/an-instant-add-column-waiting-on-one-slow-select-blocks-every-query-behind-it-367h" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">postgres</span><span class="tag">locking</span><span class="tag">sql</span></span>
@@ -3108,11 +3144,32 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/rbonweb/circlecis-postgres-disk-space-exhaustion-came-from-deletions-it-already-knew-were-coming-4kcd" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Sự cố hết dung lượng Postgres của CircleCI đến từ các lệnh xóa đã biết trước</span><span class="l l-en" lang="en">CircleCI&#39;s Postgres disk space exhaustion came from deletions it already knew were coming</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">CircleCI&#39;s Postgres disk space exhaustion came from deletions it already knew were coming</span>
-  <span class="card__summary l l-vi" lang="vi">Sự cố hết dung lượng Postgres của CircleCI ngày 9/10/2026 đến từ một job xóa theo lịch mà bản sửa lỗi ngày 6/10 không tính tới.</span><span class="card__summary l l-en" lang="en">CircleCI&#39;s Postgres disk exhaustion on October 9, 2026 came from a scheduled deletion job its own October 6 fix never accounted for.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Sự cố hết dung lượng Postgres của CircleCI đến từ các lệnh xóa đã được lên lịch từ trước</span><span class="l l-en" lang="en">CircleCI&#39;s Postgres disk space exhaustion came from deletions it already knew were coming</span></h3>
+    <span class="card__orig l l-vi" lang="en">CircleCI&#39;s Postgres disk space exhaustion came from deletions it already knew were coming</span>
+    <span class="card__summary l l-vi" lang="vi">Sự cố hết dung lượng Postgres của CircleCI ngày 9/10/2026 đến từ một job xóa theo lịch mà bản sửa lỗi ngày 6/10 không tính tới.</span><span class="card__summary l l-en" lang="en">CircleCI&#39;s Postgres disk exhaustion on October 9, 2026 came from a scheduled deletion job its own October 6 fix never accounted for.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Ngày 9/10/2026, Postgres của CircleCI hết dung lượng và toàn bộ xử lý pipeline, workflow dừng khoảng 12 giờ. Theo báo cáo sự cố ngày 12/10 của CircleCI, nguyên nhân là một job dọn dẹp theo lịch mà bản sửa sau sự cố gần giống hệt ngày 6/10 không tính tới.</p>
+<p>Bối cảnh: CircleCI dùng Temporal, chạy trên Postgres Multi-AZ, làm hàng đợi cho mọi pipeline và job. Write-ahead log nằm trên Dedicated Log Volume giới hạn 1TB và 3,000 IOPS, AWS không cho nâng. Khi log được ghi nhanh hơn tốc độ archive, dung lượng trống giảm; khi đầy, Postgres ngừng nhận ghi.</p>
+<p>Diễn biến:<br>- Sự cố 6/10: bảo trì bảng sinh log nhanh hơn archive. Bản sửa chuyển transaction log về volume riêng và đổi cấu hình dọn dẹp của Temporal.<br>- Điều bản sửa bỏ sót: Temporal xóa lịch sử workflow đã xong sau vài ngày, nên tải nặng của 6/10 sẽ bị xóa vào 9/10.<br>- 08:00 ngày 9/10 việc xóa bắt đầu; dung lượng trống giảm từ 0.8TB xuống 0.1TB lúc 10:10; cảnh báo lúc 10:28; 11:15 volume đầy, Postgres read-only. Khôi phục lúc 12:59, hàng tồn xử lý xong 14:40.<br>- Lỗi thứ hai từ 15:15: các bảng routing-cleanup phình từ vài chục nghìn lên hàng chục triệu dòng, làm mọi thao tác chậm. Vacuum thủ công tranh CPU nên bị hủy lúc 17:45. Đến 20:48 Postgres chuyển sang nghẽn CPU, cộng retry storm từ hệ thống phía trên; tạm dừng việc mới và việc retry mới giúp DB bắt kịp.</p>
+<p>Khuyến nghị cho đội QA/hạ tầng:<br>- Kiểm tra job xóa lịch sử của workflow engine chạy theo lịch cố định hay theo tải.<br>- Cảnh báo trực tiếp trên độ trễ archive WAL và tốc độ ghi, không chỉ dung lượng trống.<br>- Coi bản sửa là chưa kiểm chứng cho đến khi đối chiếu với mọi job đã lên lịch những ngày tiếp theo.<br>- Kiểm tra retry có backoff khi dependency đang quá tải.</p>
+<p>Tác giả (Krova Cloud) kết luận bản sửa 6/10 không sai, chỉ là nó không tính tới trigger thứ hai đã nằm sẵn trên lịch.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/rbonweb/circlecis-postgres-disk-space-exhaustion-came-from-deletions-it-already-knew-were-coming-4kcd" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>On October 9, 2026, CircleCI&#39;s Postgres ran out of disk space and all pipeline and workflow processing stopped for roughly 12 hours. According to CircleCI&#39;s October 12 incident report, the trigger was a scheduled cleanup job that the fix after a nearly identical October 6 outage never accounted for.</p>
+<p>Background: CircleCI runs Temporal on a Multi-AZ Postgres instance as the queue behind every pipeline and job. The write-ahead log sits on a Dedicated Log Volume capped at 1TB and 3,000 IOPS, which AWS does not allow raising. When the log is written faster than it is archived, free space drops, and once it is full Postgres stops accepting writes.</p>
+<p>Timeline:<br>- October 6: table maintenance wrote log faster than archiving. The fix moved the transaction log back to its dedicated volume and changed Temporal&#39;s cleanup settings.<br>- What it missed: Temporal deletes completed workflow history a few days later, so the heavy October 6 workload was due for deletion on October 9.<br>- 08:00 on October 9 deletions began; free space fell from 0.8TB to 0.1TB by 10:10; alert at 10:28; volume full and Postgres read-only at 11:15. Recovery at 12:59, backlog cleared by 14:40.<br>- A second failure began at 15:15: routing-cleanup tables grew from tens of thousands of rows to tens of millions, slowing every operation. Manual vacuum jobs competed for CPU and were cancelled at 17:45. By 20:48 Postgres had moved to CPU thrashing plus a retry storm from upstream; pausing all new and retried work let the database catch up.</p>
+<p>What to check in your own stack:<br>- Whether your workflow engine&#39;s history deletion runs on a fixed schedule or on current load.<br>- Alert on WAL archive lag and write rate, not only free disk space.<br>- Treat an incident fix as unverified until checked against every job scheduled in the following days.<br>- Make sure retry logic backs off when a dependency is struggling.</p>
+<p>The author (Krova Cloud) concludes the October 6 fix was not wrong; it simply left a second, delayed trigger already on the calendar.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/rbonweb/circlecis-postgres-disk-space-exhaustion-came-from-deletions-it-already-knew-were-coming-4kcd" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">postgres</span><span class="tag">postmortem</span><span class="tag">circleci</span></span>
@@ -3510,7 +3567,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a> · <a href="../archive/2026-10-06.html">2026-10-06</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
