@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-20</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-21</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-22</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -275,6 +275,78 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 43%"></div>
+</article>
+<article class="card" data-group="ai" data-id="4f0198409c0e2bc26eeb9557bd337cdd1069ba9e" data-url="https://github.com/IsuruMaduranga/harness-engineering-101" data-category="ai-tip" data-added="2026-10-20">
+  <div class="card__meta">
+    <span class="chip chip--ai">AI tip</span>
+    <span class="card__src">Hacker News · daily.dev</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 4/5">●●●●○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Harness Engineering 101: LLM là bộ não, harness là cơ thể</span><span class="l l-en" lang="en">Harness Engineering 101: The LLM is the brain, the harness is the body</span></h3>
+    <span class="card__orig l l-vi" lang="en">Harness Engineering 101: The LLM is the brain, the harness is the body</span>
+    <span class="card__summary l l-vi" lang="vi">Tài liệu nhập môn harness engineering trên GitHub, giải thích phần harness bao quanh LLM trong một agent.</span><span class="card__summary l l-en" lang="en">An intro to harness engineering on GitHub, explaining the harness that surrounds the LLM in an agent.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Isuru Maduranga xuất bản một cuốn sách miễn phí gồm 16 chương về xây dựng AI agent từ nguyên lý đầu tiên, xoay quanh ý: API của LLM không có trạng thái, còn &quot;harness&quot; là chương trình dựng, duy trì và bảo vệ mảng JSON hội thoại gửi đi mỗi lượt.</p>
+<p>Luận điểm chính: mọi thứ người ta gọi là &quot;agent&quot; đều là các bản vá cho cùng một vòng lặp, và mỗi bản vá tồn tại vì có thứ cụ thể bị hỏng. Sách dựng dần một agent mẫu khoảng 300 dòng bằng Python thuần. Mỗi chương theo cùng khuôn: lỗi, bản vá tối thiểu, cái giá phải trả.</p>
+<p>Cấu trúc:<br>- Phần I, The Wire: mảng JSON, &quot;bộ não&quot; next-token, tools, agent loop, caching.<br>- Phần II, Running Long: context như ngân sách, subagent, steering, background work.<br>- Phần III, The Ecosystem: framework chỉ là wrapper, MCP/skills/hooks, debug mảng hội thoại.<br>- Phần IV, Trust, Domains, and Data: guardrails, coding agent, RAG như một pattern của harness.<br>- Epilogue tự xây harness, và phụ lục về model routing, worktree, plan mode, retry/streaming.</p>
+<p>Tác giả ghi rõ tự viết các chương dựa trên kinh nghiệm xây WSO2 MI Copilot, WSO2 BI Copilot và One Code, và dùng Claude Code để sắp xếp lại, chỉnh tiếng Anh, tạo diagram. Hữu ích cho ai đang xây AI product hoặc agent testing.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Cộng đồng chia rẽ: một số phản đối ẩn dụ &quot;não/cơ thể&quot; và coi văn bản là &quot;AI slop&quot;, số khác nhấn mạnh harness quan trọng không kém model, và khuyên tự viết harness để học.</p><ul class="quotes"><li><q>Đừng nhân cách hoá máy tính, chúng không thích đâu. Sao lại có làn sóng giả vờ, bất chấp mọi bằng chứng, rằng LLM còn sống hay có cấu trúc giống não sinh học?</q> <span class="quote__by">@jgeada, Hacker News</span></li><li><q>Tối ưu harness là thiết yếu. Model thông minh đến đâu cũng không quan trọng nếu công cụ bạn đưa cho nó kém hiệu quả, hoặc tác vụ chưa được định nghĩa rõ.</q> <span class="quote__by">@scosman, Hacker News</span></li><li><q>Thay vì đọc mấy bài giải thích kiểu AI-slop đầy ẩn dụ ọp ẹp, tôi khuyên bạn cứ tự xây một coding harness cơ bản từ đầu.</q> <span class="quote__by">@libraryofbabel, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://github.com/IsuruMaduranga/harness-engineering-101" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Isuru Maduranga published a free 16-chapter book on building AI agents from first principles. Its core idea: an LLM API is stateless, and a &quot;harness&quot; is the program that builds, maintains and protects the JSON array of conversation sent each turn.</p>
+<p>Main thesis: everything the field calls &quot;agents&quot; is a set of patches to that one loop, and each patch exists because something concrete broke. The book grows a ~300-line toy agent in plain Python. Every chapter has the same shape: the failure, the minimal patch, what the patch costs.</p>
+<p>Structure:<br>- Part I, The Wire: the JSON array, the next-token brain, tools, the agent loop, caching.<br>- Part II, Running Long: context as a budget, subagents, steering, background work.<br>- Part III, The Ecosystem: frameworks as wrappers, MCP/skills/hooks, debugging the array.<br>- Part IV, Trust, Domains, and Data: guardrails, coding agents, RAG as a harness pattern.<br>- An epilogue on building your own, plus appendices on model routing, worktrees, plan mode, and retries/streaming.</p>
+<p>The author says they drafted every chapter themselves from building WSO2 MI Copilot, WSO2 BI Copilot and One Code, and used Claude Code and One Code to reorder chapters, polish the English and generate the diagrams. Useful for anyone building AI products or agent testing.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">The thread is split: some reject the brain/body metaphor and call the text AI slop, while others stress that the harness matters as much as the model and advise building your own to learn.</p><ul class="quotes"><li><q>Don&#39;t anthropomorphize computers, they don&#39;t like it. Why this spate of pretending, against all evidence, that LLMs are alive, or even remotely structured like biological brains?...</q> <span class="quote__by">@jgeada, Hacker News</span></li><li><q>Harness optimization is essential. Doesn&#39;t matter how smart the model is if the tools you give it are ineffective, or the task is under defined...</q> <span class="quote__by">@scosman, Hacker News</span></li><li><q>Instead of reading AI-slop explanations full of creaky metaphors, I&#39;d advise you to just build your own basic coding harness from scratch...</q> <span class="quote__by">@libraryofbabel, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://github.com/IsuruMaduranga/harness-engineering-101" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">llm</span><span class="tag">agents</span><span class="tag">harness</span></span>
+    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50151390" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://daily.dev/posts/harness-engineering-101-the-llm-is-the-brain-the-harness-is-the-body-gmdrggzuw" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 31%"></div>
+</article>
+<article class="card" data-group="humor" data-id="323cd06303e4567d4c62dfa86393898be249609a" data-url="https://workchronicles.com/p/comic-building-consensus" data-category="humor" data-added="2026-10-20">
+  <div class="card__meta">
+    <span class="chip chip--humor">Humor</span>
+    <span class="card__src">Work Chronicles · daily.dev</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Xây dựng đồng thuận (truyện tranh)</span><span class="l l-en" lang="en">Building consensus (comic)</span></h3>
+    <span class="card__orig l l-vi" lang="en">Building consensus (comic)</span>
+    <span class="card__summary l l-vi" lang="vi">Truyện tranh Work Chronicles về chuyện xây dựng đồng thuận trong công việc văn phòng.</span><span class="card__summary l l-en" lang="en">A Work Chronicles comic about building consensus in office life.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Truyện tranh Work Chronicles: một người nói họ đã báo về 58 vấn đề suốt nhiều tuần, đã đặt ba cuộc họp nhưng sếp không dự cuộc nào, và giờ cuộc họp diễn ra trong một giờ nữa. Trong 58 vấn đề có 12 lỗi chặn phát hành và 4 vấn đề có hệ quả pháp lý, nên không thể dành chỉ một phút cho mỗi cái. Câu chốt mỉa mai: &quot;Chẳng có gì như một chút thông đồng nơi công sở để mọi thứ thêm thú vị!&quot;</p>
+<p>Cái cười nằm ở chỗ &quot;xây dựng đồng thuận&quot; hoá ra là bị dồn vào họp gấp vì sếp lờ cảnh báo từ trước.</p>
+
+  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-building-consensus" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A Work Chronicles comic: someone says they have been raising 58 issues for weeks, scheduled three meetings that the boss never attended, and now the meeting is in an hour. Of the 58, 12 are show stoppers and 4 have legal repercussions, so it will take more than a minute per issue. The closing line is sarcastic: &quot;Nothing like a little bit of workplace collusion to keep things interesting!&quot;</p>
+<p>The joke is that &quot;building consensus&quot; turns out to be a rushed meeting because the boss ignored the warnings all along.</p>
+
+  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-building-consensus" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  <a href="https://workchronicles.com/p/comic-building-consensus" target="_blank" rel="noopener"><img class="card__img" loading="lazy" src="https://substackcdn.com/image/fetch/$s_!fgdS!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F27a8a242-5f50-4cce-b8a5-fe796adebc67_4800x4800.png" alt=""></a>
+  <div class="card__foot">
+    <span class="tags"><span class="tag">comic</span><span class="tag">workchronicles</span></span>
+    <span class="links"><a class="card__link" href="https://daily.dev/posts/comic-building-consensus-btoaottmm" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 40%"></div>
 </article>
 <article class="card" data-group="ai" data-id="c259d52b2625e13cbaa466e64ad83eaedf9be390" data-url="https://techmeme.com/261019/p49" data-category="ai-trend" data-added="2026-10-20">
   <div class="card__meta">
@@ -569,78 +641,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 41%"></div>
-</article>
-<article class="card" data-group="ai" data-id="4f0198409c0e2bc26eeb9557bd337cdd1069ba9e" data-url="https://github.com/IsuruMaduranga/harness-engineering-101" data-category="ai-tip" data-added="2026-10-20">
-  <div class="card__meta">
-    <span class="chip chip--ai">AI tip</span>
-    <span class="card__src">Hacker News</span>
-    <span class="card__fit" title="fit 4/5">●●●●○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Harness Engineering 101: LLM là bộ não, harness là cơ thể</span><span class="l l-en" lang="en">Harness Engineering 101: The LLM is the brain, the harness is the body</span></h3>
-    <span class="card__orig l l-vi" lang="en">Harness Engineering 101: The LLM is the brain, the harness is the body</span>
-    <span class="card__summary l l-vi" lang="vi">Tài liệu nhập môn harness engineering trên GitHub, giải thích phần harness bao quanh LLM trong một agent.</span><span class="card__summary l l-en" lang="en">An intro to harness engineering on GitHub, explaining the harness that surrounds the LLM in an agent.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Isuru Maduranga xuất bản một cuốn sách miễn phí gồm 16 chương về xây dựng AI agent từ nguyên lý đầu tiên, xoay quanh ý: API của LLM không có trạng thái, còn &quot;harness&quot; là chương trình dựng, duy trì và bảo vệ mảng JSON hội thoại gửi đi mỗi lượt.</p>
-<p>Luận điểm chính: mọi thứ người ta gọi là &quot;agent&quot; đều là các bản vá cho cùng một vòng lặp, và mỗi bản vá tồn tại vì có thứ cụ thể bị hỏng. Sách dựng dần một agent mẫu khoảng 300 dòng bằng Python thuần. Mỗi chương theo cùng khuôn: lỗi, bản vá tối thiểu, cái giá phải trả.</p>
-<p>Cấu trúc:<br>- Phần I, The Wire: mảng JSON, &quot;bộ não&quot; next-token, tools, agent loop, caching.<br>- Phần II, Running Long: context như ngân sách, subagent, steering, background work.<br>- Phần III, The Ecosystem: framework chỉ là wrapper, MCP/skills/hooks, debug mảng hội thoại.<br>- Phần IV, Trust, Domains, and Data: guardrails, coding agent, RAG như một pattern của harness.<br>- Epilogue tự xây harness, và phụ lục về model routing, worktree, plan mode, retry/streaming.</p>
-<p>Tác giả ghi rõ tự viết các chương dựa trên kinh nghiệm xây WSO2 MI Copilot, WSO2 BI Copilot và One Code, và dùng Claude Code để sắp xếp lại, chỉnh tiếng Anh, tạo diagram. Hữu ích cho ai đang xây AI product hoặc agent testing.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Cộng đồng chia rẽ: một số phản đối ẩn dụ &quot;não/cơ thể&quot; và coi văn bản là &quot;AI slop&quot;, số khác nhấn mạnh harness quan trọng không kém model, và khuyên tự viết harness để học.</p><ul class="quotes"><li><q>Đừng nhân cách hoá máy tính, chúng không thích đâu. Sao lại có làn sóng giả vờ, bất chấp mọi bằng chứng, rằng LLM còn sống hay có cấu trúc giống não sinh học?</q> <span class="quote__by">@jgeada, Hacker News</span></li><li><q>Tối ưu harness là thiết yếu. Model thông minh đến đâu cũng không quan trọng nếu công cụ bạn đưa cho nó kém hiệu quả, hoặc tác vụ chưa được định nghĩa rõ.</q> <span class="quote__by">@scosman, Hacker News</span></li><li><q>Thay vì đọc mấy bài giải thích kiểu AI-slop đầy ẩn dụ ọp ẹp, tôi khuyên bạn cứ tự xây một coding harness cơ bản từ đầu.</q> <span class="quote__by">@libraryofbabel, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://github.com/IsuruMaduranga/harness-engineering-101" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>Isuru Maduranga published a free 16-chapter book on building AI agents from first principles. Its core idea: an LLM API is stateless, and a &quot;harness&quot; is the program that builds, maintains and protects the JSON array of conversation sent each turn.</p>
-<p>Main thesis: everything the field calls &quot;agents&quot; is a set of patches to that one loop, and each patch exists because something concrete broke. The book grows a ~300-line toy agent in plain Python. Every chapter has the same shape: the failure, the minimal patch, what the patch costs.</p>
-<p>Structure:<br>- Part I, The Wire: the JSON array, the next-token brain, tools, the agent loop, caching.<br>- Part II, Running Long: context as a budget, subagents, steering, background work.<br>- Part III, The Ecosystem: frameworks as wrappers, MCP/skills/hooks, debugging the array.<br>- Part IV, Trust, Domains, and Data: guardrails, coding agents, RAG as a harness pattern.<br>- An epilogue on building your own, plus appendices on model routing, worktrees, plan mode, and retries/streaming.</p>
-<p>The author says they drafted every chapter themselves from building WSO2 MI Copilot, WSO2 BI Copilot and One Code, and used Claude Code and One Code to reorder chapters, polish the English and generate the diagrams. Useful for anyone building AI products or agent testing.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">The thread is split: some reject the brain/body metaphor and call the text AI slop, while others stress that the harness matters as much as the model and advise building your own to learn.</p><ul class="quotes"><li><q>Don&#39;t anthropomorphize computers, they don&#39;t like it. Why this spate of pretending, against all evidence, that LLMs are alive, or even remotely structured like biological brains?...</q> <span class="quote__by">@jgeada, Hacker News</span></li><li><q>Harness optimization is essential. Doesn&#39;t matter how smart the model is if the tools you give it are ineffective, or the task is under defined...</q> <span class="quote__by">@scosman, Hacker News</span></li><li><q>Instead of reading AI-slop explanations full of creaky metaphors, I&#39;d advise you to just build your own basic coding harness from scratch...</q> <span class="quote__by">@libraryofbabel, Hacker News</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://github.com/IsuruMaduranga/harness-engineering-101" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">llm</span><span class="tag">agents</span><span class="tag">harness</span></span>
-    <span class="links"><a class="card__link" href="https://news.ycombinator.com/item?id=50151390" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 31%"></div>
-</article>
-<article class="card" data-group="humor" data-id="323cd06303e4567d4c62dfa86393898be249609a" data-url="https://workchronicles.com/p/comic-building-consensus" data-category="humor" data-added="2026-10-20">
-  <div class="card__meta">
-    <span class="chip chip--humor">Humor</span>
-    <span class="card__src">Work Chronicles</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Xây dựng đồng thuận (truyện tranh)</span><span class="l l-en" lang="en">Building consensus (comic)</span></h3>
-    <span class="card__orig l l-vi" lang="en">Building consensus (comic)</span>
-    <span class="card__summary l l-vi" lang="vi">Truyện tranh Work Chronicles về chuyện xây dựng đồng thuận trong công việc văn phòng.</span><span class="card__summary l l-en" lang="en">A Work Chronicles comic about building consensus in office life.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Truyện tranh Work Chronicles: một người nói họ đã báo về 58 vấn đề suốt nhiều tuần, đã đặt ba cuộc họp nhưng sếp không dự cuộc nào, và giờ cuộc họp diễn ra trong một giờ nữa. Trong 58 vấn đề có 12 lỗi chặn phát hành và 4 vấn đề có hệ quả pháp lý, nên không thể dành chỉ một phút cho mỗi cái. Câu chốt mỉa mai: &quot;Chẳng có gì như một chút thông đồng nơi công sở để mọi thứ thêm thú vị!&quot;</p>
-<p>Cái cười nằm ở chỗ &quot;xây dựng đồng thuận&quot; hoá ra là bị dồn vào họp gấp vì sếp lờ cảnh báo từ trước.</p>
-
-  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-building-consensus" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>A Work Chronicles comic: someone says they have been raising 58 issues for weeks, scheduled three meetings that the boss never attended, and now the meeting is in an hour. Of the 58, 12 are show stoppers and 4 have legal repercussions, so it will take more than a minute per issue. The closing line is sarcastic: &quot;Nothing like a little bit of workplace collusion to keep things interesting!&quot;</p>
-<p>The joke is that &quot;building consensus&quot; turns out to be a rushed meeting because the boss ignored the warnings all along.</p>
-
-  <p class="card__source"><a class="card__go" href="https://workchronicles.com/p/comic-building-consensus" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  <a href="https://workchronicles.com/p/comic-building-consensus" target="_blank" rel="noopener"><img class="card__img" loading="lazy" src="https://substackcdn.com/image/fetch/$s_!fgdS!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F27a8a242-5f50-4cce-b8a5-fe796adebc67_4800x4800.png" alt=""></a>
-  <div class="card__foot">
-    <span class="tags"><span class="tag">comic</span><span class="tag">workchronicles</span></span>
-    <span class="links"></span>
-  </div>
-  <div class="hot" style="--hot: 40%"></div>
 </article>
 <article class="card" data-group="ai" data-id="47c96feca6a38a98e366b56f043e47c5b679ecb4" data-url="https://thenewstack.io/deepseek-web-search-api" data-category="ai-trend" data-added="2026-10-20">
   <div class="card__meta">
@@ -3567,7 +3567,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-22.html">2026-10-22</a> · <a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>

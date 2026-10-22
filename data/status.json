@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 87 sightings from 45/62 sources",
+    "message": "200 candidates, 104 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -17,7 +17,7 @@
       },
       {
         "id": "r-qualityassurance",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-softwaretesting",
@@ -45,7 +45,7 @@
       },
       {
         "id": "r-experienceddevs",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/ExperiencedDevs/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-sysadmin",
@@ -53,7 +53,7 @@
       },
       {
         "id": "r-programmingmemes",
-        "error": "HTTP 403 for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-techhumor",
@@ -73,41 +73,41 @@
       }
     ],
     "candidates": 200,
-    "at": "2026-10-21T00:50:04.279Z"
+    "at": "2026-10-22T00:37:17.590Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 107, dropped 93, invalid 1",
-    "at": "2026-10-21T00:57:42.664Z"
+    "message": "kept 104, dropped 96, invalid 1",
+    "at": "2026-10-22T00:46:01.930Z"
   },
   "merge": {
     "ok": true,
-    "message": "1583 items retained, 1 re-sighted",
+    "message": "1572 items retained, 3 re-sighted",
     "counts": {
       "candidates": 200,
-      "kept": 107,
-      "dropped": 93,
+      "kept": 104,
+      "dropped": 96,
       "invalid": 1,
-      "sighted": 1
+      "sighted": 3
     },
-    "at": "2026-10-21T00:57:42.664Z"
+    "at": "2026-10-22T00:46:01.931Z"
   },
   "build": {
     "ok": true,
-    "message": "714 items on index, 15 archive pages",
-    "at": "2026-10-21T01:20:05.916Z"
+    "message": "706 items on index, 15 archive pages",
+    "at": "2026-10-22T01:09:39.697Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-21",
-    "message": "103 details written today",
+    "day": "2026-10-22",
+    "message": "100 details written today",
     "counts": {
-      "written": 103,
-      "missing": 1,
-      "invalid": 7,
-      "ungrounded": 7,
+      "written": 100,
+      "missing": 6,
+      "invalid": 5,
+      "ungrounded": 5,
       "discussed": 14
     },
-    "at": "2026-10-21T01:20:05.603Z"
+    "at": "2026-10-22T01:09:39.408Z"
   }
 }

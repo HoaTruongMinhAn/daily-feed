@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-21</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-21</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-22</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -642,11 +642,28 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://thenewstack.io/elevenlabs-voice-agent-tradeoffs" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">ElevenLabs muốn vận hành voice agent của bạn: developer phải đánh đổi gì</span><span class="l l-en" lang="en">ElevenLabs wants to run your voice agent. Here&#39;s what developers give up.</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">ElevenLabs wants to run your voice agent. Here&#39;s what developers give up.</span>
-  <span class="card__summary l l-vi" lang="vi">ElevenLabs ra mắt Eleven Realtime với hai model voice agent Mini và Max, gộp nhận dạng giọng nói, suy luận, turn-taking và tạo giọng. Developer không chọn hay cấu hình riêng từng model bên dưới.</span><span class="card__summary l l-en" lang="en">ElevenLabs launched Eleven Realtime with managed voice-agent models Mini and Max covering speech recognition, reasoning, turn-taking and voice generation. Developers cannot configure the underlying models.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">ElevenLabs muốn chạy voice agent của bạn: developer phải đánh đổi điều gì</span><span class="l l-en" lang="en">ElevenLabs wants to run your voice agent. Here&#39;s what developers give up.</span></h3>
+    <span class="card__orig l l-vi" lang="en">ElevenLabs wants to run your voice agent. Here&#39;s what developers give up.</span>
+    <span class="card__summary l l-vi" lang="vi">ElevenLabs ra mắt Eleven Realtime với hai model voice agent Mini và Max, gộp nhận dạng giọng nói, suy luận, turn-taking và tạo giọng. Developer không chọn hay cấu hình riêng từng model bên dưới.</span><span class="card__summary l l-en" lang="en">ElevenLabs launched Eleven Realtime with managed voice-agent models Mini and Max covering speech recognition, reasoning, turn-taking and voice generation. Developers cannot configure the underlying models.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>ElevenLabs ra mắt Eleven Realtime với hai model voice agent do hãng quản lý là Mini và Max, gộp nhận dạng giọng nói, suy luận, turn-taking và tạo giọng. Cả hai dùng kiến trúc cascaded nhưng developer không chọn hay cấu hình riêng từng model bên dưới.</p>
+<ul><li>Hãng thực chất tiếp quản cả &quot;harness&quot; của voice agent: phát hiện lượt nói, xử lý ngắt lời và điều phối. Việc dựng và bảo trì stack nhẹ đi, nhưng khó tự debug, tối ưu hay thay từng thành phần hơn. Vẫn cấu hình được prompt, giọng, tool, knowledge base và các thiết lập turn-taking qua ElevenAgents. Chế độ Custom thì cho tự chọn model và tự dựng pipeline.</li><li>Benchmark do Artificial Analysis đo: trên Big Bench Audio (1,000 câu hỏi suy luận bằng giọng nói) Max đạt 98.8%, Mini 75.9%. Về tool use, Max hoàn thành 87.1% tác vụ, Mini 60.3%. Mini nhỉnh hơn trên Full-Duplex-Bench (95.8% so với 94.1% của Max). Độ trễ đến âm thanh đầu: Max 570 ms, Mini 620 ms.</li><li>Mini là mặc định; ElevenLabs khuyên dùng Max cho agent gọi tool nhiều hoặc phức tạp. Max đắt hơn theo token nhưng có thể rẻ hơn nếu Mini phải thử lại nhiều lần.</li><li>Chuyển từ OpenAI Realtime API: hãng nói cùng giao thức, cùng WebSocket, nên chỉ đổi endpoint và tên model. Tuy vậy endpoint chỉ hỗ trợ WebSocket, app dùng WebRTC phải đổi transport và tự xử lý audio 24kHz PCM16. API này cũng chạy tách khỏi ElevenAgents, nên các kênh điện thoại, WhatsApp, knowledge base và monitoring nằm ở phía nền tảng.</li><li>Mini và Max chuyển cuộc gọi cho nhau được, nhưng không chuyển với agent chế độ Custom. Mini không hỗ trợ Zero Retention Mode và HIPAA; Max hỗ trợ ở US và EU, nhưng không có ở India hay Singapore.</li></ul>
+<p>Với QA/AI builder: bài nhắc cần tự thử trước khi tin, và chưa rõ Realtime cung cấp bao nhiêu thông tin chẩn đoán khi cuộc gọi lỗi.</p>
+
+  <p class="card__source"><a class="card__go" href="https://thenewstack.io/elevenlabs-voice-agent-tradeoffs" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>ElevenLabs launched Eleven Realtime, two managed voice-agent models, Mini and Max, that integrate speech recognition, reasoning, turn-taking and voice generation. Both use a cascaded architecture, but developers cannot select or independently configure the underlying models.</p>
+<ul><li>The company is effectively taking over the voice-agent harness: turn detection, interruption handling and orchestration. That cuts the work of building and maintaining the stack, but limits troubleshooting, optimizing or replacing components. Prompts, voices, tools, knowledge bases and turn-taking settings are still configurable through ElevenAgents; Custom mode lets you choose the models and build the pipeline yourself.</li><li>Artificial Analysis benchmarks: on Big Bench Audio (1,000 spoken reasoning questions) Max scored 98.8% versus 75.9% for Mini. In tool use Max completed 87.1% of tasks and Mini 60.3%. Mini scored slightly better on Full-Duplex-Bench (95.8% vs 94.1%). Time to first audio was 570 milliseconds for Max and 620 for Mini.</li><li>Mini is the default; ElevenLabs recommends Max for frequent or complex tool calls. Max costs more per token but may be cheaper if Mini needs more attempts.</li><li>Migrating from OpenAI&#39;s Realtime API: the guide says the protocol and WebSocket transport are the same, so you change the endpoint and model name. But the endpoint is WebSocket only, so a WebRTC app must change transports and handle 24kHz PCM16 audio itself. The API also runs apart from ElevenAgents, so phone and WhatsApp channels, knowledge bases and monitoring sit on the platform side.</li><li>Mini and Max agents can transfer calls to each other, not to or from Custom-mode agents. Mini lacks Zero Retention Mode and HIPAA support; Max supports both in the US and EU, but is not available in India or Singapore.</li></ul>
+<p>For QA and AI builders: the article says to test before trusting, and it is unclear how much diagnostic information Realtime exposes when a call fails.</p>
+
+  <p class="card__source"><a class="card__go" href="https://thenewstack.io/elevenlabs-voice-agent-tradeoffs" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">elevenlabs</span><span class="tag">voice-agent</span></span>
@@ -794,6 +811,42 @@
   </div>
   <div class="hot" style="--hot: 36%"></div>
 </article>
+<article class="card" data-group="it" data-id="b8e65b94e56a29ed7ac82fbe0f65bd71c0ba4534" data-url="https://nmattia.com/posts/2026-10-19-setting-up-ssh-keys-touch-id" data-category="it-general" data-added="2026-10-21">
+  <div class="card__meta">
+    <span class="chip chip--it">IT</span>
+    <span class="card__src">Lobsters · Hacker News</span> <span class="card__buzz"><span class="l l-vi" lang="vi">2 nguồn</span><span class="l l-en" lang="en">2 sources</span></span>
+    <span class="card__fit" title="fit 3/5">●●●○○</span>
+    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
+  </div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Thiết lập SSH key trên macOS với Touch ID</span><span class="l l-en" lang="en">Setting up SSH keys on macOS with Touch ID</span></h3>
+    <span class="card__orig l l-vi" lang="en">Setting up SSH keys on macOS with Touch ID</span>
+    <span class="card__summary l l-vi" lang="vi">Hướng dẫn thiết lập SSH key trên macOS để xác thực bằng Touch ID.</span><span class="card__summary l l-en" lang="en">A guide to setting up SSH keys on macOS that authenticate with Touch ID.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bài hướng dẫn tạo SSH key lưu trong Secure Enclave của Mac, xác thực bằng Touch ID: chỉ 3 lệnh, dùng được cả với GitHub. Private key không thể bị trích xuất hay đánh cắp, mỗi lần dùng đều có prompt, và không có file key nằm lung tung trong hệ thống.</p>
+<p>Các bước:<br>- Tạo identity (chạy một lần): <code>sc_auth create-ctk-identity -l ssh-key -k p-256-ne -t bio</code><br>- Cho SSH dùng identity (chạy lại sau mỗi lần reboot): <code>ssh-add -K -S /usr/lib/ssh-keychain.dylib</code><br>- Lấy public key để đăng ký lên server như GitHub: <code>ssh-add -L</code>, dùng dòng bắt đầu bằng sk-ecdsa-sha2-nistp256...</p>
+<p>Sau đó <code>git push</code> sẽ bật prompt Touch ID. Lưu ý: nếu Mac hỏng thì identity mất theo, phải tạo lại và đăng ký lại. Phần sau của bài giải thích sâu cách identity CTK (CryptoTokenKit) hoạt động; tác giả nói nhiều phần là undocumented và dựa trên thử nghiệm.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Người đọc phần lớn hỏi thêm hoặc chia sẻ cách khác: người thì mẹo bớt gõ lại key sau reboot, người dùng Secretive, người dùng 1Password vì dùng nhiều máy, và có người lo về việc không backup được key.</p><ul class="quotes"><li><q>Cho đỡ phiền khi phải add lại key sau reboot, tôi export `SSH_SK_PROVIDER=/usr/lib/ssh-keychain.dylib` để chỉ cần gõ `ssh-add -K`</q> <span class="quote__by">@msangi, Lobsters</span></li><li><q>Hay đấy! Tôi thì dùng [Secretive](https://secretive.dev/) cho việc này nhưng không biết là có thể làm hết bằng tool có sẵn của OS.</q> <span class="quote__by">@eta, Lobsters</span></li><li><q>Điều này có nghĩa là không backup được private key đúng không?</q> <span class="quote__by">@bramh, Lobsters</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://nmattia.com/posts/2026-10-19-setting-up-ssh-keys-touch-id" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>This guide shows how to create an SSH key stored in the Mac&#39;s Secure Enclave and authenticated with Touch ID: just 3 commands, and it works with GitHub too. The private material cannot be extracted or stolen, you are prompted on every use, and there are no key files littering the file system.</p>
+<p>Steps:<br>- Create the identity (run once): <code>sc_auth create-ctk-identity -l ssh-key -k p-256-ne -t bio</code><br>- Tell SSH to use it (re-run after each reboot): <code>ssh-add -K -S /usr/lib/ssh-keychain.dylib</code><br>- Get the public key to register on a server like GitHub: <code>ssh-add -L</code>, using the line that starts with sk-ecdsa-sha2-nistp256...</p>
+<p>After that, <code>git push</code> triggers a Touch ID prompt. Caveat: if your Mac dies, so does the identity, so you must create a new one and re-register it. The rest of the post digs into how the CTK (CryptoTokenKit) identity works; the author says much of it is undocumented and based on experimentation.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Readers mostly ask questions or share alternatives: one has a tip to avoid retyping after reboot, one uses Secretive, and another worries that the key cannot be backed up.</p><ul class="quotes"><li><q>To make it a bit less tedious adding back the key after a reboot I export `SSH_SK_PROVIDER=/usr/lib/ssh-keychain.dylib` so that I only need to type `ssh-add -K`</q> <span class="quote__by">@msangi, Lobsters</span></li><li><q>Cool! I personally use [Secretive](https://secretive.dev/) for this but I had no idea you could do it all with OS-provided tooling.</q> <span class="quote__by">@eta, Lobsters</span></li><li><q>Does this also mean you cannot back up your private key?</q> <span class="quote__by">@bramh, Lobsters</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://nmattia.com/posts/2026-10-19-setting-up-ssh-keys-touch-id" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
+  
+  <div class="card__foot">
+    <span class="tags"><span class="tag">ssh</span><span class="tag">macos</span></span>
+    <span class="links"><a class="card__link" href="https://lobste.rs/s/d7m5j1/setting_up_ssh_keys_on_macos_with_touch_id" target="_blank" rel="noopener">discussion</a> <a class="card__link" href="https://news.ycombinator.com/item?id=50175882" target="_blank" rel="noopener">more 1</a></span>
+  </div>
+  <div class="hot" style="--hot: 29%"></div>
+</article>
 <article class="card" data-group="ai" data-id="7d69bcda7d94068d1185bd11f6628cdc441fd582" data-url="https://thenewstack.io/ai-commoditizes-software-value" data-category="ai-trend" data-added="2026-10-21">
   <div class="card__meta">
     <span class="chip chip--ai">AI trend</span>
@@ -909,11 +962,32 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://kaba.cx/posts/20261020_Tor" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Tôi đã khiến hơn 300 Tor exit node bị gỡ như thế nào</span><span class="l l-en" lang="en">How I got over 300 Tor exit nodes removed</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">How I got over 300 Tor exit nodes removed</span>
-  <span class="card__summary l l-vi" lang="vi">Tác giả kể cách khiến hơn 300 Tor exit node bị gỡ. Bài được bàn nhiều trên Hacker News và Lobsters.</span><span class="card__summary l l-en" lang="en">The author describes how they got over 300 Tor exit nodes removed. The post is discussed widely on Hacker News and Lobsters.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Cách tác giả phát hiện và khiến hơn 300 Tor exit node bị gỡ</span><span class="l l-en" lang="en">How I got over 300 Tor exit nodes removed</span></h3>
+    <span class="card__orig l l-vi" lang="en">How I got over 300 Tor exit nodes removed</span>
+    <span class="card__summary l l-vi" lang="vi">Tác giả kể cách khiến hơn 300 Tor exit node bị gỡ. Bài được bàn nhiều trên Hacker News và Lobsters.</span><span class="card__summary l l-en" lang="en">The author describes how they got over 300 Tor exit nodes removed. The post is discussed widely on Hacker News and Lobsters.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Tác giả phát hiện 333 Tor exit node bị nhiễm (khoảng 10% trong tổng số khoảng 3000 exit relay) đang chuyển hướng kết nối SSH cổng 22 sang 12 máy chủ nghe lén, và báo cho Tor Project để các node này bị gỡ.</p>
+<p>Vụ tấn công bắt đầu lúc 09:35 sáng thứ Sáu Oct 2. Kẻ tấn công đã xâm nhập các máy chủ từ hai tháng trước và cài sẵn payload Ebury 1.8.3 (backdoor OpenSSH kiêm công cụ đánh cắp credential trên Linux). Mục tiêu có hai: thu thật nhiều lưu lượng mail không mã hóa (bằng cách chặn một số cổng để node chỉ xử lý mail không mã hóa) và chặn SSH kiểu MITM.</p>
+<ul><li>Lưu lượng web mã hóa vẫn đi bình thường, nhưng SSH qua cổng 22 bị chuyển sang máy chủ nghe lén.</li><li>Nếu bỏ qua cảnh báo &quot;REMOTE HOST IDENTIFICATION HAS CHANGED&quot; và vẫn đăng nhập, kẻ tấn công lấy mật khẩu, quan sát từng lệnh gõ, và mở kết nối thứ hai tới server của bạn để cài Ebury.</li><li>Tor network health team xác nhận đây là kiểu tấn công chưa từng thấy. Sun Oct 4 họ thông báo cho các operator và đánh dấu các relay là BadExit; Mon Oct 5 toàn bộ server nhiễm bị tắt, một phần do operator, một phần do chính kẻ tấn công.</li></ul>
+<p>Cách tìm ra: dùng exitmap, tác giả viết script ghim một exit node, mở SSH từ server A tới server B. Server A kiểm tra fingerprint nhận được có đúng không; server B kiểm tra kết nối đến từ exit đã ghim hay từ một trong 12 server nghe lén. Chạy trên toàn bộ exit relay: khoảng một chục node trả fingerprint giả, hơn 300 node không nghe lén nhưng vẫn chuyển hướng qua các server đó, và chỉ riêng chuyển hướng là đủ để xác nhận nhiễm. Dùng sshesame làm honeypot, tác giả thấy kẻ tấn công dùng paramiko và cài Ebury bằng Perl, kiểm quyền sudo trước rồi chạy lệnh base64.</p>
+<p>Câu hỏi còn mở: chưa ai biết họ vào được ngần ấy server bằng cách nào (một giả thuyết là hosting provider bị hack) và ai đứng sau.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Phần lớn bình luận xoay quanh bài học bảo mật: đăng nhập SSH bằng key thay vì mật khẩu thì kiểu MITM này gần như vô hại, trong khi một vài người bàn xem kẻ tấn công vào server bằng cách nào và đánh giá cuộc tấn công SSH khá vụng.</p><ul class="quotes"><li><q>Một lần nữa điều này cho thấy sức mạnh của xác thực hai chiều (xác thực SSH bằng user key, hoặc client certificate của HTTPS)...</q> <span class="quote__by">@cesarb, Hacker News</span></li><li><q>Tôi cứ ngạc nhiên là sao người ta vẫn dùng xác thực bằng mật khẩu cho SSH.</q> <span class="quote__by">@dzwdz, Lobsters</span></li><li><q>Cách đơn giản nhất là tự dựng server bằng một nhà cung cấp cloud.</q> <span class="quote__by">@michaelt, Hacker News</span></li><li><q>Cuộc tấn công vào SSH có vẻ được nghĩ ra khá tệ. Không chỉ bị phát hiện ngay nhờ cái banner to đùng mà SSH in ra khi bị MITM...</q> <span class="quote__by">@jandrese, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://kaba.cx/posts/20261020_Tor" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The author found that 333 infected Tor exit nodes (roughly 10% of about 3000 exit relays) were redirecting SSH on port 22 to 12 interception servers, and reported it to the Tor Project, which got them removed.</p>
+<p>The campaign started at 09:35 on Friday Oct 2. The attackers had broken into the servers two months earlier and quietly deployed Ebury 1.8.3 (an OpenSSH backdoor and credential stealer for Linux). They had two goals: collect as much unencrypted mail traffic as possible (by blocking certain ports so the nodes handled only unencrypted mail) and intercept SSH connections as a MITM.</p>
+<ul><li>Encrypted web traffic was forwarded normally, but SSH over port 22 was silently sent to an interception server.</li><li>If you ignored the &quot;REMOTE HOST IDENTIFICATION HAS CHANGED&quot; warning and logged in, the attacker stole your password, watched every command you typed, and opened a second connection to your server to infect it with Ebury.</li><li>The Tor network health team confirmed it was new to them. On Sun Oct 4 they told operators and marked the relays BadExit; by Mon Oct 5 all infected servers were shut down, partly by operators and partly by the attackers.</li></ul>
+<p>How it was found: using exitmap, the author pinned each exit and opened SSH from server A to server B. Server A checked the fingerprint it received; server B checked whether the connection came from the pinned exit or one of the 12 interception servers. Across all exit relays, around a dozen served a fake fingerprint and over 300 intercepted nothing but still redirected through the same servers, which alone proved infection. A sshesame honeypot showed the MITM used paramiko and tried to install Ebury with Perl, checking sudo first and then running a base64-encoded command.</p>
+<p>Open questions: nobody knows how the attackers got into so many servers (one theory is the hosting company was hacked) or who is behind it.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most comments centre on the security lesson: SSH key authentication would have blunted this MITM, while a few people speculate how the attackers got into the servers and judge the SSH attack poorly conceived.</p><ul class="quotes"><li><q>Once again, this shows the strength of mutual authentication (ssh user key authentication, or HTTPS client certificates)...</q> <span class="quote__by">@cesarb, Hacker News</span></li><li><q>I keep being surprised that people do password authentication for SSH.</q> <span class="quote__by">@dzwdz, Lobsters</span></li><li><q>The simplest way is to just launch the servers yourself, using a cloud provider.</q> <span class="quote__by">@michaelt, Hacker News</span></li><li><q>The attack on SSH seems rather poorly conceived. Not only was it detected immediately thanks to SSH printing that huge banner on MITM attacks...</q> <span class="quote__by">@jandrese, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://kaba.cx/posts/20261020_Tor" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">tor</span><span class="tag">security</span></span>
@@ -1028,42 +1102,6 @@
     <span class="links"></span>
   </div>
   <div class="hot" style="--hot: 44%"></div>
-</article>
-<article class="card" data-group="it" data-id="b8e65b94e56a29ed7ac82fbe0f65bd71c0ba4534" data-url="https://nmattia.com/posts/2026-10-19-setting-up-ssh-keys-touch-id" data-category="it-general" data-added="2026-10-21">
-  <div class="card__meta">
-    <span class="chip chip--it">IT</span>
-    <span class="card__src">Lobsters</span>
-    <span class="card__fit" title="fit 3/5">●●●○○</span>
-    <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
-  </div>
-  <details class="card__details">
-  <summary class="card__head">
-    <h3 class="card__title"><span class="l l-vi" lang="vi">Thiết lập SSH key trên macOS với Touch ID</span><span class="l l-en" lang="en">Setting up SSH keys on macOS with Touch ID</span></h3>
-    <span class="card__orig l l-vi" lang="en">Setting up SSH keys on macOS with Touch ID</span>
-    <span class="card__summary l l-vi" lang="vi">Hướng dẫn thiết lập SSH key trên macOS để xác thực bằng Touch ID.</span><span class="card__summary l l-en" lang="en">A guide to setting up SSH keys on macOS that authenticate with Touch ID.</span>
-    <span class="card__toggle" aria-hidden="true"></span>
-  </summary>
-  <div class="card__detail l l-vi" lang="vi">
-<p>Bài hướng dẫn tạo SSH key lưu trong Secure Enclave của Mac, xác thực bằng Touch ID: chỉ 3 lệnh, dùng được cả với GitHub. Private key không thể bị trích xuất hay đánh cắp, mỗi lần dùng đều có prompt, và không có file key nằm lung tung trong hệ thống.</p>
-<p>Các bước:<br>- Tạo identity (chạy một lần): <code>sc_auth create-ctk-identity -l ssh-key -k p-256-ne -t bio</code><br>- Cho SSH dùng identity (chạy lại sau mỗi lần reboot): <code>ssh-add -K -S /usr/lib/ssh-keychain.dylib</code><br>- Lấy public key để đăng ký lên server như GitHub: <code>ssh-add -L</code>, dùng dòng bắt đầu bằng sk-ecdsa-sha2-nistp256...</p>
-<p>Sau đó <code>git push</code> sẽ bật prompt Touch ID. Lưu ý: nếu Mac hỏng thì identity mất theo, phải tạo lại và đăng ký lại. Phần sau của bài giải thích sâu cách identity CTK (CryptoTokenKit) hoạt động; tác giả nói nhiều phần là undocumented và dựa trên thử nghiệm.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Người đọc phần lớn hỏi thêm hoặc chia sẻ cách khác: người thì mẹo bớt gõ lại key sau reboot, người dùng Secretive, người dùng 1Password vì dùng nhiều máy, và có người lo về việc không backup được key.</p><ul class="quotes"><li><q>Cho đỡ phiền khi phải add lại key sau reboot, tôi export `SSH_SK_PROVIDER=/usr/lib/ssh-keychain.dylib` để chỉ cần gõ `ssh-add -K`</q> <span class="quote__by">@msangi, Lobsters</span></li><li><q>Hay đấy! Tôi thì dùng [Secretive](https://secretive.dev/) cho việc này nhưng không biết là có thể làm hết bằng tool có sẵn của OS.</q> <span class="quote__by">@eta, Lobsters</span></li><li><q>Điều này có nghĩa là không backup được private key đúng không?</q> <span class="quote__by">@bramh, Lobsters</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://nmattia.com/posts/2026-10-19-setting-up-ssh-keys-touch-id" target="_blank" rel="noopener">Đọc bài gốc</a></p>
-  </div>
-  <div class="card__detail l l-en" lang="en">
-<p>This guide shows how to create an SSH key stored in the Mac&#39;s Secure Enclave and authenticated with Touch ID: just 3 commands, and it works with GitHub too. The private material cannot be extracted or stolen, you are prompted on every use, and there are no key files littering the file system.</p>
-<p>Steps:<br>- Create the identity (run once): <code>sc_auth create-ctk-identity -l ssh-key -k p-256-ne -t bio</code><br>- Tell SSH to use it (re-run after each reboot): <code>ssh-add -K -S /usr/lib/ssh-keychain.dylib</code><br>- Get the public key to register on a server like GitHub: <code>ssh-add -L</code>, using the line that starts with sk-ecdsa-sha2-nistp256...</p>
-<p>After that, <code>git push</code> triggers a Touch ID prompt. Caveat: if your Mac dies, so does the identity, so you must create a new one and re-register it. The rest of the post digs into how the CTK (CryptoTokenKit) identity works; the author says much of it is undocumented and based on experimentation.</p>
-<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Readers mostly ask questions or share alternatives: one has a tip to avoid retyping after reboot, one uses Secretive, and another worries that the key cannot be backed up.</p><ul class="quotes"><li><q>To make it a bit less tedious adding back the key after a reboot I export `SSH_SK_PROVIDER=/usr/lib/ssh-keychain.dylib` so that I only need to type `ssh-add -K`</q> <span class="quote__by">@msangi, Lobsters</span></li><li><q>Cool! I personally use [Secretive](https://secretive.dev/) for this but I had no idea you could do it all with OS-provided tooling.</q> <span class="quote__by">@eta, Lobsters</span></li><li><q>Does this also mean you cannot back up your private key?</q> <span class="quote__by">@bramh, Lobsters</span></li></ul></div>
-  <p class="card__source"><a class="card__go" href="https://nmattia.com/posts/2026-10-19-setting-up-ssh-keys-touch-id" target="_blank" rel="noopener">Read the original</a></p>
-  </div>
-</details>
-  
-  <div class="card__foot">
-    <span class="tags"><span class="tag">ssh</span><span class="tag">macos</span></span>
-    <span class="links"><a class="card__link" href="https://lobste.rs/s/d7m5j1/setting_up_ssh_keys_on_macos_with_touch_id" target="_blank" rel="noopener">discussion</a></span>
-  </div>
-  <div class="hot" style="--hot: 29%"></div>
 </article>
 <article class="card" data-group="it" data-id="73d88c9abb31d3f696d71afe8af038561b33bcbd" data-url="https://deathplanswitch.com" data-category="it-general" data-added="2026-10-21">
   <div class="card__meta">
@@ -1520,11 +1558,28 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://huggingface.co/blog/mps-pytorch-2-15" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">MPS trong PyTorch 2.15</span><span class="l l-en" lang="en">MPS in PyTorch 2.15</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">MPS in PyTorch 2.15</span>
-  <span class="card__summary l l-vi" lang="vi">Hugging Face Blog đăng bài về MPS (backend Metal) trong PyTorch 2.15.</span><span class="card__summary l l-en" lang="en">A Hugging Face Blog post about MPS in PyTorch 2.15.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">MPS trong PyTorch 2.15</span><span class="l l-en" lang="en">MPS in PyTorch 2.15</span></h3>
+    <span class="card__orig l l-vi" lang="en">MPS in PyTorch 2.15</span>
+    <span class="card__summary l l-vi" lang="vi">Hugging Face Blog đăng bài về MPS (backend Metal) trong PyTorch 2.15.</span><span class="card__summary l l-en" lang="en">A Hugging Face Blog post about MPS in PyTorch 2.15.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Đội PyTorch tại Hugging Face cho biết PyTorch 2.15 thêm FP8 cho MPS và làm decoding LLM trên Mac nhanh hơn nhiều.</p>
+<ul><li>FP8: tensor torch.float8_e4m3fn trên MPS, mỗi giá trị một byte, bằng nửa dung lượng FP16 hoặc BF16. F.scaled_mm nhân trực tiếp các tensor này, hỗ trợ scaling tensorwise và rowwise.</li><li>Model MoE decode nhanh hơn 5–6.5× so với 2.14. Trên M3 Ultra với torch.compile, Qwen3.6-35B-A3B tăng từ 9.4 lên 61.3 tokens/s, LFM2.5-8B-A1B từ 23.6 lên 123.6 tokens/s. Nhờ grouped matmul gốc với đường decode riêng, ít đồng bộ GPU-CPU hơn và top-k routing nhanh hơn.</li><li>Mọi LLM: layer linear một hàng dùng kernel matrix-vector chuyên biệt; softmax trên vocabulary nhanh hơn khoảng 8×.</li><li>Đại số tuyến tính trên GPU: LU và triangular solve cho số phức, nghịch đảo ma trận nhỏ và QR nhanh hơn.</li><li>Video: decode VAE của Wan2.2 đạt đỉnh khoảng 8 GiB thay vì 270 GiB. Cùng thay đổi padding sửa lỗi VAE encoder của Qwen-Image-2.1 làm hỏng ảnh trên MPS ở 2.14; round trip encode-decode đạt 29.95 dB PSNR, trước đó 10.06 dB.</li><li>Python: MPS stream công khai và đo thời gian event đáng tin hơn.</li><li>Yêu cầu mới: MPS cần macOS 15 trở lên, PyTorch 2.15 cần Python 3.11 trở lên.</li><li>2.16: attention hoàn toàn trên Metal, thêm chuyển từ MPSGraph sang Metal và decode LLM nhanh hơn.</li></ul>
+<p>Hữu ích cho ai chạy model cục bộ trên Mac với transformers, diffusers hoặc ComfyUI.</p>
+
+  <p class="card__source"><a class="card__go" href="https://huggingface.co/blog/mps-pytorch-2-15" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>The PyTorch team at Hugging Face reports that PyTorch 2.15 brings FP8 to MPS and makes LLM decoding on Mac much faster.</p>
+<ul><li>FP8: torch.float8_e4m3fn tensors on MPS, one byte per value, half the storage of FP16 or BF16. F.scaled_mm multiplies them directly and supports tensorwise and rowwise scaling.</li><li>MoE models decode 5–6.5× faster than in 2.14. On an M3 Ultra with torch.compile, Qwen3.6-35B-A3B goes from 9.4 to 61.3 tokens/s and LFM2.5-8B-A1B from 23.6 to 123.6 tokens/s, thanks to a native grouped matmul with a dedicated decoding path, fewer GPU-CPU syncs and faster top-k routing.</li><li>Every LLM: single-row linear layers use specialized matrix-vector kernels, and softmax over the vocabulary is about 8× faster.</li><li>Linear algebra on the GPU: complex LU and triangular solves, faster small-matrix inverses and QR.</li><li>Video: Wan2.2&#39;s video VAE decode now peaks at about 8 GiB instead of 270 GiB. The same padding change fixes the Qwen-Image-2.1 VAE encoder corrupting images on MPS in 2.14; an encode-decode round trip now reaches 29.95 dB PSNR, up from 10.06 dB.</li><li>Python: public MPS streams and more reliable event timing.</li><li>New requirements: MPS needs macOS 15 or later, and PyTorch 2.15 needs Python 3.11 or later.</li><li>2.16 preview: attention fully on Metal, more MPSGraph-to-Metal migrations and faster LLM decoding.</li></ul>
+<p>Useful for anyone running local models on a Mac with transformers, diffusers or ComfyUI.</p>
+
+  <p class="card__source"><a class="card__go" href="https://huggingface.co/blog/mps-pytorch-2-15" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">pytorch</span><span class="tag">mps</span></span>
@@ -1999,11 +2054,32 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://daniel.haxx.se/blog/2026/10/20/do-minor-curl-vulnerabilities-in-the-open" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Xử lý các lỗ hổng nhỏ của curl một cách công khai</span><span class="l l-en" lang="en">Do minor curl vulnerabilities in the open</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Do minor curl vulnerabilities in the open</span>
-  <span class="card__summary l l-vi" lang="vi">Daniel Stenberg viết về việc xử lý các lỗ hổng nhỏ của curl công khai thay vì giữ kín.</span><span class="card__summary l l-en" lang="en">Daniel Stenberg writes about handling minor curl vulnerabilities in the open.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">curl xử lý các lỗ hổng mức thấp và trung bình một cách công khai</span><span class="l l-en" lang="en">Do minor curl vulnerabilities in the open</span></h3>
+    <span class="card__orig l l-vi" lang="en">Do minor curl vulnerabilities in the open</span>
+    <span class="card__summary l l-vi" lang="vi">Daniel Stenberg viết về việc xử lý các lỗ hổng nhỏ của curl công khai thay vì giữ kín.</span><span class="card__summary l l-en" lang="en">Daniel Stenberg writes about handling minor curl vulnerabilities in the open.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Daniel Stenberg thông báo từ 26/10/2026, mọi báo cáo lỗ hổng mức LOW hoặc MEDIUM gửi cho curl phải được nộp dưới dạng issue trên GitHub; chỉ lỗi HIGH hoặc CRITICAL mới giữ riêng tư trên HackerOne. Báo cáo gửi nhầm lên HackerOne mà bị đánh giá LOW/MEDIUM sẽ được yêu cầu nộp lại trên GitHub và bị đóng là informative (và công khai). Trong vài năm qua hơn 90% báo cáo nhanh chóng được xác định là dưới HIGH.</p>
+<p>Lý do: làn sóng báo cáo lỗ hổng đang ập tới và dự án không thấy dấu hiệu giảm trong vài tháng tới. Các maintainer chính đều quá tải, và đây là một bước trong chiến lược để &quot;không chìm&quot;.</p>
+<p>Lập luận cho việc mở quy trình:<br>- Cả thế giới có thể tham gia đánh giá báo cáo, viết advisory và xác định lỗi xuất hiện từ khi nào.<br>- Có thêm người kiểm tra bản sửa có đúng không và có bỏ sót lỗi tương tự không. Tác giả để ý rằng khi curl công bố CVE mới, một đội quân nhà nghiên cứu dùng AI lập tức quét tìm lỗi tương tự.<br>- Khối lượng việc cho mỗi báo cáo không giảm, nhưng có thể chia cho nhiều người; distro và người dùng cũng nắm được bản sửa sớm hơn.</p>
+<p>Rủi ro được thừa nhận: kẻ xấu có cửa sổ khai thác dài hơn một chút; có người có thể gửi nhầm lỗi HIGH lên GitHub (tác giả cho là rất hiếm).</p>
+<p>Về mức LOW: không thể bỏ qua hoàn toàn vì CVE program có quy trình khiếu nại, nhưng Stenberg sẽ từ chối mạnh tay hơn những báo cáo không thực sự hại người dùng. Ông cũng nêu xu hướng AI tạo ra các &quot;crazy combos&quot; (chuỗi hay tổ hợp option ít khi dùng thật) và coi mọi sai khác nhỏ là lỗ hổng. Phần cuối bài bị cắt trong nguồn.</p>
+
+  <p class="card__source"><a class="card__go" href="https://daniel.haxx.se/blog/2026/10/20/do-minor-curl-vulnerabilities-in-the-open" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Daniel Stenberg announced that starting October 26 2026, all vulnerability reports to curl deemed severity LOW or MEDIUM must be submitted as issues in the GitHub repository; only HIGH or CRITICAL ones stay private in the HackerOne tracker. Reports sent to HackerOne that are judged LOW or MEDIUM will be asked to be resubmitted on GitHub and closed as informative (and publicly disclosed). Over the last few years, over 90% of submissions could quickly be assessed as less than HIGH.</p>
+<p>Reason: an avalanche of vulnerability reports with no sign of easing in the next several months. All key maintainers are strained and overloaded, and this is a step in a survival strategy so the project doesn&#39;t drown.</p>
+<p>Arguments for opening the process:<br>- The whole world can help assess reports, write the advisory and work out when the issue was introduced.<br>- More people can check that a fix is correct and doesn&#39;t miss a similar problem. The author notes that when new CVEs are announced, an army of AI-using researchers feeds them to their models to find similar mistakes.<br>- The work per report doesn&#39;t shrink, but the burden can be shared, and distros and users get fixes earlier.</p>
+<p>Admitted risks: bad actors get a slightly longer window to exploit weaknesses; a researcher might mistakenly file a HIGH issue on GitHub (the author considers that rare).</p>
+<p>On LOW: it can&#39;t be ignored entirely because the CVE program has an appeals process, but Stenberg aims to deny and decline harder reports that don&#39;t actually hurt users. He also describes a trend of AI producing &quot;crazy combos&quot; (sequences or option mixes unlikely to be used in the real world) and treating every minor discrepancy as a vulnerability. The end of the post is cut off in the source.</p>
+
+  <p class="card__source"><a class="card__go" href="https://daniel.haxx.se/blog/2026/10/20/do-minor-curl-vulnerabilities-in-the-open" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">curl</span><span class="tag">security</span></span>
@@ -3465,11 +3541,28 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dev.to/numbpill3d/the-50-breach-how-one-hacker-used-ai-agents-to-rob-100-companies-431h" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Vụ xâm nhập 50 USD: một hacker dùng AI agent tấn công 100 công ty</span><span class="l l-en" lang="en">The $50 Breach: How One Hacker Used AI Agents to Rob 100 Companies</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">The $50 Breach: How One Hacker Used AI Agents to Rob 100 Companies</span>
-  <span class="card__summary l l-vi" lang="vi">Theo bài, Reuters đưa tin một đối tượng dùng AI agent xâm nhập, mỗi vụ mất 23 giờ và khoảng 5.000 USD token.</span><span class="card__summary l l-en" lang="en">Per the post, Reuters reported one operator using AI agents for intrusions, 23 hours each and about $5,000 in tokens.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Vụ xâm nhập giá 50 USD: một người dùng AI agent tấn công hơn 100 công ty</span><span class="l l-en" lang="en">The $50 Breach: How One Hacker Used AI Agents to Rob 100 Companies</span></h3>
+    <span class="card__orig l l-vi" lang="en">The $50 Breach: How One Hacker Used AI Agents to Rob 100 Companies</span>
+    <span class="card__summary l l-vi" lang="vi">Theo bài, Reuters đưa tin một đối tượng dùng AI agent xâm nhập, mỗi vụ mất 23 giờ và khoảng 5.000 USD token.</span><span class="card__summary l l-en" lang="en">Per the post, Reuters reported one operator using AI agents for intrusions, 23 hours each and about $5,000 in tokens.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Theo bài, Reuters đưa tin ngày October 19 về một operator nói tiếng Trung dùng agent tự động nhắm hơn 1,200 website và xâm nhập hơn 100 công ty (trong đó có Deere và SharkNinja) với khoảng $5,000 tiền token, tức khoảng $50 mỗi vụ thành công. Mỗi lần xâm nhập trung bình mất khoảng 23 giờ dò thăm.</p>
+<ul><li>Cách bị lộ: nhà nghiên cứu Snorre Fagerland của hãng bảo mật Na Uy NorForge quét web tìm các instance Cairn (bộ công cụ AI mã nguồn mở) bị để hở và thấy khoảng hai chục instance dùng cho mục đích xấu từ khoảng October 2. Bảng điều khiển không có đăng nhập, nên log, prompt và token counter đều xem được. Chiến dịch bắt đầu September 25, 2026, nhắm các site e-commerce ở Mỹ, Canada, Úc và Nhật.</li><li>Cairn là framework điều phối agent (planner, executor, evaluator, có tool); tác giả của nó nói nó &quot;không được thiết kế để tấn công&quot;. Agent chạy trên DeepSeek và Claude Code của Anthropic.</li><li>Theo bài, các bước gồm recon, enumerate, exploit bằng lỗi cũ (không phải zero-day) trong plugin checkout tùy biến, rồi lấy dữ liệu khách hàng. Tác giả cho rằng 23 giờ vượt được rate limiting và heuristic của WAF vì trông như một khách mua hàng kiên nhẫn.</li><li>Nhận định của tác giả: đây không phải AGI mà là RPA gắn language model, nhưng kiên nhẫn giờ rất rẻ, nên mô hình mối đe dọa đổi hẳn với kẻ không phải nation-state.</li></ul>
+<p>Với QA/security: bảng điều khiển công cụ agent không auth là rủi ro thật, và bug cũ trong checkout giờ bị dò rẻ hơn nhiều. Một số chi tiết đến từ bài blog, chưa xác minh độc lập.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/numbpill3d/the-50-breach-how-one-hacker-used-ai-agents-to-rob-100-companies-431h" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>According to the article, Reuters reported on October 19 that one Chinese-speaking operator pointed autonomous agents at more than 1,200 websites and broke into more than 100 companies (including Deere and SharkNinja) for about $5,000 in tokens, roughly $50 per successful hack. Each intrusion typically took the agents around 23 hours of probing.</p>
+<ul><li>How it surfaced: Snorre Fagerland of the Norwegian security firm NorForge scanned the web for exposed instances of Cairn, an open-source AI toolkit, and found about two dozen being used maliciously from around October 2. The control panel had no login, so logs, prompts and token counters were visible. The campaign started September 25, 2026 and targeted e-commerce sites in the US, Canada, Australia and Japan.</li><li>Cairn is an agent orchestration framework (planner, executor, evaluator loop with tool access); its author said it &quot;was not designed for hacking attacks&quot;. The agents ran on a mix of DeepSeek and Anthropic&#39;s Claude Code.</li><li>Per the article, the pattern was recon, enumeration, then exploiting old bugs (not zero-days) in custom checkout plugins, and exfiltrating customer data. The author argues the 23-hour pace defeats rate limiting and WAF heuristics because it looks like a very persistent shopper.</li><li>The author&#39;s take: this is not AGI but RPA with a language model attached, and cheap patience changes the threat model for anyone who is not a nation-state.</li></ul>
+<p>For QA and security people: an unauthenticated agent control panel is a real risk, and old checkout bugs are now far cheaper to probe. Some details come from a blog post and are not independently verified here.</p>
+
+  <p class="card__source"><a class="card__go" href="https://dev.to/numbpill3d/the-50-breach-how-one-hacker-used-ai-agents-to-rob-100-companies-431h" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">ai-agents</span><span class="tag">security</span></span>
@@ -3943,7 +4036,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a> · <a href="../archive/2026-10-07.html">2026-10-07</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-22.html">2026-10-22</a> · <a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
