@@ -1,15 +1,15 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 104 sightings from 45/62 sources",
+    "message": "200 candidates, 102 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
-        "error": "HTTP 403 for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/artificial/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-localllama",
-        "error": "HTTP 403 for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-claudeai",
@@ -17,7 +17,7 @@
       },
       {
         "id": "r-qualityassurance",
-        "error": "HTTP 403 for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-softwaretesting",
@@ -33,11 +33,11 @@
       },
       {
         "id": "r-playwright",
-        "error": "HTTP 403 for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-selenium",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/selenium/top.json?t=week&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/selenium/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-devops",
@@ -53,7 +53,7 @@
       },
       {
         "id": "r-programmingmemes",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/programmingmemes/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-techhumor",
@@ -73,41 +73,41 @@
       }
     ],
     "candidates": 200,
-    "at": "2026-10-22T00:37:17.590Z"
+    "at": "2026-10-23T01:03:36.294Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 104, dropped 96, invalid 1",
-    "at": "2026-10-22T00:46:01.930Z"
+    "message": "kept 128, dropped 72, invalid 0",
+    "at": "2026-10-23T01:12:50.517Z"
   },
   "merge": {
     "ok": true,
-    "message": "1572 items retained, 3 re-sighted",
+    "message": "1578 items retained, 0 re-sighted",
     "counts": {
       "candidates": 200,
-      "kept": 104,
-      "dropped": 96,
-      "invalid": 1,
-      "sighted": 3
+      "kept": 128,
+      "dropped": 72,
+      "invalid": 0,
+      "sighted": 0
     },
-    "at": "2026-10-22T00:46:01.931Z"
+    "at": "2026-10-23T01:12:50.517Z"
   },
   "build": {
     "ok": true,
-    "message": "706 items on index, 15 archive pages",
-    "at": "2026-10-22T01:09:39.697Z"
+    "message": "741 items on index, 15 archive pages",
+    "at": "2026-10-23T01:40:11.152Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-22",
-    "message": "100 details written today",
+    "day": "2026-10-23",
+    "message": "119 details written today",
     "counts": {
-      "written": 100,
-      "missing": 6,
-      "invalid": 5,
-      "ungrounded": 5,
-      "discussed": 14
+      "written": 119,
+      "missing": 11,
+      "invalid": 7,
+      "ungrounded": 7,
+      "discussed": 19
     },
-    "at": "2026-10-22T01:09:39.408Z"
+    "at": "2026-10-23T01:40:10.831Z"
   }
 }

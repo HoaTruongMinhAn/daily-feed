@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-22</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-22</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-23</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -71,11 +71,34 @@
     <span class="card__fit" title="fit 5/5">●●●●●</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">LiteLLM 1.107.0 trên PyPI bị chèn mã đánh cắp thông tin đăng nhập và backdoor</span><span class="l l-en" lang="en">Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor</span>
-  <span class="card__summary l l-vi" lang="vi">Bản LiteLLM 1.107.0 trên PyPI bị xâm phạm, cài credential stealer và backdoor. Ai dùng LiteLLM nên kiểm tra phiên bản đang cài.</span><span class="card__summary l l-en" lang="en">LiteLLM 1.107.0 on PyPI was compromised and installs a credential stealer and backdoor. If you use LiteLLM, check your installed version.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">LiteLLM 1.107.0 trên PyPI bị xâm phạm: cài credential stealer và backdoor</span><span class="l l-en" lang="en">Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor</span></h3>
+    <span class="card__orig l l-vi" lang="en">Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor</span>
+    <span class="card__summary l l-vi" lang="vi">Bản LiteLLM 1.107.0 trên PyPI bị xâm phạm, cài credential stealer và backdoor. Ai dùng LiteLLM nên kiểm tra phiên bản đang cài.</span><span class="card__summary l l-en" lang="en">LiteLLM 1.107.0 on PyPI was compromised and installs a credential stealer and backdoor. If you use LiteLLM, check your installed version.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bản LiteLLM 1.107.0 trên PyPI chứa một credential stealer và một backdoor chạy mã từ xa; PyPI đã gỡ bản này. Cả bảy wheel (Linux, macOS, Windows) đều cài ba file vào site-packages, và chúng chạy mỗi khi bất kỳ tiến trình Python nào khởi động, kể cả tiến trình không import litellm. Mã nguồn upstream trên GitHub không chứa chúng.</p>
+<p>Phiên bản sạch: 1.106.2, 1.107.0rc1, 1.107.0rc2, cùng hai gói đi kèm litellm-proxy-extras==0.4.110 và litellm-enterprise==0.1.78.</p>
+<p>Mã độc làm gì:<br>- cook.pth import cook.py, một credential stealer: gom SSH key, credential cloud, secret CI/CD, token của công cụ AI, mật khẩu trình duyệt và các LLM provider key trong database của LiteLLM proxy, mã hóa rồi gửi tới www.litellm[.]dev.<br>- sitecustomize.py khởi động một daemon nền: mỗi giờ đọc địa chỉ server từ một file trên GitHub, chạy lại stealer và tải về chạy mã từ server đó.</p>
+<p>Cách cấy vào bản phát hành:<br>- pyproject.toml trong sdist có thêm một dòng ở mục maturin: data = &quot;cook&quot;, khiến thư mục cook/ được chép vào wheel. sdist không chứa thư mục cook/ nên dòng này là thay đổi duy nhất nhìn thấy được. Không commit công khai nào của BerriAI/litellm có nó.<br>- Tag v1.107.0 trỏ tới commit 66c8f5b với version = &quot;1.108.0&quot;, còn sdist khớp với commit a8113b0 cộng thêm vài file bị sửa. Bản sửa đặt lại version về 1.107.0 và pin gói đi kèm theo giá trị rc2, nên so dependency với rc2 không thấy gì lạ.<br>- Wheel có WHEEL ghi maturin 1.9.4 như các bản hợp lệ, RECORD khớp, và được build riêng cho từng hệ điều hành. Không có GitHub Actions run công khai nào build hay publish bản này, và PyPI không có provenance attestation.</p>
+<p>SafeDep đánh giá với độ tin cậy trung bình đến cao rằng pipeline release riêng của BerriAI đã build wheel từ git source bị kẻ tấn công sửa. Chỉ log pipeline của BerriAI mới xác nhận được nguyên nhân.</p>
+<p>Với bạn: nếu từng cài litellm==1.107.0, hãy coi mọi credential trên máy đó là đã lộ và xoay lại. Ghim phiên bản rõ ràng như 1.106.2.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Đa số bình luận bực vì đây là lần thứ hai LiteLLM bị xâm phạm và nghi ngờ độ tin cậy của maintainer; một số người đề xuất cooldown mặc định cho gói mới như hướng giảm rủi ro.</p><ul class="quotes"><li><q>Thế này thì không chấp nhận được. Một lần còn tha thứ được, hai lần là cẩu thả nghiêm trọng.</q> <span class="quote__by">@stbenjam, Hacker News</span></li><li><q>Theo mình, mặc định của uv, npm... nên có cooldown 24 - 48 giờ, muốn cài bản mới hơn thì phải chủ động làm thêm bước.</q> <span class="quote__by">@stbenjam, Hacker News</span></li><li><q>Đây là lần thứ hai. Mừng là mình đã rời khỏi nền tảng này.</q> <span class="quote__by">@1-6, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>LiteLLM 1.107.0 on PyPI carries a credential stealer and a remote code execution backdoor; PyPI has since removed the release. All seven wheels (Linux, macOS, Windows) install three files in site-packages, and they run whenever any Python process starts, even one that never imports litellm. The upstream GitHub source does not contain them.</p>
+<p>Clean versions: 1.106.2, 1.107.0rc1, 1.107.0rc2, plus the companion packages litellm-proxy-extras==0.4.110 and litellm-enterprise==0.1.78.</p>
+<p>What the malware does:<br>- cook.pth imports cook.py, a credential stealer. It collects SSH keys, cloud credentials, CI/CD secrets, AI tool tokens, browser passwords and the LLM provider keys in a LiteLLM proxy database, encrypts them and sends them to www.litellm[.]dev.<br>- sitecustomize.py starts a background daemon that reads a server address from a GitHub file every hour, runs the stealer again, and downloads and runs code from that server.</p>
+<p>How it got into the release:<br>- The pyproject.toml in the sdist has one extra line in the maturin section: data = &quot;cook&quot;, which copies a cook/ folder into the wheel. The sdist leaves out that folder, so this line is the only visible change. No public commit in BerriAI/litellm contains it.<br>- The tag v1.107.0 points to commit 66c8f5b whose version is &quot;1.108.0&quot;, while the sdist matches commit a8113b0 plus a few edited files. The edit sets the version back to 1.107.0 and pins the companion packages to the rc2 values, so a dependency diff against rc2 shows nothing unusual.<br>- The wheels name maturin 1.9.4 like the legitimate releases, have matching RECORD entries and were built separately per OS. No public GitHub Actions run built or published the release, and PyPI has no provenance attestations.</p>
+<p>SafeDep assesses, with moderate to high confidence, that BerriAI&#39;s private release pipeline built the wheels from an attacker-modified git source. Only BerriAI&#39;s pipeline logs can confirm the cause.</p>
+<p>For you: if you ever installed litellm==1.107.0, treat every credential on that machine as exposed and rotate it. Pin an explicit version such as 1.106.2.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Most comments are angry that this is the second LiteLLM compromise and doubt the maintainers&#39; trustworthiness; some propose a default cooldown for new packages as a mitigation.</p><ul class="quotes"><li><q>This... isn&#39;t acceptable. Once is forgivable, twice is malpractice.</q> <span class="quote__by">@stbenjam, Hacker News</span></li><li><q>IMHO defaults for uv, npm, etc should all have a cooldown for 24 - 48 hours by default, you should have to go out of your way to install something newer.</q> <span class="quote__by">@stbenjam, Hacker News</span></li><li><q>This is the 2nd time. I&#39;m glad I moved away from this platform.</q> <span class="quote__by">@1-6, Hacker News</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">litellm</span><span class="tag">supply-chain</span><span class="tag">pypi</span></span>
@@ -219,11 +242,28 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://techmeme.com/261021/p53" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">GitLab vá lỗ hổng nghiêm trọng cho phép chạy mã không cần đăng nhập trên máy chủ tự quản</span><span class="l l-en" lang="en">GitLab patches a critical flaw allowing unauthenticated code execution on self-managed servers</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">GitLab patches a critical flaw allowing unauthenticated code execution on self-managed servers</span>
-  <span class="card__summary l l-vi" lang="vi">GitLab phát hành bản vá ngày 21/10 cho lỗ hổng cho phép kẻ tấn công chạy mã trên máy chủ self-managed mà không cần đăng nhập. Lỗ hổng ảnh hưởng mọi bản phát hành từ 7.0 năm 2014.</span><span class="card__summary l l-en" lang="en">GitLab released fixes on October 21 for a flaw that lets attackers run code on self-managed servers without logging in. It affects every release since 7.0 in 2014.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">GitLab vá lỗ hổng nghiêm trọng cho phép thực thi mã không cần xác thực trên máy chủ self-managed</span><span class="l l-en" lang="en">GitLab patches a critical flaw allowing unauthenticated code execution on self-managed servers</span></h3>
+    <span class="card__orig l l-vi" lang="en">GitLab patches a critical flaw allowing unauthenticated code execution on self-managed servers</span>
+    <span class="card__summary l l-vi" lang="vi">GitLab phát hành bản vá ngày 21/10 cho lỗ hổng cho phép kẻ tấn công chạy mã trên máy chủ self-managed mà không cần đăng nhập. Lỗ hổng ảnh hưởng mọi bản phát hành từ 7.0 năm 2014.</span><span class="card__summary l l-en" lang="en">GitLab released fixes on October 21 for a flaw that lets attackers run code on self-managed servers without logging in. It affects every release since 7.0 in 2014.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>GitLab đã phát hành bản sửa ngày October 21 cho một lỗ hổng cho phép kẻ tấn công chạy mã trên máy chủ self-managed mà không cần đăng nhập, và lỗ hổng ảnh hưởng mọi phiên bản kể từ 7.0 năm 2014. Nguồn tin gốc là Swati Khandelwal trên The Hacker News, được Techmeme dẫn lại.</p>
+<p>Trang Techmeme lưu về không có nội dung bài, nên chi tiết kỹ thuật (nguyên nhân, mã CVE, cách giảm thiểu) có trong bài gốc.</p>
+<p>Với bạn: nếu bạn tự host GitLab, hãy kiểm tra phiên bản và nâng cấp lên bản vá mới nhất.</p>
+
+  <p class="card__source"><a class="card__go" href="https://techmeme.com/261021/p53" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>GitLab released fixes on October 21 for a flaw that lets an attacker run code on a self-managed server without logging in, and it affects every version since 7.0 in 2014. The original reporting is by Swati Khandelwal at The Hacker News, linked from Techmeme.</p>
+<p>The Techmeme page that was fetched contains no article body, so the technical details (root cause, CVE identifier, mitigations) are in the original article.</p>
+<p>For you: if you self-host GitLab, check your version and upgrade to the latest patched release.</p>
+
+  <p class="card__source"><a class="card__go" href="https://techmeme.com/261021/p53" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">gitlab</span><span class="tag">security</span></span>
@@ -884,11 +924,26 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://linuxnews.de/linus-torvalds-veroeffentlicht-erste-llm-gestuetzte-kernel-patches" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Linus Torvalds công bố các bản vá kernel đầu tiên có LLM hỗ trợ</span><span class="l l-en" lang="en">Linus Torvalds publishes first LLM-assisted kernel patches</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Linus Torvalds publishes first LLM-assisted kernel patches</span>
-  <span class="card__summary l l-vi" lang="vi">Các bản vá kernel đầu tiên của Linus Torvalds tạo bằng Claude Code gây nhiều thảo luận và chỉ trích. Bài viết bằng tiếng Đức từ linuxnews.de.</span><span class="card__summary l l-en" lang="en">Linus Torvalds&#39; first kernel patches made with Claude Code sparked lively discussion and much criticism. The article is in German, from linuxnews.de.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Linus Torvalds công bố các bản vá kernel đầu tiên có sự hỗ trợ của LLM</span><span class="l l-en" lang="en">Linus Torvalds publishes first LLM-assisted kernel patches</span></h3>
+    <span class="card__orig l l-vi" lang="en">Linus Torvalds publishes first LLM-assisted kernel patches</span>
+    <span class="card__summary l l-vi" lang="vi">Các bản vá kernel đầu tiên của Linus Torvalds tạo bằng Claude Code gây nhiều thảo luận và chỉ trích. Bài viết bằng tiếng Đức từ linuxnews.de.</span><span class="card__summary l l-en" lang="en">Linus Torvalds&#39; first kernel patches made with Claude Code sparked lively discussion and much criticism. The article is in German, from linuxnews.de.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Theo linuxnews.de, các bản vá kernel đầu tiên của Linus Torvalds được tạo bằng Claude Code đã dẫn đến các cuộc thảo luận sôi nổi và nhiều chỉ trích.</p>
+<p>Nguồn là bài tiếng Đức; nội dung bài không lấy được, chỉ có phần trích đầu nói rằng các bản vá gây nhiều tranh luận và chỉ trích liên quan đến việc phát triển kernel. Chi tiết cụ thể nằm ở bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://linuxnews.de/linus-torvalds-veroeffentlicht-erste-llm-gestuetzte-kernel-patches" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>According to linuxnews.de, Linus Torvalds&#39; first kernel patches created with Claude Code have led to lively discussions and a lot of criticism.</p>
+<p>The source is a German-language article; its body text could not be retrieved, and only the opening excerpt is available. It says the patches sparked debate and criticism connected to kernel development. Specific details are in the original article.</p>
+
+  <p class="card__source"><a class="card__go" href="https://linuxnews.de/linus-torvalds-veroeffentlicht-erste-llm-gestuetzte-kernel-patches" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">linux</span><span class="tag">claude-code</span></span>
@@ -2514,11 +2569,26 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://bsky.app/profile/wojakistan.bsky.social/post/3myffem5cn325" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Ít ra CI vẫn xanh rờn trong khi mọi thứ khác đang cháy</span><span class="l l-en" lang="en">At least the CI pipeline is glowing bright green while everything else burns</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">At least the CI pipeline is glowing bright green while everything else burns</span>
-  <span class="card__summary l l-vi" lang="vi">Meme dev: ít ra pipeline CI vẫn xanh rực trong khi mọi thứ khác cháy rụi.</span><span class="card__summary l l-en" lang="en">Dev meme: at least the CI pipeline is glowing bright green while everything else burns to the ground.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Ít ra thì CI pipeline vẫn xanh rực trong khi mọi thứ khác cháy rụi</span><span class="l l-en" lang="en">At least the CI pipeline is glowing bright green while everything else burns</span></h3>
+    <span class="card__orig l l-vi" lang="en">At least the CI pipeline is glowing bright green while everything else burns</span>
+    <span class="card__summary l l-vi" lang="vi">Meme dev: ít ra pipeline CI vẫn xanh rực trong khi mọi thứ khác cháy rụi.</span><span class="card__summary l l-en" lang="en">Dev meme: at least the CI pipeline is glowing bright green while everything else burns to the ground.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Meme dev trên Bluesky: pipeline CI hiện màu xanh lá sáng chói, trong khi mọi thứ còn lại đang cháy rụi. Bài đăng kèm lời kêu gọi gắn thẻ một dev cần xem và các hashtag #DevLife, #ProgrammerHumor, #CI_CD, #DevOpsFail, #CodeHumor.</p>
+<p>Câu đùa là sự mỉa mai quen thuộc: CI xanh nhưng sản phẩm vẫn hỏng, tức là test pass không đồng nghĩa với việc hệ thống ổn. Nguồn chỉ có đoạn văn ngắn này, chi tiết còn lại ở bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://bsky.app/profile/wojakistan.bsky.social/post/3myffem5cn325" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>A Bluesky dev meme: the CI pipeline is glowing bright green while everything else burns to the ground. The post asks readers to tag a dev who needs to see it and carries the hashtags #DevLife, #ProgrammerHumor, #CI_CD, #DevOpsFail and #CodeHumor.</p>
+<p>The joke is the familiar irony of a green CI with a broken product: passing checks do not mean the system is fine. The source is only this short post; anything more is in the original.</p>
+
+  <p class="card__source"><a class="card__go" href="https://bsky.app/profile/wojakistan.bsky.social/post/3myffem5cn325" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">ci</span><span class="tag">meme</span></span>
@@ -3740,7 +3810,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-22.html">2026-10-22</a> · <a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a> · <a href="../archive/2026-10-08.html">2026-10-08</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-23.html">2026-10-23</a> · <a href="../archive/2026-10-22.html">2026-10-22</a> · <a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
