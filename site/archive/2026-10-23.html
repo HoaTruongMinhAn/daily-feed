@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-23</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-23</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-24</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -1648,11 +1648,24 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://dataswamp.org/~solene/2026-10-21-caddy-forward-auth-public-share-links.html" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Chỉ công khai các link chia sẻ của một dịch vụ riêng tư bằng Caddy</span><span class="l l-en" lang="en">Expose only share links of a private service with Caddy</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Expose only share links of a private service with Caddy</span>
-  <span class="card__summary l l-vi" lang="vi">Cách dùng Caddy forward auth để chỉ mở các link chia sẻ của một dịch vụ riêng tư ra ngoài.</span><span class="card__summary l l-en" lang="en">How to use Caddy forward auth to expose only the share links of a private service.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Chỉ mở link chia sẻ của dịch vụ riêng tư ra ngoài bằng Caddy</span><span class="l l-en" lang="en">Expose only share links of a private service with Caddy</span></h3>
+    <span class="card__orig l l-vi" lang="en">Expose only share links of a private service with Caddy</span>
+    <span class="card__summary l l-vi" lang="vi">Cách dùng Caddy forward auth để chỉ mở các link chia sẻ của một dịch vụ riêng tư ra ngoài.</span><span class="card__summary l l-en" lang="en">How to use Caddy forward auth to expose only the share links of a private service.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bài của Solene hướng dẫn dùng forward auth của Caddy để chỉ cho phép truy cập công khai vào các link chia sẻ của một dịch vụ riêng tư, còn phần còn lại vẫn được bảo vệ. Nội dung bài gốc không lấy được, nên cấu hình cụ thể nằm ở link gốc.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Thảo luận</h4><p class="card__discussion-lead">Người đọc thấy cách này hay nhưng dễ vỡ, và một người đã tự làm một reverse proxy riêng theo hướng khác.</p><ul class="quotes"><li><q>Như chính bài viết cũng nói, cách này hơi mong manh.</q> <span class="quote__by">@msangi, Lobsters</span></li><li><q>Dù sao thì tôi thích viết Go hơn là regex :)</q> <span class="quote__by">@oliverpool, Lobsters</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://dataswamp.org/~solene/2026-10-21-caddy-forward-auth-public-share-links.html" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Solene&#39;s post shows how to use Caddy&#39;s forward auth to expose only the share links of a private service to the public while keeping the rest protected. The original text could not be retrieved, so the concrete configuration is in the original link.</p>
+<div class="card__discussion"><h4 class="card__discussion-title">Discussion</h4><p class="card__discussion-lead">Readers find the approach interesting but brittle, and one commenter built a separate reverse proxy instead.</p><ul class="quotes"><li><q>As noted in the post itself it is a bit brittle.</q> <span class="quote__by">@msangi, Lobsters</span></li><li><q>Anyway I prefer writing Go than regexes :)</q> <span class="quote__by">@oliverpool, Lobsters</span></li></ul></div>
+  <p class="card__source"><a class="card__go" href="https://dataswamp.org/~solene/2026-10-21-caddy-forward-auth-public-share-links.html" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">caddy</span><span class="tag">self-hosting</span></span>
@@ -1667,11 +1680,24 @@
     <span class="card__fit" title="fit 2/5">●●○○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://openai.com/index/uber-chatgpt-work-rollout" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Uber đưa ChatGPT Work đến toàn bộ nhân viên cùng OpenAI</span><span class="l l-en" lang="en">Uber brings ChatGPT Work to all employees with OpenAI</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Uber brings ChatGPT Work to all employees with OpenAI</span>
-  <span class="card__summary l l-vi" lang="vi">Uber triển khai ChatGPT Work cho hơn 30.000 nhân viên để nghiên cứu, phân tích dữ liệu, làm bài thuyết trình và xử lý quy trình phức tạp.</span><span class="card__summary l l-en" lang="en">Uber is rolling out ChatGPT Work to more than 30,000 employees for research, data analysis, presentations, and complex workflows.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Uber đưa ChatGPT Work đến toàn bộ nhân viên cùng OpenAI</span><span class="l l-en" lang="en">Uber brings ChatGPT Work to all employees with OpenAI</span></h3>
+    <span class="card__orig l l-vi" lang="en">Uber brings ChatGPT Work to all employees with OpenAI</span>
+    <span class="card__summary l l-vi" lang="vi">Uber triển khai ChatGPT Work cho hơn 30.000 nhân viên để nghiên cứu, phân tích dữ liệu, làm bài thuyết trình và xử lý quy trình phức tạp.</span><span class="card__summary l l-en" lang="en">Uber is rolling out ChatGPT Work to more than 30,000 employees for research, data analysis, presentations, and complex workflows.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Uber đang triển khai ChatGPT Work cho hơn 30,000 nhân viên, giúp các nhóm nghiên cứu, phân tích dữ liệu, làm bài thuyết trình và hoàn thành các quy trình phức tạp. Nội dung bài gốc không lấy được; chi tiết triển khai nằm ở link gốc của OpenAI.</p>
+
+  <p class="card__source"><a class="card__go" href="https://openai.com/index/uber-chatgpt-work-rollout" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Uber is rolling out ChatGPT Work to more than 30,000 employees, helping teams research, analyze data, create presentations and complete complex workflows. The original text could not be retrieved; rollout details are in OpenAI&#39;s original post.</p>
+
+  <p class="card__source"><a class="card__go" href="https://openai.com/index/uber-chatgpt-work-rollout" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">chatgpt</span><span class="tag">enterprise</span></span>
@@ -1889,11 +1915,26 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://openai.com/index/cloudflare-cyber" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Cloudflare nối việc tìm lỗ hổng với phòng thủ cùng OpenAI</span><span class="l l-en" lang="en">Cloudflare links vulnerability discovery to defense with OpenAI</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Cloudflare links vulnerability discovery to defense with OpenAI</span>
-  <span class="card__summary l l-vi" lang="vi">Cloudflare dùng OpenAI Daybreak để điều tra lỗ hổng và đề xuất bản sửa cho con người duyệt. Dev của họ dùng Codex để viết code nhanh và tốt hơn.</span><span class="card__summary l l-en" lang="en">Cloudflare uses OpenAI Daybreak to investigate vulnerabilities and propose fixes for review, while its developers use Codex to build faster and improve quality.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Cloudflare nối việc phát hiện lỗ hổng với phòng thủ cùng OpenAI</span><span class="l l-en" lang="en">Cloudflare links vulnerability discovery to defense with OpenAI</span></h3>
+    <span class="card__orig l l-vi" lang="en">Cloudflare links vulnerability discovery to defense with OpenAI</span>
+    <span class="card__summary l l-vi" lang="vi">Cloudflare dùng OpenAI Daybreak để điều tra lỗ hổng và đề xuất bản sửa cho con người duyệt. Dev của họ dùng Codex để viết code nhanh và tốt hơn.</span><span class="card__summary l l-en" lang="en">Cloudflare uses OpenAI Daybreak to investigate vulnerabilities and propose fixes for review, while its developers use Codex to build faster and improve quality.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Cloudflare dùng OpenAI Daybreak để điều tra lỗ hổng và đề xuất bản sửa cho con người xem xét. Các dev của họ dùng Codex để xây dựng nhanh hơn và cải thiện chất lượng code.</p>
+<ul><li>Bài gốc không lấy được nội dung đầy đủ, nên chi tiết về cách triển khai và kết quả nằm ở trang gốc.</li></ul>
+
+  <p class="card__source"><a class="card__go" href="https://openai.com/index/cloudflare-cyber" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Cloudflare uses OpenAI Daybreak to investigate vulnerabilities and propose fixes for review. Its developers use Codex to build faster and improve code quality.</p>
+<ul><li>The full article text was unavailable, so details on how it is deployed and the results are in the original page.</li></ul>
+
+  <p class="card__source"><a class="card__go" href="https://openai.com/index/cloudflare-cyber" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">openai</span><span class="tag">security</span><span class="tag">codex</span></span>
@@ -2399,11 +2440,26 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://arstechnica.com/information-technology/2026/10/300-tor-exit-nodes-hijacked-to-intercept-ssh-traffic-and-retrieve-plaintext-email" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">333 exit node Tor bị chiếm để chặn lưu lượng SSH và lấy email dạng văn bản thuần</span><span class="l l-en" lang="en">333 Tor exit nodes hijacked to intercept SSH traffic and retrieve plaintext email</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">333 Tor exit nodes hijacked to intercept SSH traffic and retrieve plaintext email</span>
-  <span class="card__summary l l-vi" lang="vi">Trong 3 ngày trong tháng này, 333 exit node Tor bị chiếm quyền nhằm đánh cắp dữ liệu nhạy cảm.</span><span class="card__summary l l-en" lang="en">For 3 days this month, 333 Tor exit nodes were hacked in hopes of stealing sensitive data.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">333 exit node Tor bị chiếm quyền để chặn lưu lượng SSH và lấy email dạng plaintext</span><span class="l l-en" lang="en">333 Tor exit nodes hijacked to intercept SSH traffic and retrieve plaintext email</span></h3>
+    <span class="card__orig l l-vi" lang="en">333 Tor exit nodes hijacked to intercept SSH traffic and retrieve plaintext email</span>
+    <span class="card__summary l l-vi" lang="vi">Trong 3 ngày trong tháng này, 333 exit node Tor bị chiếm quyền nhằm đánh cắp dữ liệu nhạy cảm.</span><span class="card__summary l l-en" lang="en">For 3 days this month, 333 Tor exit nodes were hacked in hopes of stealing sensitive data.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Theo tiêu đề và đoạn trích của Ars Technica, 333 exit node Tor đã bị hack trong 3 ngày của tháng này, nhằm chặn lưu lượng SSH và lấy email plaintext với hy vọng đánh cắp dữ liệu nhạy cảm.</p>
+<p>Không lấy được nội dung bài viết nên chưa có thêm chi tiết về cách tấn công hay ai đứng sau. Chi tiết xem ở bài gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://arstechnica.com/information-technology/2026/10/300-tor-exit-nodes-hijacked-to-intercept-ssh-traffic-and-retrieve-plaintext-email" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>According to the Ars Technica headline and excerpt, 333 Tor exit nodes were hacked for 3 days this month, with the aim of intercepting SSH traffic and retrieving plaintext email in hopes of stealing sensitive data.</p>
+<p>The article text was not available, so there are no further details here on how the attack worked or who was behind it. See the original for the details.</p>
+
+  <p class="card__source"><a class="card__go" href="https://arstechnica.com/information-technology/2026/10/300-tor-exit-nodes-hijacked-to-intercept-ssh-traffic-and-retrieve-plaintext-email" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">tor</span><span class="tag">ssh</span><span class="tag">security</span></span>
@@ -3421,11 +3477,28 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://bun.com/blog/bun-v1.4.4" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Bun v1.4.4</span><span class="l l-en" lang="en">Bun v1.4.4</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Bun v1.4.4</span>
-  <span class="card__summary l l-vi" lang="vi">Bun v1.4.4 thêm bun fmt, formatter tương thích Prettier, format repo của Prettier trong 60 ms thay vì 17 giây. bun check nhanh hơn 1,4 đến 7,8 lần trên dự án lớn.</span><span class="card__summary l l-en" lang="en">Bun v1.4.4 ships bun fmt, a Prettier-compatible formatter that formats Prettier&#39;s repo in 60ms versus 17 seconds. bun check is 1.4x to 7.8x faster on large projects.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Bun v1.4.4</span><span class="l l-en" lang="en">Bun v1.4.4</span></h3>
+    <span class="card__orig l l-vi" lang="en">Bun v1.4.4</span>
+    <span class="card__summary l l-vi" lang="vi">Bun v1.4.4 thêm bun fmt, formatter tương thích Prettier, format repo của Prettier trong 60 ms thay vì 17 giây. bun check nhanh hơn 1,4 đến 7,8 lần trên dự án lớn.</span><span class="card__summary l l-en" lang="en">Bun v1.4.4 ships bun fmt, a Prettier-compatible formatter that formats Prettier&#39;s repo in 60ms versus 17 seconds. bun check is 1.4x to 7.8x faster on large projects.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Bun v1.4.4 thêm bun fmt, một formatter tương thích Prettier tích hợp sẵn trong Bun, đọc được config Prettier hoặc oxfmt hiện có của bạn. Trên repo của Prettier (2,616 file) bun fmt --check mất 60 ms, còn Prettier 3.9.10 mất 17 giây, nhanh hơn 286x, bộ nhớ đỉnh 48 MB so với 459 MB.</p>
+<ul><li>Ngôn ngữ hỗ trợ: JavaScript, TypeScript, JSX, CSS, SCSS, HTML, Vue, Svelte, JSON, YAML, TOML, Markdown, MDX, GraphQL và nhiều loại khác; code nhúng cũng được format.</li><li>Trên các dự án đã dùng oxfmt, nhanh hơn oxfmt 0.74.0 từ 3x đến 6x (ví dụ vite 6.2x, RSSHub 3.0x); ở một core, từ 1.7x đến 21x.</li><li>bun fmt --check liệt kê file cần format và thoát với mã 1; bun fmt --staged chỉ format file sắp commit rồi stage lại (không cần lint-staged); --changed format file khác nhánh mặc định.</li><li>Sắp xếp import có sẵn; ngôn ngữ cần plugin Prettier như Astro sẽ quay về Prettier cài trong dự án. bun fmt --doctor cho biết Bun hiểu config thế nào.</li><li>Nó là bản port của Prettier; phần printer JS/TS port từ oxc_formatter, vốn port từ formatter của Biome.</li></ul>
+<p>Theo phần mở đầu của nguồn, bản này còn làm bun check nhanh hơn 1.4x đến 7.8x trên dự án lớn (bộ nhớ đỉnh của docs MUI giảm từ 11.2GB xuống 1.3GB) và bun install chuyển lockfile Yarn Berry; phần đó bị cắt khỏi văn bản bài, xem bản gốc.</p>
+
+  <p class="card__source"><a class="card__go" href="https://bun.com/blog/bun-v1.4.4" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Bun v1.4.4 ships bun fmt, a Prettier-compatible formatter built into Bun that works with your existing Prettier or oxfmt config. On Prettier&#39;s own repo (2,616 files) bun fmt --check takes 60 ms versus 17 seconds for Prettier 3.9.10, which is 286x faster, with peak memory of 48 MB versus 459 MB.</p>
+<ul><li>Supported languages include JavaScript, TypeScript, JSX, CSS, SCSS, HTML, Vue, Svelte, JSON, YAML, TOML, Markdown, MDX and GraphQL; embedded code is formatted too.</li><li>On projects that already use oxfmt it is 3x to 6x faster than oxfmt 0.74.0 (for example vite 6.2x, RSSHub 3.0x); on one core, 1.7x to 21x.</li><li>bun fmt --check lists files needing formatting and exits with code 1; bun fmt --staged formats only files about to be committed and re-stages them (no lint-staged needed); --changed formats files that differ from the default branch.</li><li>Import sorting is built in; languages that need a Prettier plugin, like Astro, fall back to the Prettier installed in your project. bun fmt --doctor shows how Bun interprets your config.</li><li>It is a port of Prettier; the JS/TS printer is a port of oxc_formatter, itself a port of Biome&#39;s formatter.</li></ul>
+<p>Per the page summary, the release also makes bun check 1.4x to 7.8x faster on large projects (peak memory on MUI&#39;s docs dropping from 11.2GB to 1.3GB) and bun install migrates Yarn Berry lockfiles; that part is cut from the article text, so see the original.</p>
+
+  <p class="card__source"><a class="card__go" href="https://bun.com/blog/bun-v1.4.4" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">bun</span><span class="tag">javascript</span></span>
@@ -3742,11 +3815,28 @@
     <span class="card__fit" title="fit 4/5">●●●●○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://github.com/carbonmeai/danwo" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">danwo: framework e2e testing mã nguồn mở cho kỷ nguyên agent</span><span class="l l-en" lang="en">danwo: open-source e2e testing framework for the agentic era</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">danwo: open-source e2e testing framework for the agentic era</span>
-  <span class="card__summary l l-vi" lang="vi">danwo tự giới thiệu là framework e2e testing mã nguồn mở đầy đủ nhất cho kỷ nguyên agent.</span><span class="card__summary l l-en" lang="en">danwo bills itself as the most complete open-source e2e testing framework for the agentic era.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">danwo: framework e2e testing mã nguồn mở cho kỷ nguyên agent</span><span class="l l-en" lang="en">danwo: open-source e2e testing framework for the agentic era</span></h3>
+    <span class="card__orig l l-vi" lang="en">danwo: open-source e2e testing framework for the agentic era</span>
+    <span class="card__summary l l-vi" lang="vi">danwo tự giới thiệu là framework e2e testing mã nguồn mở đầy đủ nhất cho kỷ nguyên agent.</span><span class="card__summary l l-en" lang="en">danwo bills itself as the most complete open-source e2e testing framework for the agentic era.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>danwo là framework end-to-end testing mã nguồn mở cho web và mobile: điều khiển app qua UI như người dùng, và khi cần thì kiểm tra cả những gì xảy ra phía sau.</p>
+<ul><li>UI testing đầy đủ: locator, bước viết bằng tiếng Anh thường (agent.act, agent.assert) được ghi một lần rồi replay không cần gọi model, và so sánh screenshot; chạy trên browser, Android hoặc iOS.</li><li>Test mẫu dùng @danwo/sdk với app.open, screen.getByLabel, getByRole và expect. Không cần provider, key hay model.</li><li>Quickstart: cần Node.js 22.22.3 trở lên (bản 22) hoặc 24.11.1 trở lên, trên macOS hoặc Linux (Windows đang làm). Chạy npx @danwo/cli init rồi npm run test:danwo.</li><li>Backend layer (bật khi app có thanh toán, email, webhook): giả lập provider như Stripe, Clerk, Resend, Google, Slack và 20 cái nữa qua proxy; invariant đọc database và provider sau test (một row, một charge, một email); danwo matrix chạy lại test cho từng fault như 500, decline, webhook trùng, mất database commit.</li><li>Ví dụ: bỏ idempotency key khỏi app thì hai trial chuyển đỏ vì email chào gửi lần hai.</li><li>Mỗi lần chạy để lại flight record gồm video, các bước và các call phía sau, xem trong dashboard, PR comment và qua MCP.</li><li>Repo có các ví dụ như commerce (86 fault được giữ vững), saas, clerk-login, better-auth, with-next, with-swiftui.</li></ul>
+<p>Với QA: ý đáng chú ý là fault matrix kiểm tra tính đúng đắn backend (idempotency, retry) bằng cách phá có chủ đích.</p>
+
+  <p class="card__source"><a class="card__go" href="https://github.com/carbonmeai/danwo" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>danwo is an open-source end-to-end testing framework for web and mobile apps: it drives your app through its UI like a user and checks what happened behind it when you need to.</p>
+<ul><li>A complete UI testing framework: locators, plain-English agent steps (agent.act, agent.assert) that are recorded once and replayed with no model calls, and screenshot comparison, in a browser, on Android or on iOS.</li><li>The sample test uses @danwo/sdk with app.open, screen.getByLabel, getByRole and expect. No providers, keys or model needed.</li><li>Quickstart: Node.js 22.22.3 or a later 22, or 24.11.1 or newer, on macOS or Linux (Windows in progress). Run npx @danwo/cli init then npm run test:danwo.</li><li>Backend layer, for apps that take payments, send email or handle webhooks: Stripe, Clerk, Resend, Google, Slack and 20 more are emulated behind a proxy; an invariant reads the database and provider after the test (one row, one charge, one email); danwo matrix reruns a test once per fault such as 500s, declines, duplicate webhooks and lost database commits.</li><li>Example: remove the app&#39;s idempotency key and two trials turn red because a second welcome email went out.</li><li>Every run leaves a flight record of video, steps and the calls behind them, in a dashboard, a PR comment and over MCP.</li><li>The repo includes examples such as commerce (86 faults held), saas, clerk-login, better-auth, with-next and with-swiftui.</li></ul>
+<p>For QA, the notable idea is the fault matrix, which checks backend correctness by breaking things on purpose.</p>
+
+  <p class="card__source"><a class="card__go" href="https://github.com/carbonmeai/danwo" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">e2e</span><span class="tag">testing</span><span class="tag">agents</span></span>
@@ -4049,11 +4139,30 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://github.com/rucorp/mock-services" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">mock-services: mock dịch vụ acquiring ngân hàng và fiscal (OFD) để test tích hợp thanh toán</span><span class="l l-en" lang="en">mock-services: mock bank acquiring and fiscal (OFD) services for payment integration tests</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">mock-services: mock bank acquiring and fiscal (OFD) services for payment integration tests</span>
-  <span class="card__summary l l-vi" lang="vi">mock-services mô phỏng các dịch vụ acquiring ngân hàng và OFD theo giao thức chính thức của nhà cung cấp để test tích hợp thanh toán. Viết bằng Node không phụ thuộc, OpenAPI 3.1, sandbox đa tenant.</span><span class="card__summary l l-en" lang="en">mock-services mocks bank acquiring and fiscal (OFD) services per official provider protocols to test payment integrations. Zero-dependency Node, OpenAPI 3.1, multi-tenant sandboxes.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">mock-services: mock dịch vụ acquiring ngân hàng và OFD cho test tích hợp thanh toán</span><span class="l l-en" lang="en">mock-services: mock bank acquiring and fiscal (OFD) services for payment integration tests</span></h3>
+    <span class="card__orig l l-vi" lang="en">mock-services: mock bank acquiring and fiscal (OFD) services for payment integration tests</span>
+    <span class="card__summary l l-vi" lang="vi">mock-services mô phỏng các dịch vụ acquiring ngân hàng và OFD theo giao thức chính thức của nhà cung cấp để test tích hợp thanh toán. Viết bằng Node không phụ thuộc, OpenAPI 3.1, sandbox đa tenant.</span><span class="card__summary l l-en" lang="en">mock-services mocks bank acquiring and fiscal (OFD) services per official provider protocols to test payment integrations. Zero-dependency Node, OpenAPI 3.1, multi-tenant sandboxes.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>mock-services là dịch vụ mã nguồn mở mô phỏng ngân hàng acquiring và máy tính tiền đám mây/OFD theo giao thức chính thức của nhà cung cấp, để test tích hợp thanh toán và fiscal trước khi ký hợp đồng với provider. Trạng thái: alpha (0.9.1), giấy phép Apache-2.0.</p>
+<ul><li>Hỗ trợ 10 adapter: ngân hàng (T-Bank EACQ, YooKassa, Alfa-Bank, Sber, VTB) và cổng ATOL, OFD Ferma, Perviy OFD, Kontur.OFD, Taxcom.</li><li>Có sandbox đa tenant (<code>X-Mock-Sandbox</code>), webhook examiner (<code>/mock/verify-merchant</code>), OpenAPI 3.1 (<code>/openapi.json</code>), drift detector (<code>npm run check:drift</code>) và virtual clock (<code>/mock/time</code>).</li><li>Kịch bản lỗi bật bằng công tắc: thiếu tiền, timeout, webhook trùng, chargeback, lỗi ККТ. Journal tại <code>/admin/journal</code> cho thấy mock hiểu request thế nào.</li><li>Chạy bằng <code>docker compose up</code> hoặc Node &gt;= 18 không cần dependency; <code>npm test</code> để kiểm tra.</li></ul>
+<p>Lưu ý: chỉ đổi URL là chưa đủ để lên production, cần kiểm tra cấu hình và bảo mật. Mặc định các cổng chỉ nghe 127.0.0.1.</p>
+<p>Với QA: hữu ích để test các luồng lỗi khó tái hiện trên gateway thật.</p>
+
+  <p class="card__source"><a class="card__go" href="https://github.com/rucorp/mock-services" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>mock-services is an open-source service that imitates bank acquiring and cloud cash register/OFD services using the providers&#39; official protocols, so you can test payment and fiscal integrations before signing a contract with a provider. Status: alpha (0.9.1), licensed Apache-2.0.</p>
+<ul><li>10 adapters: banks (T-Bank EACQ, YooKassa, Alfa-Bank, Sber, VTB) plus ATOL, OFD Ferma, Perviy OFD, Kontur.OFD and Taxcom.</li><li>Multi-tenant sandboxes (<code>X-Mock-Sandbox</code>), a webhook examiner (<code>/mock/verify-merchant</code>), OpenAPI 3.1 (<code>/openapi.json</code>), a drift detector (<code>npm run check:drift</code>) and virtual clock (<code>/mock/time</code>).</li><li>Failure scenarios are toggled by a switch: insufficient funds, timeout, duplicate webhook, chargeback, cash register failure. The journal at <code>/admin/journal</code> shows how the mock understood a request.</li><li>Run with <code>docker compose up</code> or with Node &gt;= 18 and no dependencies; <code>npm test</code> to verify.</li></ul>
+<p>Caveat: changing the URL alone is not enough to go to production; check configuration and security. Ports listen on 127.0.0.1 by default.</p>
+<p>For QA: useful for exercising failure paths that are hard to reproduce on real gateways.</p>
+
+  <p class="card__source"><a class="card__go" href="https://github.com/rucorp/mock-services" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">mocking</span><span class="tag">payments</span><span class="tag">openapi</span></span>
@@ -4599,7 +4708,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-23.html">2026-10-23</a> · <a href="../archive/2026-10-22.html">2026-10-22</a> · <a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a> · <a href="../archive/2026-10-09.html">2026-10-09</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-24.html">2026-10-24</a> · <a href="../archive/2026-10-23.html">2026-10-23</a> · <a href="../archive/2026-10-22.html">2026-10-22</a> · <a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a> · <a href="../archive/2026-10-10.html">2026-10-10</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
