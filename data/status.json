@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 116 sightings from 45/62 sources",
+    "message": "191 candidates, 112 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -33,7 +33,7 @@
       },
       {
         "id": "r-playwright",
-        "error": "HTTP 403 for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
+        "error": "read ECONNRESET"
       },
       {
         "id": "r-selenium",
@@ -72,42 +72,42 @@
         "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
       }
     ],
-    "candidates": 200,
-    "at": "2026-10-24T01:25:38.829Z"
+    "candidates": 191,
+    "at": "2026-10-25T04:36:00.972Z"
   },
   "curate": {
     "ok": true,
-    "message": "kept 107, dropped 93, invalid 0",
-    "at": "2026-10-24T01:32:37.068Z"
+    "message": "kept 92, dropped 99, invalid 1",
+    "at": "2026-10-25T04:40:52.598Z"
   },
   "merge": {
     "ok": true,
-    "message": "1579 items retained, 2 re-sighted",
+    "message": "1552 items retained, 0 re-sighted",
     "counts": {
-      "candidates": 200,
-      "kept": 107,
-      "dropped": 93,
-      "invalid": 0,
-      "sighted": 2
+      "candidates": 191,
+      "kept": 92,
+      "dropped": 99,
+      "invalid": 1,
+      "sighted": 0
     },
-    "at": "2026-10-24T01:32:37.069Z"
+    "at": "2026-10-25T04:40:52.598Z"
   },
   "build": {
     "ok": true,
-    "message": "725 items on index, 15 archive pages",
-    "at": "2026-10-24T01:54:32.276Z"
+    "message": "723 items on index, 15 archive pages",
+    "at": "2026-10-25T05:01:02.437Z"
   },
   "detail": {
     "ok": true,
-    "day": "2026-10-24",
-    "message": "109 details written today",
+    "day": "2026-10-25",
+    "message": "92 details written today",
     "counts": {
-      "written": 109,
-      "missing": 4,
-      "invalid": 7,
-      "ungrounded": 7,
-      "discussed": 12
+      "written": 92,
+      "missing": 0,
+      "invalid": 5,
+      "ungrounded": 5,
+      "discussed": 10
     },
-    "at": "2026-10-24T01:54:31.895Z"
+    "at": "2026-10-25T05:01:02.128Z"
   }
 }
