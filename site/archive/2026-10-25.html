@@ -16,7 +16,7 @@
 <header class="top">
   <div class="top__row">
     <a class="brand" href="../index.html">Daily Feed · 2026-10-25</a>
-    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-25</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
+    <span class="top__tools"><span class="top__date"><span class="l l-vi" lang="vi">cập nhật</span><span class="l l-en" lang="en">refreshed</span> 2026-10-26</span> <span class="lang-wrap"><select id="lang" class="lang" aria-label="Language"><option value="vi">Tiếng Việt</option><option value="en">English</option></select></span></span>
   </div>
   <nav class="filters" aria-label="Category filter"><button class="pill" data-filter="all" type="button"><span class="l l-vi" lang="vi">Tất cả</span><span class="l l-en" lang="en">All</span></button><button class="pill" data-filter="ai" type="button"><span class="l l-vi" lang="vi">AI</span><span class="l l-en" lang="en">AI</span></button><button class="pill" data-filter="testing" type="button"><span class="l l-vi" lang="vi">Testing</span><span class="l l-en" lang="en">Testing</span></button><button class="pill" data-filter="it" type="button"><span class="l l-vi" lang="vi">IT</span><span class="l l-en" lang="en">IT</span></button><button class="pill" data-filter="humor" type="button"><span class="l l-vi" lang="vi">Humor</span><span class="l l-en" lang="en">Humor</span></button><button class="pill" data-filter="hot" type="button"><span class="l l-vi" lang="vi">Hot trên mạng</span><span class="l l-en" lang="en">Hot online</span></button><button class="pill pill--saved" data-view="saved" type="button" aria-pressed="false"><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span> <span data-saved-count></span></button></nav>
 </header>
@@ -761,11 +761,32 @@
     <span class="card__fit" title="fit 3/5">●●●○○</span>
     <button class="card__save" type="button" aria-pressed="false" aria-label="Lưu bài" title="Lưu"><span class="l l-vi" lang="vi">Lưu</span><span class="l l-en" lang="en">Save</span></button>
   </div>
-  <div class="card__head">
-  <h3 class="card__title"><a class="" href="https://captnemo.in/blog/2026/10/23/emsign-revoked-gov-in" target="_blank" rel="noopener"><span class="l l-vi" lang="vi">Các trang chính phủ Ấn Độ đang dùng chứng chỉ eMudhra đã bị thu hồi</span><span class="l l-en" lang="en">Indian government sites are serving revoked eMudhra certificates</span></a></h3>
-  <span class="card__orig l l-vi" lang="en">Indian government sites are serving revoked eMudhra certificates</span>
-  <span class="card__summary l l-vi" lang="vi">Bài viết ghi nhận các trang web chính phủ Ấn Độ vẫn phục vụ chứng chỉ eMudhra đã bị thu hồi.</span><span class="card__summary l l-en" lang="en">A post documents Indian government sites still serving revoked eMudhra certificates.</span>
-</div>
+  <details class="card__details">
+  <summary class="card__head">
+    <h3 class="card__title"><span class="l l-vi" lang="vi">Nhiều trang chính phủ Ấn Độ vẫn dùng chứng chỉ eMudhra đã bị thu hồi</span><span class="l l-en" lang="en">Indian government sites are serving revoked eMudhra certificates</span></h3>
+    <span class="card__orig l l-vi" lang="en">Indian government sites are serving revoked eMudhra certificates</span>
+    <span class="card__summary l l-vi" lang="vi">Bài viết ghi nhận các trang web chính phủ Ấn Độ vẫn phục vụ chứng chỉ eMudhra đã bị thu hồi.</span><span class="card__summary l l-en" lang="en">A post documents Indian government sites still serving revoked eMudhra certificates.</span>
+    <span class="card__toggle" aria-hidden="true"></span>
+  </summary>
+  <div class="card__detail l l-vi" lang="vi">
+<p>Nhiều trang web chính phủ Ấn Độ vẫn phục vụ chứng chỉ eMudhra đã bị thu hồi nhiều ngày sau đợt thu hồi ngày 19/10, theo bài của captnemo.</p>
+<p>Bối cảnh:<br>- Ngày 17/10, tám CA trung gian của eMudhra thuộc emSign ECC Root CA - G3 bị phát hiện có private key có thể khôi phục dễ dàng. Chúng bị thu hồi hôm sau, Mozilla và Chrome đang distrust root G3.<br>- Riêng ngày 19/10, eMudhra thu hồi 9,356 chứng chỉ thuộc hệ RSA (emSign Root CA - G1) với lý do &quot;Superseded&quot;, do thiếu certificate-type policy OID mà CP/CPS của emSign yêu cầu.<br>- Tác giả phản bác tuyên bố &quot;tác động rất hạn chế, trong thời gian ngắn&quot;: key lỗi được tạo từ tháng 4/2025 nên ai cũng có thể khôi phục trong 18 tháng, và eMudhra ước tính 30,000 chứng chỉ từ các CA trung gian G3 còn lại phải chuyển đổi (phần lớn có vẻ thuộc các trường đại học Mỹ qua InCommon).</p>
+<p>Số liệu: 2976 tên miền chính phủ nằm trên chứng chỉ đã bị thu hồi, 894 vẫn dùng chứng chỉ đó, 810 đã chuyển sang chứng chỉ mới. Cập nhật 24/10: 1377 tên miền chính phủ Ấn Độ, 811 vẫn dùng chứng chỉ bị thu hồi, gồm cả các cơ quan thuộc MeitY (STPI, Bhashini, UIDAI, Controller of Certifying Authorities, nơi quản lý chính eMudhra), các trang visa, Bộ Nội vụ, dịch vụ công.</p>
+<p>Trình duyệt phản ứng khác nhau: Firefox (CRLite) chặn, còn Chrome, Edge, Android và Safari trên iOS (chỉ kiểm OCSP với chứng chỉ EV) vẫn mở bình thường vì CRLSet của Chrome không có các chứng chỉ này. SSL Labs chấm Grade F.</p>
+<p>Ý nghĩa với QA/bảo mật: thu hồi chứng chỉ chỉ hiệu quả khi client thực sự kiểm tra; không nên giả định trình duyệt nào cũng chặn. Tác giả còn ~2,470 chứng chỉ chưa ánh xạ được sang domain.</p>
+
+  <p class="card__source"><a class="card__go" href="https://captnemo.in/blog/2026/10/23/emsign-revoked-gov-in" target="_blank" rel="noopener">Đọc bài gốc</a></p>
+  </div>
+  <div class="card__detail l l-en" lang="en">
+<p>Many Indian government websites were still serving revoked eMudhra certificates days after the 19 October revocations, according to a post by captnemo.</p>
+<p>Background:<br>- On 17 October, eight eMudhra intermediate CAs chaining to emSign ECC Root CA - G3 were found to have trivially recoverable private keys. They were revoked the next day, and Mozilla and Chrome are distrusting the G3 root.<br>- Separately, on 19 October eMudhra revoked 9,356 certificates on its RSA hierarchy (emSign Root CA - G1) as &quot;Superseded&quot;, because they lacked a certificate-type policy OID required by emSign&#39;s own CP/CPS.<br>- The author disputes the claim that impact was limited and short: the flawed keys were generated in April 2025, so they were recoverable for 18 months, and eMudhra estimates 30,000 certificates from its other G3 intermediates must be migrated (mostly US universities via InCommon, as far as the author could see).</p>
+<p>Numbers: 2976 government domain names sit on revoked certificates; 894 still serve them and 810 moved to a new one. The 24 October update raises the Indian count to 1377 names, 811 still serving revoked certificates, including MeitY bodies (STPI, Bhashini, UIDAI, and the Controller of Certifying Authorities, which regulates eMudhra), visa sites, Home Ministry and citizen-service sites.</p>
+<p>Browsers differ: Firefox (CRLite) refuses to load them, while Chrome, Edge, Android and Safari on iOS (which checks OCSP only for EV certificates) load them fine because Chrome&#39;s CRLSet lacks these certificates. SSL Labs grades them F.</p>
+<p>Takeaway for QA and security: revocation only works if clients actually check it, so do not assume every browser blocks a revoked certificate. About 2,470 more revoked certificates are not yet mapped to domains.</p>
+
+  <p class="card__source"><a class="card__go" href="https://captnemo.in/blog/2026/10/23/emsign-revoked-gov-in" target="_blank" rel="noopener">Read the original</a></p>
+  </div>
+</details>
   
   <div class="card__foot">
     <span class="tags"><span class="tag">tls</span><span class="tag">certificates</span></span>
@@ -3448,7 +3469,7 @@
 </article></div></section>
 
 <section id="saved" hidden><h2><span class="l l-vi" lang="vi">Đã lưu</span><span class="l l-en" lang="en">Saved</span></h2><div class="list"></div><p id="saved-empty" class="empty" hidden><span class="l l-vi" lang="vi">Chưa có bài đã lưu</span><span class="l l-en" lang="en">No saved items yet</span></p></section>
-<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-25.html">2026-10-25</a> · <a href="../archive/2026-10-24.html">2026-10-24</a> · <a href="../archive/2026-10-23.html">2026-10-23</a> · <a href="../archive/2026-10-22.html">2026-10-22</a> · <a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a> · <a href="../archive/2026-10-11.html">2026-10-11</a></p></section>
+<section class="archive"><h2><span class="l l-vi" lang="vi">Lưu trữ</span><span class="l l-en" lang="en">Archive</span></h2><p><a href="../archive/2026-10-26.html">2026-10-26</a> · <a href="../archive/2026-10-25.html">2026-10-25</a> · <a href="../archive/2026-10-24.html">2026-10-24</a> · <a href="../archive/2026-10-23.html">2026-10-23</a> · <a href="../archive/2026-10-22.html">2026-10-22</a> · <a href="../archive/2026-10-21.html">2026-10-21</a> · <a href="../archive/2026-10-20.html">2026-10-20</a> · <a href="../archive/2026-10-19.html">2026-10-19</a> · <a href="../archive/2026-10-18.html">2026-10-18</a> · <a href="../archive/2026-10-17.html">2026-10-17</a> · <a href="../archive/2026-10-16.html">2026-10-16</a> · <a href="../archive/2026-10-15.html">2026-10-15</a> · <a href="../archive/2026-10-14.html">2026-10-14</a> · <a href="../archive/2026-10-13.html">2026-10-13</a> · <a href="../archive/2026-10-12.html">2026-10-12</a></p></section>
 </main>
 <footer>
   <p><span class="l l-vi" lang="vi">Nguồn:</span><span class="l l-en" lang="en">Sources:</span> Hacker News · r/artificial · r/LocalLLaMA · r/ClaudeAI · r/QualityAssurance · r/softwaretesting · r/programming · r/ProgrammerHumor · r/Playwright · r/selenium · r/devops · r/ExperiencedDevs · r/sysadmin · r/programmingmemes · r/techhumor · r/technology · r/OpenAI · r/singularity · GitHub · dev.to · Lobsters · daily.dev · Mastodon · Mastodon trends · Bluesky · Techmeme · Hugging Face Blog · Simon Willison · OpenAI News · Google AI Blog · TestGuild · Software Testing Weekly · martinfowler.com · The New Stack · Satisfice (James Bach) · DevelopSense (Michael Bolton) · The Pragmatic Engineer · xkcd · Work Chronicles</p>
