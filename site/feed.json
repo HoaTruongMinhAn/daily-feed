@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T01:16:09.454Z",
+  "generatedAt": "2026-10-27T01:33:38.579Z",
   "items": [
     {
       "id": "7fd7e06ab2f4b840c01c364743d2c0e2fcb3de17",
@@ -13889,7 +13889,9 @@
       "hotness": 0.489,
       "categoryHint": "it",
       "isMeme": false,
-      "extraLinks": [],
+      "extraLinks": [
+        "https://bsky.app/profile/feed.igeek.gamer-geek-news.com.ap.brid.gy/post/3myszwakohih2"
+      ],
       "category": "it-general",
       "titleVi": "Microsoft Defender đã có trên Linux desktop",
       "summary": "Microsoft Defender nay đã có cho Linux desktop, theo OMG! Ubuntu.",
