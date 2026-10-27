@@ -13,11 +13,11 @@
       },
       {
         "id": "r-claudeai",
-        "error": "HTTP 403 for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-qualityassurance",
-        "error": "HTTP 403 for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/QualityAssurance/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-softwaretesting",
@@ -73,29 +73,29 @@
       }
     ],
     "candidates": 200,
-    "at": "2026-10-27T00:58:59.439Z"
+    "at": "2026-10-27T01:16:06.851Z"
   },
   "curate": {
     "ok": false,
     "message": "curated.json missing or invalid JSON; no new items",
-    "at": "2026-10-27T00:59:07.691Z"
+    "at": "2026-10-27T01:16:09.271Z"
   },
   "merge": {
     "ok": true,
-    "message": "skipped curation; 3 items re-sighted",
+    "message": "skipped curation; 0 items re-sighted",
     "counts": {
       "candidates": 200,
       "kept": 0,
       "dropped": 0,
       "invalid": 0,
-      "sighted": 3
+      "sighted": 0
     },
-    "at": "2026-10-27T00:59:07.700Z"
+    "at": "2026-10-27T01:16:09.271Z"
   },
   "build": {
     "ok": true,
     "message": "627 items on index, 15 archive pages",
-    "at": "2026-10-27T00:59:13.024Z"
+    "at": "2026-10-27T01:16:09.568Z"
   },
   "detail": {
     "ok": true,
