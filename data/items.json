@@ -50458,7 +50458,8 @@
     "sourceName": "Hacker News",
     "sources": [
       "Hacker News",
-      "Mastodon"
+      "Mastodon",
+      "daily.dev"
     ],
     "publishedAt": "2026-10-25T21:11:31Z",
     "engagement": 384,
@@ -50466,7 +50467,8 @@
     "categoryHint": "ai",
     "isMeme": false,
     "extraLinks": [
-      "https://mastodon.social/@h4ckernews/117504046095219528"
+      "https://mastodon.social/@h4ckernews/117504046095219528",
+      "https://daily.dev/posts/openai-and-anthropic-cut-their-llm-prices-by-up-to-80-within-a-few-months-why--qwjt9m0rl"
     ],
     "category": "ai-trend",
     "titleVi": "OpenAI và Anthropic hạ giá LLM tới 80% chỉ trong vài tháng: vì sao?",
@@ -50479,7 +50481,7 @@
     ],
     "fit": 4,
     "sourceTitle": "OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?",
-    "rank": 1.1559,
+    "rank": 1.3871,
     "addedAt": "2026-10-26",
     "detailTriedAt": "2026-10-26",
     "discussionTriedAt": "2026-10-26",
@@ -50677,14 +50679,17 @@
     "source": "rss:thenewstack",
     "sourceName": "The New Stack",
     "sources": [
-      "The New Stack"
+      "The New Stack",
+      "daily.dev"
     ],
     "publishedAt": "2026-10-25T14:00:00.000Z",
     "engagement": 1,
     "hotness": 0.7395,
     "categoryHint": "it",
     "isMeme": false,
-    "extraLinks": [],
+    "extraLinks": [
+      "https://daily.dev/posts/is-kubernetes-ready-for-ai-agents--2idq7bhzc"
+    ],
     "category": "it-general",
     "titleVi": "Kubernetes đã sẵn sàng cho AI agent chưa?",
     "summary": "Kubernetes giả định phần mềm làm đúng điều lập trình viên viết, còn AI agent thì tự suy luận, gọi tool và viết code. Bài đặt câu hỏi chạy agent trên Kubernetes trong production có gì khó.",
@@ -50695,7 +50700,7 @@
     ],
     "fit": 3,
     "sourceTitle": "Is Kubernetes ready for AI agents?",
-    "rank": 0.4437,
+    "rank": 0.5546,
     "addedAt": "2026-10-26",
     "detailTriedAt": "2026-10-26",
     "detail": "Bài trên The New Stack cho rằng Kubernetes khớp với AI inference nhưng vẫn còn khoảng trống khi chạy AI agent trong production, bắt đầu từ bảo mật.\n\nCác ý chính:\n- Kubernetes được xây trên giả định phần mềm làm đúng điều lập trình viên viết; agent thì suy luận, chọn hành động, gọi tool, viết code và tương tác với hệ thống khác.\n- Khảo sát của CNCF cho thấy hai phần ba tổ chức chạy AI inference đều chạy trên Kubernetes. Kubernetes phù hợp vì đã biết lập lịch, cấp tài nguyên, phục hồi lỗi và co giãn khi nhu cầu inference tăng đột biến.\n- Bảo mật: do AI mang tính xác suất nên không thể đoán agent sẽ dùng tài nguyên nào. Bài đề xuất sandbox tách biệt với workload khác và khung phân quyền rõ ràng cho file, tool, mạng và hệ thống; agent không được chạy code nếu chưa được cho phép.\n- CNCF đang xử lý các khoảng trống cô lập, nhưng dự án chưa đạt đủ. Sandbox đúng nghĩa cần vượt ra ngoài container, tới máy ảo hoặc hệ điều hành host; hiện có thể dùng các bản phân phối Kubernetes thương mại đã có sẵn.\n- Giám sát workload AI cũng là mối lo của CIO.\n- Cách dùng tài nguyên thay đổi: một dịch vụ thường chạy hàng tháng, còn agent có thể chỉ tồn tại vài giây. Khởi động workload Kubernetes từ đầu mất vài giây, quá chậm với agent tương tác, nên bài đặt câu hỏi làm sao có cô lập của môi trường mới mà không mất chi phí khởi tạo.\n\nBài gốc còn tiếp phần sau, nằm ngoài đoạn trích.",
@@ -50733,7 +50738,7 @@
     "sourceTitle": "How a Blackstone-led $2.3B private credit loan to CoreWeave in 2023 became a blueprint for chip-backed debt, which is on track to become a $1T market (Bloomberg)",
     "rank": 0.237,
     "addedAt": "2026-10-26",
-    "detailTriedAt": "2026-10-26"
+    "detailTriedAt": "2026-10-27"
   },
   {
     "id": "c0d3af3127067dc7b8d33a34c739d5057f13c7ad",
@@ -51068,14 +51073,17 @@
     "source": "dailydev",
     "sourceName": "daily.dev",
     "sources": [
-      "daily.dev"
+      "daily.dev",
+      "Hacker News"
     ],
     "publishedAt": "2026-10-24T22:25:24.833Z",
     "engagement": 32,
     "hotness": 0.1919,
     "categoryHint": "it",
     "isMeme": false,
-    "extraLinks": [],
+    "extraLinks": [
+      "https://news.ycombinator.com/item?id=50245138"
+    ],
     "category": "ai-tip",
     "titleVi": "Xây model suy luận từ đầu: khóa video đầy đủ của Sebastian Raschka",
     "summary": "Sebastian Raschka ra 8 video lập trình, tổng 11 giờ, xây model suy luận từ đầu bằng Python và PyTorch, bắt đầu từ Qwen3 0.6B. Nội dung gồm đánh giá trên MATH-500, inference-time scaling và GRPO đơn giản.",
@@ -51087,7 +51095,7 @@
     ],
     "fit": 4,
     "sourceTitle": "Build Your Own Reasoning Model: A Full Video Course",
-    "rank": 0.1535,
+    "rank": 0.1919,
     "addedAt": "2026-10-26",
     "detailTriedAt": "2026-10-26",
     "detail": "Sebastian Raschka đăng tám video lập trình, tổng hơn 11 giờ, hướng dẫn xây model suy luận từ đầu bằng Python và PyTorch, đi kèm cuốn sách Build a Reasoning Model (From Scratch).\n\nNội dung:\n- Bắt đầu từ một model Qwen3 nhỏ đã pre-train, rồi tự cài đặt các phương pháp đánh giá và cải thiện: đánh giá trên MATH-500, inference-time scaling (sampling, self-consistency, self-refinement), reinforcement learning với verifiable rewards bằng GRPO đơn giản, và distillation.\n- Là phần tiếp theo của khóa Coding LLMs from the Ground Up năm ngoái, nhưng xem độc lập được.\n\nQuan điểm của tác giả: model suy luận là bản nâng cấp của LLM thông thường nhờ post-training thêm bằng reinforcement learning với verifiable rewards; nó là \"động cơ\" bên trong agent harness, còn harness lo quản lý context và cấp công cụ cho LLM.\n\nYêu cầu: quen Python và PyTorch. Các ví dụ sinh văn bản và đánh giá đầu chạy được trên CPU; phần huấn luyện sau nên có GPU. Video đầu hướng dẫn cài đặt.\n\nVới người xây sản phẩm AI: cách thực hành tốt để hiểu cơ chế đằng sau reasoning mode của các LLM hiện nay.",
@@ -51123,8 +51131,8 @@
     "sourceTitle": "The State of Context Engineering",
     "rank": 0.1135,
     "addedAt": "2026-10-26",
-    "detailTriedAt": "2026-10-26",
-    "discussionTriedAt": "2026-10-26"
+    "detailTriedAt": "2026-10-27",
+    "discussionTriedAt": "2026-10-27"
   },
   {
     "id": "40d84bcad338eaa03bb22436cba271488965b0b4",
@@ -51754,7 +51762,7 @@
     "sourceTitle": "Valkey 9.2's new rdbcompression lz4 setting cuts a 1M-row RDB from 178MB to 35MB",
     "rank": 0.0317,
     "addedAt": "2026-10-26",
-    "detailTriedAt": "2026-10-26"
+    "detailTriedAt": "2026-10-27"
   },
   {
     "id": "988c9064c1c65e71359742e0f6d8183a73650f16",
@@ -53391,7 +53399,7 @@
     "sourceTitle": "Quebrei meu próprio sistema de propósito (e foi a melhor decisão da sprint)",
     "rank": 0,
     "addedAt": "2026-10-26",
-    "detailTriedAt": "2026-10-26"
+    "detailTriedAt": "2026-10-27"
   },
   {
     "id": "7fe8f13e77d2a201d6785794a1b0a4762895bfe7",
@@ -53458,7 +53466,7 @@
     "sourceTitle": "Sobrevivendo ao Caos: Injetando Falhas Estratégicas com o ChaosEngineeringMasterDeck",
     "rank": 0,
     "addedAt": "2026-10-26",
-    "detailTriedAt": "2026-10-26"
+    "detailTriedAt": "2026-10-27"
   },
   {
     "id": "0698f16278a036dce832ebbcd75cfc929ff83599",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T01:16:50.928Z",
+  "generatedAt": "2026-10-27T00:59:12.681Z",
   "items": [
     {
       "id": "7fd7e06ab2f4b840c01c364743d2c0e2fcb3de17",
@@ -203,6 +203,49 @@
       "detailEn": "LiteLLM 1.107.0 on PyPI carries a credential stealer and a remote code execution backdoor; PyPI has since removed the release. All seven wheels (Linux, macOS, Windows) install three files in site-packages, and they run whenever any Python process starts, even one that never imports litellm. The upstream GitHub source does not contain them.\n\nClean versions: 1.106.2, 1.107.0rc1, 1.107.0rc2, plus the companion packages litellm-proxy-extras==0.4.110 and litellm-enterprise==0.1.78.\n\nWhat the malware does:\n- cook.pth imports cook.py, a credential stealer. It collects SSH keys, cloud credentials, CI/CD secrets, AI tool tokens, browser passwords and the LLM provider keys in a LiteLLM proxy database, encrypts them and sends them to www.litellm[.]dev.\n- sitecustomize.py starts a background daemon that reads a server address from a GitHub file every hour, runs the stealer again, and downloads and runs code from that server.\n\nHow it got into the release:\n- The pyproject.toml in the sdist has one extra line in the maturin section: data = \"cook\", which copies a cook/ folder into the wheel. The sdist leaves out that folder, so this line is the only visible change. No public commit in BerriAI/litellm contains it.\n- The tag v1.107.0 points to commit 66c8f5b whose version is \"1.108.0\", while the sdist matches commit a8113b0 plus a few edited files. The edit sets the version back to 1.107.0 and pins the companion packages to the rc2 values, so a dependency diff against rc2 shows nothing unusual.\n- The wheels name maturin 1.9.4 like the legitimate releases, have matching RECORD entries and were built separately per OS. No public GitHub Actions run built or published the release, and PyPI has no provenance attestations.\n\nSafeDep assesses, with moderate to high confidence, that BerriAI's private release pipeline built the wheels from an attacker-modified git source. Only BerriAI's pipeline logs can confirm the cause.\n\nFor you: if you ever installed litellm==1.107.0, treat every credential on that machine as exposed and rotate it. Pin an explicit version such as 1.106.2.",
       "discussion": "Đa số bình luận bực vì đây là lần thứ hai LiteLLM bị xâm phạm và nghi ngờ độ tin cậy của maintainer; một số người đề xuất cooldown mặc định cho gói mới như hướng giảm rủi ro.\n\n- \"Thế này thì không chấp nhận được. Một lần còn tha thứ được, hai lần là cẩu thả nghiêm trọng.\" — @stbenjam, Hacker News\n- \"Theo mình, mặc định của uv, npm... nên có cooldown 24 - 48 giờ, muốn cài bản mới hơn thì phải chủ động làm thêm bước.\" — @stbenjam, Hacker News\n- \"Đây là lần thứ hai. Mừng là mình đã rời khỏi nền tảng này.\" — @1-6, Hacker News",
       "discussionEn": "Most comments are angry that this is the second LiteLLM compromise and doubt the maintainers' trustworthiness; some propose a default cooldown for new packages as a mitigation.\n\n- \"This... isn't acceptable. Once is forgivable, twice is malpractice.\" — @stbenjam, Hacker News\n- \"IMHO defaults for uv, npm, etc should all have a cooldown for 24 - 48 hours by default, you should have to go out of your way to install something newer.\" — @stbenjam, Hacker News\n- \"This is the 2nd time. I'm glad I moved away from this platform.\" — @1-6, Hacker News"
+    },
+    {
+      "id": "c45c68dc9fe27319a2fa5d0add6b78dd9d68ee22",
+      "url": "https://minimaxir.com/2026/10/cheap-llms",
+      "discussionUrl": "https://news.ycombinator.com/item?id=50236102",
+      "title": "OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?",
+      "excerpt": null,
+      "imageUrl": null,
+      "source": "hn",
+      "sourceName": "Hacker News",
+      "sources": [
+        "Hacker News",
+        "Mastodon",
+        "daily.dev"
+      ],
+      "publishedAt": "2026-10-25T21:11:31Z",
+      "engagement": 384,
+      "hotness": 1.1559,
+      "categoryHint": "ai",
+      "isMeme": false,
+      "extraLinks": [
+        "https://mastodon.social/@h4ckernews/117504046095219528",
+        "https://daily.dev/posts/openai-and-anthropic-cut-their-llm-prices-by-up-to-80-within-a-few-months-why--qwjt9m0rl"
+      ],
+      "category": "ai-trend",
+      "titleVi": "OpenAI và Anthropic hạ giá LLM tới 80% chỉ trong vài tháng: vì sao?",
+      "summary": "OpenAI và Anthropic đã hạ giá LLM tới 80% trong vài tháng. Bài phân tích lý do, hữu ích nếu bạn tính chi phí cho sản phẩm dùng LLM.",
+      "summaryEn": "OpenAI and Anthropic cut LLM prices by up to 80% within a few months. The post digs into why, useful when costing an LLM-based product.",
+      "tags": [
+        "llm",
+        "pricing",
+        "openai"
+      ],
+      "fit": 4,
+      "sourceTitle": "OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?",
+      "rank": 1.3871,
+      "addedAt": "2026-10-26",
+      "detailTriedAt": "2026-10-26",
+      "discussionTriedAt": "2026-10-26",
+      "detail": "Từ tháng 6 đến cuối tháng 9, OpenAI và Anthropic liên tục hạ giá model, và bài phân tích của minimaxir cho rằng đây là cuộc đối đầu \"ăn miếng trả miếng\" giữa hai bên. Giá bên dưới tính theo input / output / cache read trên mỗi MTok.\n\nCác mốc chính:\n- 26/6: OpenAI ra GPT-5.6 Sol ($5 / $30 / $0.50) và Luna ($1 / $6 / $0.10).\n- 30/7: OpenAI giảm giá GPT-5.6 Luna 80% xuống $0.20 / $1.20 / $0.02.\n- 10/8: Anthropic biến mức giá ra mắt tạm thời của Claude Sonnet 5 ($2 / $10 / $0.20) thành vĩnh viễn.\n- 1/9: Anthropic ra Fable 5.1 ($10 / $50 / $0.25), tốt hơn Fable 5 ở mọi mặt và cắt 75% giá cache read.\n- 22/9: OpenAI ra GPT-6 Sol ($2 / $10 / $0.20); cùng ngày Anthropic ra Claude Opus 5.5 ($4 / $20 / $0.20), rẻ hơn Opus 5 khoảng 40-60% mà tốt hơn Fable 5.1.\n- 29/9: OpenAI ra GPT-6.1 Sol với giá cache một nửa ($2 / $10 / $0.10), cả dòng rẻ hơn tổng cộng 75%.\n\nĐiểm đáng chú ý: khi dùng agent để code, chi phí cache read chiếm 96-99% tổng token, nên cắt 75% giá cache read tương đương giảm 70-75% chi phí dùng model. Mức giảm này cũng áp dụng cho Codex và Claude Code. Theo tác giả, các model không có dấu hiệu giảm chất lượng đầu ra. Dữ liệu từ Vercel cho thấy giá mỗi token đã còn 43.3% so với tháng 4, nhưng tổng chi tiêu vẫn tăng vì model tốt lên nhanh hơn giá giảm.\n\nVới người xây sản phẩm AI, chi phí cho agent đang giảm mạnh, đáng tính lại bài toán giá. Phần giải thích sâu hơn về áp lực cạnh tranh nằm ở nửa sau bài gốc, nằm ngoài đoạn được trích.",
+      "detailEn": "OpenAI and Anthropic have cut LLM prices by up to 80% within a few months, and minimaxir's analysis reads it as a tit-for-tat between the two. Prices below are input / output / cache read per MTok.\n\nKey moments:\n- Jun 26: OpenAI launched GPT-5.6 Sol ($5 / $30 / $0.50) and Luna ($1 / $6 / $0.10).\n- Jul 30: OpenAI cut GPT-5.6 Luna by 80% to $0.20 / $1.20 / $0.02.\n- Aug 10: Anthropic made the temporary launch price of Claude Sonnet 5 ($2 / $10 / $0.20) permanent.\n- Sep 1: Anthropic announced Fable 5.1 ($10 / $50 / $0.25), better than Fable 5 in every area, with cache read cost cut by 75%.\n- Sep 22: OpenAI released GPT-6 Sol ($2 / $10 / $0.20); the same day Anthropic released Claude Opus 5.5 ($4 / $20 / $0.20), 40-60% cheaper than Opus 5 and better than Fable 5.1.\n- Sep 29: OpenAI shipped GPT-6.1 Sol with half the cache price ($2 / $10 / $0.10), making the family 75% cheaper overall.\n\nWhy it matters: for coding agents, cache reads are 96-99% of token spend, so a 75% cache cut means roughly a 70-75% lower cost of using the model. The cuts also apply to Codex and Claude Code. The author sees no sign that quality was cut. Vercel's data shows cost per token at 43.3% of April levels, yet aggregate spend keeps rising because models improve faster than they get cheaper.\n\nIf you build AI products, agent costs are falling fast and your pricing math is worth redoing. The deeper explanation of competitive pressure sits in the second half of the original post, which is not in the excerpt.",
+      "discussion": "Phần lớn bình luận cho rằng đây là cuộc chiến giá và cạnh tranh, một số khác cho là do hiệu quả phần cứng hoặc model nhỏ hơn.\n\n- \"Tôi hoàn toàn cho rằng các nhà bán token sẽ đi theo con đường của nhà mạng dữ liệu di động...\" — @verdverm, Hacker News\n- \"Có lẽ chỉ là caching hiệu quả hơn và model nhỏ hơn (6 sol thực ra là 6 terra và opus 5.5 nhỏ hơn 5.1 v.v). Đừng nghĩ phức tạp quá.\" — @bhu8, Hacker News\n- \"Đây là cuộc đua xuống đáy xem ai chớp mắt trước và phá sản trước. Không bền vững.\" — @chakintosh, Hacker News",
+      "discussionEn": "Most commenters see a price war driven by competition, while a few point to hardware efficiency or smaller models instead.\n\n- \"I fully expect token vendors to go the way of mobile data providers...\" — @verdverm, Hacker News\n- \"It's probably more efficient caching methods and smaller models (6 sol is actually 6 terra and opus 5.5 is smaller than 5.1 etc). Don't overthink this please\" — @bhu8, Hacker News\n- \"It's a race to the bottom to see who blinks first and goes bankrupt. It's not sustainable.\" — @chakintosh, Hacker News"
     },
     {
       "id": "5dbb54a005401fc70149c16868b8f3287a1f4a20",
@@ -718,47 +761,6 @@
       "detailTriedAt": "2026-10-16",
       "detail": "Một bài đăng trên Bluesky trêu rằng phần lớn mạng này toàn là các bài kể khổ kiểu millennial: \"ngày xưa chúng tôi uống nước từ vòi và đi bộ hai chiều đến trường chân trần\", chỉ khác là chuyện được kể là về việc code một trang web bằng HTML trên máy tính để bàn.\n\nĐây là một meme hài: lấy giọng \"thời của tôi khổ hơn\" quen thuộc và gắn nó vào chuyện làm web thời đầu. Bài gốc rất ngắn và không có nội dung nào khác; chi tiết nằm ở bài đăng gốc.",
       "detailEn": "A Bluesky post jokes that much of the site is millennials posting \"we drank from the hose and walked both ways to school barefoot\", except the hardship being recounted is coding a web page in HTML on a desktop computer.\n\nIt is a humor item: the familiar \"we had it tougher back in my day\" voice applied to early web building. The source is a single short post with nothing else in it; the rest is in the original post."
-    },
-    {
-      "id": "c45c68dc9fe27319a2fa5d0add6b78dd9d68ee22",
-      "url": "https://minimaxir.com/2026/10/cheap-llms",
-      "discussionUrl": "https://news.ycombinator.com/item?id=50236102",
-      "title": "OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?",
-      "excerpt": null,
-      "imageUrl": null,
-      "source": "hn",
-      "sourceName": "Hacker News",
-      "sources": [
-        "Hacker News",
-        "Mastodon"
-      ],
-      "publishedAt": "2026-10-25T21:11:31Z",
-      "engagement": 384,
-      "hotness": 1.1559,
-      "categoryHint": "ai",
-      "isMeme": false,
-      "extraLinks": [
-        "https://mastodon.social/@h4ckernews/117504046095219528"
-      ],
-      "category": "ai-trend",
-      "titleVi": "OpenAI và Anthropic hạ giá LLM tới 80% chỉ trong vài tháng: vì sao?",
-      "summary": "OpenAI và Anthropic đã hạ giá LLM tới 80% trong vài tháng. Bài phân tích lý do, hữu ích nếu bạn tính chi phí cho sản phẩm dùng LLM.",
-      "summaryEn": "OpenAI and Anthropic cut LLM prices by up to 80% within a few months. The post digs into why, useful when costing an LLM-based product.",
-      "tags": [
-        "llm",
-        "pricing",
-        "openai"
-      ],
-      "fit": 4,
-      "sourceTitle": "OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?",
-      "rank": 1.1559,
-      "addedAt": "2026-10-26",
-      "detailTriedAt": "2026-10-26",
-      "discussionTriedAt": "2026-10-26",
-      "detail": "Từ tháng 6 đến cuối tháng 9, OpenAI và Anthropic liên tục hạ giá model, và bài phân tích của minimaxir cho rằng đây là cuộc đối đầu \"ăn miếng trả miếng\" giữa hai bên. Giá bên dưới tính theo input / output / cache read trên mỗi MTok.\n\nCác mốc chính:\n- 26/6: OpenAI ra GPT-5.6 Sol ($5 / $30 / $0.50) và Luna ($1 / $6 / $0.10).\n- 30/7: OpenAI giảm giá GPT-5.6 Luna 80% xuống $0.20 / $1.20 / $0.02.\n- 10/8: Anthropic biến mức giá ra mắt tạm thời của Claude Sonnet 5 ($2 / $10 / $0.20) thành vĩnh viễn.\n- 1/9: Anthropic ra Fable 5.1 ($10 / $50 / $0.25), tốt hơn Fable 5 ở mọi mặt và cắt 75% giá cache read.\n- 22/9: OpenAI ra GPT-6 Sol ($2 / $10 / $0.20); cùng ngày Anthropic ra Claude Opus 5.5 ($4 / $20 / $0.20), rẻ hơn Opus 5 khoảng 40-60% mà tốt hơn Fable 5.1.\n- 29/9: OpenAI ra GPT-6.1 Sol với giá cache một nửa ($2 / $10 / $0.10), cả dòng rẻ hơn tổng cộng 75%.\n\nĐiểm đáng chú ý: khi dùng agent để code, chi phí cache read chiếm 96-99% tổng token, nên cắt 75% giá cache read tương đương giảm 70-75% chi phí dùng model. Mức giảm này cũng áp dụng cho Codex và Claude Code. Theo tác giả, các model không có dấu hiệu giảm chất lượng đầu ra. Dữ liệu từ Vercel cho thấy giá mỗi token đã còn 43.3% so với tháng 4, nhưng tổng chi tiêu vẫn tăng vì model tốt lên nhanh hơn giá giảm.\n\nVới người xây sản phẩm AI, chi phí cho agent đang giảm mạnh, đáng tính lại bài toán giá. Phần giải thích sâu hơn về áp lực cạnh tranh nằm ở nửa sau bài gốc, nằm ngoài đoạn được trích.",
-      "detailEn": "OpenAI and Anthropic have cut LLM prices by up to 80% within a few months, and minimaxir's analysis reads it as a tit-for-tat between the two. Prices below are input / output / cache read per MTok.\n\nKey moments:\n- Jun 26: OpenAI launched GPT-5.6 Sol ($5 / $30 / $0.50) and Luna ($1 / $6 / $0.10).\n- Jul 30: OpenAI cut GPT-5.6 Luna by 80% to $0.20 / $1.20 / $0.02.\n- Aug 10: Anthropic made the temporary launch price of Claude Sonnet 5 ($2 / $10 / $0.20) permanent.\n- Sep 1: Anthropic announced Fable 5.1 ($10 / $50 / $0.25), better than Fable 5 in every area, with cache read cost cut by 75%.\n- Sep 22: OpenAI released GPT-6 Sol ($2 / $10 / $0.20); the same day Anthropic released Claude Opus 5.5 ($4 / $20 / $0.20), 40-60% cheaper than Opus 5 and better than Fable 5.1.\n- Sep 29: OpenAI shipped GPT-6.1 Sol with half the cache price ($2 / $10 / $0.10), making the family 75% cheaper overall.\n\nWhy it matters: for coding agents, cache reads are 96-99% of token spend, so a 75% cache cut means roughly a 70-75% lower cost of using the model. The cuts also apply to Codex and Claude Code. The author sees no sign that quality was cut. Vercel's data shows cost per token at 43.3% of April levels, yet aggregate spend keeps rising because models improve faster than they get cheaper.\n\nIf you build AI products, agent costs are falling fast and your pricing math is worth redoing. The deeper explanation of competitive pressure sits in the second half of the original post, which is not in the excerpt.",
-      "discussion": "Phần lớn bình luận cho rằng đây là cuộc chiến giá và cạnh tranh, một số khác cho là do hiệu quả phần cứng hoặc model nhỏ hơn.\n\n- \"Tôi hoàn toàn cho rằng các nhà bán token sẽ đi theo con đường của nhà mạng dữ liệu di động...\" — @verdverm, Hacker News\n- \"Có lẽ chỉ là caching hiệu quả hơn và model nhỏ hơn (6 sol thực ra là 6 terra và opus 5.5 nhỏ hơn 5.1 v.v). Đừng nghĩ phức tạp quá.\" — @bhu8, Hacker News\n- \"Đây là cuộc đua xuống đáy xem ai chớp mắt trước và phá sản trước. Không bền vững.\" — @chakintosh, Hacker News",
-      "discussionEn": "Most commenters see a price war driven by competition, while a few point to hardware efficiency or smaller models instead.\n\n- \"I fully expect token vendors to go the way of mobile data providers...\" — @verdverm, Hacker News\n- \"It's probably more efficient caching methods and smaller models (6 sol is actually 6 terra and opus 5.5 is smaller than 5.1 etc). Don't overthink this please\" — @bhu8, Hacker News\n- \"It's a race to the bottom to see who blinks first and goes bankrupt. It's not sustainable.\" — @chakintosh, Hacker News"
     },
     {
       "id": "e7fd8cf2b3223b89421ef8f544a0076ddce82803",
@@ -5651,6 +5653,43 @@
       "detailEn": "According to TechCrunch, CEO Amjad Masad says Replit, the AI coding platform that has become a favorite of startup founders and developers, is no longer working with Anthropic. He cites cost and says \"ChatGPT is better now\".\n\nHowever, a source says the partnership is still in place, so the two accounts conflict.\n\nThe source is only a short Techmeme excerpt; see the original TechCrunch article for details."
     },
     {
+      "id": "75f1b46eb47d8fc222b31a9a64016bbb17ba7239",
+      "url": "https://thenewstack.io/kubernetes-ready-ai-agents",
+      "discussionUrl": null,
+      "title": "Is Kubernetes ready for AI agents?",
+      "excerpt": "Kubernetes was built around a fairly simple assumption. It&rsquo;s that software does what its developers told it to do. AI Agents complicate that assumption. An agent can reason about a problem, choose a course of action, call tools, write code, interact with other systems, and keep working toward a goal. That is precisely what makes agents useful. But it is also what makes running them in produc",
+      "imageUrl": null,
+      "source": "rss:thenewstack",
+      "sourceName": "The New Stack",
+      "sources": [
+        "The New Stack",
+        "daily.dev"
+      ],
+      "publishedAt": "2026-10-25T14:00:00.000Z",
+      "engagement": 1,
+      "hotness": 0.7395,
+      "categoryHint": "it",
+      "isMeme": false,
+      "extraLinks": [
+        "https://daily.dev/posts/is-kubernetes-ready-for-ai-agents--2idq7bhzc"
+      ],
+      "category": "it-general",
+      "titleVi": "Kubernetes đã sẵn sàng cho AI agent chưa?",
+      "summary": "Kubernetes giả định phần mềm làm đúng điều lập trình viên viết, còn AI agent thì tự suy luận, gọi tool và viết code. Bài đặt câu hỏi chạy agent trên Kubernetes trong production có gì khó.",
+      "summaryEn": "Kubernetes assumes software does what developers told it to, but AI agents reason, call tools and write code. The article asks what that means for running agents in production.",
+      "tags": [
+        "kubernetes",
+        "ai-agents"
+      ],
+      "fit": 3,
+      "sourceTitle": "Is Kubernetes ready for AI agents?",
+      "rank": 0.5546,
+      "addedAt": "2026-10-26",
+      "detailTriedAt": "2026-10-26",
+      "detail": "Bài trên The New Stack cho rằng Kubernetes khớp với AI inference nhưng vẫn còn khoảng trống khi chạy AI agent trong production, bắt đầu từ bảo mật.\n\nCác ý chính:\n- Kubernetes được xây trên giả định phần mềm làm đúng điều lập trình viên viết; agent thì suy luận, chọn hành động, gọi tool, viết code và tương tác với hệ thống khác.\n- Khảo sát của CNCF cho thấy hai phần ba tổ chức chạy AI inference đều chạy trên Kubernetes. Kubernetes phù hợp vì đã biết lập lịch, cấp tài nguyên, phục hồi lỗi và co giãn khi nhu cầu inference tăng đột biến.\n- Bảo mật: do AI mang tính xác suất nên không thể đoán agent sẽ dùng tài nguyên nào. Bài đề xuất sandbox tách biệt với workload khác và khung phân quyền rõ ràng cho file, tool, mạng và hệ thống; agent không được chạy code nếu chưa được cho phép.\n- CNCF đang xử lý các khoảng trống cô lập, nhưng dự án chưa đạt đủ. Sandbox đúng nghĩa cần vượt ra ngoài container, tới máy ảo hoặc hệ điều hành host; hiện có thể dùng các bản phân phối Kubernetes thương mại đã có sẵn.\n- Giám sát workload AI cũng là mối lo của CIO.\n- Cách dùng tài nguyên thay đổi: một dịch vụ thường chạy hàng tháng, còn agent có thể chỉ tồn tại vài giây. Khởi động workload Kubernetes từ đầu mất vài giây, quá chậm với agent tương tác, nên bài đặt câu hỏi làm sao có cô lập của môi trường mới mà không mất chi phí khởi tạo.\n\nBài gốc còn tiếp phần sau, nằm ngoài đoạn trích.",
+      "detailEn": "This New Stack piece argues Kubernetes fits AI inference well but still has gaps for running AI agents in production, starting with security.\n\nKey points:\n- Kubernetes was built on the assumption that software does what its developers told it to do; an agent reasons, chooses a course of action, calls tools, writes code and interacts with other systems.\n- A CNCF survey found two-thirds of organizations running AI inference workloads run them on Kubernetes. It fits because it already schedules workloads, allocates resources, recovers from failures and scales when inference demand arrives in bursts.\n- Security: because AI is probabilistic, you cannot predict what resources a workload will seek. The article proposes sandboxes logically separate from other workloads and an explicit permissioning framework for files, tools, network and system resources; agents should not execute code without explicit permission.\n- The CNCF is working on the isolation gaps, but the project is not fully there yet. Proper sandboxing needs to go beyond the container into virtual machines or the host operating system; commercial Kubernetes distributions already include such capabilities.\n- Monitoring AI workloads is another concern for CIOs.\n- Compute use changes: a normal service may run for months while an agent may exist for only seconds. Starting a Kubernetes workload from scratch takes seconds, too slow for interactive agents, so the article asks how to get the isolation of a fresh environment without the startup cost.\n\nThe original continues past the excerpt provided here."
+    },
+    {
       "id": "1ba4a9174d27ece22b043798674181b4067306fd",
       "url": "https://thenewstack.io/muse-wonder-claude-fable",
       "discussionUrl": null,
@@ -8544,40 +8583,6 @@
       "detailEn": "The Browser Company announced it will sunset Arc on December 22, 2026, and will focus its engineering and security teams on its new browser, Dia.\n\nStated reason: the priority is best-in-class security for members, and keeping a browser secure takes constant, dedicated work that is only increasing in the age of AI. Dia was built from the ground up for today's security standards. They say Dia now surpasses Arc benchmarks in stability, speed, and security; the browser features used in Arc are free in Dia and the AI is optional.\n\nTimeline:\n- October 22: new Arc accounts can no longer be created. Existing members see no change yet; the latest Arc adds an option to export all data and a smoother import into Dia.\n- November 23: on iOS and Android, Browse for Me and other AI features are disabled. Arc Search keeps working as a browser, but sign-in and tab sync stop.\n- December 22: Arc stops working on macOS and Windows, accounts are deactivated, and personal data is deleted within 30 days. Arc Search for Android is pulled from Google Play.\n\nMoving to Dia: passwords, bookmarks, extensions and history come over. Spaces become Profiles, Folders become Tab Groups, Pinned Tabs and Favorites keep their custom names, and Sidebar tabs give the familiar vertical layout (hide it with Ctrl+S).",
       "discussion": "Phần lớn bình luận trên Hacker News tỏ ra hoài nghi mô hình startup được VC rót vốn và chuyện AI trong trình duyệt, nhưng một vài người nói Dia thực sự dùng tốt.\n\n- \"Đừng bao giờ tin một sản phẩm nhận vốn VC. Cứ tận dụng giá được trợ cấp nhưng phải có sẵn phương án dự phòng.\" — @an0malous, Hacker News\n- \"Vậy trình duyệt mới dùng AI để đọc các tab của mình à? Thôi khỏi!\" — @jjuel, Hacker News\n- \"Dù rất muốn ghét nó, tôi vẫn thích trình duyệt này. Có thể tắt mấy tính năng AI tệ hại, và UX được thiết kế tốt, chu đáo.\" — @falloon, Hacker News",
       "discussionEn": "Most Hacker News commenters are skeptical of the VC-funded startup model and of AI in the browser, though a few say Dia is genuinely good to use.\n\n- \"Never trust a product that takes VC funding. Take advantage of the subsidized prices but have your backup ready.\" — @an0malous, Hacker News\n- \"So the new browser uses AI to read your tabs? No thanks!\" — @jjuel, Hacker News\n- \"Despite wanting to hate it, I like the browser a lot. You can turn off the shit AI features, and it's a well designed and thoughtful UX.\" — @falloon, Hacker News"
-    },
-    {
-      "id": "75f1b46eb47d8fc222b31a9a64016bbb17ba7239",
-      "url": "https://thenewstack.io/kubernetes-ready-ai-agents",
-      "discussionUrl": null,
-      "title": "Is Kubernetes ready for AI agents?",
-      "excerpt": "Kubernetes was built around a fairly simple assumption. It&rsquo;s that software does what its developers told it to do. AI Agents complicate that assumption. An agent can reason about a problem, choose a course of action, call tools, write code, interact with other systems, and keep working toward a goal. That is precisely what makes agents useful. But it is also what makes running them in produc",
-      "imageUrl": null,
-      "source": "rss:thenewstack",
-      "sourceName": "The New Stack",
-      "sources": [
-        "The New Stack"
-      ],
-      "publishedAt": "2026-10-25T14:00:00.000Z",
-      "engagement": 1,
-      "hotness": 0.7395,
-      "categoryHint": "it",
-      "isMeme": false,
-      "extraLinks": [],
-      "category": "it-general",
-      "titleVi": "Kubernetes đã sẵn sàng cho AI agent chưa?",
-      "summary": "Kubernetes giả định phần mềm làm đúng điều lập trình viên viết, còn AI agent thì tự suy luận, gọi tool và viết code. Bài đặt câu hỏi chạy agent trên Kubernetes trong production có gì khó.",
-      "summaryEn": "Kubernetes assumes software does what developers told it to, but AI agents reason, call tools and write code. The article asks what that means for running agents in production.",
-      "tags": [
-        "kubernetes",
-        "ai-agents"
-      ],
-      "fit": 3,
-      "sourceTitle": "Is Kubernetes ready for AI agents?",
-      "rank": 0.4437,
-      "addedAt": "2026-10-26",
-      "detailTriedAt": "2026-10-26",
-      "detail": "Bài trên The New Stack cho rằng Kubernetes khớp với AI inference nhưng vẫn còn khoảng trống khi chạy AI agent trong production, bắt đầu từ bảo mật.\n\nCác ý chính:\n- Kubernetes được xây trên giả định phần mềm làm đúng điều lập trình viên viết; agent thì suy luận, chọn hành động, gọi tool, viết code và tương tác với hệ thống khác.\n- Khảo sát của CNCF cho thấy hai phần ba tổ chức chạy AI inference đều chạy trên Kubernetes. Kubernetes phù hợp vì đã biết lập lịch, cấp tài nguyên, phục hồi lỗi và co giãn khi nhu cầu inference tăng đột biến.\n- Bảo mật: do AI mang tính xác suất nên không thể đoán agent sẽ dùng tài nguyên nào. Bài đề xuất sandbox tách biệt với workload khác và khung phân quyền rõ ràng cho file, tool, mạng và hệ thống; agent không được chạy code nếu chưa được cho phép.\n- CNCF đang xử lý các khoảng trống cô lập, nhưng dự án chưa đạt đủ. Sandbox đúng nghĩa cần vượt ra ngoài container, tới máy ảo hoặc hệ điều hành host; hiện có thể dùng các bản phân phối Kubernetes thương mại đã có sẵn.\n- Giám sát workload AI cũng là mối lo của CIO.\n- Cách dùng tài nguyên thay đổi: một dịch vụ thường chạy hàng tháng, còn agent có thể chỉ tồn tại vài giây. Khởi động workload Kubernetes từ đầu mất vài giây, quá chậm với agent tương tác, nên bài đặt câu hỏi làm sao có cô lập của môi trường mới mà không mất chi phí khởi tạo.\n\nBài gốc còn tiếp phần sau, nằm ngoài đoạn trích.",
-      "detailEn": "This New Stack piece argues Kubernetes fits AI inference well but still has gaps for running AI agents in production, starting with security.\n\nKey points:\n- Kubernetes was built on the assumption that software does what its developers told it to do; an agent reasons, chooses a course of action, calls tools, writes code and interacts with other systems.\n- A CNCF survey found two-thirds of organizations running AI inference workloads run them on Kubernetes. It fits because it already schedules workloads, allocates resources, recovers from failures and scales when inference demand arrives in bursts.\n- Security: because AI is probabilistic, you cannot predict what resources a workload will seek. The article proposes sandboxes logically separate from other workloads and an explicit permissioning framework for files, tools, network and system resources; agents should not execute code without explicit permission.\n- The CNCF is working on the isolation gaps, but the project is not fully there yet. Proper sandboxing needs to go beyond the container into virtual machines or the host operating system; commercial Kubernetes distributions already include such capabilities.\n- Monitoring AI workloads is another concern for CIOs.\n- Compute use changes: a normal service may run for months while an agent may exist for only seconds. Starting a Kubernetes workload from scratch takes seconds, too slow for interactive agents, so the article asks how to get the isolation of a fresh environment without the startup cost.\n\nThe original continues past the excerpt provided here."
     },
     {
       "id": "1f9db072441be3e9b4e78f24d0669e8f0461b02b",
@@ -15804,7 +15809,7 @@
       "sourceTitle": "How a Blackstone-led $2.3B private credit loan to CoreWeave in 2023 became a blueprint for chip-backed debt, which is on track to become a $1T market (Bloomberg)",
       "rank": 0.237,
       "addedAt": "2026-10-26",
-      "detailTriedAt": "2026-10-26"
+      "detailTriedAt": "2026-10-27"
     },
     {
       "id": "1fa0e3dfbc854791d49d3cf81f66dde07704cae8",
@@ -17913,6 +17918,44 @@
       "detailEn": "The author asks colleagues to stop pasting AI answers into technical discussions: when he asks a question, he wants a human's judgment, not generic output with their name on it.\n\n- When he brings a technical question, he wants to know what you've seen work, what you've watched fail, and which tradeoffs you'd accept. If he wanted to debate an AI, he could open ChatGPT or Claude in 10 seconds; a pass-through only adds latency.\n- On the \"I'm the decision-maker\" defense: someone who agrees with the AI 99% of the time isn't deciding anything, they're a rubber stamp. The test: name a recent time you disagreed with the AI and why, grounded in something the model couldn't know, like a constraint, a past incident or a team preference.\n- A real example: someone messaged him on LinkedIn wanting to learn how he approaches distributed systems; after a long exchange he found out they'd been using an AI to debate him the whole time.\n- \"Whatever the AI said is what I agree with\": that is a borrowed position and collapses under the first real question. Reading an answer and nodding is not verification; verification means checking claims against reality, testing assumptions and spotting what's subtly wrong.\n- \"I'm busy\": everyone is busy, and the post doesn't accept that as a reason.\n\nThe tone is exasperated and full of sarcastic images; the message is to use AI freely, but add your own judgment instead of just relaying it."
     },
     {
+      "id": "d1a3b4fa5d93fb49d3ffb0461ed4419c6c113f01",
+      "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
+      "discussionUrl": "https://daily.dev/posts/build-your-own-reasoning-model-a-full-video-course-rugpvvdpm",
+      "title": "Build Your Own Reasoning Model: A Full Video Course",
+      "excerpt": "Sebastian Raschka released eight coding lecture videos, totaling 11 hours, that build a reasoning model from scratch in Python and PyTorch. The series starts from a pre-trained Qwen3 0.6B model and covers evaluation on MATH-500, inference-time scaling (sampling, self-consistency, self-refinement), reinforcement learning with verifiable rewards using a simplified GRPO implementation, and distillati",
+      "imageUrl": null,
+      "source": "dailydev",
+      "sourceName": "daily.dev",
+      "sources": [
+        "daily.dev",
+        "Hacker News"
+      ],
+      "publishedAt": "2026-10-24T22:25:24.833Z",
+      "engagement": 32,
+      "hotness": 0.1919,
+      "categoryHint": "it",
+      "isMeme": false,
+      "extraLinks": [
+        "https://news.ycombinator.com/item?id=50245138"
+      ],
+      "category": "ai-tip",
+      "titleVi": "Xây model suy luận từ đầu: khóa video đầy đủ của Sebastian Raschka",
+      "summary": "Sebastian Raschka ra 8 video lập trình, tổng 11 giờ, xây model suy luận từ đầu bằng Python và PyTorch, bắt đầu từ Qwen3 0.6B. Nội dung gồm đánh giá trên MATH-500, inference-time scaling và GRPO đơn giản.",
+      "summaryEn": "Sebastian Raschka released eight coding videos, 11 hours total, building a reasoning model from scratch in Python and PyTorch from Qwen3 0.6B, covering MATH-500 evaluation, inference-time scaling and a simplified GRPO.",
+      "tags": [
+        "reasoning",
+        "pytorch",
+        "course"
+      ],
+      "fit": 4,
+      "sourceTitle": "Build Your Own Reasoning Model: A Full Video Course",
+      "rank": 0.1919,
+      "addedAt": "2026-10-26",
+      "detailTriedAt": "2026-10-26",
+      "detail": "Sebastian Raschka đăng tám video lập trình, tổng hơn 11 giờ, hướng dẫn xây model suy luận từ đầu bằng Python và PyTorch, đi kèm cuốn sách Build a Reasoning Model (From Scratch).\n\nNội dung:\n- Bắt đầu từ một model Qwen3 nhỏ đã pre-train, rồi tự cài đặt các phương pháp đánh giá và cải thiện: đánh giá trên MATH-500, inference-time scaling (sampling, self-consistency, self-refinement), reinforcement learning với verifiable rewards bằng GRPO đơn giản, và distillation.\n- Là phần tiếp theo của khóa Coding LLMs from the Ground Up năm ngoái, nhưng xem độc lập được.\n\nQuan điểm của tác giả: model suy luận là bản nâng cấp của LLM thông thường nhờ post-training thêm bằng reinforcement learning với verifiable rewards; nó là \"động cơ\" bên trong agent harness, còn harness lo quản lý context và cấp công cụ cho LLM.\n\nYêu cầu: quen Python và PyTorch. Các ví dụ sinh văn bản và đánh giá đầu chạy được trên CPU; phần huấn luyện sau nên có GPU. Video đầu hướng dẫn cài đặt.\n\nVới người xây sản phẩm AI: cách thực hành tốt để hiểu cơ chế đằng sau reasoning mode của các LLM hiện nay.",
+      "detailEn": "Sebastian Raschka published eight coding videos, over 11 hours in total, that build a reasoning model from scratch in Python and PyTorch, accompanying his book Build a Reasoning Model (From Scratch).\n\nWhat it covers:\n- It starts from a small pre-trained Qwen3 model and implements methods to evaluate and improve it: evaluation on MATH-500, inference-time scaling (sampling, self-consistency, self-refinement), reinforcement learning with verifiable rewards using a simplified GRPO, and distillation.\n- It is the sequel to last year's Coding LLMs from the Ground Up course, but can be watched on its own.\n\nThe author's framing: a reasoning model is an upgrade of a conventional LLM through extra post-training with reinforcement learning with verifiable rewards. It acts as the engine inside an agent harness, where the harness handles context management and gives the LLM access to tools.\n\nPrerequisites: comfort with Python and PyTorch. Early text-generation and evaluation examples run on a CPU; for training a GPU is much more practical. The first video covers setup.\n\nFor people building AI products: a hands-on way to understand the mechanics behind the reasoning modes of current LLMs."
+    },
+    {
       "id": "c16fb668c1c7b261bd0cdc30a58e63ac12c7edc0",
       "url": "https://freecodecamp.org/news/how-to-make-your-coding-agent-check-its-work-in-the-browser",
       "discussionUrl": "https://daily.dev/posts/how-to-make-your-coding-agent-check-its-work-in-the-browser-faxnmjz0d",
@@ -19351,41 +19394,6 @@
       "detailTriedAt": "2026-10-24",
       "detail": "Cloudflare dùng OpenAI Daybreak để điều tra lỗ hổng và đề xuất bản sửa cho con người xem xét. Các dev của họ dùng Codex để xây dựng nhanh hơn và cải thiện chất lượng code.\n\n- Bài gốc không lấy được nội dung đầy đủ, nên chi tiết về cách triển khai và kết quả nằm ở trang gốc.",
       "detailEn": "Cloudflare uses OpenAI Daybreak to investigate vulnerabilities and propose fixes for review. Its developers use Codex to build faster and improve code quality.\n\n- The full article text was unavailable, so details on how it is deployed and the results are in the original page."
-    },
-    {
-      "id": "d1a3b4fa5d93fb49d3ffb0461ed4419c6c113f01",
-      "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
-      "discussionUrl": "https://daily.dev/posts/build-your-own-reasoning-model-a-full-video-course-rugpvvdpm",
-      "title": "Build Your Own Reasoning Model: A Full Video Course",
-      "excerpt": "Sebastian Raschka released eight coding lecture videos, totaling 11 hours, that build a reasoning model from scratch in Python and PyTorch. The series starts from a pre-trained Qwen3 0.6B model and covers evaluation on MATH-500, inference-time scaling (sampling, self-consistency, self-refinement), reinforcement learning with verifiable rewards using a simplified GRPO implementation, and distillati",
-      "imageUrl": null,
-      "source": "dailydev",
-      "sourceName": "daily.dev",
-      "sources": [
-        "daily.dev"
-      ],
-      "publishedAt": "2026-10-24T22:25:24.833Z",
-      "engagement": 32,
-      "hotness": 0.1919,
-      "categoryHint": "it",
-      "isMeme": false,
-      "extraLinks": [],
-      "category": "ai-tip",
-      "titleVi": "Xây model suy luận từ đầu: khóa video đầy đủ của Sebastian Raschka",
-      "summary": "Sebastian Raschka ra 8 video lập trình, tổng 11 giờ, xây model suy luận từ đầu bằng Python và PyTorch, bắt đầu từ Qwen3 0.6B. Nội dung gồm đánh giá trên MATH-500, inference-time scaling và GRPO đơn giản.",
-      "summaryEn": "Sebastian Raschka released eight coding videos, 11 hours total, building a reasoning model from scratch in Python and PyTorch from Qwen3 0.6B, covering MATH-500 evaluation, inference-time scaling and a simplified GRPO.",
-      "tags": [
-        "reasoning",
-        "pytorch",
-        "course"
-      ],
-      "fit": 4,
-      "sourceTitle": "Build Your Own Reasoning Model: A Full Video Course",
-      "rank": 0.1535,
-      "addedAt": "2026-10-26",
-      "detailTriedAt": "2026-10-26",
-      "detail": "Sebastian Raschka đăng tám video lập trình, tổng hơn 11 giờ, hướng dẫn xây model suy luận từ đầu bằng Python và PyTorch, đi kèm cuốn sách Build a Reasoning Model (From Scratch).\n\nNội dung:\n- Bắt đầu từ một model Qwen3 nhỏ đã pre-train, rồi tự cài đặt các phương pháp đánh giá và cải thiện: đánh giá trên MATH-500, inference-time scaling (sampling, self-consistency, self-refinement), reinforcement learning với verifiable rewards bằng GRPO đơn giản, và distillation.\n- Là phần tiếp theo của khóa Coding LLMs from the Ground Up năm ngoái, nhưng xem độc lập được.\n\nQuan điểm của tác giả: model suy luận là bản nâng cấp của LLM thông thường nhờ post-training thêm bằng reinforcement learning với verifiable rewards; nó là \"động cơ\" bên trong agent harness, còn harness lo quản lý context và cấp công cụ cho LLM.\n\nYêu cầu: quen Python và PyTorch. Các ví dụ sinh văn bản và đánh giá đầu chạy được trên CPU; phần huấn luyện sau nên có GPU. Video đầu hướng dẫn cài đặt.\n\nVới người xây sản phẩm AI: cách thực hành tốt để hiểu cơ chế đằng sau reasoning mode của các LLM hiện nay.",
-      "detailEn": "Sebastian Raschka published eight coding videos, over 11 hours in total, that build a reasoning model from scratch in Python and PyTorch, accompanying his book Build a Reasoning Model (From Scratch).\n\nWhat it covers:\n- It starts from a small pre-trained Qwen3 model and implements methods to evaluate and improve it: evaluation on MATH-500, inference-time scaling (sampling, self-consistency, self-refinement), reinforcement learning with verifiable rewards using a simplified GRPO, and distillation.\n- It is the sequel to last year's Coding LLMs from the Ground Up course, but can be watched on its own.\n\nThe author's framing: a reasoning model is an upgrade of a conventional LLM through extra post-training with reinforcement learning with verifiable rewards. It acts as the engine inside an agent harness, where the harness handles context management and gives the LLM access to tools.\n\nPrerequisites: comfort with Python and PyTorch. Early text-generation and evaluation examples run on a CPU; for training a GPU is much more practical. The first video covers setup.\n\nFor people building AI products: a hands-on way to understand the mechanics behind the reasoning modes of current LLMs."
     },
     {
       "id": "172a0ab677f463f163bba3f630bcf758d78f3c4a",
@@ -21420,8 +21428,8 @@
       "sourceTitle": "The State of Context Engineering",
       "rank": 0.1135,
       "addedAt": "2026-10-26",
-      "detailTriedAt": "2026-10-26",
-      "discussionTriedAt": "2026-10-26"
+      "detailTriedAt": "2026-10-27",
+      "discussionTriedAt": "2026-10-27"
     },
     {
       "id": "03317c4040fa930157a420751e0a1a48f3405768",
@@ -30985,7 +30993,7 @@
       "sourceTitle": "Valkey 9.2's new rdbcompression lz4 setting cuts a 1M-row RDB from 178MB to 35MB",
       "rank": 0.0317,
       "addedAt": "2026-10-26",
-      "detailTriedAt": "2026-10-26"
+      "detailTriedAt": "2026-10-27"
     },
     {
       "id": "5189d0fca6119bcb80bd39b43df9551a2d47dc03",
@@ -53393,7 +53401,7 @@
       "sourceTitle": "Quebrei meu próprio sistema de propósito (e foi a melhor decisão da sprint)",
       "rank": 0,
       "addedAt": "2026-10-26",
-      "detailTriedAt": "2026-10-26"
+      "detailTriedAt": "2026-10-27"
     },
     {
       "id": "7fe8f13e77d2a201d6785794a1b0a4762895bfe7",
@@ -53460,7 +53468,7 @@
       "sourceTitle": "Sobrevivendo ao Caos: Injetando Falhas Estratégicas com o ChaosEngineeringMasterDeck",
       "rank": 0,
       "addedAt": "2026-10-26",
-      "detailTriedAt": "2026-10-26"
+      "detailTriedAt": "2026-10-27"
     },
     {
       "id": "0698f16278a036dce832ebbcd75cfc929ff83599",
