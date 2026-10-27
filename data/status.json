@@ -1,7 +1,7 @@
 {
   "fetch": {
     "ok": true,
-    "message": "200 candidates, 82 sightings from 44/62 sources",
+    "message": "200 candidates, 81 sightings from 45/62 sources",
     "failedSources": [
       {
         "id": "r-artificial",
@@ -9,11 +9,11 @@
       },
       {
         "id": "r-localllama",
-        "error": "HTTP 403 for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/LocalLLaMA/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-claudeai",
-        "error": "HTTP 403 for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/ClaudeAI/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-qualityassurance",
@@ -25,15 +25,15 @@
       },
       {
         "id": "r-programming",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/programming/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-programmerhumor",
-        "error": "timeout after 15000 ms for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
+        "error": "HTTP 403 for https://www.reddit.com/r/ProgrammerHumor/top.json?t=day&limit=40&raw_json=1"
       },
       {
         "id": "r-playwright",
-        "error": "HTTP 403 for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
+        "error": "timeout after 15000 ms for https://www.reddit.com/r/Playwright/top.json?t=week&limit=40&raw_json=1"
       },
       {
         "id": "r-selenium",
@@ -70,48 +70,44 @@
       {
         "id": "r-singularity",
         "error": "HTTP 403 for https://www.reddit.com/r/singularity/top.json?t=day&limit=40&raw_json=1"
-      },
-      {
-        "id": "satisfice",
-        "error": "This operation was aborted"
       }
     ],
     "candidates": 200,
-    "at": "2026-10-27T01:33:36.005Z"
+    "at": "2026-10-27T01:50:54.276Z"
   },
   "curate": {
-    "ok": false,
-    "message": "curated.json missing or invalid JSON; no new items",
-    "at": "2026-10-27T01:33:38.399Z"
+    "ok": true,
+    "message": "kept 118, dropped 82, invalid 0",
+    "at": "2026-10-27T01:58:14.742Z"
   },
   "merge": {
     "ok": true,
-    "message": "skipped curation; 1 items re-sighted",
+    "message": "1582 items retained, 0 re-sighted",
     "counts": {
       "candidates": 200,
-      "kept": 0,
-      "dropped": 0,
+      "kept": 118,
+      "dropped": 82,
       "invalid": 0,
-      "sighted": 1
+      "sighted": 0
     },
-    "at": "2026-10-27T01:33:38.400Z"
+    "at": "2026-10-27T01:58:14.742Z"
   },
   "build": {
     "ok": true,
-    "message": "627 items on index, 15 archive pages",
-    "at": "2026-10-27T01:33:38.692Z"
+    "message": "745 items on index, 15 archive pages",
+    "at": "2026-10-27T02:32:07.043Z"
   },
   "detail": {
     "ok": true,
     "day": "2026-10-27",
-    "message": "0 details written today",
+    "message": "102 details written today",
     "counts": {
-      "written": 0,
-      "missing": 5,
-      "invalid": 0,
-      "ungrounded": 0,
-      "discussed": 0
+      "written": 102,
+      "missing": 15,
+      "invalid": 6,
+      "ungrounded": 6,
+      "discussed": 16
     },
-    "at": "2026-10-27T00:59:12.526Z"
+    "at": "2026-10-27T02:32:06.713Z"
   }
 }
