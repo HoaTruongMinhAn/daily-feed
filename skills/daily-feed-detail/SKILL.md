@@ -9,6 +9,7 @@ description: >-
   scripts/daily-feed-run.sh via `claude -p "/daily-feed-detail"` with
   permissions scoped to reading data/detail-queue/ and writing
   data/details/. Use when the user says daily feed detail.
+disable-model-invocation: true
 ---
 
 # Daily Feed — detail

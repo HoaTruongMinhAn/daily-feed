@@ -8,6 +8,7 @@ description: >-
   `claude -p "/daily-feed-curate"` with permissions scoped to reading
   data/candidates.json and writing data/curated.json. Use when the
   user says daily feed curate, curate today's feed.
+disable-model-invocation: true
 ---
 
 # Daily Feed — curate
